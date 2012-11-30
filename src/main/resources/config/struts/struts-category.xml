@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="category" extends="golf">
+		<action name="categoryList" class="categoryAction" method="categoryList">
+			<result name="success">jsp/category/CategoryList.jsp</result>
+		</action>
+		<action name="categoryAdd" >
+			<result name="success">jsp/category/CategoryAdd.jsp</result>
+		</action>
+		<action name="categoryAddSubmit" class="categoryAction" method="categoryAddSubmit">
+			<result name="success" type="redirect">categoryList.action</result>
+		</action>
+		<action name="categoryUpdate" class="categoryAction" method="categoryUpdate" >
+			<result name="success">jsp/category/CategoryUpdate.jsp</result>
+		</action>
+		<action name="categoryUpdateSubmit" class="categoryAction" method="categoryUpdateSubmit">
+			<result name="success" type="redirect">categoryList.action</result>
+		</action>
+		<action name="categoryDelete" class="categoryAction" method="categoryDelete">
+			<result name="success" type="redirect">categoryList.action</result>
+		</action>
+		
+		<action name="smallCategoryList" class="smallCategoryAction" method="smallCategoryList">
+			<result name="success">jsp/smallCategory/SmallCategoryList.jsp</result>
+		</action>
+		<action name="smallCategoryAdd" class="smallCategoryAction" method="smallCategoryAdd">
+			<result name="success">jsp/smallCategory/SmallCategoryAdd.jsp</result>
+		</action>
+		<action name="smallCategoryAddSubmit" class="smallCategoryAction" method="smallCategoryAddSubmit">
+			<result name="success" type="redirect">smallCategoryList.action?categoryId=${categoryId}</result>
+		</action>
+		<action name="smallCategoryUpdate" class="smallCategoryAction" method="smallCategoryUpdate" >
+			<result name="success">jsp/smallCategory/SmallCategoryUpdate.jsp</result>
+		</action>
+		<action name="smallCategoryUpdateSubmit" class="smallCategoryAction" method="smallCategoryUpdateSubmit">
+			<result name="success" type="redirect">smallCategoryList.action?categoryId=${categoryId}</result>
+		</action>
+		<action name="smallCategoryDelete" class="smallCategoryAction" method="smallCategoryDelete">
+			<result name="success" type="redirect">smallCategoryList.action?categoryId=${categoryId}</result>
+		</action>
+	</package>	
+</struts>

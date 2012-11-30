@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="newsComments" extends="golf">
+		<action name="newsCommentsList" class="newsCommentsAction" method="newsCommentsList">
+			<result name="success">jsp/newsComments/NewsCommentsList.jsp</result>
+		</action>
+		<action name="newsCommentsAdd" >
+			<result name="success">jsp/newsComments/NewsCommentsAdd.jsp</result>
+		</action>
+		<action name="newsCommentsAddSubmit" class="newsCommentsAction" method="newsCommentsAddSubmit">
+			<result name="success" type="redirect">newsCommentsList.action</result>
+		</action>
+		<action name="newsCommentsUpdate" class="newsCommentsAction" method="newsCommentsUpdate" >
+			<result name="success">jsp/newsComments/NewsCommentsUpdate.jsp</result>
+		</action>
+		<action name="newsCommentsUpdateSubmit" class="newsCommentsAction" method="newsCommentsUpdateSubmit">
+			<result name="success" type="redirect">newsCommentsList.action</result>
+		</action>
+		<action name="newsCommentsDelete" class="newsCommentsAction" method="newsCommentsDelete">
+			<result name="success" type="redirect">newsCommentsList.action</result>
+		</action>
+	</package>	
+</struts>

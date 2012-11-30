@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="courtImage" type="com.golf.entity.CourtImage" />
+	
+	<sql id="courtImage.columns">
+		id,courtId,imageId,imageDes,creationDate
+	</sql>
+	<select id="courtImage.findAll" resultClass="courtImage">
+		select
+		<include refid="courtImage.columns" />
+		from courtImage order by id desc
+	</select>
+	<select id="courtImage.findByTeamId" resultClass="courtImage"
+		parameterClass="int">
+		select
+		<include refid="courtImage.columns" />
+		from courtImage where teamId=#teamId#
+	</select>
+	<insert id="courtImage.insert" parameterClass="courtImage">
+		insert into courtImage (
+		<include refid="courtImage.columns" />
+		) values
+		(#id#,#courtId#,#imageId#,#imageDes#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="courtImage.update" parameterClass="courtImage">
+		update courtImage set courtId=#courtId#,imageId=#imageId#,imageDes=#imageDes# where id=#id#
+	</update>
+	<delete id="courtImage.delete" parameterClass="int">
+		delete from courtImage
+		where id=#id#
+	</delete>
+</sqlMap>

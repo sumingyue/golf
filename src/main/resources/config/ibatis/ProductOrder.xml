@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="productOrder" type="com.golf.entity.ProductOrder" />
+	
+	<sql id="productOrder.columns">
+		id,productId,orderNumber,userName,userPhone,userAddress,status,note,creationDate
+	</sql>
+	<select id="productOrder.findAll" resultClass="productOrder">
+		select
+		<include refid="productOrder.columns" />
+		from productOrder order by id desc
+	</select>
+	<select id="productOrder.findById" resultClass="productOrder"
+		parameterClass="int">
+		select
+		<include refid="productOrder.columns" />
+		from productOrder where id=#id#
+	</select>
+	<insert id="productOrder.insert" parameterClass="productOrder">
+		insert into productOrder (
+		<include refid="productOrder.columns" />
+		) values
+		(#id#,#productId#,#orderNumber#,#userName#,#userPhone#,#userAddress#,#status#,#note#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="productOrder.update" parameterClass="productOrder">
+		update productOrder set productId=#productId#,orderNumber=#orderNumber#,
+		userName=#userName#,userPhone=#userPhone#,userAddress=#userAddress#,status=#status#,
+		note=#note# where id=#id#
+	</update>
+	<delete id="productOrder.delete" parameterClass="int">
+		delete from productOrder
+		where id=#id#
+	</delete>
+</sqlMap>

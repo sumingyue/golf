@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="media" type="com.golf.entity.Media" />
+	
+	<sql id="media.columns">
+		id,name,type,url,creationDate
+	</sql>
+	<select id="media.findAll" resultClass="media">
+		select
+		<include refid="media.columns" />
+		from media order by id desc
+	</select>
+	<select id="media.findById" resultClass="media"
+		parameterClass="int">
+		select
+		<include refid="media.columns" />
+		from media where id=#id#
+	</select>
+	<insert id="media.insert" parameterClass="media">
+		insert into media (
+		<include refid="media.columns" />
+		) values
+		(#id#,#name#,#type#,#url#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="media.update" parameterClass="media">
+		update media set name=#name# ,type=#type#, url=#url# where id=#id#
+	</update>
+	<delete id="media.delete" parameterClass="int">
+		delete from media
+		where id=#id#
+	</delete>
+</sqlMap>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="teamNews" extends="golf">
+		<action name="teamNewsList" class="teamNewsAction" method="teamNewsList">
+			<result name="success">jsp/teamNews/TeamNewsList.jsp</result>
+		</action>
+		<action name="teamNewsAdd" class="teamNewsAction" method="teamNewsAdd">
+			<result name="success">jsp/teamNews/TeamNewsAdd.jsp</result>
+		</action>
+		<action name="teamNewsAddSubmit" class="teamNewsAction" method="teamNewsAddSubmit">
+			<result name="success" type="redirect">teamNewsList.action</result>
+		</action>
+		<action name="teamNewsUpdate" class="teamNewsAction" method="teamNewsUpdate" >
+			<result name="success">jsp/teamNews/TeamNewsUpdate.jsp</result>
+		</action>
+		<action name="teamNewsUpdateSubmit" class="teamNewsAction" method="teamNewsUpdateSubmit">
+			<result name="success" type="redirect">teamNewsList.action</result>
+		</action>
+		<action name="teamNewsDelete" class="teamNewsAction" method="teamNewsDelete">
+			<result name="success" type="redirect">teamNewsList.action</result>
+		</action>
+	</package>	
+</struts>

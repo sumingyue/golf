@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="courtImage" extends="golf">
+		<action name="courtImageList" class="courtImageAction" method="courtImageList">
+			<result name="success">jsp/courtImage/CourtImageList.jsp</result>
+		</action>
+		<action name="courtImageAdd" class="courtImageAction" method="courtImageAdd">
+			<result name="success">jsp/courtImage/CourtImageAdd.jsp</result>
+		</action>
+		<action name="courtImageAddSubmit" class="courtImageAction" method="courtImageAddSubmit">
+			<result name="success" type="redirect">courtImageList.action</result>
+		</action>
+		<action name="courtImageUpdate" class="courtImageAction" method="courtImageUpdate" >
+			<result name="success">jsp/courtImage/CourtImageUpdate.jsp</result>
+		</action>
+		<action name="courtImageUpdateSubmit" class="courtImageAction" method="courtImageUpdateSubmit">
+			<result name="success" type="redirect">courtImageList.action</result>
+		</action>
+		<action name="courtImageDelete" class="courtImageAction" method="courtImageDelete">
+			<result name="success" type="redirect">courtImageList.action</result>
+		</action>
+	</package>	
+</struts>

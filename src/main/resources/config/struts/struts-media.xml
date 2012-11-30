@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="media" extends="golf">
+		<action name="mediaList" class="mediaAction" method="mediaList">
+			<result name="success">jsp/media/MediaList.jsp</result>
+		</action>
+		<action name="mediaAdd" >
+			<result name="success">jsp/media/MediaAdd.jsp</result>
+		</action>
+		<action name="mediaAddSubmit" class="mediaAction" method="mediaAddSubmit">
+			<result name="success" type="redirect">mediaList.action</result>
+		</action>
+		<action name="mediaUpdate" class="mediaAction" method="mediaUpdate" >
+			<result name="success">jsp/media/MediaUpdate.jsp</result>
+		</action>
+		<action name="mediaUpdateSubmit" class="mediaAction" method="mediaUpdateSubmit">
+			<result name="success" type="redirect">mediaList.action</result>
+		</action>
+		<action name="mediaDelete" class="mediaAction" method="mediaDelete">
+			<result name="success" type="redirect">mediaList.action</result>
+		</action>
+	</package>	
+</struts>

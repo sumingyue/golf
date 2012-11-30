@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-lazy-init="false" default-autowire="byName">
+	<bean id="categoryAction" class="com.golf.action.CategoryAction"
+		scope="prototype">
+		<property name="categoryService">
+			<ref bean="categoryService" />
+		</property>
+	</bean>
+	<bean id="smallCategoryAction" class="com.golf.action.SmallCategoryAction"
+		scope="prototype">
+		<property name="categoryService">
+			<ref bean="categoryService" />
+		</property>
+	</bean>
+	<bean id="newsAction" class="com.golf.action.NewsAction"
+		scope="prototype">
+		<property name="newsService">
+			<ref bean="newsService" />
+		</property>
+		<property name="categoryService">
+			<ref bean="categoryService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="mediaAction" class="com.golf.action.MediaAction"
+		scope="prototype">
+		<property name="mediaService">
+			<ref bean="mediaService" />
+		</property>
+	</bean>
+	<bean id="adwordsAction" class="com.golf.action.AdwordsAction"
+		scope="prototype">
+		<property name="adwordsService">
+			<ref bean="adwordsService" />
+		</property>
+	</bean>
+	<bean id="playerAction" class="com.golf.action.PlayerAction"
+		scope="prototype">
+		<property name="playerService">
+			<ref bean="playerService" />
+		</property>
+	</bean>
+	<bean id="indexAction" class="com.golf.action.IndexAction"
+		scope="prototype">
+		<property name="playerService">
+			<ref bean="playerService" />
+		</property>
+		<property name="mediaService">
+			<ref bean="mediaService" />
+		</property>
+		<property name="adwordsService">
+			<ref bean="adwordsService" />
+		</property>
+		<property name="newsService">
+			<ref bean="newsService" />
+		</property>
+		<property name="categoryService">
+			<ref bean="categoryService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="fileUploadAction" class="com.golf.action.FileUploadAction" scope="prototype">
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="fileManagerAction" class="com.golf.action.FileManagerAction" scope="prototype"></bean>
+	
+	
+	<bean id="productCategoryAction" class="com.golf.action.ProductCategoryAction"
+		scope="prototype">
+		<property name="productCategoryService">
+			<ref bean="productCategoryService" />
+		</property>
+	</bean>
+	<bean id="productAction" class="com.golf.action.ProductAction"
+		scope="prototype">
+		<property name="productService">
+			<ref bean="productService" />
+		</property>		
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="productOrderAction" class="com.golf.action.ProductOrderAction"
+		scope="prototype">
+		<property name="productOrderService">
+			<ref bean="productOrderService" />
+		</property>
+	</bean>
+	<bean id="courtOrderAction" class="com.golf.action.CourtOrderAction"
+		scope="prototype">
+		<property name="courtOrderService">
+			<ref bean="courtOrderService" />
+		</property>
+	</bean>
+	<bean id="teamAction" class="com.golf.action.TeamAction"
+		scope="prototype">
+		<property name="teamService">
+			<ref bean="teamService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="teamMemberImageAction" class="com.golf.action.TeamMemberImageAction"
+		scope="prototype">
+		<property name="teamMemberImageService">
+			<ref bean="teamMemberImageService" />
+		</property>
+		<property name="teamService">
+			<ref bean="teamService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="teamNewsAction" class="com.golf.action.TeamNewsAction"
+		scope="prototype">
+		<property name="teamNewsService">
+			<ref bean="teamNewsService" />
+		</property>
+		<property name="teamService">
+			<ref bean="teamService" />
+		</property>
+	</bean>
+	<bean id="userMessageAction" class="com.golf.action.UserMessageAction"
+		scope="prototype">
+		<property name="userMessageService">
+			<ref bean="userMessageService" />
+		</property>
+	</bean>
+	<bean id="newsCommentsAction" class="com.golf.action.NewsCommentsAction"
+		scope="prototype">
+		<property name="newsCommentsService">
+			<ref bean="newsCommentsService" />
+		</property>
+	</bean>
+	<bean id="courtAction" class="com.golf.action.CourtAction"
+		scope="prototype">
+		<property name="courtService">
+			<ref bean="courtService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="courtCommentsAction" class="com.golf.action.CourtCommentsAction"
+		scope="prototype">
+		<property name="courtCommentsService">
+			<ref bean="courtCommentsService" />
+		</property>
+		<property name="courtService">
+			<ref bean="courtService" />
+		</property>
+	</bean>
+	<bean id="courtImageAction" class="com.golf.action.CourtImageAction"
+		scope="prototype">
+		<property name="courtImageService">
+			<ref bean="courtImageService" />
+		</property>
+		<property name="courtService">
+			<ref bean="courtService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="courtRaiderAction" class="com.golf.action.CourtRaiderAction"
+		scope="prototype">
+		<property name="courtRaiderService">
+			<ref bean="courtRaiderService" />
+		</property>
+		<property name="courtService">
+			<ref bean="courtService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	
+	<bean id="imageSpecialAction" class="com.golf.action.ImageSpecialAction"
+		scope="prototype">
+		<property name="imageSpecialService">
+			<ref bean="imageSpecialService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="imageSpecialDetailAction" class="com.golf.action.ImageSpecialDetailAction"
+		scope="prototype">
+		<property name="imageSpecialDetailService">
+			<ref bean="imageSpecialDetailService" />
+		</property>
+		<property name="imageSpecialService">
+			<ref bean="imageSpecialService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="matchServiceAction" class="com.golf.action.MatchServiceAction"
+		scope="prototype">
+		<property name="matchServiceService">
+			<ref bean="matchServiceService" />
+		</property>
+	</bean>
+</beans>  

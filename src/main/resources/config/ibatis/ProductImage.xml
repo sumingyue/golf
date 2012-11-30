@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="productImage" type="com.golf.entity.ProductImage" />
+	
+	<sql id="productImage.columns">
+		productId,imageId,creationDate
+	</sql>
+	<select id="productImage.findByProductId" resultClass="productImage"
+		parameterClass="int">
+		select
+		<include refid="productImage.columns" />
+		from productImage where productId=#productId#
+	</select>
+	<insert id="productImage.insert" parameterClass="productImage">
+		insert into productImage (
+		<include refid="productImage.columns" />
+		) values
+		(#productId#,#imageId#,now())
+	</insert>
+	<delete id="productImage.delete" parameterClass="productImage">
+		delete from productImage
+		where productId=#productId# and imageId=#imageId#
+	</delete>
+</sqlMap>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-lazy-init="false" default-autowire="byName">
+	<bean id="categoryService" class="com.golf.service.impl.CategoryServiceImpl">
+		<property name="categoryDao">
+			<ref bean="categoryDao" />
+		</property>
+		<property name="smallCategoryDao">
+			<ref bean="smallCategoryDao" />
+		</property>
+	</bean>
+	<bean id="newsService" class="com.golf.service.impl.NewsServiceImpl">
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+		<property name="categoryService">
+			<ref bean="categoryService" />
+		</property>
+	</bean>
+	<bean id="imageService" class="com.golf.service.impl.ImageServiceImpl">
+		<property name="imageDao">
+			<ref bean="imageDao" />
+		</property>
+	</bean>
+	<bean id="mediaService" class="com.golf.service.impl.MediaServiceImpl">
+		<property name="mediaDao">
+			<ref bean="mediaDao" />
+		</property>
+	</bean>
+	<bean id="playerService" class="com.golf.service.impl.PlayerServiceImpl">
+		<property name="playerDao">
+			<ref bean="playerDao" />
+		</property>
+	</bean>
+	<bean id="adwordsService" class="com.golf.service.impl.AdwordsServiceImpl">
+		<property name="adwordsDao">
+			<ref bean="adwordsDao" />
+		</property>
+	</bean>
+	<bean id="productCategoryService" class="com.golf.service.impl.ProductCategoryServiceImpl">
+		<property name="productCategoryDao">
+			<ref bean="productCategoryDao" />
+		</property>
+	</bean>
+	<bean id="productService" class="com.golf.service.impl.ProductServiceImpl">
+		<property name="productDao">
+			<ref bean="productDao" />
+		</property>
+		<property name="productCategoryService">
+			<ref bean="productCategoryService" />
+		</property>
+		<property name="productImageDao">
+			<ref bean="productImageDao" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="productOrderService" class="com.golf.service.impl.ProductOrderServiceImpl">
+		<property name="productOrderDao">
+			<ref bean="productOrderDao" />
+		</property>
+	</bean>
+	<bean id="courtOrderService" class="com.golf.service.impl.CourtOrderServiceImpl">
+		<property name="courtOrderDao">
+			<ref bean="courtOrderDao" />
+		</property>
+	</bean>
+	<bean id="teamService" class="com.golf.service.impl.TeamServiceImpl">
+		<property name="teamDao">
+			<ref bean="teamDao" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="teamMemberImageService" class="com.golf.service.impl.TeamMemberImageServiceImpl">
+		<property name="teamMemberImageDao">
+			<ref bean="teamMemberImageDao" />
+		</property>
+	</bean>
+	<bean id="teamNewsService" class="com.golf.service.impl.TeamNewsServiceImpl">
+		<property name="teamNewsDao">
+			<ref bean="teamNewsDao" />
+		</property>
+	</bean>
+	<bean id="userMessageService" class="com.golf.service.impl.UserMessageServiceImpl">
+		<property name="userMessageDao">
+			<ref bean="userMessageDao" />
+		</property>
+	</bean>
+	<bean id="courtService" class="com.golf.service.impl.CourtServiceImpl">
+		<property name="courtDao">
+			<ref bean="courtDao" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="courtRaiderService" class="com.golf.service.impl.CourtRaiderServiceImpl">
+		<property name="courtRaiderDao">
+			<ref bean="courtRaiderDao" />
+		</property>
+	</bean>
+	<bean id="courtImageService" class="com.golf.service.impl.CourtImageServiceImpl">
+		<property name="courtImageDao">
+			<ref bean="courtImageDao" />
+		</property>
+	</bean>
+	<bean id="courtCommentsService" class="com.golf.service.impl.CourtCommentsServiceImpl">
+		<property name="courtCommentsDao">
+			<ref bean="courtCommentsDao" />
+		</property>
+	</bean>
+	<bean id="newsCommentsService" class="com.golf.service.impl.NewsCommentsServiceImpl">
+		<property name="newsCommentsDao">
+			<ref bean="newsCommentsDao" />
+		</property>
+	</bean>
+	<bean id="imageSpecialService" class="com.golf.service.impl.ImageSpecialServiceImpl">
+		<property name="imageSpecialDao">
+			<ref bean="imageSpecialDao" />
+		</property>
+	</bean>
+	<bean id="imageSpecialDetailService" class="com.golf.service.impl.ImageSpecialDetailServiceImpl">
+		<property name="imageSpecialDetailDao">
+			<ref bean="imageSpecialDetailDao" />
+		</property>
+	</bean>
+	<bean id="matchServiceService" class="com.golf.service.impl.MatchServiceServiceImpl">
+		<property name="matchServiceDao">
+			<ref bean="matchServiceDao" />
+		</property>
+	</bean>
+</beans>  

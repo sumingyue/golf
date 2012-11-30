@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="news" extends="golf">
+		<action name="newsList" class="newsAction" method="newsList">
+			<result name="success">jsp/news/NewsList.jsp</result>
+		</action>
+		<action name="newsAdd" class="newsAction" method="newsAdd">
+			<result name="success">jsp/news/NewsAdd.jsp</result>
+		</action>
+		<action name="newsAddSubmit" class="newsAction" method="newsAddSubmit">
+			<result name="success" type="redirect">newsList.action</result>
+		</action>
+		<action name="newsUpdate" class="newsAction" method="newsUpdate">
+			<result name="success">jsp/news/NewsUpdate.jsp</result>
+		</action>
+		<action name="newsUpdateSubmit" class="newsAction" method="newsUpdateSubmit">
+			<result name="success" type="redirect">newsList.action</result>
+		</action>
+		<action name="newsDelete" class="newsAction" method="newsDelete">
+			<result name="success" type="redirect">newsList.action</result>
+		</action>
+		<action name="fileUpload" class="fileUploadAction">
+			<result name="success">jsp/system/SystemSuccess.jsp</result>
+		</action>
+		<action name="preFileUpload">
+			<result name="success">jsp/system/FileUpload.jsp</result>
+		</action>
+		<action name="fileManager" class="fileManagerAction">
+			<result name="success">jsp/system/FileManager.jsp</result>
+		</action>
+	</package>
+</struts>

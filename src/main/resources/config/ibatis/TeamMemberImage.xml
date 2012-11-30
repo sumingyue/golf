@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="teamMemberImage" type="com.golf.entity.TeamMemberImage" />
+	
+	<sql id="teamMemberImage.columns">
+		id,teamId,imageId,memberName,imageDes,creationDate
+	</sql>
+	<select id="teamMemberImage.findAll" resultClass="teamMemberImage">
+		select
+		<include refid="teamMemberImage.columns" />
+		from teamMemberImage order by id desc
+	</select>
+	<select id="teamMemberImage.findByTeamId" resultClass="teamMemberImage"
+		parameterClass="int">
+		select
+		<include refid="teamMemberImage.columns" />
+		from teamMemberImage where teamId=#teamId#
+	</select>
+	<insert id="teamMemberImage.insert" parameterClass="teamMemberImage">
+		insert into teamMemberImage (
+		<include refid="teamMemberImage.columns" />
+		) values
+		(#id#,#teamId#,#imageId#,#memberName#,#imageDes#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="teamMemberImage.update" parameterClass="teamMemberImage">
+		update teamMemberImage set teamId=#teamId#,imageId=#imageId#,teamId=#teamId#,imageDes=#imageDes# where id=#id#
+	</update>
+	<delete id="teamMemberImage.delete" parameterClass="int">
+		delete from teamMemberImage
+		where teamId=#teamId# and id=#id#
+	</delete>
+</sqlMap>

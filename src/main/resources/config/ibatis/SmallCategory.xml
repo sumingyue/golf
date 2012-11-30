@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="smallCategory" type="com.golf.entity.SmallCategory" />
+
+	<sql id="smallCategory.columns">
+		id,categoryId,name,creationDate
+	</sql>
+	<select id="smallCategory.findAll" resultClass="smallCategory">
+		select
+		<include refid="smallCategory.columns" />
+		from smallCategory
+	</select>
+	<select id="smallCategory.findByCategoryId" resultClass="smallCategory"
+		parameterClass="int">
+		select
+		<include refid="smallCategory.columns" />
+		from smallCategory where categoryId=#id#
+	</select>
+	<select id="smallCategory.findById" resultClass="smallCategory"
+		parameterClass="int">
+		select
+		<include refid="smallCategory.columns" />
+		from smallCategory where id=#id#
+	</select>
+	<insert id="smallCategory.insert" parameterClass="smallCategory">
+		insert into smallCategory (
+		<include refid="smallCategory.columns" />
+		) values
+		(#id#,#categoryId#,#name#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="smallCategory.update" parameterClass="smallCategory">
+		update smallCategory set name=#name#,categoryId=#categoryId# where id=#id#
+	</update>
+	<delete id="smallCategory.delete" parameterClass="int">
+		delete from
+		smallCategory where id=#id#
+	</delete>
+</sqlMap>

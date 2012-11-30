@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="newsCategory" type="com.golf.entity.NewsCategory" />
+
+	<sql id="newsCategory.columns">
+		newId,categoryId,smallCategoryId,creationDate
+	</sql>
+	<select id="newsCategory.findAll" resultClass="newsCategory">
+		select
+		<include refid="newsCategory.columns" />
+		from newsCategory
+	</select>
+	<select id="newsCategory.findByCategoryIdId" resultClass="newsCategory"
+		parameterClass="int">
+		select
+		<include refid="newsCategory.columns" />
+		from newsCategory where categoryId=#id#
+	</select>
+	<select id="newsCategory.findBySmallCategoryIdId" resultClass="newsCategory"
+		parameterClass="int">
+		select
+		<include refid="newsCategory.columns" />
+		from newsCategory where smallCategoryId=#id#
+	</select>
+	<insert id="newsCategory.insert" parameterClass="newsCategory">
+		insert into newsCategory (
+		<include refid="newsCategory.columns" />
+		) values
+		(#newId#,#categoryId#,#smallCategoryId#,#creationDate#)
+	</insert>
+	<update id="newsCategory.update" parameterClass="newsCategory">
+		update newsCategory 
+		set categoryId=#categoryId# ,smallCategoryId=#smallCategoryId#
+		where newId=#newId#
+	</update>
+	<delete id="newsCategory.delete" parameterClass="newsCategory">
+		delete from
+		newsCategory where newId=#newId# and categoryId=#categoryId# and
+		smallCategoryId=#smallCategoryId#
+	</delete>
+</sqlMap>

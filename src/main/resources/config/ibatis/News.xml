@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="news" type="com.golf.entity.News" />
+
+	<sql id="news.columns">
+		id,title,content,source,keyword,author,good,bad,viewNumber,status,
+		recommend,priority,validateDate,categoryId,smallCategoryId,imageId,creationDate,modifyDate
+	</sql>
+	<select id="news.findAll" resultClass="news">
+		select
+		<include refid="news.columns" />
+		from news order by id desc
+	</select>
+	<select id="news.findById" resultClass="news" parameterClass="int">
+		select
+		<include refid="news.columns" />
+		from news where id=#id#
+	</select>
+	<insert id="news.insert" parameterClass="news">
+		insert into news (
+		<include refid="news.columns" />
+		) values
+		(#id#,#title#,#content#,#source#,#keyword#,#author#,#good#,#bad#,
+		#viewNumber#,#status#,#recommend#,#priority#,#validateDate#,
+		#categoryId#,#imageId#,#smallCategoryId#,#creationDate#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="news.update" parameterClass="news">
+		update news set title=#title#,content=#content#,keyword=#keyword#,
+		status=#status#,recommend=#recommend#,priority=#priority#,validateDate=#validateDate#,
+		categoryId=#categoryId#,smallCategoryId=#smallCategoryId#,imageId=#imageId#,modifyDate=now() where id=#id#
+	</update>
+	<delete id="news.delete" parameterClass="int">
+		delete from news where
+		id=#id#
+	</delete>
+</sqlMap>

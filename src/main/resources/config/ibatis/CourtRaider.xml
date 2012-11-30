@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="courtRaider" type="com.golf.entity.CourtRaider" />
+	
+	<sql id="courtRaider.columns">
+		id,name,courtId,imageId,indexName,des,creationDate
+	</sql>
+	<select id="courtRaider.findAll" resultClass="courtRaider">
+		select
+		<include refid="courtRaider.columns" />
+		from courtRaider order by id desc
+	</select>
+	<select id="courtRaider.findById" resultClass="courtRaider"
+		parameterClass="int">
+		select
+		<include refid="courtRaider.columns" />
+		from courtRaider where id=#id#
+	</select>
+	<insert id="courtRaider.insert" parameterClass="courtRaider">
+		insert into courtRaider (
+		<include refid="courtRaider.columns" />
+		) values
+		(#id#,#name#,#courtId#,#imageId#,#indexName#,#des#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="courtRaider.update" parameterClass="courtRaider">
+		update courtRaider set name=#name#,courtId=#courtId#,imageId=#imageId#,indexName=#indexName# where id=#id#
+	</update>
+	<delete id="courtRaider.delete" parameterClass="int">
+		delete from courtRaider
+		where id=#id#
+	</delete>
+</sqlMap>

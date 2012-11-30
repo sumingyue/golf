@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="productOrder" extends="golf">
+		<action name="productOrderList" class="productOrderAction" method="productOrderList">
+			<result name="success">jsp/productOrder/ProductOrderList.jsp</result>
+		</action>
+		<action name="productOrderAdd" >
+			<result name="success">jsp/productOrder/ProductOrderAdd.jsp</result>
+		</action>
+		<action name="productOrderAddSubmit" class="productOrderAction" method="productOrderAddSubmit">
+			<result name="success" type="redirect">productOrderList.action</result>
+		</action>
+		<action name="productOrderUpdate" class="productOrderAction" method="productOrderUpdate" >
+			<result name="success">jsp/productOrder/ProductOrderUpdate.jsp</result>
+		</action>
+		<action name="productOrderUpdateSubmit" class="productOrderAction" method="productOrderUpdateSubmit">
+			<result name="success" type="redirect">productOrderList.action</result>
+		</action>
+		<action name="productOrderDelete" class="productOrderAction" method="productOrderDelete">
+			<result name="success" type="redirect">productOrderList.action</result>
+		</action>
+	</package>	
+</struts>

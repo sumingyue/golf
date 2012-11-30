@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="team" type="com.golf.entity.Team" />
+	
+	<sql id="team.columns">
+		id,name,imageId,announcement,introduction,setUpTime,founder,captain,members,slogan,achievement,creationDate
+	</sql>
+	<select id="team.findAll" resultClass="team">
+		select
+		<include refid="team.columns" />
+		from team order by id desc
+	</select>
+	<select id="team.findById" resultClass="team"
+		parameterClass="int">
+		select
+		<include refid="team.columns" />
+		from team where id=#id#
+	</select>
+	<insert id="team.insert" parameterClass="team">
+		insert into team (
+		<include refid="team.columns" />
+		) values
+		(#id#,#name#,#imageId#,#announcement#,#introduction#,#setUpTime#,#founder#,#captain#,#members#,#slogan#,#achievement#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="team.update" parameterClass="team">
+		update team set name=#name#,announcement=#announcement#,introduction=#introduction#,setUpTime=#setUpTime#,
+		founder=#founder#,captain=#captain#,members=#members#,slogan=#slogan#,achievement=#achievement# where id=#id#
+	</update>
+	<update id="team.updateLogo"  parameterClass="team">
+		update team set imageId=#imageId# where id=#id# 
+	</update>
+	<delete id="team.delete" parameterClass="int">
+		delete from team
+		where id=#id#
+	</delete>
+</sqlMap>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-lazy-init="false" default-autowire="byName">
+	<bean id="indexAction" class="com.golf.main.IndexAction" scope="prototype">
+		<property name="playerService">
+			<ref bean="playerService" />
+		</property>
+		<property name="mediaService">
+			<ref bean="mediaService" />
+		</property>
+		<property name="adwordsService">
+			<ref bean="adwordsService" />
+		</property>
+		<property name="newsService">
+			<ref bean="newsService" />
+		</property>
+		<property name="categoryService">
+			<ref bean="categoryService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="categoryNewsAction" class="com.golf.main.CategoryNewsAction"
+		scope="prototype">
+		<property name="adwordsService">
+			<ref bean="adwordsService" />
+		</property>
+		<property name="newsService">
+			<ref bean="newsService" />
+		</property>
+		<property name="categoryService">
+			<ref bean="categoryService" />
+		</property>
+	</bean>
+	<bean id="smallCategoryNewsAction" class="com.golf.main.SmallCategoryNewsAction"
+		scope="prototype">
+		<property name="adwordsService">
+			<ref bean="adwordsService" />
+		</property>
+		<property name="newsService">
+			<ref bean="newsService" />
+		</property>
+		<property name="categoryService">
+			<ref bean="categoryService" />
+		</property>
+	</bean>
+	<bean id="newsDetailAction" class="com.golf.main.NewsDetailAction"
+		scope="prototype">
+		<property name="adwordsService">
+			<ref bean="adwordsService" />
+		</property>
+		<property name="newsService">
+			<ref bean="newsService" />
+		</property>
+		<property name="categoryService">
+			<ref bean="categoryService" />
+		</property>
+		<property name="newsCommentsService">
+			<ref bean="newsCommentsService" />
+		</property>
+	</bean>
+	<bean id="practiceAction" class="com.golf.main.PracticeAction"
+		scope="prototype">
+		<property name="newsService">
+			<ref bean="newsService" />
+		</property>
+		<property name="courtService">
+			<ref bean="courtService" />
+		</property>
+	</bean>
+	<bean id="userProductAction" class="com.golf.main.UserProductAction"
+		scope="prototype">
+		<property name="productService">
+			<ref bean="productService" />
+		</property>
+		<property name="productCategoryService">
+			<ref bean="productCategoryService" />
+		</property>
+		<property name="productOrderService">
+			<ref bean="productOrderService" />
+		</property>
+	</bean>
+	<bean id="userTeamAction" class="com.golf.main.TeamAction" scope="prototype">
+		<property name="teamService">
+			<ref bean="teamService" />
+		</property>
+		<property name="teamMemberImageService">
+			<ref bean="teamMemberImageService" />
+		</property>
+		<property name="teamNewsService">
+			<ref bean="teamNewsService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="userCourtAction" class="com.golf.main.CourtAction"
+		scope="prototype">
+		<property name="courtService">
+			<ref bean="courtService" />
+		</property>
+		<property name="courtImageService">
+			<ref bean="courtImageService" />
+		</property>
+		<property name="courtRaiderService">
+			<ref bean="courtRaiderService" />
+		</property>
+		<property name="courtCommentsService">
+			<ref bean="courtCommentsService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	<bean id="userCourtOrderAction" class="com.golf.main.UserCourtOrderAction"
+		scope="prototype">
+		<property name="courtOrderService">
+			<ref bean="courtOrderService" />
+		</property>
+	</bean>
+	<bean id="userPicAction" class="com.golf.main.PicAction"
+		scope="prototype">
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+		<property name="imageSpecialService">
+			<ref bean="imageSpecialService" />
+		</property>
+		<property name="imageSpecialDetailService">
+			<ref bean="imageSpecialDetailService" />
+		</property>
+	</bean>
+</beans>  

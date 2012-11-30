@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="userMessage" type="com.golf.entity.UserMessage" />
+	
+	<sql id="userMessage.columns">
+		id,content,reply,creationDate
+	</sql>
+	<select id="userMessage.findAll" resultClass="userMessage">
+		select
+		<include refid="userMessage.columns" />
+		from userMessage order by id desc
+	</select>
+	<select id="userMessage.findById" resultClass="userMessage"
+		parameterClass="int">
+		select
+		<include refid="userMessage.columns" />
+		from userMessage where id=#id#
+	</select>
+	<insert id="userMessage.insert" parameterClass="userMessage">
+		insert into userMessage (
+		<include refid="userMessage.columns" />
+		) values
+		(#id#,#content#,#reply#,#creationDate#)
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="userMessage.update" parameterClass="userMessage">
+		update userMessage set content=#content#,reply=#reply# where id=#id#
+	</update>
+	<delete id="userMessage.delete" parameterClass="int">
+		delete from userMessage
+		where id=#id#
+	</delete>
+</sqlMap>

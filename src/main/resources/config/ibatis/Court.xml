@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="court" type="com.golf.entity.Court" />
+	<sql id="court.columns">
+		id,name,address,phone,introduction,customIntro,awards,mapImageId,mapIntroduction,creationDate
+	</sql>
+	<select id="court.findAll" resultClass="court">
+		select
+		<include refid="court.columns" />
+		from court order by id desc
+	</select>
+	<select id="court.findById" resultClass="court"
+		parameterClass="int">
+		select
+		<include refid="court.columns" />
+		from court where id=#id#
+	</select>
+	<insert id="court.insert" parameterClass="court">
+		insert into court (
+		<include refid="court.columns" />
+		) values
+		(#id#,#name#,#address#,#phone#,#introduction#,#customIntro#,#awards#,#mapImageId#,#mapIntroduction#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="court.update" parameterClass="court">
+		update court set name=#name#,address=#address#,phone=#phone#,introduction=#introduction#,customIntro=#customIntro#,
+		awards=#awards#,mapIntroduction=#mapIntroduction#
+		where id=#id#
+	</update>
+	<update id="court.updateMap"  parameterClass="team">
+		update court set imageId=#imageId# where id=#id# 
+	</update>
+	<delete id="court.delete" parameterClass="int">
+		delete from court
+		where id=#id#
+	</delete>
+</sqlMap>

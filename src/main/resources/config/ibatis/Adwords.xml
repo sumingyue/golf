@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="adwords" type="com.golf.entity.Adwords" />
+	
+	<sql id="adwords.columns">
+		id,position,name,width,height,url,imageId,creationDate
+	</sql>
+	<select id="adwords.findAll" resultClass="adwords">
+		select
+		<include refid="adwords.columns" />
+		from adwords order by id desc
+	</select>
+	<select id="adwords.findById" resultClass="adwords"
+		parameterClass="int">
+		select
+		<include refid="adwords.columns" />
+		from adwords where id=#id#
+	</select>
+	<insert id="adwords.insert" parameterClass="adwords">
+		insert into adwords (
+		<include refid="adwords.columns" />
+		) values
+		(#id#,#position#,#name#,#width#,#height#,#url#,#imageId#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="adwords.update" parameterClass="adwords">
+		update adwords set position=#position#,name=#name#,
+		width=#width#,height=#height#,url=#url#,imageId=#imageId# where id=#id#
+	</update>
+	<delete id="adwords.delete" parameterClass="int">
+		delete from adwords
+		where id=#id#
+	</delete>
+</sqlMap>

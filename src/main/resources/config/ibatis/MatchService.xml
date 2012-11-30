@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="matchService" type="com.golf.entity.MatchService" />
+	
+	<sql id="matchService.columns">
+		id,number,date,userName,userPhone,content,status,creationDate
+	</sql>
+	<select id="matchService.findAll" resultClass="matchService">
+		select
+		<include refid="matchService.columns" />
+		from matchService order by id desc
+	</select>
+	<select id="matchService.findById" resultClass="matchService"
+		parameterClass="int">
+		select
+		<include refid="matchService.columns" />
+		from matchService where id=#id#
+	</select>
+	<insert id="matchService.insert" parameterClass="matchService">
+		insert into matchService (
+		<include refid="matchService.columns" />
+		) values
+		(#id#,#number#,#date#,#userName#,#userPhone#,#content#,#status#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="matchService.update" parameterClass="matchService">
+		update matchService set number=#number#,date=#date#,userName=#userName#
+		,userPhone=#userPhone#,content=#content#,status=#status# where id=#id#
+	</update>
+	<delete id="matchService.delete" parameterClass="int">
+		delete from matchService
+		where id=#id#
+	</delete>
+</sqlMap>

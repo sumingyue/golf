@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="image" type="com.golf.entity.Image" />
+	
+	<sql id="image.columns">
+		id,type,name,path,storePath,netPath,creationDate
+	</sql>
+	<select id="image.findAll" resultClass="image">
+		select
+		<include refid="image.columns" />
+		from image order by id desc
+	</select>
+	<select id="image.findById" resultClass="image"
+		parameterClass="int">
+		select
+		<include refid="image.columns" />
+		from image where id=#id#
+	</select>
+	<insert id="image.insert" parameterClass="image">
+		insert into image (
+		<include refid="image.columns" />
+		) values
+		(#id#,#type#,#name#,#path#,#storePath#,#netPath#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="image.update" parameterClass="image">
+		update image set name=#name#,path=#path#,storePath=#storePath# where id=#id#
+	</update>
+	<delete id="image.delete" parameterClass="int">
+		delete from image
+		where id=#id#
+	</delete>
+</sqlMap>

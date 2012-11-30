@@ -1,0 +1,127 @@
+.slide-list .slide-list-item{
+	width:270px;
+	height:299px;
+	overflow:hidden;
+	display:none;
+}
+
+.slide-list .active{
+	display:block;
+}
+.slide-list .slide-list-item img{
+}
+
+#slide-team-home .slide-list-item{
+	width:220px;
+}
+
+#slide .slide-list-img{
+	height:300px;
+	width:270px;
+}
+
+.ft{
+	text-align: center;
+}
+
+#qiuduihuodong {
+	height: 178px;
+}
+
+#qiuduihuodong .article-item{
+	margin:3px 5px;
+}
+
+#renwufangwen {
+	height:252px;
+}
+
+#renwufangwen .mod-article-list{
+	margin:20px 9px;
+}
+
+#renwufangwen .mod-article-list .article-item{
+	margin:7px 5px;
+}
+
+#qiuduizhijia .image-item,
+#renwu .image-item{
+	width:110px;
+}
+
+
+#guibintongdao .mod-bd{
+	height:378px;
+}
+#guibintongdao .img-full{
+	margin:4px;
+	height: 58px;
+	width:258px;
+}
+
+#gaoqiulvyou .image-item{
+	width:170px;
+	padding-bottom:0px;
+}
+
+#gaoqiulvyou .mod-bd{
+	height:378px;
+}
+#gaoqiulvyou .image-item img{
+	width:160px;
+	height:60px;
+}
+#gaoqiulvyou .gallery{
+	border-bottom:1px dashed #ccc;
+}
+#gaoqiulvyou .mod-article-list{
+	padding-left:20px;
+}
+#gaoqiulvyou .article-item{
+	margin: 3px 13px;
+	font-size:14px;
+	list-style:disc;
+}
+
+#tupianji{height:117px;}
+#tupianji .image-item{height:100px;width:68px;}
+#tupianji .image-item img{width:75px;height:50px;}
+
+.news-block .mod-article-list .article-item{
+	line-height:20px;
+	margin:8px 12px;
+	font-size:14px;
+}
+
+.lxctab .tab-pannel{
+	height:180px;
+	overflow:hidden;
+}
+
+.lxctab .tab-hd-item{
+	width:74px;
+}
+
+.lxctab .tab-pannel .article-item{
+	margin:3px 5px;
+}
+
+#lianxichang .mod-bd{
+	height:401px;
+}
+
+#lianxichang .img-ads{
+	height:95px;
+}
+
+#paiming .tab-hd-item{
+	width:120px;
+}
+
+#lianxichang .article-item{
+	margin:4px 5px
+}
+
+.table-wrap{
+	margin:10px;
+}

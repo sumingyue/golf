@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="category" type="com.golf.entity.Category" />
+	
+	<sql id="category.columns">
+		id,name,creationDate
+	</sql>
+	<select id="category.findAll" resultClass="category">
+		select
+		<include refid="category.columns" />
+		from category 
+	</select>
+	<select id="category.findById" resultClass="category"
+		parameterClass="int">
+		select
+		<include refid="category.columns" />
+		from category where id=#id#
+	</select>
+	<insert id="category.insert" parameterClass="category">
+		insert into category (
+		<include refid="category.columns" />
+		) values
+		(#id#,#name#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="category.update" parameterClass="category">
+		update category set name=#name# where id=#id#
+	</update>
+	<delete id="category.delete" parameterClass="int">
+		delete from category
+		where id=#id#
+	</delete>
+</sqlMap>

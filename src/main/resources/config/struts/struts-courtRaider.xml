@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="courtRaider" extends="golf">
+		<action name="courtRaiderList" class="courtRaiderAction" method="courtRaiderList">
+			<result name="success">jsp/courtRaider/CourtRaiderList.jsp</result>
+		</action>
+		<action name="courtRaiderAdd" class="courtRaiderAction" method="courtRaiderAdd">
+			<result name="success">jsp/courtRaider/CourtRaiderAdd.jsp</result>
+		</action>
+		<action name="courtRaiderAddSubmit" class="courtRaiderAction" method="courtRaiderAddSubmit">
+			<result name="success" type="redirect">courtRaiderList.action</result>
+		</action>
+		<action name="courtRaiderUpdate" class="courtRaiderAction" method="courtRaiderUpdate" >
+			<result name="success">jsp/courtRaider/CourtRaiderUpdate.jsp</result>
+		</action>
+		<action name="courtRaiderUpdateSubmit" class="courtRaiderAction" method="courtRaiderUpdateSubmit">
+			<result name="success" type="redirect">courtRaiderList.action</result>
+		</action>
+		<action name="courtRaiderDelete" class="courtRaiderAction" method="courtRaiderDelete">
+			<result name="success" type="redirect">courtRaiderList.action</result>
+		</action>
+	</package>	
+</struts>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="court" extends="golf">
+		<action name="courtList" class="courtAction" method="courtList">
+			<result name="success">jsp/court/CourtList.jsp</result>
+		</action>
+		<action name="courtAdd" >
+			<result name="success">jsp/court/CourtAdd.jsp</result>
+		</action>
+		<action name="courtAddSubmit" class="courtAction" method="courtAddSubmit">
+			<result name="success" type="redirect">courtList.action</result>
+		</action>
+		<action name="courtUpdate" class="courtAction" method="courtUpdate" >
+			<result name="success">jsp/court/CourtUpdate.jsp</result>
+		</action>
+		<action name="courtUpdateSubmit" class="courtAction" method="courtUpdateSubmit">
+			<result name="success" type="redirect">courtList.action</result>
+		</action>
+		<action name="courtDelete" class="courtAction" method="courtDelete">
+			<result name="success" type="redirect">courtList.action</result>
+		</action>
+	</package>	
+</struts>

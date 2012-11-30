@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="courtOrder" type="com.golf.entity.CourtOrder" />
+	
+	<sql id="courtOrder.columns">
+		id,type,courtName,date,number,userName,userPhone,note,status,creationDate
+	</sql>
+	<select id="courtOrder.findAll" resultClass="courtOrder">
+		select
+		<include refid="courtOrder.columns" />
+		from courtOrder  order by id desc
+	</select>
+	<select id="courtOrder.findById" resultClass="courtOrder"
+		parameterClass="int">
+		select
+		<include refid="courtOrder.columns" />
+		from courtOrder where id=#id#
+	</select>
+	<insert id="courtOrder.insert" parameterClass="courtOrder">
+		insert into courtOrder (
+		<include refid="courtOrder.columns" />
+		) values
+		(#id#,#type#,#courtName#,#date#,#number#,#userName#,#userPhone#,#note#,#status#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="courtOrder.update" parameterClass="courtOrder">
+		update courtOrder set type=#type#,courtName=#courtName#,date=#date#,number=#number#,
+		userName=#userName#,userPhone=#userPhone#,note=#note#,status=#status# where id=#id#
+	</update>
+	<delete id="courtOrder.delete" parameterClass="int">
+		delete from courtOrder
+		where id=#id#
+	</delete>
+</sqlMap>

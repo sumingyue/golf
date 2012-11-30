@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="player" type="com.golf.entity.Player" />
+
+	<sql id="player.columns">
+		id,name,score,bonus,creationDate,modifyDate
+	</sql>
+	<select id="player.findAll" resultClass="player">
+		select
+		<include refid="player.columns" />
+		from player order by id desc
+	</select>
+	<select id="player.findById" resultClass="player" parameterClass="int">
+		select
+		<include refid="player.columns" />
+		from player where id=#id#
+	</select>
+	<insert id="player.insert" parameterClass="player">
+		insert into player (
+		<include refid="player.columns" />
+		) values
+		(#id#,#name#,#score#,#bonus#,now(),now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="player.update" parameterClass="player">
+		update player set
+		name=#name#,score=#score#,bonus=#bonus#,modifyDate=#modifyDate# where id=#id#
+	</update>
+	<delete id="player.delete" parameterClass="int">
+		delete from player
+		where
+		id=#id#
+	</delete>
+</sqlMap>

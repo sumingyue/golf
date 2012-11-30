@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="adwords" extends="golf">
+		<action name="adwordsList" class="adwordsAction" method="adwordsList">
+			<result name="success">jsp/adwords/AdwordsList.jsp</result>
+		</action>
+		<action name="adwordsAdd" >
+			<result name="success">jsp/adwords/AdwordsAdd.jsp</result>
+		</action>
+		<action name="adwordsAddSubmit" class="adwordsAction" method="adwordsAddSubmit">
+			<result name="success" type="redirect">adwordsList.action</result>
+		</action>
+		<action name="adwordsUpdate" class="adwordsAction" method="adwordsUpdate" >
+			<result name="success">jsp/adwords/AdwordsUpdate.jsp</result>
+		</action>
+		<action name="adwordsUpdateSubmit" class="adwordsAction" method="adwordsUpdateSubmit">
+			<result name="success" type="redirect">adwordsList.action</result>
+		</action>
+		<action name="adwordsDelete" class="adwordsAction" method="adwordsDelete">
+			<result name="success" type="redirect">adwordsList.action</result>
+		</action>
+	</package>	
+</struts>

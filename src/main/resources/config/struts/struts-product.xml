@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="product" extends="golf">
+		<action name="productList" class="productAction" method="productList">
+			<result name="success">jsp/product/ProductList.jsp</result>
+		</action>
+		<action name="productAdd" class="productAction" method="productAdd">
+			<result name="success">jsp/product/ProductAdd.jsp</result>
+		</action>
+		<action name="productAddSubmit" class="productAction" method="productAddSubmit">
+			<result name="success" type="redirect">productUpdate.action?productId=${productId}</result>
+		</action>
+		<action name="productUpdate" class="productAction" method="productUpdate" >
+			<result name="success">jsp/product/ProductUpdate.jsp</result>
+		</action>
+		<action name="productUpdateSubmit" class="productAction" method="productUpdateSubmit">
+			<result name="success" type="redirect">productList.action</result>
+		</action>
+		<action name="productDelete" class="productAction" method="productDelete">
+			<result name="success" type="redirect">productList.action</result>
+		</action>
+		<action name="productAddImageSubmit" class="productAction" method="productAddImageSubmit">
+			<result name="success" type="redirect">productUpdate.action?productId=${productId}</result>
+		</action>
+		<action name="productImageDelete" class="productAction" method="productImageDelete">
+			<result name="success" type="redirect">productUpdate.action?productId=${productId}</result>
+		</action>
+	</package>	
+</struts>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="player" extends="golf">
+		<action name="playerList" class="playerAction" method="playerList">
+			<result name="success">jsp/player/PlayerList.jsp</result>
+		</action>
+		<action name="playerAdd" >
+			<result name="success">jsp/player/PlayerAdd.jsp</result>
+		</action>
+		<action name="playerAddSubmit" class="playerAction" method="playerAddSubmit">
+			<result name="success" type="redirect">playerList.action</result>
+		</action>
+		<action name="playerUpdate" class="playerAction" method="playerUpdate" >
+			<result name="success">jsp/player/PlayerUpdate.jsp</result>
+		</action>
+		<action name="playerUpdateSubmit" class="playerAction" method="playerUpdateSubmit">
+			<result name="success" type="redirect">playerList.action</result>
+		</action>
+		<action name="playerDelete" class="playerAction" method="playerDelete">
+			<result name="success" type="redirect">playerList.action</result>
+		</action>
+	</package>	
+</struts>
