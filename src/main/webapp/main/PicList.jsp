@@ -9,6 +9,12 @@
 	<link rel="stylesheet" href="css/gallery.css">
 	<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
 	<script type="text/javascript" src="js/base.js"></script>
+	<style>
+	.image-item img{
+		width:217px;
+		height:200px;
+	}
+</style>
 </head>
 <body youdao="bind">
 	<div class="wrap container_24">
@@ -19,7 +25,7 @@
 				<s:iterator value="imageSpecials" status="vs">
 					<li class="image-item">
 					<img src="<s:property value="image.path"/>" alt="图片">
-					<<a href="uisd.do?id=<s:property value="id"/>"><s:property value="name"/></a>
+					<a href="uisd.do?id=<s:property value="id"/>"><s:property value="name"/></a>
 					</li>
 				</s:iterator>
 			</ul>

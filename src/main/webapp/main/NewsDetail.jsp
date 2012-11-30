@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="css/base.css">
 <script type="text/javascript" src="js/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
+<title></title>
 <style type="text/css">
 .arc-head {
 	text-align: center;
@@ -36,11 +37,11 @@
 }
 
 .mod-bd {
-	padding: 10px;
+	padding: 30px;
 }
 
 .mod-article-list {
-	margin: 10px 0 10px 0;
+	margin: 10px 0 30px 0;
 }
 
 .image-item {
@@ -86,6 +87,7 @@
 		<jsp:include page="./Head.jsp"></jsp:include>
 
 		<div class="grid_18">
+
 			<div class="mod-box-horizon">
 				<div class="mod-hd">
 					您当前所在位置：首页 ->
@@ -116,6 +118,18 @@
 							<s:property value="news.content" escape="false" />
 						</div>
 					</div>
+
+					<div class="hot-article">
+						<h3>热门文章：</h3>
+						<ul class="mod-article-list">
+							<s:iterator value="hotNews" status="vs">
+								<li class="article-item"><a href="#"><s:property
+											value="title" /></a><span class="time"><s:property
+											value="dateStr" /></span></li>
+							</s:iterator>
+						</ul>
+					</div>
+
 					<div class="hot-pic">
 						<h3>精选图片：</h3>
 						<ul class="gallery">
@@ -159,16 +173,6 @@
 
 		</div>
 		<div class="grid_6">
-			<div class="mod-box-horizon mod-box-horizon-last">
-				<div class="mod-hd">热门文章</div>
-				<div class="mod-bd">
-					<ul class="mod-article-list">
-						<s:iterator value="newsHot" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
-						</s:iterator>
-					</ul>
-				</div>
-			</div>
 			<img src="" alt="图片" class="img-full" />
 			<img src="" alt="图片" class="img-full" />
 			<img src="" alt="图片" class="img-full" />

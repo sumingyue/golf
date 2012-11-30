@@ -10,6 +10,17 @@
 <script type="text/javascript" src="js/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<style>
+#table-container .mod-bd{
+	position:relative;
+}
+.paginate{
+	bottom:0;
+	position:absolute;
+	width:100%;
+	text-align:center;
+}
+</style>
 </head>
 <body>
 	<div class="wrap container_24">
@@ -64,21 +75,21 @@
 				</div>
 			</div>
 		</div>
-		<div class="grid_16">
+		<div class="grid_16" id="table-container">
 			<div class="mod-box-vertical mod-box-vertical-last" style="height:624px">
 				<div class="mod-hd">
 					<h3>球场</h3>
 				</div>
 				<div class="mod-bd">
 					<div class="mod-inner">
-						<table class="table">
+						<table class="table" style="border:0px">
 							<tr>
 								<th width="50%">名称</th>
 								<th width="30%">地址</th>
 								<th width="20%">电话</th>
 							</tr>
 							<s:iterator value="courts" status="vs">
-								<tr>
+								<tr class="odd">
 								<td><a href="#"><s:property value="name" /></a></td>
 								<td><s:property value="address" /></td>
 								<td><s:property value="phone" /></td>
@@ -86,17 +97,16 @@
 							</s:iterator>
 						</table>
 					</div>
+					<div class="paginate">
+					共&nbsp;<s:property value="pagedTool.totalNumber"/>&nbsp;条记录
+					<a href="?pagedTool.pageIndex=0">首页</a>&nbsp;&nbsp;
+					<a href="?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex-1"/>">上一页</a>&nbsp;&nbsp;
+					<a href="?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex+1"/>">下一页</a>&nbsp;&nbsp;
+					<a href="?pagedTool.pageIndex=<s:property value="pagedTool.totalPage"/>">末页</a>&nbsp;&nbsp;
+					共&nbsp;<s:property value="pagedTool.totalPage"/>&nbsp;页,当前第&nbsp;<s:property value="pagedTool.pageIndex"/>页&nbsp;
+					<s:property value="pagedTool.pageSize"/>条记录/页&nbsp;
+					</div>
 				</div>
-				<div>
-				共&nbsp;<s:property value="pagedTool.totalNumber"/>&nbsp;条记录
-				<a href="?pagedTool.pageIndex=0">首页</a>&nbsp;&nbsp;
-				<a href="?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex-1"/>">上一页</a>&nbsp;&nbsp;
-				<a href="?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex+1"/>">下一页</a>&nbsp;&nbsp;
-				<a href="?pagedTool.pageIndex=<s:property value="pagedTool.totalPage"/>">末页</a>&nbsp;&nbsp;
-				共&nbsp;<s:property value="pagedTool.totalPage"/>&nbsp;页,当前第&nbsp;<s:property value="pagedTool.pageIndex"/>页&nbsp;
-				<s:property value="pagedTool.pageSize"/>条记录/页&nbsp;
-				</div>
-			</div>
 			</div>
 		</div>
 		<jsp:include page="./Foot.jsp"></jsp:include>

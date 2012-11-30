@@ -54,7 +54,7 @@
 					<h3><a href="?type=1">球具</a></h3>
 					<ul class="submenu clear-fix">
 						<s:iterator value="category1" status="vs">
-							<li><a href="?id=<s:property value="id"/>"><s:property value="name"/></a></li>
+							<li><a href="products.do?id=<s:property value="id"/>"><s:property value="name"/></a></li>
 						</s:iterator>
 					</ul>
 				</li>
@@ -64,7 +64,7 @@
 					<ul class="submenu clear-fix">
 					<ul class="submenu clear-fix">
 						<s:iterator value="category2" status="vs">
-							<li><a href="?id=<s:property value="id"/>"><s:property value="name"/></a></li>
+							<li><a href="products.do?id=<s:property value="id"/>"><s:property value="name"/></a></li>
 						</s:iterator>
 					</ul>
 					</ul>
@@ -75,7 +75,7 @@
 					<ul class="submenu clear-fix">
 					<ul class="submenu clear-fix">
 						<s:iterator value="category3" status="vs">
-							<li><a href="?id=<s:property value="id"/>"><s:property value="name"/></a></li>
+							<li><a href="products.do?id=<s:property value="id"/>"><s:property value="name"/></a></li>
 						</s:iterator>
 					</ul>
 					</ul>
@@ -86,7 +86,7 @@
 					<ul class="submenu clear-fix">
 					<ul class="submenu clear-fix">
 						<s:iterator value="category4" status="vs">
-							<li><a href="?id=<s:property value="id"/>"><s:property value="name"/></a></li>
+							<li><a href="products.do?id=<s:property value="id"/>"><s:property value="name"/></a></li>
 						</s:iterator>
 					</ul>
 					</ul>

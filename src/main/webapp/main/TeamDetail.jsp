@@ -21,7 +21,7 @@
 		.grid_8 .mod-box-horizon .mod-bd{
 			height:200px;
 		}
-		.slide-list .slide-list-item{
+.slide-list .slide-list-item{
 	overflow:hidden;
 	display:none;
 }
@@ -84,9 +84,9 @@
 			<div class="mod-box-horizon mod-box-horizon-last">
 				<div class="mod-hd">球队档案</div>
 				<div class="mod-bd">
-					<table width="100%">
+					<table>
 						<tr>
-							<td width="20%">建队时间:</td>
+							<td width="40%">建队时间:</td>
 							<td><s:property value="team.setUpTime"/></td>
 						</tr>
 						<tr>

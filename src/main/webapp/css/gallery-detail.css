@@ -51,10 +51,10 @@
 #pan-prev{
 	top:0;
 	left:0;
-	cursor: url(i/arr_left.png),auto;
+	cursor: url(../img/arr_left.png),auto;
 }
 #pan-next{
 	top:0;
 	left:475px;
-	cursor: url(i/arr_right.png),auto;
+	cursor: url(../img/arr_right.png),auto;
 }

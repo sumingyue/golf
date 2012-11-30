@@ -12,6 +12,22 @@
 	<script type="text/javascript" src="js/base.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 </head>
+<style>
+#table-container .mod-bd{
+	position:relative;
+}
+#table-container .mod-inner{
+	height:595px;
+	overflow:hidden;
+}
+
+.paginate{
+	bottom:0;
+	position:absolute;
+	width:100%;
+	text-align:center;
+}
+</style></head>
 <body youdao="bind">
 	<div class="wrap container_24">
 		<jsp:include page="./Head.jsp"></jsp:include>
@@ -66,24 +82,19 @@
 			</div>
 		</div>
 		<div class="grid_16">
-			<div class="mod-box-vertical mod-box-vertical-last" style="height:624px;">
+			<div class="mod-box-vertical mod-box-vertical-last" id="table-container" style="height:624px;">
 				<div class="mod-hd">
 					<h3>练习场</h3>
 				</div>
 				<div class="mod-bd">
 					<div class="mod-inner">
-						<table class="table">
-							<tr>
-								<th>名称</th>
-							</tr>
-								<s:iterator value="news" status="vs">
-							<tr>
-							<td><a href="#"><s:property
-												value="title" /></a></td>
-							</tr>
-								</s:iterator>
-						</table>
-					</div><div>
+					
+					<ul class="mod-article-list">
+						<s:iterator value="news" status="vs">
+							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>"><s:property value="title" /></a></li>
+						</s:iterator>
+						</ul>
+					</div><div class="paginate">
 				共&nbsp;<s:property value="pagedTool.totalNumber"/>&nbsp;条记录
 				<a href="?pagedTool.pageIndex=0">首页</a>&nbsp;&nbsp;
 				<a href="?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex-1"/>">上一页</a>&nbsp;&nbsp;

@@ -50,6 +50,7 @@ public class PicAction extends ActionSupport {
 
 	public String imageSpecialDetail() {
 		m_imageSpecial = m_imageSpecialService.findImageSpecial(m_imageSpecialId);
+		m_pagedTool.setTotalNumber(m_imageSpecialDetailService.queryAllImageSpecialDetails(m_imageSpecialId).size());
 		m_imageSpecialDetails = m_imageSpecialDetailService.queryPagedImageSpecialDetails(m_pagedTool, m_imageSpecialId);
 		
 		for(ImageSpecialDetail detail : m_imageSpecialDetails){
