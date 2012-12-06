@@ -39,7 +39,7 @@ $(document).ready(function() {
 		<jsp:include page="./Head.jsp"></jsp:include>
 		<div class="clear"></div>
 		<div class="grid_24">
-			<form action="ums.do" id="form" method="post">
+			<form action="addMessage.do" id="form" method="post">
 				<table width="100%" border="0" cellspacing="1" cellpadding="0">
 					<tbody>
 						<tr height="30">
@@ -73,10 +73,10 @@ $(document).ready(function() {
 			</ul>
 			<div class="paginate">
 				共&nbsp;<s:property value="pagedTool.totalNumber"/>&nbsp;条记录
-						<a href="uml.do?index=0">首页</a>&nbsp;&nbsp;
-						<a href="uml.do?index=<s:property value="pagedTool.pageIndex-1"/>">上一页</a>&nbsp;&nbsp;
-						<a href="uml.do?index=<s:property value="pagedTool.pageIndex+1"/>">下一页</a>&nbsp;&nbsp;
-						<a href="uml.do?index=<s:property value="pagedTool.totalPage"/>">末页</a>&nbsp;&nbsp;
+						<a href="messages.do?index=0">首页</a>&nbsp;&nbsp;
+						<a href="messages.do?index=<s:property value="pagedTool.pageIndex-1"/>">上一页</a>&nbsp;&nbsp;
+						<a href="messages.do?index=<s:property value="pagedTool.pageIndex+1"/>">下一页</a>&nbsp;&nbsp;
+						<a href="messages.do?index=<s:property value="pagedTool.totalPage"/>">末页</a>&nbsp;&nbsp;
 						共&nbsp;<s:property value="pagedTool.totalPage"/>&nbsp;页,当前第&nbsp;<s:property value="pagedTool.pageIndex"/>页&nbsp;
 						<s:property value="pagedTool.pageSize"/>条记录/页&nbsp;
 			</div>

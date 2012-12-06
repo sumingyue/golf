@@ -10,6 +10,7 @@ import org.springframework.beans.factory.InitializingBean;
 import com.golf.dao.AdwordsDao;
 import com.golf.entity.Adwords;
 import com.golf.service.AdwordsService;
+import com.golf.service.ImageService;
 import com.golf.tools.PagedTool;
 
 public class AdwordsServiceImpl implements InitializingBean, AdwordsService {
@@ -18,13 +19,23 @@ public class AdwordsServiceImpl implements InitializingBean, AdwordsService {
 
 	private Map<Integer, Adwords> m_adwordss = new LinkedHashMap<Integer, Adwords>();
 
+	private Adwords[] m_adwordsArray;
+
+	private ImageService m_imageService;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		List<Adwords> all = m_adwordsDao.findAllAdwords();
 
 		for (Adwords adwords : all) {
+			adwords.setImage(m_imageService.findImage(adwords.getImageId()));
 			m_adwordss.put(adwords.getId(), adwords);
+		}
+
+		m_adwordsArray = new Adwords[all.size()];
+		for (int i = 0; i < all.size(); i++) {
+			m_adwordsArray[i] = all.get(i);
 		}
 	}
 
@@ -37,6 +48,7 @@ public class AdwordsServiceImpl implements InitializingBean, AdwordsService {
 	public int insertAdwords(Adwords adwords) {
 		int id = m_adwordsDao.insert(adwords);
 		if (id > 0) {
+			adwords.setImage(m_imageService.findImage(adwords.getImageId()));
 			m_adwordss.put(adwords.getId(), adwords);
 		}
 		return id;
@@ -81,6 +93,15 @@ public class AdwordsServiceImpl implements InitializingBean, AdwordsService {
 	public List<Adwords> queryPagedAdwordss(PagedTool tool) {
 		List<Adwords> result = queryAllAdwordss();
 		return result.subList(tool.getFromIndex(), tool.getToIndex());
+	}
+
+	@Override
+	public Adwords[] getAdwords() {
+		return m_adwordsArray;
+	}
+
+	public void setImageService(ImageService imageService) {
+		m_imageService = imageService;
 	}
 
 }

@@ -121,4 +121,9 @@
 			<ref bean="baseDao" />
 		</property>
 	</bean>
+	<bean id="specialNewsDao" class="com.golf.dao.SpecialNewsDao">
+		<property name="baseDao">
+			<ref bean="baseDao" />
+		</property>
+	</bean>
 </beans>  

@@ -1,106 +1,104 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld"%>
 <!DOCTYPE html PUBLIC "-//W3C//Dtd HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en-US"><head>
-	<title>苏州高尔夫网</title>
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/index.css">
-	<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
-	<script type="text/javascript" src="js/base.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
+<html lang="en-US">
+<head>
+<title>苏州高尔夫网</title>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/index.css">
+<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
 	<div class="wrap container_24">
 		<!-- 头部，logo及banner -->
+		<!-- 单行大广告 -->
 		<jsp:include page="./Head.jsp"></jsp:include>
 		<!--  导航 -->
-		<!-- 单行大广告 -->
 		<div class="clear"></div>
 		<!-- 三格广告 -->
 		<div class="grid_7">
-			<img class="img-full" src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" height="90" border="0">
+			<a href="${adwordsService.adwords[1].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[1].image.path}"
+				height="90" border="0"></a>
 		</div>
 		<div class="grid_10">
-			<img class="img-full" src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" height="90" border="0">
+			<a href="${adwordsService.adwords[2].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[2].image.path}"
+				height="90" border="0"></a>
 		</div>
 		<div class="grid_7">
-			<img class="img-full" src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" height="90" border="0">
+			<a href="${adwordsService.adwords[3].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[3].image.path}"
+				height="90" border="0"></a>
 		</div>
 		<div class="clear"></div>
-
 		<!-- 一行 -->
 		<div class="grid_7 slide-list-container" id="slide">
 			<ul class="slide-list">
-				<li class="active slide-list-item">
-					<img class="slide-list-img" src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" alt="">
-					<a class="slide-list-tit" href="">title 1</a>
-				</li>
-				<li class="slide-list-item">
-					<img class="slide-list-img" src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" alt="">
-					<a class="slide-list-tit" href="">title 2</a>
-				</li>
-				<li class="slide-list-item">
-					<img class="slide-list-img" src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" alt="">
-					<a class="slide-list-tit" href="">title 3</a>
-				</li>
+			<s:iterator value="imageNews" status="vs">
+				<li class="active slide-list-item"><img class="slide-list-img"
+					src="${image.path}"
+					alt=""> <a class="slide-list-tit" href="news.do?id=${id}">${smallTitle}</a></li>
+			</s:iterator>
 			</ul>
 		</div>
 
-		<div class="grid_10" >
-			<div class="mod-box-horizon mod-box-horizon-last news-block" id="jiaodianxinwen">
+		<div class="grid_10">
+			<div class="mod-box-horizon mod-box-horizon-last news-block"
+				id="jiaodianxinwen">
 				<div class="mod-hd">焦点新闻</div>
 				<div class="mod-bd" style="height: 268px;">
 					<div class="headline">
-						<h3 class="mod-hd"><a href="nd.do?id=<s:property value="firstHot.id"/>" target="_blank"><s:property value="firstHot.title"/></a></h3>
+						<h3 class="mod-hd">
+							<a href="news.do?id=<s:property value="firstJiaoDian.id"/>"
+								target="_blank"><s:property value="firstJiaoDian.maxTitle" /></a>
+						</h3>
 						<div class="mod-bd">
 							<ul class="news-list clear-fix active tab-pannel-item">
-								<s:iterator value="firstHots" status="vs">
-									<li class="news-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
+								<s:iterator value="firstJiaoDians" status="vs">
+									<li class="news-item"><a
+										href="news.do?id=<s:property value="id"/>" target="_blank"><s:property
+												value="smallTitle" /></a></li>
 								</s:iterator>
 							</ul>
 						</div>
 					</div>
-					
 					<ul class="mod-article-list">
-						<s:iterator value="secondHots" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank">[<s:property value="smallCategory.name"/>]<s:property value="title"/></a></li>
+						<s:iterator value="secondJiaoDians" status="vs">
+							<li class="article-item"><a
+								href="news.do?id=<s:property value="id"/>" target="_blank">[<s:property
+										value="smallCategory.name" />]<s:property value="maxTitle" /></a></li>
 						</s:iterator>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="grid_7">
-			<div class="mod-box-horizon">
-			<img src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" class="img-full img-ads" alt="广告图">
-			</div>
 			<div class="mod-box-horizon mod-box-horizon-last">
-				<div class="mod-hd">专题区</div>
-				<div class="mod-bd" style="height:168px;overflow:hidden;">
+				<div class="mod-hd"><span class="more"><a href="specials.do" target="_blank">更多</a></span><a href="specials.do" target="_blank">专题区</a></div>
+				<div class="mod-bd" style="height: 268px; overflow: hidden;">
 					<ul class="mod-article-list">
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
+						<s:iterator value="specialNews" status="vs">
+							<li class="article-item"><a
+								href="snews.do?id=<s:property value="id"/>" target="_blank"><s:property value="title" /></a></li>
+						</s:iterator>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="clear"></div>
-
-		
 		<!-- 两条广告 -->
 		<div class="grid_12">
-			<img src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" class="img-full img-ads" alt="广告图">
+		<a href="${adwordsService.adwords[5].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[5].image.path}"
+				height="90" border="0"></a>
 		</div>
 		<div class="grid_12">
-			<img src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" class="img-full img-ads" alt="广告图">
+		<a href="${adwordsService.adwords[6].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[6].image.path}"
+				height="90" border="0"></a>
 		</div>
 		<div class="clear"></div>
 
@@ -108,285 +106,222 @@
 		<div class="grid_7">
 			<div class="mod-box-horizon tab-list lxctab">
 				<div class="mod-hd tab-hd">
-					<h3 class="tab-hd-item active">活动资讯</h3>
-					<h3 class="tab-hd-item">优惠信息</h3>
-					<h3 class="tab-hd-item last">人才供求</h3>
+					<h3 class="tab-hd-item active"><a href="sc.do?id=32" target="_blank">活动资讯</a></h3>
+					<h3 class="tab-hd-item"><a href="sc.do?id=33" target="_blank">优惠信息</a></h3>
+					<h3 class="tab-hd-item last"><a href ="sc.do?id=34" target="_blank">人才供求</a></h3>
 				</div>
 				<div class="mod-bd tab-pannel">
 					<ul class="active tab-pannel-item mod-article-list">
-						<s:iterator value="huoDongZiXun" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
+						<s:iterator value="huoDongZiXuns" status="vs">
+							<li class="article-item"><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
 						</s:iterator>
 					</ul>
-					<ul class="tab-pannel-item">
-						<s:iterator value="youHuiXinXi" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
+					<ul class="tab-pannel-item mod-article-list">
+						<s:iterator value="youHuiXinXis" status="vs">
+							<li class="article-item"><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
 						</s:iterator>
 					</ul>
-					<ul class="tab-pannel-item">
-						<s:iterator value="renCaiQiuGong" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
+					<ul class="tab-pannel-item mod-article-list">
+						<s:iterator value="renCaiQiuGongs" status="vs">
+							<li class="article-item"><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
 						</s:iterator>
 					</ul>
 				</div>
 			</div>
-			
+
 			<div class="mod-box-horizon mod-box-horizon-last tab-list lxctab">
 				<div class="mod-hd tab-hd">
-					<h3 class="tab-hd-item active">活动资讯</h3>
-					<h3 class="tab-hd-item">优惠信息</h3>
-					<h3 class="tab-hd-item last">人才供求</h3>
+					<h3 class="tab-hd-item active"><a href="sc.do?id=36" target="_blank">本地时尚</a></h3>
+					<h3 class="tab-hd-item"><a href="sc.do?id=37" target="_blank">社会热点</a></h3>
+					<h3 class="tab-hd-item last"><a href="sc.do?id=35" target="_blank">综合新闻</a></h3>
 				</div>
 				<div class="mod-bd tab-pannel">
 					<ul class="mod-article-list active tab-pannel-item">
-						<s:iterator value="benDiShiShang" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
-						</s:iterator>
-						<li class="article-item"><a href="#">标题</a><span class="time">2010-2-12</span></li>
-					</ul>
-					<ul class="mod-article-list tab-pannel-item">
-						<s:iterator value="sheHuiReDian" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
+						<s:iterator value="benDiShiShangs" status="vs">
+								<li class="article-item"><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
 						</s:iterator>
 					</ul>
 					<ul class="mod-article-list tab-pannel-item">
-					<s:iterator value="zongHeZiXun" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
+						<s:iterator value="sheHuiReDians" status="vs">
+							<li class="article-item"><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
+						</s:iterator>
+					</ul>
+					<ul class="mod-article-list tab-pannel-item">
+						<s:iterator value="zongHeZiXuns" status="vs">
+							<li class="article-item"><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
 						</s:iterator>
 					</ul>
 				</div>
 			</div>
-			
-		</div>	
+
+		</div>
 		<div class="grid_10">
 			<div class="mod-box-horizon  news-block">
-				<div class="mod-hd">赛事新闻</div>
+				<div class="mod-hd"><span class="more"><a href="c.do?id=2" target="_blank">更多</a></span>赛事新闻</div>
 				<div class="mod-bd">
 					<div class="headline">
-						<h3 class="mod-hd"><a href="nd.do?id=<s:property value="firstMatch.id"/>" target="_blank"><s:property value="firstMatch.title"/></a></h3>
+						<h3 class="mod-hd">
+							<a href="news.do?id=<s:property value="firstSaiShi.id"/>"
+								target="_blank"><s:property value="firstSaiShi.maxTitle" /></a>
+						</h3>
 						<div class="mod-bd">
 							<ul class="news-list clear-fix">
-								<s:iterator value="firstMatchs" status="vs">
-									<li class="news-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
+								<s:iterator value="firstSaiShis" status="vs">
+									<li class="news-item"><a
+										href="news.do?id=<s:property value="id"/>" target="_blank"><s:property
+												value="smallTitle" /></a></li>
 								</s:iterator>
 							</ul>
 						</div>
 					</div>
 					<ul class="mod-article-list">
-						<s:iterator value="secondMatchs" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
+						<s:iterator value="secondSaiShis" status="vs">
+							<li class="article-item"><a
+								href="news.do?id=<s:property value="id"/>" target="_blank"><s:property
+										value="maxTitle" /></a></li>
 						</s:iterator>
 					</ul>
 				</div>
 			</div>
-			
+
 			<div class="mod-box-vertical mod-box-vertical-last" id="tupianji">
-				<div class="mod-hd"><h3>图片集</h3></div>
+				<div class="mod-hd">
+					<h3><a href="uis.do" target="_blank">图片专题</a></h3>
+				</div>
 				<div class="mod-bd">
 					<ul class="gallery">
-						<li class="image-item">
-							<img src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" alt="球队图片">
-							<a href="">苏美高尔夫球队</a>
-						</li>
-						<li class="image-item">
-							<img src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" alt="球队图片">
-							<a href="">苏美高尔夫球队</a>
-						</li>
-						
-						<li class="image-item">
-							<img src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" alt="球队图片">
-							<a href="">苏美高尔夫球队</a>
-						</li>
-						
-						<li class="image-item">
-							<img src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" alt="球队图片">
-							<a href="">苏美高尔夫球队</a>
-						</li>
+						<s:iterator value="imageSpecials" status="vs">
+							<li class="image-item"><img
+							src="${image.path}"
+							alt="专题图片"> <a href="isd.do?id=${id}">${shortName}</a></li>
+							</s:iterator>
 					</ul>
 				</div>
 			</div>
-		</div>	
+		</div>
 		<div class="grid_7">
-			<div class="mod-box-horizon mod-box-horizon-last" id="lianxichang">
-				<div class="mod-hd">练习场</div>
+			<div class="mod-box-horizon mod-box-horizon" id="lianxichang">
+				<div class="mod-hd"><span class="more"><a href="sc.do?id=32" target="_blank">更多</a></span>球场</div>
 				<div class="mod-bd">
-					
-					<img src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" class="img-full img-ads" alt="图片">
-					<img src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" class="img-full img-ads" alt="图片">
+					<a href="court.do?id=${courtImage.courtId}"><img
+						src="${courtImage.image.path}"
+						class="img-full img-ads" alt="图片"></a>
+					 
 					<ul class="mod-article-list">
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
+						<s:iterator value="courts" status="vs">
+							<li class="article-item"><a
+								href="court.do?id=<s:property value="id"/>" target="_blank"><s:property
+										value="name" /></a></li>
+						</s:iterator>
+					</ul>
+				</div>
+			</div><div class="mod-box-horizon mod-box-horizon-last" id="lianxichang">
+				<div class="mod-hd"><span class="more"><a href="sc.do?id=41" target="_blank">更多</a></span><a href="sc.do?id=41" target="_blank">练习场</a></div>
+				<div class="mod-bd">
+					<ul class="mod-article-list">
+							<ul class="mod-article-list">
+								<s:iterator value="lianXiChangs" status="vs">
+									<li class="article-item"><a
+										href="news.do?id=<s:property value="id"/>" target="_blank"><s:property
+												value="smallTitle" /></a></li>
+								</s:iterator>
+							</ul>
 					</ul>
 				</div>
 			</div>
-
-		</div>	
+		</div>
 		<div class="clear"></div>
 
 		<!-- 六块广告 -->
 		<div class="grid_4">
-			<img alt="广告" src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" class="img-ads">
+			<a href="${adwordsService.adwords[7].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[7].image.path}"
+				height="90" border="0"></a>
 		</div>
 		<div class="grid_4">
-			<img alt="广告" src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" class="img-ads">
+			<a href="${adwordsService.adwords[8].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[8].image.path}"
+				height="90" border="0"></a>
 		</div>
 		<div class="grid_4">
-			<img alt="广告" src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" class="img-ads">
+			<a href="${adwordsService.adwords[9].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[9].image.path}"
+				height="90" border="0"></a>
 		</div>
 		<div class="grid_4">
-			<img alt="广告" src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" class="img-ads">
+			<a href="${adwordsService.adwords[10].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[10].image.path}"
+				height="90" border="0"></a>
 		</div>
 		<div class="grid_4">
-			<img alt="广告" src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" class="img-ads">
+			<a href="${adwordsService.adwords[11].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[11].image.path}"
+				height="90" border="0"></a>
 		</div>
 		<div class="grid_4">
-			<img alt="广告" src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" class="img-ads">
+			<a href="${adwordsService.adwords[12].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[12].image.path}"
+				height="90" border="0"></a>
 		</div>
 		<div class="clear"></div>
 
 		<!-- 球队之家 高球旅游 贵宾通道 -->
 		<div class="grid_7">
-			<%-- <div class="mod-box-horizon" id="qiuduizhijia">
-				<div class="mod-hd"><span class="more">更多</span>球队之家</div>
-				<div class="mod-bd">
-					<ul class="gallery">
-						<li class="image-item">
-							<img src="" alt="球队图片">
-							<a href="">苏美高尔夫球队</a>
-						</li>
-						<li class="image-item">
-							<img src="" alt="球队图片">
-							<a href="">苏美高尔夫球队</a>
-						</li>
-					</ul>
+			<div class="mod-box-vertical mod-box-vertical-last"
+				id="qiuduihuodong">
+				<div class="mod-hd">
+					<h3><a href="sc.do?id=40" target="_blank">供求信息</a></h3>
 				</div>
-			</div> --%>
-			<div class="mod-box-horizon mod-box-horizon-last tab-list" id="paiming">
-				<div class="mod-hd tab-hd">
-					<h3 class="tab-hd-item active">世界排名</h3>
-					<h3 class="tab-hd-item">奖金排名</h3>
-				</div>
-				<div class="mod-bd tab-pannel">
-					<div class="tab-pannel-item active">
-					<div class="table-wrap">
-					<table class="table">
-					<tr>
-						<td>1</td>
-						<td>2</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>5</td>
-					</tr></table></div>
-					</div>
-					<div class="tab-pannel-item">
-					<div class="table-wrap">
-					<table class="table">
-					<tr>
-						<td>1</td>
-						<td>2</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>5</td>
-					</tr></table>
-					</div>
-					</div>
-				</div>
-					
-			</div>
-
-			<div class="mod-box-vertical mod-box-vertical-last" id="qiuduihuodong">
-				<div class="mod-hd"><h3>球队活动</h3></div>
 				<div class="mod-bd">
 					<ul class="mod-article-list">
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
-						<li class="article-item">标题</li>
+						<s:iterator value="gongQiuXinXis" status="vs">
+							<li class="article-item"><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
+						</s:iterator>
+					</ul>
+				</div>
+			</div>
+			<br>
+			<div class="mod-box-vertical mod-box-vertical-last"
+				id="qiuduihuodong">
+				<div class="mod-hd">
+					<h3><a href="teams.do" target="_blank">高尔夫球队</a></h3>
+				</div>
+				<div class="mod-bd">
+					<ul class="mod-article-list">
+					<s:iterator value="teamNews" status="vs">
+						<li class="article-item"><a
+								href="teamNews.do?id=${id}" target="_blank">${shortTitle}</a></li>
+						</s:iterator>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="grid_10">
 			<div class="mod-box-horizon mod-box-horizon-last" id="gaoqiulvyou">
-				<div class="mod-hd"><span class="more">更多</span>高球旅游</div>
+				<div class="mod-hd">
+					<span class="more"><a href="c.do?id=4" target="_blank">更多</a></span><a href="c.do?id=4" target="_blank">高球旅游</a>
+				</div>
 				<div class="mod-bd">
 					<ul class="gallery">
 						<s:iterator value="lvYouImages" status="vs">
-							<li class="image-item">
-								<img src="<s:property value="image.path"/>" />
-								<a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a>
-							</li>
-							<li class="image-item">
-								<img src="<s:property value="image.path"/>" />
-								<a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a>
-							</li>
+							<li class="image-item"><img
+								src="<s:property value="image.path"/>" /> <a
+								href="news.do?id=<s:property value="id"/>" target="_blank"><s:property
+										value="smallTitle" /></a></li>
 						</s:iterator>
 					</ul>
 					<ul class="mod-article-list">
-							<s:iterator value="lvYous" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
+						<s:iterator value="lvYous" status="vs">
+							<li class="article-item"><a
+								href="news.do?id=<s:property value="id"/>" target="_blank"><s:property
+										value="maxTitle" /></a></li>
 						</s:iterator>
 					</ul>
 				</div>
@@ -394,28 +329,35 @@
 		</div>
 		<div class="grid_7">
 			<div class="mod-box-horizon mod-box-horizon-last" id="guibintongdao">
-				<div class="mod-hd"><span class="more">更多</span>贵宾通道</div>
+				<div class="mod-hd">
+					贵宾通道
+				</div>
 				<div class="mod-bd">
 					<ul>
-						<li>
-							<img src="" alt="贵宾通道" class="img-full">
-						</li>	
-						<li>
-							<img src="" alt="贵宾通道" class="img-full">
-						</li>	
-						<li>
-							<img src="" alt="贵宾通道" class="img-full">
-						</li>	
-						<li>
-							<img src="" alt="贵宾通道" class="img-full">
-						</li>	
-						<li>
-							<img src="" alt="贵宾通道" class="img-full">
-						</li>	
-							
-						<li>
-							<img src="" alt="贵宾通道" class="img-full">
-						</li>	
+						<li><a href="${adwordsService.adwords[13].url}"
+							target="_blank"><img class="img-full"
+								src="${adwordsService.adwords[13].image.path}" height="90"
+								border="0"></a></li>
+						<li><a href="${adwordsService.adwords[14].url}"
+							target="_blank"><img class="img-full"
+								src="${adwordsService.adwords[14].image.path}" height="90"
+								border="0"></a></li>
+						<li><a href="${adwordsService.adwords[15].url}"
+							target="_blank"><img class="img-full"
+								src="${adwordsService.adwords[15].image.path}" height="90"
+								border="0"></a></li>
+						<li><a href="${adwordsService.adwords[16].url}"
+							target="_blank"><img class="img-full"
+								src="${adwordsService.adwords[16].image.path}" height="90"
+								border="0"></a></li>
+						<li><a href="${adwordsService.adwords[17].url}"
+							target="_blank"><img class="img-full"
+								src="${adwordsService.adwords[17].image.path}" height="90"
+								border="0"></a></li>
+						<li><a href="${adwordsService.adwords[18].url}"
+							target="_blank"><img class="img-full"
+								src="${adwordsService.adwords[18].image.path}" height="90"
+								border="0"></a></li>
 					</ul>
 				</div>
 			</div>
@@ -423,105 +365,166 @@
 
 		<!-- 通栏广告 -->
 		<div class="grid_24">
-			<img src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" alt="广告位" class="img-ads">
+			<a href="${adwordsService.adwords[19].url}"
+							target="_blank"><img class="img-full"
+								src="${adwordsService.adwords[19].image.path}" height="90"
+								border="0"></a>
 		</div>
 		<div class="clear"></div>
 
 		<!-- 人物，动态，故事，学堂 -->
-		<div class="grid_7">
-			<div class="mod-box-horizon" id="renwu">
-				<div class="mod-hd"><span class="more">更多</span>人物</div>
-				<div class="mod-bd">
-					<ul class="gallery">
-						<s:iterator value="renWuImages" status="vs">
-							<li class="image-item">
-								<img src="<s:property value="image.path"/>" onclick="" style="width:60px;height:60px"/>
-								<a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a>
-							</li>
-						</s:iterator>
-					</ul>
+		<div class="grid_8">
+			<div class="mod-box-horizon">
+				<div class="mod-hd">
+					<span class="more"><a href="sc.do?id=16" target="_blank">更多</a></span><a href="sc.do?id=16" target="_blank">人物访谈</a>
 				</div>
-			</div>
-			<div class="mod-box-vertical mod-box-vertical-last" id="renwufangwen">
-				<div class="mod-hd"><h3>人物访问</h3></div>
 				<div class="mod-bd">
 					<ul class="mod-article-list">
 						<s:iterator value="renWus" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
-						</s:iterator>
-					</ul>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<div class="grid_10">
-			<div class="mod-box-horizon">
-				<div class="mod-hd"><span class="more">更多</span>高球动态</div>
-				<div class="mod-bd">
-					<ul class="mod-article-list">
-						<s:iterator value="dongTai" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
-						</s:iterator>
-					</ul>
-				</div>
-			</div>
-			<div class="mod-box-horizon mod-box-vertical-last">
-				<div class="mod-hd"><span class="more">更多</span>协会新闻</div>
-				<div class="mod-bd">
-					<ul class="mod-article-list">
-						<s:iterator value="xieHuis" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
-						</s:iterator>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="grid_7">
-			<div class="mod-box-horizon">
-				<div class="mod-hd"><span class="more">更多</span>球界故事</div>
-				<div class="mod-bd">
-					<ul class="mod-article-list">
-						<s:iterator value="qiuJie" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
+							<li class="article-item"><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
 						</s:iterator>
 					</ul>
 				</div>
 			</div>
 			<div class="mod-box-horizon mod-box-horizon-last">
-				<div class="mod-hd"><span class="more">更多</span>观点评论</div>
+				<div class="mod-hd">
+					<span class="more"><a href="sc.do?id=15" target="_blank">更多</a></span><a href="sc.do?id=15" target="_blank">观点评论</a>
+				</div>
 				<div class="mod-bd">
 					<ul class="mod-article-list">
-						<s:iterator value="qiuJie" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>" target="_blank"><s:property value="title"/></a></li>
+						<s:iterator value="guanDianPingLuns" status="vs">
+							<li class="article-item"><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
 						</s:iterator>
 					</ul>
 				</div>
 			</div>
 		</div>
 
+		<div class="grid_8">
+			<div class="mod-box-horizon">
+				<div class="mod-hd">
+					<span class="more"><a href="sc.do?id=13" target="_blank">更多</a></span><a href="sc.do?id=13" target="_blank">高球动态</a>
+				</div>
+				<div class="mod-bd">
+					<ul class="mod-article-list">
+						<s:iterator value="gaoQiuDongTais" status="vs">
+							<li class="article-item"><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
+						</s:iterator>
+					</ul>
+				</div>
+			</div>
+			<div class="mod-box-horizon mod-box-vertical-last">
+				<div class="mod-hd">
+					<span class="more"><a href="sc.do?id=17" target="_blank">更多</a></span><a href="sc.do?id=17" target="_blank">协会新闻</a>
+				</div>
+				<div class="mod-bd">
+					<ul class="mod-article-list">
+						<s:iterator value="xieHuiXinWens" status="vs">
+							<li class="article-item"><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
+						</s:iterator>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="grid_8">
+			<div class="mod-box-horizon">
+				<div class="mod-hd">
+					<span class="more"><a href="sc.do?id=14" target="_blank">更多</a></span><a href="sc.do?id=14" target="_blank">球界故事</a>
+				</div>
+				<div class="mod-bd">
+					<ul class="mod-article-list">
+						<s:iterator value="qiuJieGuShis" status="vs">
+							<li class="article-item"><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
+						</s:iterator>
+					</ul>
+				</div>
+			</div>
+			<div class="mod-box-horizon mod-box-horizon-last tab-list"
+				id="paiming">
+				<div class="mod-hd tab-hd">
+					<h3 class="tab-hd-item active">世界排名</h3>
+					<h3 class="tab-hd-item last">奖金排名</h3>
+				</div>
+				<div class="mod-bd tab-pannel">
+					<div class="tab-pannel-item active">
+						<div class="table-wrap">
+							<table class="table">
+								<tr>
+									<td width="15%">排名</td>
+									<td width="45%">球员</td>
+									<td width="40%">积分</td></tr>
+								<s:iterator value="jiFenPlayers" status="status">
+									<tr>
+										<td>${status.index+1}</td>
+										<td>${name}</td>
+										<td>${score}</td>
+									</tr>
+								</s:iterator>
+							</table>
+						</div>
+					</div>
+					<div class="tab-pannel-item">
+						<div class="table-wrap">
+							<table class="table">
+									<tr>
+									<td width="15%">排名</td>
+									<td width="45%">球员</td>
+									<td width="40%">奖金</td></tr>
+								<s:iterator value="jiangJinPlayers" status="status">
+									<tr><td>${status.index+1}</td>
+										<td>${name}</td>
+										<td>${bonusStr}$</td>
+									</tr>
+								</s:iterator>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="clear"></div>
+		<div class="grid_24">
+			<table width="100%">
+				<tr>
+					<td width="25%">合作媒体</td><td width="25%"></td>
+					<td width="25%"></td><td width="25%"></td><td width="25%"></td>
+				</tr>
+				<s:iterator value="heZuoMedias" status="status">
+					<s:if test="#status.index%5==0">
+						<tr>
+					</s:if>
+					<td width="25%"><a href="${url}">${name}</a></td>
+					<s:if test="#status.index%5==4||#status.last">
+						</tr>
+					</s:if>
+				</s:iterator>
+			</table>
+		</div>
+		<br>
+		<div class="grid_24">
+			<table width="100%">
+				<tr>
+					<td colspan="5">友情链接</td><td width="25%"></td>
+					<td width="25%"></td><td width="25%"></td><td width="25%"></td>
+				</tr>
+				<s:iterator value="youQingMedias" status="status">
+					<s:if test="#status.index%5==0">
+						<tr>
+					</s:if>
+					<td width="25%"><a href="${url}">${name}</a></td>
+					<s:if test="#status.index%5==4||#status.last">
+						</tr>
+					</s:if>
+				</s:iterator>
+			</table>
+		</div>
 
-
-		<!-- 商务，用品，丽人，球场，品牌 -->
-		<!-- <div class="grid_4">
-			<img src="" alt="商务" class="img-ads">
-		</div>
-		<div class="grid_4">
-			<img src="" alt="用品" class="img-ads">
-		</div>
-		<div class="grid_4">
-			<img src="" alt="丽人" class="img-ads">
-		</div>
-		<div class="grid_4">
-			<img src="" alt="球场" class="img-ads">
-		</div>
-		<div class="grid_4">
-			<img src="" alt="品牌" class="img-ads">
-		</div>
-		<div class="grid_4">
-			<img src="" alt="广告" class="img-ads">
-		</div> -->
 		<jsp:include page="./Foot.jsp"></jsp:include>
 	</div>
-</body></html>
+</body>
+</html>

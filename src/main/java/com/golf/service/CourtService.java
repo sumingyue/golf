@@ -19,4 +19,6 @@ public interface CourtService {
 
 	public Court findCourt(int courtId);
 
+	public List<Court> queryFixedCourts(int i);
+
 }

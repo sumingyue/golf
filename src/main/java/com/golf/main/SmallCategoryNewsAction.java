@@ -26,6 +26,8 @@ public class SmallCategoryNewsAction extends ActionSupport {
 	private SmallCategory m_smallCategory;
 	
 	private CategoryService m_categoryService;
+	
+	private List<News> m_latestNews;
 
 	private PagedTool m_pagedTool = new PagedTool(Config.NEWS_PAGED_NUMBER);
 	
@@ -36,14 +38,7 @@ public class SmallCategoryNewsAction extends ActionSupport {
 		m_pagedTool.setTotalNumber(totalSize);
 		
 		m_news = m_newsService.queryPagedNews(m_pagedTool, 0, m_smallCategoryId);
-		
-		//TOOD
-		if(m_news.size()<20){
-			int total = 20-m_news.size();
-			for(int i=0;i<total;i++){
-				m_news.add(m_newsService.findNews(27));
-			}
-		}
+		m_latestNews = m_newsService.queryFixedLatestNewsByCategoryId(8,m_smallCategory.getCategoryId());
 		return SUCCESS;
 	}
 
@@ -87,5 +82,16 @@ public class SmallCategoryNewsAction extends ActionSupport {
 		m_categoryService = categoryService;
 	}
 	
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
+	}
 
+	public void setIndex(int index){
+		m_pagedTool.setPageIndex(index);
+	}
+
+	public List<News> getLatestNews() {
+		return m_latestNews;
+	}
+	
 }

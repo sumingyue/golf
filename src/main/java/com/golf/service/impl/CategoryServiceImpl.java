@@ -48,8 +48,16 @@ public class CategoryServiceImpl implements InitializingBean, CategoryService {
 	}
 
 	@Override
-	public List<Category> queryAllCategories() {
-		return new ArrayList<Category>(m_categories.values());
+	public List<Category> queryAllCategories(int type) {
+		ArrayList<Category> all = new ArrayList<Category>(m_categories.values());
+		List<Category> result = new ArrayList<Category>();
+
+		for (Category temp : all) {
+			if (temp.getType() == type) {
+				result.add(temp);
+			}
+		}
+		return result;
 	}
 
 	@Override
@@ -93,12 +101,16 @@ public class CategoryServiceImpl implements InitializingBean, CategoryService {
 	}
 
 	@Override
-	public List<SmallCategory> queryAllSmallCategoryByCategoryId(int categoryId) {
+	public List<SmallCategory> queryAllSmallCategoryByTypeCategoryId(int type, int categoryId) {
 		List<SmallCategory> smallCategories = new ArrayList<SmallCategory>();
 
 		for (SmallCategory smallCategory : m_smallCategories.values()) {
-			if (smallCategory.getCategoryId() == categoryId || categoryId == 0) {
-				smallCategories.add(smallCategory);
+			Category category = findCategory(smallCategory.getCategoryId());
+
+			if (category != null && category.getType() == type) {
+				if (smallCategory.getCategoryId() == categoryId || categoryId == 0) {
+					smallCategories.add(smallCategory);
+				}
 			}
 		}
 		return smallCategories;
@@ -159,16 +171,16 @@ public class CategoryServiceImpl implements InitializingBean, CategoryService {
 	}
 
 	@Override
-	public List<Category> queryPagedCategories(PagedTool tool) {
-		List<Category> result = queryAllCategories();
+	public List<Category> queryPagedCategories(PagedTool tool, int type) {
+		List<Category> result = queryAllCategories(type);
 		return result.subList(tool.getFromIndex(), tool.getToIndex());
 	}
 
 	@Override
-   public List<SmallCategory> queryPagedSmallCategoryByCategoryId(PagedTool pagedTool, int categoryId) {
-		List<SmallCategory> result =queryAllSmallCategoryByCategoryId(categoryId);
+	public List<SmallCategory> queryPagedSmallCategoryByTypeCategoryId(PagedTool pagedTool, int type, int categoryId) {
+		List<SmallCategory> result = queryAllSmallCategoryByTypeCategoryId(type, categoryId);
 		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
 
-   }
+	}
 
 }

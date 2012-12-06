@@ -59,10 +59,10 @@
 		<div class="clear"></div>
 		<div class="grid_8 mod-box-horizon-last">
 			<div class="mod-box-horizon">
-				<div class="mod-hd"><span class="more"><a href="utnl.do?teamId=<s:property value="team.id"/>&type=1">更多</a></span>球队新闻</div>
+				<div class="mod-hd"><span class="more"><a href="teamNewss.do?teamId=<s:property value="team.id"/>&type=1">更多</a></span>球队新闻</div>
 				<div class="mod-bd"><ul class="mod-article-list">
 						<s:iterator value="news1" status="vs">
-							<li class="article-item"><a href="utnd.do?teamNewsId=<s:property value="id"/>"><s:property value="title"/></a></li>
+							<li class="article-item"><a href="teamNews.do?teamNewsId=<s:property value="id"/>"><s:property value="title"/></a></li>
 						</s:iterator>
 					</ul>
 				</div>
@@ -70,10 +70,10 @@
 		</div>
 		<div class="grid_8">
 			<div class="mod-box-horizon mod-box-horizon-last">
-				<div class="mod-hd"><span class="more"><a href="utnl.do?teamId=<s:property value="team.id"/>&type=2">更多</a></span>活动报道</div>
+				<div class="mod-hd"><span class="more"><a href="teamNewss.do?teamId=<s:property value="team.id"/>&type=2">更多</a></span>活动报道</div>
 				<div class="mod-bd"><ul class="mod-article-list">
 						<s:iterator value="news2" status="vs">
-							<li class="article-item"><a href="utnd.do?teamNewsId=<s:property value="id"/>"><s:property value="title"/></a></li>
+							<li class="article-item"><a href="teamNews.do?teamNewsId=<s:property value="id"/>"><s:property value="title"/></a></li>
 						</s:iterator>
 					</ul>
 				</div>
@@ -117,10 +117,10 @@
 		<div class="clear"></div>
 		<div class="grid_8">
 			<div class="mod-box-horizon mod-box-horizon-last">
-				<div class="mod-hd"><span class="more"><a href="utnl.do?teamId=<s:property value="team.id"/>&type=3">更多</a></span>月历成绩</div>
+				<div class="mod-hd"><span class="more"><a href="teamNewss.do?teamId=<s:property value="team.id"/>&type=3">更多</a></span>月历成绩</div>
 				<div class="mod-bd"><ul class="mod-article-list">
 						<s:iterator value="news3" status="vs">
-							<li class="article-item"><a href="utnd.do?teamNewsId=<s:property value="id"/>"><s:property value="title"/></a></li>
+							<li class="article-item"><a href="teamNews.do?teamNewsId=<s:property value="id"/>"><s:property value="title"/></a></li>
 						</s:iterator>
 					</ul>
 				</div>
@@ -128,10 +128,10 @@
 		</div>
 		<div class="grid_8">
 			<div class="mod-box-horizon mod-box-horizon-last">
-				<div class="mod-hd"><span class="more"><a href="utnl.do?teamId=<s:property value="team.id"/>&type=4">更多</a></span>精彩图文</div>
+				<div class="mod-hd"><span class="more"><a href="teamNewss.do?teamId=<s:property value="team.id"/>&type=4">更多</a></span>精彩图文</div>
 				<div class="mod-bd"><ul class="mod-article-list">
 						<s:iterator value="news4" status="vs">
-							<li class="article-item"><a href="utnd.do?teamNewsId=<s:property value="id"/>"><s:property value="title"/></a></li>
+							<li class="article-item"><a href="teamNews.do?teamNewsId=<s:property value="id"/>"><s:property value="title"/></a></li>
 						</s:iterator>
 					</ul>
 				</div>

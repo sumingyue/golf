@@ -10,7 +10,6 @@
 <link rel='stylesheet' type='text/css' href='css/admin.css' />
 <link rel='stylesheet' type='text/css' href='css/calendar.css' />
 <script src="js/calendar.js" type="text/javascript"></script>
-<link type="text/css" rel="stylesheet"	href="ckeditor/_samples/sample.css" />
 <link rel='stylesheet' type='text/css' href='css/admin.css' />
 <script src="js/jquery-1.7.1.js" type="text/javascript"></script>
 <script src="js/admin.js" type="text/javascript"></script>
@@ -28,6 +27,28 @@
 		setCheckedValue('news.recommend',recommend);
 		$('#new_priority').attr("value",priority);
 		$('#newsList').addClass("active");
+		
+		 $("#form").validate({
+				rules : {
+					"news.title" : {
+						required : true
+					},
+					"news.validateDate" :{
+						required : true,
+						date: true
+					}
+				},
+				messages : {
+					"news.title" : {
+						required : "请输入新闻标题"
+					},
+					"news.validateDate" :{
+						required : "请点击选择新闻发布日期",
+						date : "请输入正确的日期格式"
+					}
+				}
+
+			});
   });
 </script>
 </head>
@@ -117,6 +138,12 @@
 							name="news.validateDate" id="news.validateDate" value="<s:property value='news.validateDateStr'/>"/> <img
 							src="img/calendar.gif"
 							onclick="showCalendar('news.validateDate');"></td>
+					</tr>
+					<tr>
+						<td class="left">用户浏览</td>
+						<td > &nbsp;&nbsp;&nbsp;浏览量 ${news.viewNumber} &nbsp;&nbsp;&nbsp;
+						顶 ${news.good} &nbsp;&nbsp;&nbsp;
+						踩 ${news.bad} &nbsp;&nbsp;&nbsp;</td>
 					</tr>
 						<tr>
 							<td colspan="2" align="center">

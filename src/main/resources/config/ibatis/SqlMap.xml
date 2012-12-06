@@ -34,4 +34,5 @@
 	<sqlMap resource="config/ibatis/ImageSpecial.xml"/>
 	<sqlMap resource="config/ibatis/ImageSpecialDetail.xml"/>
 	<sqlMap resource="config/ibatis/MatchService.xml"/>
+	<sqlMap resource="config/ibatis/SpecialNews.xml"/>
 </sqlMapConfig>

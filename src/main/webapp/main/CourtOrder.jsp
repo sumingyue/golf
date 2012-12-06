@@ -62,7 +62,7 @@ $(document).ready(function() {
 		<div class="grid_24">
 			<div class="span10">
 				<h2 align="center" style="color:#666;font-size:16px">订球场</h2>
-				<form action="ucos.do" id="form" method="post">
+				<form action="orderCourtSub.do" id="form" method="post">
 					<table align="center" cellpadding="2" cellspacing="1" width="100%">
 						<tr>
 							<td class="left" width="40%">分类</td>

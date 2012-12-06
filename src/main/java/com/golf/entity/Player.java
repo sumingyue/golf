@@ -19,7 +19,7 @@ public class Player {
 	
 	private Date m_modifyDate;
 	
-	private NumberFormat m_nf = new DecimalFormat("0.0");
+	private NumberFormat m_nf = new DecimalFormat("###,###,###,##0.0");
 	
 	private SimpleDateFormat m_sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 

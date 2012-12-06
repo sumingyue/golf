@@ -9,7 +9,7 @@
 	<select id="adwords.findAll" resultClass="adwords">
 		select
 		<include refid="adwords.columns" />
-		from adwords order by id desc
+		from adwords 
 	</select>
 	<select id="adwords.findById" resultClass="adwords"
 		parameterClass="int">

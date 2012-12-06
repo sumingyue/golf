@@ -9,6 +9,7 @@
 <link rel='stylesheet' type='text/css' href='css/admin.css' />
 <script src="js/jquery-1.7.1.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<script src="js/admin.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -37,11 +38,14 @@ $(document).ready(function() {
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-			<h4 style="text-align:center">新增新闻二级分类</h4>
+			<h4 style="text-align:center">新增二级分类：
+			<s:if test="type==1">新闻</s:if>
+			<s:elseif test="type==2">图片专题</s:elseif>
+			</h4>
 			<form action="smallCategoryAddSubmit.do" id="form" method="post">
 				<table align="center" cellpadding="2" cellspacing="1" width="100%">
 					<tr>
-						<td width="50%" class="left">一级分类名称</td>
+						<td width="40%" class="left">一级分类名称</td>
 						<td  class="right">
 							<s:select name="smallCategory.categoryId"  list="categories" listKey="id"
 							listValue="name" value="categoryId" theme="simple">
@@ -49,7 +53,7 @@ $(document).ready(function() {
 						</td>
 					</tr>
 					<tr>
-						<td width="50%" class="left">二级分类名称</td>
+						<td  class="left">二级分类名称</td>
 						<td  class="right"><input type="text" size="40" name="smallCategory.name" /></td>
 					</tr><tr><td colspan="2" align="center"><button type="submit" class="btn">提交</button></tr>
 				</table>

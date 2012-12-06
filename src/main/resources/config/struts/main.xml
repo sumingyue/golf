@@ -13,11 +13,11 @@
 		<action name="sc" class="smallCategoryNewsAction">
 			<result name="success">main/SmallCategoryNews.jsp</result>
 		</action>
-		<action name="nd" class="newsDetailAction">
+		<action name="news" class="newsDetailAction">
 			<result name="success">main/NewsDetail.jsp</result>
 		</action>
 		<action name="comment" class="newsDetailAction" method="addComments">
-			<result name="success" type="redirect">d.action?id=${newsId}</result>
+			<result name="success" type="redirect">nd.action?id=${newsId}</result>
 		</action>
 		<action name="practice" class="practiceAction"  method="practiceList">
 			<result name="success">main/Practices.jsp</result>
@@ -28,50 +28,56 @@
 		<action name="products" class="userProductAction" >
 			<result name="success">main/ProductList.jsp</result>
 		</action>
-		<action name="pd" class="userProductAction" method="productDetail">
+		<action name="product" class="userProductAction" method="productDetail">
 			<result name="success">main/ProductDetail.jsp</result>
 		</action>
-		<action name="po" class="userProductAction" method="userOrderSub">
+		<action name="orderProduct" class="userProductAction" method="userOrderSub">
 			<result name="success">main/Success.jsp</result>
 		</action>
-		<action name="ut" class="userTeamAction" method="teamList">
+		<action name="teams" class="userTeamAction" method="teamList">
 			<result name="success">main/TeamList.jsp</result>
 		</action>
-		<action name="utd" class="userTeamAction" method="teamDetail">
+		<action name="team" class="userTeamAction" method="teamDetail">
 			<result name="success">main/TeamDetail.jsp</result>
 		</action>
-		<action name="utnl" class="userTeamAction" method="teamNewsList">
+		<action name="teamNewss" class="userTeamAction" method="teamNewsList">
 			<result name="success">main/TeamNewsList.jsp</result>
 		</action>
-		<action name="utnd" class="userTeamAction" method="teamNewsDetail">
+		<action name="teamNews" class="userTeamAction" method="teamNewsDetail">
 			<result name="success">main/TeamNewsDetail.jsp</result>
 		</action>
-		<action name="cd" class="userCourtAction" >
+		<action name="court" class="userCourtAction" >
 			<result name="success">main/CourtDetail.jsp</result>
 		</action>
-		<action name="co" >
+		<action name="orderCourt" >
 			<result name="success">main/CourtOrder.jsp</result>
 		</action>
-		<action name="ucos" class="userCourtOrderAction" method="courtOrderAdd">
+		<action name="orderCourtSub" class="userCourtOrderAction" method="courtOrderAdd">
 			<result name="success">main/Success.jsp</result>
 		</action>
-		<action name="una" >
+		<action name="addNews" >
 			<result name="success">main/UserNewsAdd.jsp</result>
 		</action>
 		<action name="unas" class="newsAction" method="newsAddSubmit" >
 			<result name="success">main/Success.jsp</result>
 		</action>
-		<action name="uis" class="userPicAction" method="imageSpecialList">
+		<action name="pics" class="userPicAction" method="imageSpecialList">
 			<result name="success">main/PicList.jsp</result>
 		</action>
-		<action name="uisd" class="userPicAction" method="imageSpecialDetail">
+		<action name="pic" class="userPicAction" method="imageSpecialDetail">
 			<result name="success">main/PicDetail.jsp</result>
 		</action>
-		<action name="uml" class="userMessageAction" method="userMessageList">
+		<action name="messages" class="userMessageAction" method="userMessageList">
 			<result name="success">main/UseMessages.jsp</result>
 		</action>
-		<action name="ums" class="userMessageAction" method="userMessageAddSubmit">
+		<action name="addMessage" class="userMessageAction" method="userMessageAddSubmit">
 			<result name="success" type="redirect">uml.action</result>
+		</action>
+		<action name="special" class="specialNewsAction" method="specialNewsUpdate" >
+			<result name="success">main/SpecialNews.jsp</result>
+		</action>
+		<action name="specials" class="specialNewsAction" method="specialNewsList">
+			<result name="success">main/SpecialNewsList.jsp</result>
 		</action>
 	</package>	
 </struts>

@@ -1,11 +1,16 @@
 package com.golf.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.golf.entity.Category;
 import com.golf.entity.ImageSpecial;
 import com.golf.entity.ImageSpecialDetail;
+import com.golf.entity.SmallCategory;
+import com.golf.service.AdwordsService;
+import com.golf.service.CategoryService;
 import com.golf.service.ImageService;
 import com.golf.service.ImageSpecialDetailService;
 import com.golf.service.ImageSpecialService;
@@ -31,13 +36,29 @@ public class PicAction extends ActionSupport {
 	private ImageSpecial m_imageSpecial = new ImageSpecial();
 
 	private ImageService m_imageService;
-	
-	private PagedTool m_pagedTool = new PagedTool(10);
+
+	private PagedTool m_pagedTool = new PagedTool(12);
+
+	private int m_categoryId;
+
+	private int m_smallCategoryId;
+
+	private CategoryService m_categoryService;
+
+	private List<SmallCategory> m_smallCategorys = new ArrayList<SmallCategory>();
+
+	private List<Category> m_categorys;
+
+	private AdwordsService m_adwordsService;
 
 	public String imageSpecialList() {
 		try {
-			m_imageSpecials = m_imageSpecialService.queryAllImageSpecials();
+			m_imageSpecials = m_imageSpecialService.queryAllImageSpecials(m_categoryId, m_smallCategoryId);
 
+			m_categorys = m_categoryService.queryAllCategories(Category.IMAGE);
+			if (m_categoryId > 0) {
+				m_smallCategorys = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.IMAGE,m_categoryId);
+			}
 			for (ImageSpecial temp : m_imageSpecials) {
 				temp.setImage(m_imageService.findImage(temp.getImageId()));
 			}
@@ -52,8 +73,8 @@ public class PicAction extends ActionSupport {
 		m_imageSpecial = m_imageSpecialService.findImageSpecial(m_imageSpecialId);
 		m_pagedTool.setTotalNumber(m_imageSpecialDetailService.queryAllImageSpecialDetails(m_imageSpecialId).size());
 		m_imageSpecialDetails = m_imageSpecialDetailService.queryPagedImageSpecialDetails(m_pagedTool, m_imageSpecialId);
-		
-		for(ImageSpecialDetail detail : m_imageSpecialDetails){
+
+		for (ImageSpecialDetail detail : m_imageSpecialDetails) {
 			detail.setImage(m_imageService.findImage(detail.getImageId()));
 		}
 		return SUCCESS;
@@ -65,6 +86,14 @@ public class PicAction extends ActionSupport {
 
 	public void setImageSpecial(ImageSpecial imageSpecial) {
 		m_imageSpecial = imageSpecial;
+	}
+
+	public void setAdwordsService(AdwordsService adwordsService) {
+		m_adwordsService = adwordsService;
+	}
+
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
 	}
 
 	public void setImageSpecialService(ImageSpecialService imageSpecialService) {
@@ -93,6 +122,34 @@ public class PicAction extends ActionSupport {
 
 	public void setImageSpecialDetailService(ImageSpecialDetailService imageSpecialDetailService) {
 		m_imageSpecialDetailService = imageSpecialDetailService;
+	}
+
+	public int getCategoryId() {
+		return m_categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		m_categoryId = categoryId;
+	}
+
+	public void setCategoryService(CategoryService categoryService) {
+		m_categoryService = categoryService;
+	}
+
+	public List<SmallCategory> getSmallCategorys() {
+		return m_smallCategorys;
+	}
+
+	public List<Category> getCategorys() {
+		return m_categorys;
+	}
+
+	public int getSmallCategoryId() {
+		return m_smallCategoryId;
+	}
+
+	public void setSmallCategoryId(int smallCategoryId) {
+		m_smallCategoryId = smallCategoryId;
 	}
 
 }

@@ -6,6 +6,7 @@ import com.golf.entity.Image;
 import com.golf.entity.Product;
 import com.golf.entity.ProductCategory;
 import com.golf.entity.ProductOrder;
+import com.golf.service.AdwordsService;
 import com.golf.service.ProductCategoryService;
 import com.golf.service.ProductOrderService;
 import com.golf.service.ProductService;
@@ -47,6 +48,8 @@ public class UserProductAction extends ActionSupport {
 	private ProductOrder m_productOrder = new ProductOrder();
 
 	private ProductOrderService m_productOrderService;
+
+	private AdwordsService m_adwordsService;
 
 	@Override
 	public String execute() throws Exception {
@@ -158,6 +161,13 @@ public class UserProductAction extends ActionSupport {
 
 	public void setProductOrderService(ProductOrderService productOrderService) {
 		m_productOrderService = productOrderService;
+	}
+	public void setAdwordsService(AdwordsService adwordsService) {
+		m_adwordsService = adwordsService;
+	}
+	
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
 	}
 
 }

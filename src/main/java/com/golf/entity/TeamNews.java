@@ -2,13 +2,15 @@ package com.golf.entity;
 
 import java.util.Date;
 
+import com.golf.Config;
+
 public class TeamNews {
 	private int m_id;
 
 	private int m_teamId;
 
 	private Team m_team;
-	
+
 	private int m_type;
 
 	private String m_title;
@@ -39,6 +41,13 @@ public class TeamNews {
 
 	public void setType(int type) {
 		m_type = type;
+	}
+
+	public String getShortTitle() {
+		if (m_title != null && m_title.length() > Config.DEFAULT_MAX_TITLE_LENGTH) {
+			return m_title.substring(0, Config.DEFAULT_MAX_TITLE_LENGTH);
+		}
+		return m_title;
 	}
 
 	public String getTitle() {

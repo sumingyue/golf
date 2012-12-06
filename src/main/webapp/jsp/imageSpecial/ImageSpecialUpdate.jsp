@@ -8,11 +8,10 @@
 
 <link href="css/bootstrap.min.css" rel="stylesheet" imageSpecial="screen">
 <link rel='stylesheet' type='text/css' href='css/admin.css' />
-<link type="text/css" rel="stylesheet"	href="ckeditor/_samples/sample.css" />
 <script src="js/jquery-1.7.1.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<script src="js/admin.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="ckeditor/ckeditor.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -33,6 +32,22 @@ $(document).ready(function(){
 				enctype="multipart/form-data">
 				<table align="center" cellpadding="2" cellspacing="1" width="100%">
 					<input type="hidden" name="imageSpecial.id" value="<s:property value="imageSpecial.id"/>"/>
+					<tr>
+						<td width="15%" class="left">一级分类<span style='color: red'>*</span></td>
+						<td class="right"><s:select name="imageSpecial.categoryId"
+								onchange="categoryChanged()" 
+								list="categoryList" listKey="id" listValue="name"
+								value="imageSpecial.categoryId" theme="simple" cssClass="select">
+							</s:select></td>
+					</tr>
+					<tr>
+						<td width="15%" class="left">二级分类<span style='color: red'>*</span></td>
+						<td class="right"><s:select name="imageSpecial.smallCategoryId" 
+								list="smallCategoryList" listKey="id" listValue="name"
+								value="imageSpecial.smallCategoryId" theme="simple" cssClass="select">
+							</s:select>
+						</td>
+					</tr>
 					<tr>
 						<td class="left" width="30%">专题名称<span style='color: red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="imageSpecial.name" value="<s:property value="imageSpecial.name"/>"/></td>
@@ -61,8 +76,6 @@ $(document).ready(function(){
 					</tr>
 					</table>
 			</form>
-					<ckeditor:replace replace="editor1" basePath="ckeditor/" />
-					<ckeditor:replace replace="editor2" basePath="ckeditor/" />
       </div>
     </div>
     <%@include file="./../Foot.jsp"%>

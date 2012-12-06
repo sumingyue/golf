@@ -10,9 +10,6 @@
 		</property>
 	</bean>
 	<bean id="newsService" class="com.golf.service.impl.NewsServiceImpl">
-		<property name="imageService">
-			<ref bean="imageService" />
-		</property>
 		<property name="categoryService">
 			<ref bean="categoryService" />
 		</property>
@@ -130,6 +127,11 @@
 	<bean id="matchServiceService" class="com.golf.service.impl.MatchServiceServiceImpl">
 		<property name="matchServiceDao">
 			<ref bean="matchServiceDao" />
+		</property>
+	</bean>
+	<bean id="specialNewsService" class="com.golf.service.impl.SpecialNewsServiceImpl">
+		<property name="specialNewsDao">
+			<ref bean="specialNewsDao" />
 		</property>
 	</bean>
 </beans>  

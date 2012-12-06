@@ -71,7 +71,7 @@ function smallCategoryChanged(){
 					<th width="4%">首页</th>
 					<th width="4%">图片</th>
 					<th width="4%">级别</th>
-					<th width="8%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="newsAdd.do" >新增</a></th>
+					<th width="8%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="newsAdd.do?categoryId=${categoryId}&smallCategoryId=${smallCategoryId}" >新增</a></th>
 				</tr>
 				<s:iterator value="newsList" status="vs">
 					<tr>
@@ -116,7 +116,4 @@ function smallCategoryChanged(){
   </div>
 </body>
 </html>
-
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@ taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld"%>
 

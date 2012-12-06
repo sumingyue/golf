@@ -9,7 +9,6 @@
 <link rel='stylesheet' type='text/css' href='css/calendar.css' />
 <script src="js/calendar.js" type="text/javascript"></script>
 <link type="text/css" rel="stylesheet"
-	href="ckeditor/_samples/sample.css" />
 <link rel='stylesheet' type='text/css' href='css/admin.css' />
 <script src="js/admin.js" type="text/javascript"></script>
 <script src="ckeditor/ckeditor.js" type="text/javascript"></script>
@@ -62,7 +61,7 @@ var calendar = null;
 
 		<div class="grid_24">
 			<h2 style="text-align:center;color:#666;font-size:16px">新增新闻</h2>
-			<form action="unas.do" id="form" method="post"
+			<form action="addNewsSub.do" id="form" method="post"
 				enctype="multipart/form-data">
 				<table align="center" cellpadding="2" cellspacing="1" width="100%">
 					<%-- <tr>

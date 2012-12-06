@@ -9,7 +9,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.InitializingBean;
 
-import com.golf.Config;
 import com.golf.dao.CourtDao;
 import com.golf.entity.Court;
 import com.golf.service.CourtService;
@@ -32,21 +31,7 @@ public class CourtServiceImpl implements InitializingBean, CourtService {
 		for (Court court : all) {
 			m_courts.put(court.getId(), court);
 		}
-		
-		if (Config.DUBUG) {
-			int size = all.size();
-			if (size > 1) {
-				Court temp = all.get(0);
-				String name =temp.getName();
-				int total = Config.DEBUG_TOTAL - size;
-				if (total > 0) {
-					for (int i = 0; i < total; i++) {
-						temp.setName(name+i);
-						m_courts.put(size + i, temp);
-					}
-				}
-			}
-		}
+
 	}
 
 	@Override
@@ -120,6 +105,26 @@ public class CourtServiceImpl implements InitializingBean, CourtService {
 		List<Court> result = queryAllCourts();
 
 		return result.subList(tool.getFromIndex(), tool.getToIndex());
+	}
+
+	private List<Court> resizeList(List<Court> all, int size) {
+		int totalSize = all.size();
+		if (size > totalSize) {
+			int duration = size - totalSize;
+			for (int i = 0; i < duration; i++) {
+				all.add(findCourt(1));
+			}
+		} else {
+			all = all.subList(0, size);
+		}
+		return all;
+	}
+
+	@Override
+	public List<Court> queryFixedCourts(int size) {
+		List<Court> all = queryAllCourts();
+
+		return resizeList(all, size);
 	}
 
 }

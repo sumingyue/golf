@@ -79,10 +79,33 @@ public class PlayerServiceImpl implements InitializingBean, PlayerService {
 		m_playerDao = playerDao;
 	}
 
+	private List<Player> resizeList(List<Player> all, int size) {
+		int totalSize = all.size();
+		if (size > totalSize) {
+			int duration = size - totalSize;
+			for (int i = 0; i < duration; i++) {
+				all.add(findPlayer(1));
+			}
+		} else {
+			all = all.subList(0, size);
+		}
+		return all;
+	}
+	
 	@Override
+	public List<Player> queryPlayers(String sort,int size) {
+		List<Player> players = queryAllPlayers();
+		Collections.sort(players, new PlayerCompator(sort));
+		
+		resizeList(players,size);
+		return players;
+	}
+	
+
 	public List<Player> queryAllPlayers(String sort) {
 		List<Player> players = queryAllPlayers();
 		Collections.sort(players, new PlayerCompator(sort));
+		
 		return players;
 	}
 

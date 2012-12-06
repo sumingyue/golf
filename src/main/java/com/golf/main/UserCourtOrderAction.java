@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 
 import com.golf.action.CourtOrderAction;
 import com.golf.entity.CourtOrder;
+import com.golf.service.AdwordsService;
 import com.golf.service.CourtOrderService;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -16,6 +17,8 @@ public class UserCourtOrderAction extends ActionSupport {
 	private CourtOrderService m_courtOrderService;
 
 	private CourtOrder m_courtOrder = new CourtOrder();
+
+	private AdwordsService m_adwordsService;
 
 	public String courtOrderAdd() {
 		try {
@@ -42,6 +45,14 @@ public class UserCourtOrderAction extends ActionSupport {
 
 	public void setCourtOrderService(CourtOrderService courtOrderService) {
 		m_courtOrderService = courtOrderService;
+	}
+	
+	public void setAdwordsService(AdwordsService adwordsService) {
+		m_adwordsService = adwordsService;
+	}
+	
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
 	}
 
 }

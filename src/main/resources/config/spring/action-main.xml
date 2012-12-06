@@ -14,11 +14,23 @@
 		<property name="newsService">
 			<ref bean="newsService" />
 		</property>
-		<property name="categoryService">
-			<ref bean="categoryService" />
+		<property name="specialNewsService">
+			<ref bean="specialNewsService" />
 		</property>
 		<property name="imageService">
 			<ref bean="imageService" />
+		</property>
+		<property name="imageSpecialService">
+			<ref bean="imageSpecialService" />
+		</property>
+		<property name="teamNewsService">
+			<ref bean="teamNewsService" />
+		</property>
+		<property name="courtService">
+			<ref bean="courtService" />
+		</property>
+		<property name="courtImageService">
+			<ref bean="courtImageService" />
 		</property>
 	</bean>
 	<bean id="categoryNewsAction" class="com.golf.main.CategoryNewsAction"
@@ -31,6 +43,9 @@
 		</property>
 		<property name="categoryService">
 			<ref bean="categoryService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
 		</property>
 	</bean>
 	<bean id="smallCategoryNewsAction" class="com.golf.main.SmallCategoryNewsAction"
@@ -59,6 +74,12 @@
 		<property name="newsCommentsService">
 			<ref bean="newsCommentsService" />
 		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+		<property name="imageSpecialService">
+			<ref bean="imageSpecialService" />
+		</property>
 	</bean>
 	<bean id="practiceAction" class="com.golf.main.PracticeAction"
 		scope="prototype">
@@ -67,6 +88,9 @@
 		</property>
 		<property name="courtService">
 			<ref bean="courtService" />
+		</property>
+		<property name="adwordsService">
+			<ref bean="adwordsService" />
 		</property>
 	</bean>
 	<bean id="userProductAction" class="com.golf.main.UserProductAction"
@@ -79,6 +103,9 @@
 		</property>
 		<property name="productOrderService">
 			<ref bean="productOrderService" />
+		</property>
+		<property name="adwordsService">
+			<ref bean="adwordsService" />
 		</property>
 	</bean>
 	<bean id="userTeamAction" class="com.golf.main.TeamAction" scope="prototype">
@@ -93,6 +120,9 @@
 		</property>
 		<property name="imageService">
 			<ref bean="imageService" />
+		</property>
+		<property name="adwordsService">
+			<ref bean="adwordsService" />
 		</property>
 	</bean>
 	<bean id="userCourtAction" class="com.golf.main.CourtAction"
@@ -112,11 +142,17 @@
 		<property name="imageService">
 			<ref bean="imageService" />
 		</property>
+		<property name="adwordsService">
+			<ref bean="adwordsService" />
+		</property>
 	</bean>
 	<bean id="userCourtOrderAction" class="com.golf.main.UserCourtOrderAction"
 		scope="prototype">
 		<property name="courtOrderService">
 			<ref bean="courtOrderService" />
+		</property>
+		<property name="adwordsService">
+			<ref bean="adwordsService" />
 		</property>
 	</bean>
 	<bean id="userPicAction" class="com.golf.main.PicAction"
@@ -129,6 +165,21 @@
 		</property>
 		<property name="imageSpecialDetailService">
 			<ref bean="imageSpecialDetailService" />
+		</property>
+		<property name="adwordsService">
+			<ref bean="adwordsService" />
+		</property>
+		<property name="categoryService">
+			<ref bean="categoryService" />
+		</property>
+	</bean>
+	<bean id="specialNewsAction" class="com.golf.action.SpecialNewsAction"
+		scope="prototype">
+		<property name="specialNewsService">
+			<ref bean="specialNewsService" />
+		</property>
+		<property name="adwordsService">
+			<ref bean="adwordsService" />
 		</property>
 	</bean>
 </beans>  

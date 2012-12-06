@@ -11,6 +11,8 @@ public interface PlayerService {
 	
 	public List<Player> queryAllPlayers(String sort);
 
+	public List<Player> queryPlayers(String sort,int size);
+
 	public int insertPlayer(Player player);
 
 	public int updatePlayer(Player player);

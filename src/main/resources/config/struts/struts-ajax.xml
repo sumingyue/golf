@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="ajax" extends="json-default">
-		<action name="querySmallCategory" class="newsAction" method="querySmallCategory">
+		<action name="querySmallCategory" class="smallCategoryAction" method="queryAllSmallCategoryList">
 			<result type="json"></result>
 		</action>
 	</package>

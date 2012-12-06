@@ -68,34 +68,51 @@
 			<%@include file="./../Menu.jsp"%>
 			<div class="span10">
 				<h4 style="text-align:center">修改广告信息</h4>
-				<form action="adwordsUpdateSubmit.do" id="form" method="post">
+				<form action="adwordsUpdateSubmit.do" id="form" method="post" 
+				enctype="multipart/form-data">
 					<table align="center" cellpadding="2" cellspacing="1" width="100%">
 						<input type="hidden" name="adwords.id"
 							value="<s:property value="adwords.id"/>" />
 						<tr>
-							<td  width="30%" class="left">广告位置</td>
+							<td  width="30%" class="left">广告位置<span style='color: red'>*</span></td>
 							<td class="right"><input type="text" size="60"
 								name="adwords.position"
 								value="<s:property value="adwords.position"/>" /></td>
 						</tr>
 						<tr>
-							<td class="left">广告名称</td>
+							<td class="left">广告名称<span style='color: red'>*</span></td>
 							<td class="right"><input type="text" size="60"
 								name="adwords.name" value="<s:property value="adwords.name"/>" /></td>
 						</tr>
 						<tr>
-							<td class="left">广告宽度</td>
+							<td class="left">广告宽度<span style='color: red'>*</span></td>
 							<td class="right"><input type="text" size="40"
 								name="adwords.width" value="<s:property value="adwords.width"/>" /></td>
 						</tr>
 						<tr>
-							<td class="left">广告高度</td>
+							<td class="left">广告高度<span style='color: red'>*</span></td>
 							<td class="right"><input type="text" size="40"
 								name="adwords.height"
 								value="<s:property value="adwords.height"/>" /></td>
 						</tr>
 						<tr>
-							<td class="left">广告链接</td>
+						<td class="left">广告图片<span style='color: red'>*</span></td>
+						<td class="right"><input type="file" name="upload"
+							id="fileUpload_upload">
+							<s:if test="adwords.imageId>0">名称:&nbsp;&nbsp; <s:property value='adwords.image.name'/></s:if>
+							<s:else>未上传图片</s:else>
+							</td>	
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center">
+							<img src="<s:property value="adwords.image.path"/>">
+							
+						</td>	
+						</td>
+					</tr>
+						<tr>
+							<td class="left">广告链接<span style='color: red'>*</span></td>
 							<td class="right"><input type="text" size="80"
 								name="adwords.url" value="<s:property value="adwords.url"/>" /></td>
 						</tr>

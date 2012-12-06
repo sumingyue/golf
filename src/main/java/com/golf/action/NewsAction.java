@@ -43,7 +43,7 @@ public class NewsAction extends ActionSupport {
 	private List<SmallCategory> m_smallCategoryList;
 
 	private int m_categoryId;
-	
+
 	private int m_smallCategoryId;
 
 	private PagedTool m_pagedTool = new PagedTool(Config.NEWS_PAGED_NUMBER);
@@ -58,7 +58,7 @@ public class NewsAction extends ActionSupport {
 		try {
 			String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.NEWS);
 			String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-			
+
 			m_uploadFile.setPath(relativePath);
 			m_uploadFile.setStorePath(storePath);
 			int id = m_imageService.insert(m_upload, m_uploadFile, Image.NEWS);
@@ -69,22 +69,15 @@ public class NewsAction extends ActionSupport {
 		}
 	}
 
-	public String querySmallCategory() {
-		if (m_categoryId > 0) {
-			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByCategoryId(m_categoryId);
-		}
-		return SUCCESS;
-	}
-
 	public String newsList() {
 		try {
-			m_categoryList = m_categoryService.queryAllCategories();
-			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByCategoryId(m_categoryId);
-			int totalSize = m_newsService.queryTotalSize(m_categoryId,m_smallCategoryId);
+			m_categoryList = m_categoryService.queryAllCategories(Category.NEWS);
+			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS, m_categoryId);
+			int totalSize = m_newsService.queryTotalSize(m_categoryId, m_smallCategoryId);
 
 			m_pagedTool.setTotalNumber(totalSize);
-			
-			m_newsList = m_newsService.queryPagedNews(m_pagedTool,m_categoryId,m_smallCategoryId);
+
+			m_newsList = m_newsService.queryPagedNews(m_pagedTool, m_categoryId, m_smallCategoryId);
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
@@ -94,7 +87,15 @@ public class NewsAction extends ActionSupport {
 
 	public String newsAdd() {
 		try {
-			m_categoryList = m_categoryService.queryAllCategories();
+			m_categoryList = m_categoryService.queryAllCategories(Category.NEWS);
+
+			if(m_categoryId==0){
+				if (m_categoryList != null && m_categoryList.size() > 0) {
+					Category temp = m_categoryList.get(0);
+					m_categoryId = temp.getId();
+				}
+			}
+			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS, m_categoryId);
 			return SUCCESS;
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
@@ -112,6 +113,9 @@ public class NewsAction extends ActionSupport {
 			}
 			m_news.setCreationDate(new Date());
 			int id = m_newsService.insertNews(m_news);
+
+			m_categoryId = m_news.getCategoryId();
+			m_smallCategoryId = m_news.getSmallCategoryId();
 			if (id > 0) {
 				return SUCCESS;
 			} else {
@@ -126,8 +130,9 @@ public class NewsAction extends ActionSupport {
 	public String newsUpdate() {
 		try {
 			m_news = m_newsService.findNews(m_newsId);
-			m_categoryList = m_categoryService.queryAllCategories();
-			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByCategoryId(m_news.getCategoryId());
+			m_categoryList = m_categoryService.queryAllCategories(Category.NEWS);
+			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS,
+			      m_news.getCategoryId());
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
@@ -146,8 +151,11 @@ public class NewsAction extends ActionSupport {
 			} else {
 				m_news.setImageId(last.getImageId());
 			}
-			
+
 			int count = m_newsService.updateNews(m_news);
+
+			m_categoryId = m_news.getCategoryId();
+			m_smallCategoryId = m_news.getSmallCategoryId();
 			if (count > 0) {
 				return SUCCESS;
 			} else {
@@ -161,6 +169,9 @@ public class NewsAction extends ActionSupport {
 
 	public String newsDelete() {
 		try {
+			m_news = m_newsService.findNews(m_newsId);
+			m_smallCategoryId = m_news.getSmallCategoryId();
+			m_categoryId = m_news.getCategoryId();
 			int count = m_newsService.deleteNews(m_newsId);
 			if (count > 0) {
 				return SUCCESS;
@@ -256,5 +267,5 @@ public class NewsAction extends ActionSupport {
 	public int getSmallCategoryId() {
 		return m_smallCategoryId;
 	}
-	
+
 }

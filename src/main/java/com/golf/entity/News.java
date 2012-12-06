@@ -1,6 +1,5 @@
 package com.golf.entity;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,6 +16,12 @@ public class News {
 	public static final int PREPARE = 0;
 
 	public static final int YES = 1;
+
+	public static final int TYPE_VIEW = 1;
+
+	public static final int TYPE_GOOD = 2;
+
+	public static final int TYPE_BAD = 3;
 
 	private String m_author;
 
@@ -229,16 +234,41 @@ public class News {
 	}
 
 	public String getDateStr() {
-		if(m_validate!=null){
-			return m_validate.format(m_validateDate);
+		try {
+			if (m_validate != null) {
+				return m_validate.format(m_validateDate);
+			}
+		} catch (Exception e) {
 		}
 		return "";
 	}
 
-	public String getShortTitle() {
-		int length = m_title.length();
-		if (length > Config.TITLE_LENGTH) {
-			return m_title.substring(0, Config.TITLE_LENGTH);
+	public String getMaxTitle() {
+		if (m_title != null) {
+			int length = m_title.length();
+			if (length > Config.DEFAULT_MAX_TITLE_LENGTH) {
+				return m_title.substring(0, Config.DEFAULT_MAX_TITLE_LENGTH);
+			}
+		}
+		return m_title;
+	}
+
+	public String getNormalTitle() {
+		if (m_title != null) {
+			int length = m_title.length();
+			if (length > Config.DEFAULT_NORMAL_TITLE_LENGTH) {
+				return m_title.substring(0, Config.DEFAULT_NORMAL_TITLE_LENGTH);
+			}
+		}
+		return m_title;
+	}
+
+	public String getSmallTitle() {
+		if (m_title != null) {
+			int length = m_title.length();
+			if (length > Config.DEFAULT_SMALL_TITLE_LENGTH) {
+				return m_title.substring(0, Config.DEFAULT_SMALL_TITLE_LENGTH);
+			}
 		}
 		return m_title;
 	}
@@ -246,7 +276,7 @@ public class News {
 	public void setValidateDate(String validateDate) {
 		try {
 			m_validateDate = m_sdf.parse(validateDate);
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			m_validateDate = new Date();
 		}
 	}

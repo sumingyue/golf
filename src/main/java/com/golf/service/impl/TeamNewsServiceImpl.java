@@ -130,4 +130,23 @@ public class TeamNewsServiceImpl implements InitializingBean, TeamNewsService {
 		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
 
 	}
+
+	private List<TeamNews> resizeList(List<TeamNews> all, int size) {
+		int totalSize = all.size();
+		if (size > totalSize) {
+			int duration = size - totalSize;
+			for (int i = 0; i < duration; i++) {
+				all.add(findTeamNews(1));
+			}
+		} else {
+			all = all.subList(0, size);
+		}
+		return all;
+	}
+
+	@Override
+	public List<TeamNews> queryFixedTeamNewss(int size) {
+		List<TeamNews> all = queryAllTeamNewss();
+		return resizeList(all, size);
+	}
 }

@@ -11,7 +11,6 @@
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
-
 	$(document).ready(function() {
 		$('#categoryList').addClass("active");
 
@@ -28,6 +27,8 @@
 			}
 
 		});
+		var type=<s:property value="type"/>;
+		$('#category_type').val(type);
 	});
 </script>
 </head>
@@ -39,12 +40,22 @@
 			<div class="row-fluid">
 			<%@include file="./../Menu.jsp"%>
 			<div class="span10">
-				<h4 style="text-align:center">新增新闻一级分类</h4>
+				<h4 style="text-align:center">新增一级分类</h4>
 				<form action="categoryAddSubmit.do" id="form" method="post">
 					<table align="center"  cellpadding="2" cellspacing="1" width="100%">
 						<tr>
-							<td width="40%" class="left">一级分类名称</td>
+							<td width="40%" class="left">一级分类类型</td>
 							<td width="60%" class="right">
+							<select id="category_type" name="category.type">
+								<option value="1">新闻分类</option>
+								<option value="2">图片专题</option>
+								<option value="3">商城商品</option>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="left">一级分类名称</td>
+							<td class="right">
 							<input type="text" size="40"
 								name="category.name" id="category_name"/>
 							</td>

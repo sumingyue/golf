@@ -9,6 +9,7 @@
 <link rel='stylesheet' type='text/css' href='css/admin.css' />
 <script src="js/jquery-1.7.1.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<script src="js/admin.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -34,6 +35,7 @@ $(document).ready(function() {
 		}
 	});
 });
+
 </script>
 </head>
 <body>
@@ -49,7 +51,24 @@ $(document).ready(function() {
 				enctype="multipart/form-data">
 				<table align="center" cellpadding="2" cellspacing="1" width="100%">
 					<tr>
-						<td class="left" width="30%">专题名称<span style='color: red'>*</span></td>
+						<td width="30%" class="left">一级分类<span style='color: red'>*</span></td>
+						<td class="right"><s:select name="imageSpecial.categoryId"
+								onchange="imageCategoryChanged()"
+								list="categoryList" listKey="id" listValue="name"
+								value="categoryId" theme="simple" cssClass="select">
+							</s:select></td>
+					</tr>
+					<tr>
+						<td class="left">二级分类<span style='color: red'>*</span></td>
+						<td class="right">
+						<s:select name="imageSpecial.smallCategoryId" 
+								list="smallCategoryList" listKey="id" listValue="name"
+								value="smallCategoryId"  theme="simple" cssClass="select">
+							</s:select>
+						</td>
+					</tr>
+					<tr>
+						<td class="left">专题名称<span style='color: red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="imageSpecial.name" /></td>
 					</tr>
 					<tr>

@@ -16,6 +16,8 @@ public class Adwords {
 	private String m_url;
 
 	private int m_imageId;
+	
+	private Image m_image;
 
 	private Date m_date;
 
@@ -81,6 +83,14 @@ public class Adwords {
 
 	public void setDate(Date date) {
 		m_date = date;
+	}
+
+	public Image getImage() {
+		return m_image;
+	}
+
+	public void setImage(Image image) {
+		m_image = image;
 	}
 
 }

@@ -37,4 +37,13 @@
 		delete from news where
 		id=#id#
 	</delete>
+	<update id="news.increaseViewNumber" parameterClass="int">
+		update news set viewNumber=viewNumber+1 where id=#id#
+	</update>
+	<update id="news.increaseGood" parameterClass="int">
+		update news set good=good+1 where id=#id#
+	</update>
+	<update id="news.increaseBad" parameterClass="int">
+		update news set bad=bad+1 where id=#id#
+	</update>
 </sqlMap>

@@ -7,11 +7,14 @@ import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
 import com.golf.Config;
-import com.golf.entity.ImageSpecial;
+import com.golf.entity.Category;
 import com.golf.entity.Image;
+import com.golf.entity.ImageSpecial;
+import com.golf.entity.SmallCategory;
 import com.golf.entity.UploadFile;
-import com.golf.service.ImageSpecialService;
+import com.golf.service.CategoryService;
 import com.golf.service.ImageService;
+import com.golf.service.ImageSpecialService;
 import com.golf.tools.ImageTools;
 import com.golf.tools.PagedTool;
 import com.opensymphony.xwork2.ActionSupport;
@@ -25,6 +28,16 @@ public class ImageSpecialAction extends ActionSupport {
 	private List<ImageSpecial> m_imageSpecials;
 
 	private int m_imageSpecialId;
+
+	private int m_categoryId;
+
+	private int m_smallCategoryId;
+
+	private CategoryService m_categoryService;
+
+	private List<Category> m_categoryList;
+
+	private List<SmallCategory> m_smallCategoryList;
 
 	private ImageSpecialService m_imageSpecialService;
 
@@ -40,13 +53,40 @@ public class ImageSpecialAction extends ActionSupport {
 
 	public String imageSpecialList() {
 		try {
-			m_pagedTool.setTotalNumber(m_imageSpecialService.queryAllImageSpecials().size());
-			m_imageSpecials = m_imageSpecialService.queryPagedImageSpecials(m_pagedTool);
+			m_categoryList = m_categoryService.queryAllCategories(Category.IMAGE);
+			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.IMAGE, m_categoryId);
+
+			m_pagedTool.setTotalNumber(m_imageSpecialService.queryAllImageSpecials(m_categoryId,m_smallCategoryId).size());
+			m_imageSpecials = m_imageSpecialService.queryPagedImageSpecials(m_pagedTool,m_categoryId,m_smallCategoryId);
+
+			for (ImageSpecial temp : m_imageSpecials) {
+				temp.setCategory(m_categoryService.findCategory(temp.getCategoryId()));
+				temp.setSmallCategory(m_categoryService.findSmallCategory(temp.getSmallCategoryId()));
+			}
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
 		}
 		return SUCCESS;
+	}
+
+	public String imageSpecialAdd() {
+		try {
+			m_categoryList = m_categoryService.queryAllCategories(Category.IMAGE);
+
+			if(m_categoryId==0){
+				if (m_categoryList != null && m_categoryList.size() > 0) {
+					Category temp = m_categoryList.get(0);
+					m_categoryId = temp.getId();
+				}
+			}
+			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.IMAGE, m_categoryId);
+			
+			return SUCCESS;
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
 	}
 
 	public String imageSpecialAddSubmit() {
@@ -63,6 +103,9 @@ public class ImageSpecialAction extends ActionSupport {
 				m_imageSpecial.setImageId(imageId);
 			}
 			int id = m_imageSpecialService.insertImageSpecial(m_imageSpecial);
+			
+			m_categoryId = m_imageSpecial.getCategoryId();
+			m_smallCategoryId = m_imageSpecial.getSmallCategoryId();
 			if (id > 0) {
 				return SUCCESS;
 			} else {
@@ -79,6 +122,10 @@ public class ImageSpecialAction extends ActionSupport {
 		try {
 			m_imageSpecial = m_imageSpecialService.findImageSpecial(m_imageSpecialId);
 			m_imageSpecial.setImage(m_imageService.findImage(m_imageSpecial.getImageId()));
+			m_categoryList = m_categoryService.queryAllCategories(Category.IMAGE);
+			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.IMAGE,
+			      m_imageSpecial.getCategoryId());
+
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
@@ -102,6 +149,9 @@ public class ImageSpecialAction extends ActionSupport {
 				m_imageSpecial.setImageId(m_imageSpecialService.findImageSpecial(m_imageSpecial.getId()).getImageId());
 			}
 			int count = m_imageSpecialService.updateImageSpecial(m_imageSpecial);
+
+			m_categoryId = m_imageSpecial.getCategoryId();
+			m_smallCategoryId = m_imageSpecial.getSmallCategoryId();
 			if (count > 0) {
 				return SUCCESS;
 			} else {
@@ -115,6 +165,9 @@ public class ImageSpecialAction extends ActionSupport {
 
 	public String imageSpecialDelete() {
 		try {
+			m_imageSpecial = m_imageSpecialService.findImageSpecial(m_imageSpecialId);
+			m_smallCategoryId = m_imageSpecial.getSmallCategoryId();
+			m_categoryId = m_imageSpecial.getCategoryId();
 			int count = m_imageSpecialService.deleteImageSpecial(m_imageSpecialId);
 			if (count > 0) {
 				return SUCCESS;
@@ -162,6 +215,7 @@ public class ImageSpecialAction extends ActionSupport {
 	public void setImageService(ImageService imageService) {
 		m_imageService = imageService;
 	}
+
 	public PagedTool getPagedTool() {
 		return m_pagedTool;
 	}
@@ -170,8 +224,36 @@ public class ImageSpecialAction extends ActionSupport {
 		m_pagedTool = pagedTool;
 	}
 
-	public void setIndex(int index){
+	public void setIndex(int index) {
 		m_pagedTool.setPageIndex(index);
+	}
+
+	public void setCategoryService(CategoryService categoryService) {
+		m_categoryService = categoryService;
+	}
+
+	public List<Category> getCategoryList() {
+		return m_categoryList;
+	}
+
+	public List<SmallCategory> getSmallCategoryList() {
+		return m_smallCategoryList;
+	}
+
+	public int getCategoryId() {
+		return m_categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		m_categoryId = categoryId;
+	}
+
+	public int getSmallCategoryId() {
+		return m_smallCategoryId;
+	}
+
+	public void setSmallCategoryId(int smallCategoryId) {
+		m_smallCategoryId = smallCategoryId;
 	}
 
 }

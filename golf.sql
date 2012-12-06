@@ -21,9 +21,20 @@ CREATE TABLE `news` (
   KEY `title_author` (`title`,`author`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='新闻基本内容';
 
+CREATE TABLE `specialNews` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL COMMENT '专题标题',
+  `content` mediumtext NOT NULL COMMENT '专题内容',
+  `viewNumber` int(11) NOT NULL COMMENT '浏览次数',
+  `priority` int(11) NOT NULL COMMENT '专题优先级',
+  `creationDate` datetime NOT NULL COMMENT '专题创建时间',
+  `modifyDate` datetime NOT NULL COMMENT '专题修改时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='新闻专题内容';
 
 CREATE TABLE  `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` int(11) NOT NULL COMMENT '分类的类型，0表示新闻分类，1表示图片分类',
   `name` varchar(50) NOT NULL COMMENT '分类标题',
   `creationDate` datetime NOT NULL COMMENT '分类创建时间',
   PRIMARY KEY (`id`)
@@ -246,6 +257,8 @@ CREATE TABLE  `newsComments` (
 
 CREATE TABLE  `imageSpecial` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categoryId` int(11) NOT NULL COMMENT '一级分类',
+  `smallCategoryId` int(11) NOT NULL COMMENT '二级分类',
   `name` varchar(200) NOT NULL COMMENT '专题名称',
   `content` varchar(500) NOT NULL COMMENT '专题内容介绍',
   `imageId` int(11) NOT NULL  COMMENT '图片专题封面',
@@ -275,13 +288,12 @@ CREATE TABLE  `matchService` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='赛事服务基本信息';
 
 
-INSERT INTO category values (1,'综合新闻',now());
-INSERT INTO category values (2,'高球赛事',now());
-INSERT INTO category values (3,'人物评论',now());
-INSERT INTO category values (4,'高球旅游',now());
-INSERT INTO category values (5,'高球学院',now());
-INSERT INTO category values (6,'球场资讯',now());
-INSERT INTO category values (7,'场外资讯',now());
+INSERT INTO category values (1,1,'高球新闻',now());
+INSERT INTO category values (2,1,'高球赛事',now());
+INSERT INTO category values (3,1,'人物评论',now());
+INSERT INTO category values (4,1,'高球旅游',now());
+INSERT INTO category values (5,1,'高球学院',now());
+INSERT INTO category values (6,1,'综合资讯',now());
 
 
 INSERT INTO smallCategory values (1,1,'国际新闻',now());
@@ -321,13 +333,43 @@ INSERT INTO smallCategory values (28,5,'稳定挥杆',now());
 INSERT INTO smallCategory values (29,5,'救球技巧',now());
 INSERT INTO smallCategory values (30,5,'果岭推杆',now());
 
-INSERT INTO smallCategory values (31,6,'活动资讯',now());
-INSERT INTO smallCategory values (32,6,'优惠信息',now());
-INSERT INTO smallCategory values (33,6,'人才供求',now());
-INSERT INTO smallCategory values (34,6,'练习场',now());
 
-INSERT INTO smallCategory values (34,7,'品位资讯',now());
-INSERT INTO smallCategory values (35,7,'本地资讯',now());
-INSERT INTO smallCategory values (36,7,'社会热点',now());
+INSERT INTO smallCategory values (32,6,'活动资讯',now());
+INSERT INTO smallCategory values (33,6,'优惠信息',now());
+INSERT INTO smallCategory values (34,6,'人才供求',now());
+INSERT INTO smallCategory values (35,6,'综合新闻',now());
+INSERT INTO smallCategory values (36,6,'本地时尚',now());
+INSERT INTO smallCategory values (37,6,'社会热点',now());
+INSERT INTO smallCategory values (38,6,'球会资讯',now());
+INSERT INTO smallCategory values (39,6,'会籍资讯',now());
+INSERT INTO smallCategory values (40,6,'供求信息',now());
+INSERT INTO smallCategory values (41,6,'练习场',now());
 
-
+insert into adwords values(1,'首页','首页横幅广告',790,90,'http://szgolfer.com',0,now());
+insert into adwords values(2,'首页','首页菜单下广告01',270,90,'http://szgolfer.com',0,now());
+insert into adwords values(3,'首页','首页菜单下广告02',270,90,'http://szgolfer.com',0,now());
+insert into adwords values(4,'首页','首页菜单下广告03',270,90,'http://szgolfer.com',0,now());
+insert into adwords values(5,'首页','中间广告01',470,90,'http://szgolfer.com',0,now());
+insert into adwords values(6,'首页','中间广告02',470,90,'http://szgolfer.com',0,now());
+insert into adwords values(7,'首页','下部小广告01',150,90,'http://szgolfer.com',0,now());
+insert into adwords values(8,'首页','下部小广告02',150,90,'http://szgolfer.com',0,now());
+insert into adwords values(9,'首页','下部小广告03',150,90,'http://szgolfer.com',0,now());
+insert into adwords values(10,'首页','下部小广告04',150,90,'http://szgolfer.com',0,now());
+insert into adwords values(11,'首页','下部小广告05',150,90,'http://szgolfer.com',0,now());
+insert into adwords values(12,'首页','下部小广告06',150,90,'http://szgolfer.com',0,now());
+insert into adwords values(13,'首页','贵宾通道01',258,58,'http://szgolfer.com',0,now());
+insert into adwords values(14,'首页','贵宾通道02',258,58,'http://szgolfer.com',0,now());
+insert into adwords values(15,'首页','贵宾通道03',258,58,'http://szgolfer.com',0,now());
+insert into adwords values(16,'首页','贵宾通道04',258,58,'http://szgolfer.com',0,now());
+insert into adwords values(17,'首页','贵宾通道05',258,58,'http://szgolfer.com',0,now());
+insert into adwords values(18,'首页','贵宾通道06',258,58,'http://szgolfer.com',0,now());
+insert into adwords values(19,'首页','下部通栏广告',950,90,'http://szgolfer.com',0,now());
+insert into adwords values(20,'新闻大类','新闻大类页面通栏广告',950,90,'http://szgolfer.com',0,now());
+insert into adwords values(21,'新闻小类','新闻小类右边广告01',270,200,'http://szgolfer.com',0,now());
+insert into adwords values(22,'新闻小类','新闻小类右边广告02',270,200,'http://szgolfer.com',0,now());
+insert into adwords values(23,'商城页面','商城广告01',650,300,'http://szgolfer.com',0,now());
+insert into adwords values(24,'商城页面','商城广告02',650,300,'http://szgolfer.com',0,now());
+insert into adwords values(25,'商城页面','商城广告03',650,300,'http://szgolfer.com',0,now());
+insert into adwords values(26,'商城页面','商城广告04',650,300,'http://szgolfer.com',0,now());
+insert into adwords values(27,'商城页面','商城左侧广告01',190,300,'http://szgolfer.com',0,now());
+insert into adwords values(28,'商城页面','商城左侧广告02',190,300,'http://szgolfer.com',0,now());

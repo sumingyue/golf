@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.InitializingBean;
 
-import com.golf.Config;
 import com.golf.dao.ProductDao;
 import com.golf.dao.ProductImageDao;
 import com.golf.entity.Image;
@@ -41,20 +40,6 @@ public class ProductServiceImpl implements InitializingBean, ProductService {
 			m_products.put(product.getId(), product);
 		}
 		
-		if (Config.DUBUG) {
-			int size = all.size();
-			if (size > 1) {
-				Product temp = all.get(0);
-				String name = temp.getName();
-				int total = Config.DEBUG_TOTAL - size;
-				if (total > 0) {
-					for (int i = 0; i < total; i++) {
-						temp.setName(name+i);
-						m_products.put(size + i, temp);
-					}
-				}
-			}
-		}
 	}
 
 	@Override

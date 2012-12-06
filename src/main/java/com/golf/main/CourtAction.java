@@ -2,7 +2,6 @@ package com.golf.main;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +10,7 @@ import com.golf.entity.Court;
 import com.golf.entity.CourtComments;
 import com.golf.entity.CourtImage;
 import com.golf.entity.CourtRaider;
+import com.golf.service.AdwordsService;
 import com.golf.service.CourtCommentsService;
 import com.golf.service.CourtImageService;
 import com.golf.service.CourtRaiderService;
@@ -79,6 +79,10 @@ public class CourtAction extends ActionSupport {
 		return m_court;
 	}
 
+	public void setId(int courtId) {
+		m_courtId = courtId;
+	}
+	
 	public void setCourtId(int courtId) {
 		m_courtId = courtId;
 	}
@@ -122,7 +126,15 @@ public class CourtAction extends ActionSupport {
 	public Collection<RaiderGroup> getGroups() {
 		return m_groups.values();
 	}
+	private AdwordsService m_adwordsService;
 
+	public void setAdwordsService(AdwordsService adwordsService) {
+		m_adwordsService = adwordsService;
+	}
+	
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
+	}
 	public static class RaiderGroup {
 		private String m_name;
 

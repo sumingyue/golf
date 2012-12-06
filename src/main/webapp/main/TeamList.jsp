@@ -26,7 +26,7 @@
 				<s:iterator value="teams" status="vs">
 					<li class="image-item">
 					<img src="<s:property value="logo.path"/>" alt="图片">
-					<a href="utd.do?teamId=<s:property value="id"/>"><s:property value="name"/></a>
+					<a href="team.do?teamId=<s:property value="id"/>"><s:property value="name"/></a>
 					</li>
 				</s:iterator>
 			</ul>

@@ -2,13 +2,16 @@ package com.golf.main;
 
 import java.util.List;
 
+import com.golf.Config;
 import com.golf.entity.Team;
 import com.golf.entity.TeamMemberImage;
 import com.golf.entity.TeamNews;
+import com.golf.service.AdwordsService;
 import com.golf.service.ImageService;
 import com.golf.service.TeamMemberImageService;
 import com.golf.service.TeamNewsService;
 import com.golf.service.TeamService;
+import com.golf.tools.PagedTool;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class TeamAction extends ActionSupport {
@@ -46,6 +49,10 @@ public class TeamAction extends ActionSupport {
 	
 	private List<TeamMemberImage> m_images;
 
+	private AdwordsService m_adwordsService;
+	
+	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
+
 	public String teamList() {
 		m_teams = m_teamService.queryAllTeams();
 		for (Team team : m_teams) {
@@ -72,10 +79,10 @@ public class TeamAction extends ActionSupport {
 			image.setImage(m_imageService.findImage(image.getImageId()));
 		}
 		
-		match(m_news1, 6);
-		match(m_news2, 6);
-		match(m_news3, 6);
-		match(m_news4, 6);
+		match(m_news1, 9);
+		match(m_news2, 9);
+		match(m_news3, 9);
+		match(m_news4, 9);
 		return SUCCESS;
 	}
 
@@ -90,9 +97,9 @@ public class TeamAction extends ActionSupport {
 	}
 
 	public String teamNewsList() {
-		m_teamNewss = m_teamNewsService.queryNewByTeamAndType(m_teamId, m_type);
-
-		match(m_teamNewss, 15);
+		m_pagedTool.setTotalNumber(m_teamNewsService.queryNewByTeamAndType(m_teamId, m_type).size());
+		m_teamNewss = m_teamNewsService.queryPagedNewByTeamAndType(m_pagedTool, m_teamId, m_type);
+		m_team = m_teamService.findTeam(m_teamId);
 		return SUCCESS;
 	}
 
@@ -108,6 +115,11 @@ public class TeamAction extends ActionSupport {
 
 	public void setTeamId(int teamId) {
 		m_teamId = teamId;
+	}
+	
+	public void setId(int id) {
+		m_teamId = id;
+		m_teamNewsId =id;
 	}
 
 	public List<Team> getTeams() {
@@ -170,5 +182,28 @@ public class TeamAction extends ActionSupport {
 		return m_images;
 	}
 
+	public void setAdwordsService(AdwordsService adwordsService) {
+		m_adwordsService = adwordsService;
+	}
+	
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
+	}
+
+	public int getType() {
+		return m_type;
+	}
+
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
+	}
+	
+	public void setIndex(int index){
+		m_pagedTool.setPageIndex(index);
+	}
 	
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="specialNews" type="com.golf.entity.SpecialNews" />
+
+	<sql id="specialNews.columns">
+		id,title,content,viewNumber,priority,creationDate,modifyDate
+	</sql>
+	<select id="specialNews.findAll" resultClass="specialNews">
+		select
+		<include refid="specialNews.columns" />
+		from specialNews order by id desc
+	</select>
+	<select id="specialNews.findById" resultClass="specialNews" parameterClass="int">
+		select
+		<include refid="specialNews.columns" />
+		from specialNews where id=#id#
+	</select>
+	<insert id="specialNews.insert" parameterClass="specialNews">
+		insert into specialNews (
+		<include refid="specialNews.columns" />
+		) values
+		(#id#,#title#,#content#,#viewNumber#,#priority#,now(),now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="specialNews.update" parameterClass="specialNews">
+		update specialNews set title=#title#,content=#content#,priority=#priority#
+		,modifyDate=now() where id=#id#
+	</update>
+	<delete id="specialNews.delete" parameterClass="int">
+		delete from specialNews where
+		id=#id#
+	</delete>
+</sqlMap>

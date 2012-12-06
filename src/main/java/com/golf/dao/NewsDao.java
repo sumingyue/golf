@@ -32,4 +32,15 @@ public class NewsDao {
 	public int delete(int id) {
 		return (Integer) m_baseDao.delete("news.delete", id);
 	}
+
+	public int update(int id, int type) {
+		if(type==News.TYPE_VIEW){
+			return (Integer) m_baseDao.update("news.increaseViewNumber");
+		}else if(type==News.TYPE_GOOD){
+			return (Integer) m_baseDao.update("news.increaseGood");
+		}else if(type==News.TYPE_BAD){
+			return (Integer) m_baseDao.update("news.increaseBad");
+		}
+	   return 0;
+   }
 }

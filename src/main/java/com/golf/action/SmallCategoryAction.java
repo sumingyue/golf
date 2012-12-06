@@ -18,8 +18,10 @@ public class SmallCategoryAction extends ActionSupport {
 	private Logger m_logger = Logger.getLogger(SmallCategoryAction.class);
 
 	private List<Category> m_categories;
-	
+
 	private List<SmallCategory> m_smallCategories;
+
+	private int m_type;
 
 	private int m_categoryId;
 
@@ -28,14 +30,21 @@ public class SmallCategoryAction extends ActionSupport {
 	private CategoryService m_categoryService;
 
 	private SmallCategory m_smallCategory = new SmallCategory();
-	
+
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
+
+	public String queryAllSmallCategoryList() {
+		m_smallCategories = m_categoryService.queryAllSmallCategoryByTypeCategoryId(m_type, m_categoryId);
+		return SUCCESS;
+	}
 
 	public String smallCategoryList() {
 		try {
-			m_categories = m_categoryService.queryAllCategories();
-			m_pagedTool.setTotalNumber( m_categoryService.queryAllSmallCategoryByCategoryId(m_categoryId).size());
-			m_smallCategories = m_categoryService.queryPagedSmallCategoryByCategoryId(m_pagedTool,m_categoryId);
+			m_categories = m_categoryService.queryAllCategories(m_type);
+			m_pagedTool.setTotalNumber(m_categoryService.queryAllSmallCategoryByTypeCategoryId(m_type, m_categoryId)
+			      .size());
+			m_smallCategories = m_categoryService.queryPagedSmallCategoryByTypeCategoryId(m_pagedTool, m_type,
+			      m_categoryId);
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
@@ -44,7 +53,7 @@ public class SmallCategoryAction extends ActionSupport {
 	}
 
 	public String smallCategoryAdd() {
-		m_categories = m_categoryService.queryAllCategories();
+		m_categories = m_categoryService.queryAllCategories(m_type);
 		return SUCCESS;
 	}
 
@@ -53,6 +62,9 @@ public class SmallCategoryAction extends ActionSupport {
 			m_categoryId = m_smallCategory.getCategoryId();
 			int id = m_categoryService.insertSmallCategory(m_smallCategory);
 			if (id > 0) {
+				int temp = m_smallCategory.getCategoryId();
+				Category category = m_categoryService.findCategory(temp);
+				m_type = category.getType();
 				return SUCCESS;
 			} else {
 				return ERROR;
@@ -65,8 +77,12 @@ public class SmallCategoryAction extends ActionSupport {
 
 	public String smallCategoryUpdate() {
 		try {
-			m_categories = m_categoryService.queryAllCategories();
+			// m_categories = m_categoryService.queryAllCategories(m_type);
 			m_smallCategory = m_categoryService.findSmallCategory(m_smallCategoryId);
+
+			int categoryId = m_smallCategory.getCategoryId();
+			Category category = m_categoryService.findCategory(categoryId);
+			m_categories = m_categoryService.queryAllCategories(category.getType());
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
@@ -79,6 +95,9 @@ public class SmallCategoryAction extends ActionSupport {
 			m_categoryId = m_smallCategory.getCategoryId();
 			int count = m_categoryService.updateSmallCategory(m_smallCategory);
 			if (count > 0) {
+				int temp = m_smallCategory.getCategoryId();
+				Category category = m_categoryService.findCategory(temp);
+				m_type = category.getType();
 				return SUCCESS;
 			} else {
 				return ERROR;
@@ -135,6 +154,7 @@ public class SmallCategoryAction extends ActionSupport {
 	public List<Category> getCategories() {
 		return m_categories;
 	}
+
 	public PagedTool getPagedTool() {
 		return m_pagedTool;
 	}
@@ -143,7 +163,16 @@ public class SmallCategoryAction extends ActionSupport {
 		m_pagedTool = pagedTool;
 	}
 
-	public void setIndex(int index){
+	public void setIndex(int index) {
 		m_pagedTool.setPageIndex(index);
 	}
+
+	public int getType() {
+		return m_type;
+	}
+
+	public void setType(int type) {
+		m_type = type;
+	}
+
 }

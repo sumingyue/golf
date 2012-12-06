@@ -4,7 +4,7 @@
 	<typeAlias alias="category" type="com.golf.entity.Category" />
 	
 	<sql id="category.columns">
-		id,name,creationDate
+		id,name,type,creationDate
 	</sql>
 	<select id="category.findAll" resultClass="category">
 		select
@@ -21,7 +21,7 @@
 		insert into category (
 		<include refid="category.columns" />
 		) values
-		(#id#,#name#,now())
+		(#id#,#name#,#type#,now())
 		<selectKey resultClass="int" keyProperty="id">
              <![CDATA[   select last_insert_id() as id  ]]>
 		</selectKey>

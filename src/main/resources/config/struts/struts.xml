@@ -41,6 +41,7 @@
 	<include file="config/struts/struts-imageSpecial.xml"></include>
 	<include file="config/struts/struts-imageSpecialDetail.xml"></include>
 	<include file="config/struts/struts-matchService.xml"></include>
+	<include file="config/struts/struts-specialNews.xml"></include>
 	<include file="config/struts/main.xml"></include>
 	
 	<package name="golf" extends="struts-default">

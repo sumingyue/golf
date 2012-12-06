@@ -1,0 +1,16 @@
+.news-slide{float:left;width:585px;background-image:url(http://i0.sinaimg.cn/ty/2011hqj/golf/images/sports_golf_zxh_0214_02.png);}
+	.news-article{float:left;width:200px;}
+	.gallery{}
+	.gallery .bigpics{float:left;}
+	.gallery .bigpic{display: none;position: relative;}
+	.gallery .bigpic{float:left;}
+	.gallery .bigpic img{width:500px;height:300px;}
+	.gallery .bigpic h3{position: absolute;bottom:0;background-color: rgba(0,0,0,0.5);width:100%;color:#fff;padding:10px 0;text-align: center;}
+	.gallery .bigpics .active{display: block;}
+	.gallery .smallpics{float:left;}
+	.gallery .smallpic{padding:6px 10px;}
+	.gallery .smallpics .active{background-image:url(http://i0.sinaimg.cn/ty/2011hqj/golf/images/sports_golf_zxh_0214_02.png);}
+
+	.news-article .article-item{border-bottom:1px dashed #ccc;padding:10px 0;width:350px;text-align: center}
+	.headline{width:365px;height:100px;}
+	.headline .mod-bd .news-item a{padding:8px 10px}

@@ -6,13 +6,10 @@
 		<title>苏州高尔夫网</title>
 	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="css/news.css">
-	<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
-	<script type="text/javascript" src="js/base.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
 	<style>
 	.mod-article-list{padding:8px;}
 	.mod-article-list .article-item{margin:7px;font-size:13px;}
-	.img-full{height:198px;margin-bottom:5px;}
+	.adwords-full{height:198px;margin-bottom:5px;width:100%;}
 	.img-full-last{margin-bottom:0;}
 	.paginate{text-align:center;padding:5px 0;}
 	</style>
@@ -32,7 +29,7 @@
 		<div class="mod-bd">
 			<ul class="mod-article-list">
 				<s:iterator value="news" status="vs">
-					<li class="article-item"><a href="nd.do?id=<s:property value="id"/>"><s:property
+					<li class="article-item"><a href="news.do?id=<s:property value="id"/>"><s:property
 						value="title" /></a><span class="time"><s:property value="dateStr"/></span></li>
 				</s:iterator>
 			</ul>
@@ -46,14 +43,34 @@
 				<s:property value="pagedTool.pageSize"/>条记录/页&nbsp;
 			</div>
 		</div>
-			
 		</div>
 			
 		</div>
 		<div class="grid_7">
-			<img src="" alt="图片" class="img-full" />
-			<img src="" alt="图片" class="img-full" />
-			<img src="" alt="图片" class="img-full img-full-last" />
+			<div class="mod-box-horizon">
+				<div class="mod-hd">
+					最新新闻
+				</div>
+				<div class="mod-bd">
+					<ul class="mod-article-list">
+						<s:iterator value="latestNews" status="vs">
+							<li class="article-item"><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
+						</s:iterator>
+					</ul>
+				</div>
+			</div>
+			<a href="${adwordsService.adwords[21].url}" target="_blank"><img
+				class="adwords-full" src="${adwordsService.adwords[21].image.path}"
+				 border="0"></a>
+			<a href="${adwordsService.adwords[22].url}" target="_blank"><img
+				class="adwords-full" src="${adwordsService.adwords[22].image.path}"
+				border="0"></a>
+		</div>
+		<div class="grid_24">
+			<a href="${adwordsService.adwords[20].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[20].image.path}"
+				height="90" border="0"></a>
 		</div>
 		<jsp:include page="./Foot.jsp"></jsp:include>
 	</div>

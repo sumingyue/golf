@@ -38,12 +38,12 @@
 	 -->			<table align="center" cellpadding="2" cellspacing="1" class="table">
 					<tr class="title">
 						<th width="5%">序号</th>
-						<th width="5%">位置</th>
-						<th width="20%">名称</th>
-						<th width="5%">宽度</th>
-						<th width="5%">高度</th>
+						<th width="10%">位置</th>
+						<th width="25%">名称</th>
+						<th width="10%">宽度</th>
+						<th width="10%">高度</th>
 						<th width="30%">链接</th>
-						<th width="8%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="adwordsAdd.do">新增</a></th>
+						<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="adwordsAdd.do">新增</a></th>
 					</tr>
 					<s:iterator value="adwordss" status="vs">
 						<tr>

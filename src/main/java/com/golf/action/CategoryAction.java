@@ -20,6 +20,8 @@ public class CategoryAction extends ActionSupport {
 
 	private int m_categoryId;
 
+	private int m_type;
+	
 	private CategoryService m_categoryService;
 
 	private Category m_category = new Category();
@@ -28,8 +30,8 @@ public class CategoryAction extends ActionSupport {
 
 	public String categoryList() {
 		try {
-			m_pagedTool.setTotalNumber(m_categoryService.queryAllCategories().size());
-			m_categories = m_categoryService.queryPagedCategories(m_pagedTool);
+			m_pagedTool.setTotalNumber(m_categoryService.queryAllCategories(m_type).size());
+			m_categories = m_categoryService.queryPagedCategories(m_pagedTool,m_type);
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
@@ -37,9 +39,14 @@ public class CategoryAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+	public String categoryAdd(){
+		return SUCCESS;
+	}
+	
 	public String categoryAddSubmit() {
 		try {
 			int id = m_categoryService.insertCategory(m_category);
+			m_type = m_category.getType();
 			if (id > 0) {
 				return SUCCESS;
 			} else {
@@ -65,6 +72,7 @@ public class CategoryAction extends ActionSupport {
 	public String categoryUpdateSubmit() {
 		try {
 			int count = m_categoryService.updateCategory(m_category);
+			m_type = m_category.getType();
 			if (count > 0) {
 				return SUCCESS;
 			} else {
@@ -120,4 +128,13 @@ public class CategoryAction extends ActionSupport {
 	public void setIndex(int index){
 		m_pagedTool.setPageIndex(index);
 	}
+
+	public int getType() {
+		return m_type;
+	}
+
+	public void setType(int type) {
+		m_type = type;
+	}
+	
 }

@@ -37,7 +37,7 @@ $(document).ready(function() {
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-     		 <h4 style="text-align:center">编辑新闻二级分类</h4>
+     		 <h4 style="text-align:center">编辑二级分类</h4>
 			<form action="smallCategoryUpdateSubmit.do" id="form" method="post">
 				<table align="center" cellpadding="2" cellspacing="1" width="100%">
 					<input type="hidden" name="smallCategory.id" value="<s:property value="smallCategory.id"/>"/>

@@ -92,8 +92,12 @@
 					</ul>
 				</li>
 			</ul>
-			<img src="" alt="广告图" class="img-full" />
-			<img src="" alt="广告图" class="img-full" />
+			<a href="${adwordsService.adwords[27].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[27].image.path}"
+				border="0" style="height: 300px" ></a>
+				<a href="${adwordsService.adwords[28].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[28].image.path}"
+				border="0" style="height: 300px" ></a>
 		</div>
 		
 		<div class="grid_19">
@@ -114,19 +118,8 @@
 						</s:iterator>
 					</ul>
 					<ul class="smallpic-list clear-fix">
-					<li class="smallpic active">
-							<img src="<s:property value="path"/>" alt="小图" class="img-full" />
-						</li><li class="smallpic active">
-							<img src="<s:property value="path"/>" alt="小图" class="img-full" />
-						</li><li class="smallpic active">
-							<img src="<s:property value="path"/>" alt="小图" class="img-full" />
-						</li><li class="smallpic active">
-							<img src="<s:property value="path"/>" alt="小图" class="img-full" />
-						</li>
-						
-						<!-- 这里只输出四个
-						<s:iterator value="product.images" status="vs">
-						
+					
+					<s:iterator value="product.images" status="vs">
 							<s:if test="#vs.first">
 								<li class="smallpic active">
 									<img src="<s:property value="path"/>" alt="小图" class="img-full" />
@@ -134,11 +127,10 @@
 							</s:if>
 							<s:else>
 								<li class="smallpic">
-									<img src="<s:property value="path"/>" alt="大图" class="img-full" />
+									<img src="<s:property value="path"/>" alt="小图" class="img-full" />
 								</li>
 							</s:else>
 						</s:iterator>
-							 -->
 					</ul>
 				</div>
 			</div>
@@ -168,7 +160,7 @@
 					</tr>
 				</table>
 				<hr style="border:1px dashed #ccc;"/>
-				<form class="shop-form form" action="po.do">
+				<form class="shop-form form" action="orderProduct.do">
 					<legend class="legend">订购提交</legend>
 					<input type="hidden" name="productOrder.productId" class="input" value='<s:property value="product.id"/>'/>
 					<div class="row">
@@ -194,8 +186,6 @@
 				</div>
 			</div>
 		</div>
-		
-		
 		<jsp:include page="./Foot.jsp"></jsp:include>
 	</div>
 	<script type="text/javascript">

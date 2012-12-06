@@ -8,9 +8,9 @@ import com.golf.tools.PagedTool;
 
 public interface CategoryService {
 
-	public List<Category> queryAllCategories();
+	public List<Category> queryAllCategories(int type);
 	
-	public List<Category> queryPagedCategories(PagedTool tool);
+	public List<Category> queryPagedCategories(PagedTool tool,int type);
 
 	public int insertCategory(Category category);
 
@@ -20,7 +20,7 @@ public interface CategoryService {
 
 	public Category findCategory(int categoryId);
 
-	public List<SmallCategory> queryAllSmallCategoryByCategoryId(int categoryId);
+	public List<SmallCategory> queryAllSmallCategoryByTypeCategoryId(int type,int categoryId);
 
 	public SmallCategory findSmallCategory(int smallCategoryId);
 
@@ -30,6 +30,6 @@ public interface CategoryService {
 
 	public int deleteSmallCategory(int smallCategoryId);
 
-	public List<SmallCategory> queryPagedSmallCategoryByCategoryId(PagedTool pagedTool, int categoryId);
+	public List<SmallCategory> queryPagedSmallCategoryByTypeCategoryId(PagedTool pagedTool,int type, int categoryId);
 
 }

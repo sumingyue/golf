@@ -31,10 +31,24 @@ public class ImageSpecialServiceImpl implements InitializingBean, ImageSpecialSe
 	}
 
 	@Override
-	public List<ImageSpecial> queryAllImageSpecials() {
-		ArrayList<ImageSpecial> arrayList = new ArrayList<ImageSpecial>(m_imageSpecials.values());
-		Collections.sort(arrayList, new ImageSpecialCompartor());
-		return arrayList;
+	public List<ImageSpecial> queryAllImageSpecials(int categoryId, int smallCategoryId) {
+		ArrayList<ImageSpecial> all = new ArrayList<ImageSpecial>(m_imageSpecials.values());
+		List<ImageSpecial> result = new ArrayList<ImageSpecial>();
+		for (ImageSpecial news : all) {
+			if (smallCategoryId > 0) {
+				if (news.getSmallCategoryId() == smallCategoryId) {
+					result.add(news);
+				}
+			} else if (categoryId > 0) {
+				if (news.getCategoryId() == categoryId) {
+					result.add(news);
+				}
+			} else {
+				result.add(news);
+			}
+		}
+		Collections.sort(result, new ImageSpecialCompartor());
+		return result;
 	}
 
 	@Override
@@ -68,7 +82,7 @@ public class ImageSpecialServiceImpl implements InitializingBean, ImageSpecialSe
 	public ImageSpecial findImageSpecial(int imageSpecialId) {
 		ImageSpecial imageSpecial = m_imageSpecials.get(imageSpecialId);
 		if (imageSpecial == null) {
-			 imageSpecial = m_imageSpecialDao.findById(imageSpecialId);
+			imageSpecial = m_imageSpecialDao.findById(imageSpecialId);
 			if (imageSpecial != null) {
 				m_imageSpecials.put(imageSpecialId, imageSpecial);
 			}
@@ -84,16 +98,42 @@ public class ImageSpecialServiceImpl implements InitializingBean, ImageSpecialSe
 
 		@Override
 		public int compare(ImageSpecial o1, ImageSpecial o2) {
-			return o2.getId()-o1.getId();
+			return o2.getId() - o1.getId();
 		}
 
 	}
 
 	@Override
-   public List<ImageSpecial> queryPagedImageSpecials(PagedTool pagedTool) {
-		List<ImageSpecial> result = queryAllImageSpecials();
-		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
+	public List<ImageSpecial> queryPagedImageSpecials(PagedTool pagedTool, int categoryId, int smallCategoryId) {
+		List<ImageSpecial> all = queryAllImageSpecials(categoryId, smallCategoryId);
 
-   }
+		return all.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
+
+	}
+
+	@Override
+	public List<ImageSpecial> queryAllImageSpecials() {
+		return new ArrayList<ImageSpecial>(m_imageSpecials.values());
+	}
+
+	private List<ImageSpecial> resizeList(List<ImageSpecial> all, int size) {
+		int totalSize = all.size();
+		if (size > totalSize) {
+			int duration = size - totalSize;
+			for (int i = 0; i < duration; i++) {
+				all.add(findImageSpecial(1));
+			}
+		} else {
+			all = all.subList(0, size);
+		}
+		return all;
+	}
+
+	@Override
+	public List<ImageSpecial> queryFixedImageSpecials(int size) {
+		List<ImageSpecial> all = queryAllImageSpecials();
+
+		return resizeList(all, size);
+	}
 
 }

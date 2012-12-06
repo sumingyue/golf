@@ -36,6 +36,9 @@
 		<property name="adwordsService">
 			<ref bean="adwordsService" />
 		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
 	</bean>
 	<bean id="playerAction" class="com.golf.action.PlayerAction"
 		scope="prototype">

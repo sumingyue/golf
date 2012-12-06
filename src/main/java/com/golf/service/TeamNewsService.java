@@ -23,4 +23,6 @@ public interface TeamNewsService {
 
 	public List<TeamNews> queryPagedNewByTeamAndType(PagedTool pagedTool, int teamId, int type);
 
+	public List<TeamNews> queryFixedTeamNewss(int size);
+
 }

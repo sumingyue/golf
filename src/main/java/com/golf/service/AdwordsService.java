@@ -19,4 +19,5 @@ public interface AdwordsService {
 
 	public Adwords findAdwords(int adwordsId);
 
+	public Adwords[] getAdwords();
 }

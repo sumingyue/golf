@@ -7,7 +7,6 @@
 <title>苏州高尔夫后台管理系统</title>
 
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link type="text/css" rel="stylesheet"	href="ckeditor/_samples/sample.css" />
 <link rel='stylesheet' type='text/css' href='css/admin.css' />
 <script src="js/jquery-1.7.1.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>

@@ -7,20 +7,20 @@
 		<action name="imageSpecialList" class="imageSpecialAction" method="imageSpecialList">
 			<result name="success">jsp/imageSpecial/ImageSpecialList.jsp</result>
 		</action>
-		<action name="imageSpecialAdd">
+		<action name="imageSpecialAdd" class="imageSpecialAction" method="imageSpecialAdd">
 			<result name="success">jsp/imageSpecial/ImageSpecialAdd.jsp</result>
 		</action>
 		<action name="imageSpecialAddSubmit" class="imageSpecialAction" method="imageSpecialAddSubmit">
-			<result name="success" type="redirect">imageSpecialList.action</result>
+			<result name="success" type="redirect">imageSpecialList.action?categoryId=${categoryId}&amp;smallCategoryId=${smallCategoryId}</result>
 		</action>
 		<action name="imageSpecialUpdate" class="imageSpecialAction" method="imageSpecialUpdate" >
 			<result name="success">jsp/imageSpecial/ImageSpecialUpdate.jsp</result>
 		</action>
 		<action name="imageSpecialUpdateSubmit" class="imageSpecialAction" method="imageSpecialUpdateSubmit">
-			<result name="success" type="redirect">imageSpecialList.action</result>
+			<result name="success" type="redirect">imageSpecialList.action?categoryId=${categoryId}&amp;smallCategoryId=${smallCategoryId}</result>
 		</action>
 		<action name="imageSpecialDelete" class="imageSpecialAction" method="imageSpecialDelete">
-			<result name="success" type="redirect">imageSpecialList.action</result>
+			<result name="success" type="redirect">imageSpecialList.action?categoryId=${categoryId}&amp;smallCategoryId=${smallCategoryId}</result>
 		</action>
 	</package>	
 </struts>

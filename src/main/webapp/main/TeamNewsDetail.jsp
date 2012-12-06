@@ -6,8 +6,6 @@
 <meta charset="UTF-8">
 	<title>苏州高尔夫网</title>
 	<link rel="stylesheet" href="css/base.css">
-	<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
-	<script type="text/javascript" src="js/base.js"></script>
 <style type="text/css">
 .arc-head {
 	text-align: center;
@@ -50,7 +48,11 @@
 		<div class="clear"></div>
 		<div class="grid_24">
 		<div class="mod-box-horizon">
-		<div class="mod-hd">首页 > <s:property value="teamNews.team.name"/> > <s:property value="teamNews.type"/></div>
+		<div class="mod-hd">首页 > <s:property value="teamNews.team.name"/> > <s:if test="teamNews.type==1">球队新闻</s:if>
+					<s:elseif test="teamNews.type==2">活动报道</s:elseif>
+					<s:elseif test="teamNews.type==3">月历成绩</s:elseif>
+					<s:elseif test="teamNews.type==4">精彩图文</s:elseif>
+					> 正文</div>
 		<div class="article">
 						<div class="arc-head">
 							<div class="arc-title">

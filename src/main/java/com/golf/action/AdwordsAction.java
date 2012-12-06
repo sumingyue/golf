@@ -1,12 +1,18 @@
 package com.golf.action;
 
+import java.io.File;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 
 import com.golf.Config;
 import com.golf.entity.Adwords;
+import com.golf.entity.Image;
+import com.golf.entity.UploadFile;
 import com.golf.service.AdwordsService;
+import com.golf.service.ImageService;
+import com.golf.tools.ImageTools;
 import com.golf.tools.PagedTool;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -22,9 +28,31 @@ public class AdwordsAction extends ActionSupport {
 
 	private AdwordsService m_adwordsService;
 
+	private ImageService m_imageService;
+
 	private Adwords m_adwords = new Adwords();
 
+	private UploadFile m_uploadFile = new UploadFile();
+
+	private File m_upload;
+
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
+
+	private int insertImage() {
+		try {
+			String relativePath = Config.IMAGE_PATH
+			      + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.ADWORDS);
+			String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
+
+			m_uploadFile.setPath(relativePath);
+			m_uploadFile.setStorePath(storePath);
+			int id = m_imageService.insert(m_upload, m_uploadFile, Image.ADWORDS);
+			return id;
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return -1;
+		}
+	}
 
 	public String adwordsList() {
 		try {
@@ -39,6 +67,10 @@ public class AdwordsAction extends ActionSupport {
 
 	public String adwordsAddSubmit() {
 		try {
+			if (m_upload != null) {
+				int imageId = insertImage();
+				m_adwords.setImageId(imageId);
+			}
 			int id = m_adwordsService.insertAdwords(m_adwords);
 			if (id > 0) {
 				return SUCCESS;
@@ -55,6 +87,7 @@ public class AdwordsAction extends ActionSupport {
 	public String adwordsUpdate() {
 		try {
 			m_adwords = m_adwordsService.findAdwords(m_adwordsId);
+			m_adwords.setImage(m_imageService.findImage(m_adwords.getImageId()));
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
@@ -64,6 +97,14 @@ public class AdwordsAction extends ActionSupport {
 
 	public String adwordsUpdateSubmit() {
 		try {
+			Adwords last = m_adwordsService.findAdwords(m_adwords.getId());
+
+			if (m_upload != null) {
+				int imageId = insertImage();
+				m_adwords.setImageId(imageId);
+			} else {
+				m_adwords.setImageId(last.getImageId());
+			}
 			int count = m_adwordsService.updateAdwords(m_adwords);
 			if (count > 0) {
 				return SUCCESS;
@@ -121,4 +162,21 @@ public class AdwordsAction extends ActionSupport {
 	public void setIndex(int index) {
 		m_pagedTool.setPageIndex(index);
 	}
+
+	public void setUpload(File file) {
+		m_upload = file;
+	}
+
+	public void setUploadFileName(String filename) {
+		m_uploadFile.setFilename(filename);
+	}
+
+	public void setUploadContentType(String contentType) {
+		m_uploadFile.setContentType(contentType);
+	}
+
+	public void setImageService(ImageService imageService) {
+		m_imageService = imageService;
+	}
+
 }

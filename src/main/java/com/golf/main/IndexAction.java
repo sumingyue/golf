@@ -1,17 +1,27 @@
 package com.golf.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.golf.Config;
-import com.golf.entity.Image;
+import com.golf.entity.Court;
+import com.golf.entity.CourtImage;
+import com.golf.entity.ImageSpecial;
+import com.golf.entity.Media;
 import com.golf.entity.News;
+import com.golf.entity.Player;
+import com.golf.entity.SpecialNews;
 import com.golf.entity.TeamNews;
 import com.golf.service.AdwordsService;
-import com.golf.service.CategoryService;
+import com.golf.service.CourtImageService;
+import com.golf.service.CourtService;
 import com.golf.service.ImageService;
+import com.golf.service.ImageSpecialService;
 import com.golf.service.MediaService;
 import com.golf.service.NewsService;
 import com.golf.service.PlayerService;
+import com.golf.service.SpecialNewsService;
+import com.golf.service.TeamNewsService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class IndexAction extends ActionSupport {
@@ -26,35 +36,61 @@ public class IndexAction extends ActionSupport {
 
 	private ImageService m_imageService;
 
-	private CategoryService m_categoryService;
+	private ImageSpecialService m_imageSpecialService;
+
+	private List<ImageSpecial> m_imageSpecials;
+
+	private List<Media> m_youQingMedias = new ArrayList<Media>();
+
+	private List<Media> m_heZuoMedias = new ArrayList<Media>();
+
+	private CourtService m_courtService;
+
+	private CourtImage m_courtImage;
+
+	private CourtImageService m_courtImageService;
+
+	private Court m_court;
+
+	private List<Court> m_courts;
+
+	private SpecialNewsService m_specialNewsService;
 
 	private AdwordsService m_adwordsService;
 
-	private News m_firstHot;
+	private TeamNewsService m_teamNewsService;
 
-	private List<News> m_firstHots;
+	private List<TeamNews> m_teamNews;
 
-	private List<News> m_secondHots;
+	private List<Player> m_jiangJinPlayers;
 
-	private News m_firstMatch;
+	private List<Player> m_jiFenPlayers;
 
-	private List<News> m_firstMatchs;
+	private News m_firstJiaoDian;
 
-	private List<News> m_secondMatchs;
+	private List<News> m_firstJiaoDians;
 
-	private List<News> m_huoDongZiXun;
+	private List<News> m_secondJiaoDians;
 
-	private List<News> m_youHuiXinXi;
+	private News m_firstSaiShi;
 
-	private List<News> m_renCaiQiuGong;
+	private List<News> m_firstSaiShis;
 
-	private List<News> m_benDiShiShang;
+	private List<News> m_secondSaiShis;
 
-	private List<News> m_sheHuiReDian;
+	private List<News> m_huoDongZiXuns;
 
-	private List<News> m_zongHeZiXun;
+	private List<News> m_youHuiXinXis;
 
-	private List<TeamNews> m_qiuDuiHuoDong;
+	private List<News> m_renCaiQiuGongs;
+
+	private List<News> m_benDiShiShangs;
+
+	private List<News> m_sheHuiReDians;
+
+	private List<News> m_zongHeZiXuns;
+
+	private List<TeamNews> m_qiuDuiHuoDongs;
 
 	private List<News> m_lvYouImages;
 
@@ -64,67 +100,121 @@ public class IndexAction extends ActionSupport {
 
 	private List<News> m_renWus;
 
-	private List<News> m_dongTai;
+	private List<News> m_gaoQiuDongTais;
 
-	private List<News> m_qiuJie;
+	private List<News> m_qiuJieGuShis;
 
-	private List<News> m_xieHuis;
-	
-	private List<News> m_pinLun;
+	private List<News> m_xieHuiXinWens;
 
-	private void queryShouYe() {
-		m_dongTai = m_newsService.queryNewsByCategoryId(8, Config.RenWu_DongTai);
-		m_qiuJie = m_newsService.queryNewsByCategoryId(8, Config.RenWu_GuShi);
-		m_xieHuis = m_newsService.queryNewsByCategoryId(8, Config.RenWu_XiuHui);
-		m_pinLun =m_newsService.queryNewsByCategoryId(8,Config.RenWu_PingLun);
+	private List<News> m_guanDianPingLuns;
+
+	private List<News> m_gongQiuXinXis;
+
+	private List<News> m_lianXiChangs;
+
+	private List<News> m_imageNews;
+
+	private List<SpecialNews> m_specialNews;
+
+	private void queryPingLun() {
+		m_gaoQiuDongTais = m_newsService.queryFixedNewsByCategoryId(8, Config.RenWu_GaoQiuDongTai);
+		m_qiuJieGuShis = m_newsService.queryFixedNewsByCategoryId(8, Config.RenWu_QiuJieGuShi);
+		m_xieHuiXinWens = m_newsService.queryFixedNewsByCategoryId(8, Config.RenWu_XieHuiXinWen);
+		m_guanDianPingLuns = m_newsService.queryFixedNewsByCategoryId(8, Config.RenWu_GuanDianPingLun);
+
+		m_renWuImages = m_newsService.queryFixedImageNewsByCategoryId(2, Config.CATE_RenWu);
+		m_renWus = m_newsService.queryFixedImageNewsByCategoryId(8, Config.CATE_RenWu);
 	}
 
 	private void queryLvYou() {
-		m_lvYouImages = m_newsService.queryImageNewsByCategoryId(2, Config.CATE_LvYou);
-		m_lvYous = m_newsService.queryImageNewsByCategoryId(8, Config.CATE_LvYou);
-
-		m_renWuImages = m_newsService.queryImageNewsByCategoryId(2, Config.CATE_RenWu);
-		m_renWus = m_newsService.queryImageNewsByCategoryId(8, Config.CATE_RenWu);
-		
+		m_lvYouImages = m_newsService.queryFixedImageNewsByCategoryId(2, Config.CATE_LvYou);
+		m_lvYous = m_newsService.queryFixedImageNewsByCategoryId(8, Config.CATE_LvYou);
 	}
 
 	private void querySaiShi() {
 		// 赛事新闻
-		List<News> matchNews = m_newsService.queryNewsByCategoryId(11, Config.CATE_SaiShi);
-		m_firstMatch = matchNews.get(0);
-		m_firstMatchs = matchNews.subList(1, 5);
-		m_secondMatchs = matchNews.subList(5, 11);
+		List<News> matchNews = m_newsService.queryFixedNewsByCategoryId(11, Config.CATE_SaiShi);
+		m_firstSaiShi = matchNews.get(0);
+		m_firstSaiShis = matchNews.subList(1, 5);
+		m_secondSaiShis = matchNews.subList(5, 11);
 	}
 
-	private void queryHotNews() {
+	private void queryJiaoDian() {
 		// 热点新闻
-		List<News> hostNews = m_newsService.queryHotNews(11);
-		m_firstHot = hostNews.get(0);
-		m_firstHots = hostNews.subList(1, 5);
-		m_secondHots = hostNews.subList(5, 11);
+		List<News> hostNews = m_newsService.queryFixedNewsByCategoryId(11, 0);
+		m_firstJiaoDian = hostNews.get(0);
+		m_firstJiaoDians = hostNews.subList(1, 5);
+		m_secondJiaoDians = hostNews.subList(5, 11);
 	}
 
-	private void queryOther() {
-		// 球场资讯
-		m_huoDongZiXun = m_newsService.queryNewsBySmallCategoryId(8, Config.QiuChang_HuoDong);
-		m_youHuiXinXi = m_newsService.queryNewsBySmallCategoryId(8, Config.QiuChang_YouHui);
-		m_renCaiQiuGong = m_newsService.queryNewsBySmallCategoryId(8, Config.QiuChang_RenCai);
+	private void queryZiXun() {
+		// 综合咨询
+		m_huoDongZiXuns = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_HuoDongZiXun);
+		m_youHuiXinXis = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_YouHuiXinXi);
+		m_renCaiQiuGongs = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_RenCaiGongQiu);
 
-		// 场外资讯
-		m_benDiShiShang = m_newsService.queryNewsBySmallCategoryId(8, Config.ChangWai_BenDi);
-		m_sheHuiReDian = m_newsService.queryNewsBySmallCategoryId(8, Config.ChangWai_PinWei);
-		m_zongHeZiXun = m_newsService.queryNewsBySmallCategoryId(8, Config.ChangWai_ZongHe);
+		m_benDiShiShangs = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_BenDiShiShang);
+		m_sheHuiReDians = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_SheHuiReDian);
+		m_zongHeZiXuns = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_ZongheZiXun);
+		m_gongQiuXinXis = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_GongQiuXinXi);
+		m_lianXiChangs = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_LianXiChang);
 	}
 
 	@Override
 	public String execute() throws Exception {
-		queryHotNews();
+		queryJiaoDian();
 		querySaiShi();
-		queryShouYe();
-		queryOther();
+		queryPingLun();
+		queryZiXun();
 		queryLvYou();
+		queryPlayer();
+		queryMedia();
 
+		queryOther();
 		return SUCCESS;
+	}
+
+	private void queryOther() {
+		m_imageNews = m_newsService.queryFixedImageNewsByCategoryId(3, 0);
+		for (News temp : m_imageNews) {
+			temp.setImage(m_imageService.findImage(temp.getImageId()));
+		}
+
+		m_imageSpecials = m_imageSpecialService.queryFixedImageSpecials(4);
+		for (ImageSpecial temp : m_imageSpecials) {
+			temp.setImage(m_imageService.findImage(temp.getImageId()));
+		}
+
+		m_specialNews = m_specialNewsService.queryLastestSpecialNews(10);
+
+		m_teamNews = m_teamNewsService.queryFixedTeamNewss(10);
+
+		List<Court> all = m_courtService.queryFixedCourts(4);
+		m_court = all.get(0);
+		m_courts = all.subList(1, 4);
+
+		List<CourtImage> images = m_courtImageService.queryAllCourtImages(m_court.getId());
+		if (images.size() > 0) {
+			m_courtImage = images.get(0);
+			m_courtImage.setImage(m_imageService.findImage(m_courtImage.getImageId()));
+		}
+	}
+
+	private void queryMedia() {
+		List<Media> all = m_mediaService.queryAllMedias();
+
+		for (Media temp : all) {
+			if (temp.getType().equalsIgnoreCase(Config.YouQingLianJie)) {
+				m_youQingMedias.add(temp);
+			} else {
+				m_heZuoMedias.add(temp);
+			}
+		}
+	}
+
+	private void queryPlayer() {
+		m_jiangJinPlayers = m_playerService.queryPlayers("bonus", 6);
+		m_jiFenPlayers = m_playerService.queryPlayers("score", 6);
 	}
 
 	public void setPlayerService(PlayerService playerService) {
@@ -143,64 +233,64 @@ public class IndexAction extends ActionSupport {
 		m_imageService = imageService;
 	}
 
-	public void setCategoryService(CategoryService categoryService) {
-		m_categoryService = categoryService;
-	}
-
 	public void setAdwordsService(AdwordsService adwordsService) {
 		m_adwordsService = adwordsService;
 	}
 
-	public News getFirstHot() {
-		return m_firstHot;
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
 	}
 
-	public List<News> getFirstHots() {
-		return m_firstHots;
+	public News getFirstJiaoDian() {
+		return m_firstJiaoDian;
 	}
 
-	public List<News> getSecondHots() {
-		return m_secondHots;
+	public List<News> getFirstJiaoDians() {
+		return m_firstJiaoDians;
 	}
 
-	public News getFirstMatch() {
-		return m_firstMatch;
+	public List<News> getSecondJiaoDians() {
+		return m_secondJiaoDians;
 	}
 
-	public List<News> getFirstMatchs() {
-		return m_firstMatchs;
+	public News getFirstSaiShi() {
+		return m_firstSaiShi;
 	}
 
-	public List<News> getSecondMatchs() {
-		return m_secondMatchs;
+	public List<News> getFirstSaiShis() {
+		return m_firstSaiShis;
 	}
 
-	public List<News> getHuoDongZiXun() {
-		return m_huoDongZiXun;
+	public List<News> getSecondSaiShis() {
+		return m_secondSaiShis;
 	}
 
-	public List<News> getYouHuiXinXi() {
-		return m_youHuiXinXi;
+	public List<News> getHuoDongZiXuns() {
+		return m_huoDongZiXuns;
 	}
 
-	public List<News> getRenCaiQiuGong() {
-		return m_renCaiQiuGong;
+	public List<News> getYouHuiXinXis() {
+		return m_youHuiXinXis;
 	}
 
-	public List<News> getBenDiShiShang() {
-		return m_benDiShiShang;
+	public List<News> getRenCaiQiuGongs() {
+		return m_renCaiQiuGongs;
 	}
 
-	public List<News> getSheHuiReDian() {
-		return m_sheHuiReDian;
+	public List<News> getBenDiShiShangs() {
+		return m_benDiShiShangs;
 	}
 
-	public List<News> getZongHeZiXun() {
-		return m_zongHeZiXun;
+	public List<News> getSheHuiReDians() {
+		return m_sheHuiReDians;
 	}
 
-	public List<TeamNews> getQiuDuiHuoDong() {
-		return m_qiuDuiHuoDong;
+	public List<News> getZongHeZiXuns() {
+		return m_zongHeZiXuns;
+	}
+
+	public List<TeamNews> getQiuDuiHuoDongs() {
+		return m_qiuDuiHuoDongs;
 	}
 
 	public List<News> getLvYouImages() {
@@ -219,20 +309,92 @@ public class IndexAction extends ActionSupport {
 		return m_renWus;
 	}
 
-	public List<News> getDongTai() {
-		return m_dongTai;
+	public List<News> getGaoQiuDongTais() {
+		return m_gaoQiuDongTais;
 	}
 
-	public List<News> getQiuJie() {
-		return m_qiuJie;
+	public List<News> getQiuJieGuShis() {
+		return m_qiuJieGuShis;
 	}
 
-	public List<News> getXieHuis() {
-		return m_xieHuis;
+	public List<News> getXieHuiXinWens() {
+		return m_xieHuiXinWens;
 	}
 
-	public List<News> getPinLun() {
-		return m_pinLun;
+	public List<News> getGuanDianPingLuns() {
+		return m_guanDianPingLuns;
 	}
-	
+
+	public List<Player> getJiangJinPlayers() {
+		return m_jiangJinPlayers;
+	}
+
+	public List<Player> getJiFenPlayers() {
+		return m_jiFenPlayers;
+	}
+
+	public List<Media> getYouQingMedias() {
+		return m_youQingMedias;
+	}
+
+	public List<Media> getHeZuoMedias() {
+		return m_heZuoMedias;
+	}
+
+	public List<News> getGongQiuXinXis() {
+		return m_gongQiuXinXis;
+	}
+
+	public List<News> getLianXiChangs() {
+		return m_lianXiChangs;
+	}
+
+	public void setSpecialNewsService(SpecialNewsService specialNewsService) {
+		m_specialNewsService = specialNewsService;
+	}
+
+	public List<SpecialNews> getSpecialNews() {
+		return m_specialNews;
+	}
+
+	public void setImageSpecialService(ImageSpecialService imageSpecialService) {
+		m_imageSpecialService = imageSpecialService;
+	}
+
+	public List<ImageSpecial> getImageSpecials() {
+		return m_imageSpecials;
+	}
+
+	public void setTeamNewsService(TeamNewsService teamNewsService) {
+		m_teamNewsService = teamNewsService;
+	}
+
+	public List<TeamNews> getTeamNews() {
+		return m_teamNews;
+	}
+
+	public Court getCourt() {
+		return m_court;
+	}
+
+	public List<Court> getCourts() {
+		return m_courts;
+	}
+
+	public void setCourtService(CourtService courtService) {
+		m_courtService = courtService;
+	}
+
+	public void setCourtImageService(CourtImageService courtImageService) {
+		m_courtImageService = courtImageService;
+	}
+
+	public CourtImage getCourtImage() {
+		return m_courtImage;
+	}
+
+	public List<News> getImageNews() {
+		return m_imageNews;
+	}
+
 }

@@ -83,7 +83,7 @@ body {
   float: left;
   margin-left: 5px;
   margin-right: 5px;
-  margin-bottom:10px;
+  margin-bottom: 5px;
 }
  
 .alpha {
@@ -219,13 +219,18 @@ body {
 #nav_util{background-image:url(../img/dot8.jpg);}
 #nav_interact{background-image:url(../img/dot9.jpg);}
 #nav_travel{background-image:url(../img/dot10.jpg);}
+#nav_qiuchang{background-image:url(../img/dot5.jpg);}
+#nav_zhuanti{background-image:url(../img/zhuanti.jpg);}
+#nav_pic{background-image:url(../img/pic.jpg);}
+#nav_qiudui{background-image:url(../img/qiudui.jpg);}
+#nav_zixun{background-image:url(../img/zixun.jpg);}
 
 .nav .nav-list-item{float:left;margin: 0 3px;}
 .nav .nav-list-item .nav-list-tit{
   line-height: 60px;
   background-repeat:no-repeat;
   display: block;
-  width: 21px;
+  width: 28px;
   float: left;
   text-indent:-9999px;
   background-position: 0 -10px;

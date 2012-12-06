@@ -51,11 +51,11 @@
 
 
 #guibintongdao .mod-bd{
-	height:378px;
+	height: 347px;
 }
 #guibintongdao .img-full{
 	margin:4px;
-	height: 58px;
+	height: 53px;
 	width:258px;
 }
 
@@ -65,11 +65,11 @@
 }
 
 #gaoqiulvyou .mod-bd{
-	height:378px;
+	height: 347px;
 }
 #gaoqiulvyou .image-item img{
 	width:160px;
-	height:60px;
+	height: 120px;
 }
 #gaoqiulvyou .gallery{
 	border-bottom:1px dashed #ccc;
@@ -85,7 +85,7 @@
 
 #tupianji{height:117px;}
 #tupianji .image-item{height:100px;width:68px;}
-#tupianji .image-item img{width:75px;height:50px;}
+#tupianji .image-item img{width:75px;height: 69px;}
 
 .news-block .mod-article-list .article-item{
 	line-height:20px;
@@ -101,13 +101,16 @@
 .lxctab .tab-hd-item{
 	width:74px;
 }
+.lxctab .tab-hd-item .last{
+	margin-right:0px;
+}
 
 .lxctab .tab-pannel .article-item{
 	margin:3px 5px;
 }
 
 #lianxichang .mod-bd{
-	height:401px;
+	height:180px;
 }
 
 #lianxichang .img-ads{
@@ -115,7 +118,7 @@
 }
 
 #paiming .tab-hd-item{
-	width:120px;
+	width:140px;
 }
 
 #lianxichang .article-item{
@@ -123,5 +126,5 @@
 }
 
 .table-wrap{
-	margin:10px;
+	margin:8px;
 }

@@ -9,13 +9,11 @@ import java.util.Map;
 
 import org.springframework.beans.factory.InitializingBean;
 
-import com.golf.Config;
 import com.golf.dao.NewsDao;
 import com.golf.entity.Category;
 import com.golf.entity.News;
 import com.golf.entity.SmallCategory;
 import com.golf.service.CategoryService;
-import com.golf.service.ImageService;
 import com.golf.service.NewsService;
 import com.golf.tools.PagedTool;
 
@@ -27,7 +25,7 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 
 	private Map<Integer, News> m_news = new LinkedHashMap<Integer, News>();
 
-	private ImageService m_imageService;
+	private static int DEFAULT_NEWS = 1;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -37,21 +35,7 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 		for (News temp : all) {
 			cacheNews(temp);
 		}
-		
-		if (Config.DUBUG) {
-			int size = all.size();
-			if (size > 1) {
-				News temp = all.get(0);
-				String name = temp.getTitle();
-				int total = Config.DEBUG_TOTAL - size;
-				if (total > 0) {
-					for (int i = 0; i < total; i++) {
-						temp.setTitle(name+i);
-						m_news.put(size + i, findNews(27));
-					}
-				}
-			}
-		}
+
 	}
 
 	private void cacheNews(News temp) {
@@ -66,11 +50,31 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 	public List<News> queryAllNews() {
 		List<News> all = new ArrayList<News>(m_news.values());
 
-		for (News temp : all) {
-			temp.setImage(m_imageService.findImage(temp.getImageId()));
-		}
-		Collections.sort(all, new NewsCompartor());
+		Collections.sort(all, new DefaultNewsCompartor());
 		return all;
+	}
+
+	private List<News> queryAllShowNews(int categoryId, int smallCategoryId) {
+		List<News> all = new ArrayList<News>(m_news.values());
+		List<News> result = new ArrayList<News>();
+		long current = System.currentTimeMillis();
+
+		for (News temp : all) {
+			if (temp.getStatus() > 0 && current > temp.getValidateDate().getTime()) {
+				if (smallCategoryId > 0) {
+					if (temp.getSmallCategoryId() == smallCategoryId) {
+						result.add(temp);
+					}
+				} else if (categoryId > 0) {
+					if (temp.getCategoryId() == categoryId) {
+						result.add(temp);
+					}
+				} else {
+					result.add(temp);
+				}
+			}
+		}
+		return result;
 	}
 
 	@Override
@@ -108,7 +112,6 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 		}
 		if (temp != null) {
 			m_news.put(temp.getId(), temp);
-			temp.setImage(m_imageService.findImage(temp.getImageId()));
 		}
 		return temp;
 	}
@@ -163,94 +166,101 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 		m_newsDao = newsDao;
 	}
 
-	public void setImageService(ImageService imageService) {
-		m_imageService = imageService;
+	private List<News> resizeList(List<News> all, int size) {
+		int totalSize = all.size();
+		if (size > totalSize) {
+			int duration = size - totalSize;
+			for (int i = 0; i < duration; i++) {
+				all.add(findNews(DEFAULT_NEWS));
+			}
+		} else {
+			all = all.subList(0, size);
+		}
+		return all;
 	}
 
 	@Override
-	public List<News> queryNewsBySmallCategoryId(int size, int smallCategoryId) {
-		List<News> result = new ArrayList<News>();
-		for (int i = 0; i < size; i++) {
-			result.add(findNews(27));
-		}
-		// List<News> all = queryAllNews();
-		// for (News temp : all) {
-		// if (temp.getSmallCategoryId() == smallCategoryId) {
-		// result.add(temp);
-		// }
-		// }
-		// // hack
-		// int temp = result.size();
-		// if (temp < size) {
-		// for (int i = 0; i < size - temp; i++) {
-		// result.add(findNews(27));
-		// }
-		// }
-		return result;
+	public List<News> queryFixedNewsBySmallCategoryId(int size, int smallCategoryId) {
+		List<News> all = queryAllShowNews(0, smallCategoryId);
+		Collections.sort(all, new IndexNewsCompartor());
+
+		return resizeList(all, size);
 	}
 
 	@Override
-	public List<News> queryNewsByCategoryId(int size, int categoryId) {
+	public List<News> queryFixedNewsByCategoryId(int size, int categoryId) {
+		List<News> all = queryAllShowNews(categoryId, 0);
+		Collections.sort(all, new IndexNewsCompartor());
 
-		List<News> result = new ArrayList<News>();
-		for (int i = 0; i < size; i++) {
-			result.add(findNews(27));
-		}
-		// List<News> result = new ArrayList<News>();
-		// List<News> all = queryAllNews();
-		//
-		// for (News temp : all) {
-		// if (temp.getCategoryId() == categoryId) {
-		// result.add(temp);
-		// }
-		// }
-		// // TODO for index page
-		// int temp = result.size();
-		// if (temp < size) {
-		// for (int i = 0; i < size - temp; i++) {
-		// result.add(findNews(27));
-		// }
-		// }
-		return result;
+		return resizeList(all, size);
 	}
 
-	public static class NewsCompartor implements Comparator<News> {
+	@Override
+	public List<News> queryFixedImageNewsByCategoryId(int size, int categoryId) {
+		List<News> all = queryAllShowNews(categoryId, 0);
+		List<News> result = new ArrayList<News>();
+
+		for (News temp : all) {
+			if (temp.getImageId() > 0) {
+				result.add(temp);
+			}
+		}
+		Collections.sort(result, new IndexNewsCompartor());
+
+		return resizeList(result, size);
+	}
+
+	@Override
+	public List<News> queryHotNewsByCategoryId(int size, int categoryId) {
+		List<News> all = queryAllShowNews(categoryId, 0);
+		Collections.sort(all, new HotNewsCompartor());
+
+		return resizeList(all, size);
+	}
+
+	public static class HotNewsCompartor implements Comparator<News> {
 
 		@Override
 		public int compare(News o1, News o2) {
-			if (o1.getPriority() != o2.getPriority()) {
-				return o2.getId() - o1.getId();
+			return o2.getViewNumber() - o1.getViewNumber();
+		}
+	}
+
+	public static class IndexNewsCompartor implements Comparator<News> {
+		@Override
+		public int compare(News o1, News o2) {
+			if (o1.getRecommend() != o2.getRecommend()) {
+				return o2.getRecommend() - o1.getRecommend();
 			} else {
-				return o2.getPriority() - o1.getPriority();
+				if (o1.getPriority() != o2.getPriority()) {
+					return o2.getPriority() - o1.getPriority();
+				} else {
+					return o1.getValidateDate().compareTo(o2.getValidateDate());
+				}
 			}
 		}
+	}
 
+	public static class DefaultNewsCompartor implements Comparator<News> {
+
+		@Override
+		public int compare(News o1, News o2) {
+			return o2.getId() - o1.getId();
+		}
 	}
 
 	@Override
-	public List<News> queryHotNews(int size) {
-		List<News> result = new ArrayList<News>(size);
-		for (int i = 0; i < size; i++) {
-			result.add(findNews(27));
-		}
-		return result;
-	}
+   public List<News> queryFixedLatestNewsByCategoryId(int size, int categoryId) {
+		List<News> all = queryAllShowNews(categoryId, 0);
+		Collections.sort(all, new DefaultNewsCompartor());
 
-	@Override
-	public List<News> queryImageNewsByCategoryId(int size, int categoryId) {
-		List<News> result = new ArrayList<News>(size);
-		for (int i = 0; i < size; i++) {
-			result.add(findNews(27));
-		}
-		return result;
-	}
+		return resizeList(all, size);
 
-	@Override
-   public List<News> queryHotNewsByCategoryId(int size, int categoryId) {
-		List<News> result = new ArrayList<News>(size);
-		for (int i = 0; i < size; i++) {
-			result.add(findNews(27));
-		}
-		return result;
    }
+
+	@Override
+   public int increaseVisiteNumber(int id,int type) {
+		return m_newsDao.update(id,type);
+   }
+
 }

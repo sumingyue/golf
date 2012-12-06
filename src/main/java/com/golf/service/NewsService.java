@@ -21,13 +21,17 @@ public interface NewsService {
 
 	public News findNews(int newsId);
 
-	public List<News> queryHotNews(int size);
+	//获取一个大分类下访问量最大的新闻
+	public List<News> queryHotNewsByCategoryId(int size,int categoryId);
+	//获取图片新闻，带有图片的新闻、排序按照是否首页推荐，优先级、时间
+	public List<News> queryFixedImageNewsByCategoryId( int size,int categoryId);
+	//获取小分类的新闻
+	public List<News> queryFixedNewsBySmallCategoryId(int size, int smallCategoryId);
+	//获取大分类的新闻
+	public List<News> queryFixedNewsByCategoryId(int size, int categoryId);
+	//获取大分类的最新新闻
+	public List<News> queryFixedLatestNewsByCategoryId(int i, int categoryId);
+
+	public int increaseVisiteNumber(int id,int type);
 	
-	public List<News> queryHotNewsByCategoryId(int m_size,int categoryId);
-
-	public List<News> queryImageNewsByCategoryId( int size,int categoryId);
-
-	public List<News> queryNewsBySmallCategoryId(int size, int smallCategoryId);
-
-	public List<News> queryNewsByCategoryId(int size, int categoryId);
 }

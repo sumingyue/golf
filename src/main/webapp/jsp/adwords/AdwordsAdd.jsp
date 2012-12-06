@@ -32,6 +32,9 @@
 				"adwords.url" : {
 					required : true,
 					url :true
+				},
+				"fileUpload_upload" : {
+					required : true
 				}
 			},
 			messages : {
@@ -52,6 +55,9 @@
 				"adwords.url" : {
 					required : "请输入广告链接",
 					url :"请输入正确的链接"
+				},
+				"fileUpload_upload" : {
+					required : "请上传广告图片"
 				}
 			}
 		});
@@ -67,26 +73,32 @@
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
       	<h4 style="text-align:center">新增广告信息</h4>
-        <form action="adwordsAddSubmit.do" id="form" method="post">
+        <form action="adwordsAddSubmit.do" id="form" method="post" 
+				enctype="multipart/form-data">
 				<table align="center" cellpadding="2" cellspacing="1" width="100%">
 					<tr>
-						<td  width="30%" class="left">广告位置</td>
+						<td  width="30%" class="left">广告位置<span style='color: red'>*</span></td>
 						<td class="right"><input type="text" size="60" name="adwords.position" /></td>
 					</tr>
 					<tr>
-						<td class="left">广告名称</td>
+						<td class="left">广告名称<span style='color: red'>*</span></td>
 						<td class="right"><input type="text" size="60" name="adwords.name" /></td>
 					</tr>
 					<tr>
-						<td class="left">广告宽度</td>
+						<td class="left">广告宽度<span style='color: red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="adwords.width" /></td>
 					</tr>
 					<tr>
-						<td class="left">广告高度</td>
+						<td class="left">广告高度<span style='color: red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="adwords.height" /></td>
 					</tr>
 					<tr>
-						<td class="left">广告链接</td>
+						<td class="left">广告图片<span style='color: red'>*</span></td>
+						<td class="right"><input type="file" name="upload"
+							id="fileUpload_upload"></td>
+					</tr>
+					<tr>
+						<td class="left">广告链接<span style='color: red'>*</span></td>
 						<td class="right"><input type="text" size="80" name="adwords.url" /></td>
 					</tr>
 					<tr>

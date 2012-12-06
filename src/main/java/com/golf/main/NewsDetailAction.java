@@ -3,12 +3,14 @@ package com.golf.main;
 import java.util.List;
 
 import com.golf.Config;
-import com.golf.entity.Category;
+import com.golf.entity.ImageSpecial;
 import com.golf.entity.News;
 import com.golf.entity.NewsComments;
 import com.golf.entity.SmallCategory;
 import com.golf.service.AdwordsService;
 import com.golf.service.CategoryService;
+import com.golf.service.ImageService;
+import com.golf.service.ImageSpecialService;
 import com.golf.service.NewsCommentsService;
 import com.golf.service.NewsService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -29,9 +31,17 @@ public class NewsDetailAction extends ActionSupport {
 
 	private SmallCategory m_smallCategory;
 
+	private ImageSpecialService m_imageSpecialService;
+
+	private List<ImageSpecial> m_imageSpecials;
+
+	private ImageService m_imageService;
+
 	private News m_news;
 
 	private List<News> m_newsHot;
+
+	private List<News> m_newsLatest;
 
 	private NewsComments m_comments = new NewsComments();
 
@@ -42,7 +52,16 @@ public class NewsDetailAction extends ActionSupport {
 		m_news = m_newsService.findNews(m_newsId);
 		m_smallCategory = m_categoryService.findSmallCategory(m_news.getSmallCategoryId());
 		m_newsComments = m_newsCommentsService.queryNewsCommentsByNewsId(m_newsId);
-		m_newsHot = m_newsService.queryHotNewsByCategoryId(8, m_smallCategory.getCategoryId());
+		m_newsHot = m_newsService.queryHotNewsByCategoryId(10, m_smallCategory.getCategoryId());
+		m_imageSpecials = m_imageSpecialService.queryFixedImageSpecials(4);
+
+		for (ImageSpecial temp : m_imageSpecials) {
+			temp.setImage(m_imageService.findImage(temp.getImageId()));
+		}
+
+		m_newsLatest = m_newsService.queryFixedLatestNewsByCategoryId(10, m_smallCategory.getCategoryId());
+		m_news.setViewNumber(m_news.getViewNumber()+1);
+		m_newsService.increaseVisiteNumber(m_news.getId(),News.TYPE_VIEW);
 		return SUCCESS;
 	}
 
@@ -97,6 +116,10 @@ public class NewsDetailAction extends ActionSupport {
 		m_newsCommentsService = newsCommentsService;
 	}
 
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
+	}
+
 	public List<News> getNewsHot() {
 		return m_newsHot;
 	}
@@ -107,6 +130,22 @@ public class NewsDetailAction extends ActionSupport {
 
 	public NewsComments getComments() {
 		return m_comments;
+	}
+
+	public List<ImageSpecial> getImageSpecials() {
+		return m_imageSpecials;
+	}
+
+	public void setImageSpecialService(ImageSpecialService imageSpecialService) {
+		m_imageSpecialService = imageSpecialService;
+	}
+
+	public void setImageService(ImageService imageService) {
+		m_imageService = imageService;
+	}
+
+	public List<News> getNewsLatest() {
+		return m_newsLatest;
 	}
 
 }

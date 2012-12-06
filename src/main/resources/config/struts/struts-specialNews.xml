@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="specialNews" extends="golf">
+		<action name="specialNewsList" class="specialNewsAction" method="specialNewsList">
+			<result name="success">jsp/specialNews/SpecialNewsList.jsp</result>
+		</action>
+		<action name="specialNewsAdd" >
+			<result name="success">jsp/specialNews/SpecialNewsAdd.jsp</result>
+		</action>
+		<action name="specialNewsAddSubmit" class="specialNewsAction" method="specialNewsAddSubmit">
+			<result name="success" type="redirect">specialNewsList.action</result>
+		</action>
+		<action name="specialNewsUpdate" class="specialNewsAction" method="specialNewsUpdate" >
+			<result name="success">jsp/specialNews/SpecialNewsUpdate.jsp</result>
+		</action>
+		<action name="specialNewsUpdateSubmit" class="specialNewsAction" method="specialNewsUpdateSubmit">
+			<result name="success" type="redirect">specialNewsList.action</result>
+		</action>
+		<action name="specialNewsDelete" class="specialNewsAction" method="specialNewsDelete">
+			<result name="success" type="redirect">specialNewsList.action</result>
+		</action>
+	</package>	
+</struts>

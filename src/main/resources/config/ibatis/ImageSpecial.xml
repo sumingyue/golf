@@ -4,7 +4,7 @@
 	<typeAlias alias="imageSpecial" type="com.golf.entity.ImageSpecial" />
 	
 	<sql id="imageSpecial.columns">
-		id,name,content,imageId,creationDate
+		id,categoryId,smallCategoryId,name,content,imageId,creationDate
 	</sql>
 	<select id="imageSpecial.findAll" resultClass="imageSpecial">
 		select
@@ -21,13 +21,14 @@
 		insert into imageSpecial (
 		<include refid="imageSpecial.columns" />
 		) values
-		(#id#,#name#,#content#,#imageId#,now())
+		(#id#,#categoryId#,#smallCategoryId#,#name#,#content#,#imageId#,now())
 		<selectKey resultClass="int" keyProperty="id">
              <![CDATA[   select last_insert_id() as id  ]]>
 		</selectKey>
 	</insert>
 	<update id="imageSpecial.update" parameterClass="imageSpecial">
-		update imageSpecial set name=#name# ,imageId=#imageId#, content=#content# where id=#id#
+		update imageSpecial set categoryId=#categoryId#,smallCategoryId=#smallCategoryId#,
+		name=#name# ,imageId=#imageId#, content=#content# where id=#id#
 	</update>
 	<delete id="imageSpecial.delete" parameterClass="int">
 		delete from imageSpecial

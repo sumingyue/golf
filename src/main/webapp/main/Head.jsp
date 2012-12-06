@@ -1,64 +1,70 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<div class="hd grid_24">
-	<!-- <div class="logo"><img src="s/i/logo.jpg" alt=""></div> -->
-</div>
+<div class="clear"></div>
+		<div class="grid_4">
+			<div class="logo">
+				<img src="./img/logo.jpg" class="img-full" alt="" height="70"
+					border="0">
+			</div>
+		</div>
+		<div class="grid_20">
+			<a href="${adwordsService.adwords[0].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[0].image.path}"
+				height="70" border="0"></a>
+		</div>
 <ul class="nav grid_24 ">
-	<li class="nav-list-item" style="width:30px;" ><a href="index.do    "
-		class="nav-list-tit" id="nav_index" >首页</a></li>
+	<li class="nav-list-item" style="width: 30px;"><a
+		href="index.do    " class="nav-list-tit" id="nav_index">首页</a></li>
 	<li class="nav-list-item"><a href="c.do?id=1" class="nav-list-tit"
 		id="nav_news">综合</a>
 		<ul class="nav-sub-menu clear-fix">
 			<li class="nav-sub-item"><a href="sc.do?id=1">国际</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=1">国内</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=1">产业</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=1">品牌</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=2">国内</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=3">产业</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=4">品牌</a></li>
 		</ul></li>
 	<li class="nav-list-item"><a href="c.do?id=2" class="nav-list-tit"
 		id="nav_match">赛事</a>
 		<ul class="nav-sub-menu clear-fix">
-			<li class="nav-sub-item"><a href="sc.do?id=1">品牌</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=1">国际</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=1">国内</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=1">服务</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=7">国际</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=8">国内</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=9">品牌</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=12">球员</a></li>
 		</ul></li>
 	<li class="nav-list-item"><a href="c.do?id=4" class="nav-list-tit"
 		id="nav_travel">旅游</a>
 		<ul class="nav-sub-menu clear-fix">
-			<li class="nav-sub-item"><a href="sc.do?id=1">附近</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=1">省市</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=1">线路</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=1">游记</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=19">附近</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=20">省市</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=21">线路</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=22">游记</a></li>
 		</ul></li>
 	<li class="nav-list-item"><a href="c.do?id=5" class="nav-list-tit"
 		id="nav_school">学院</a>
 		<ul class="nav-sub-menu clear-fix">
-			<li class="nav-sub-item"><a href="sc.do?id=1">礼仪</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=1">规则</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=1">学球</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=1">技术</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=25">礼仪</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=26">规则</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=27">技术</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=28">挥杆</a></li>
 		</ul></li>
 	<li class="nav-list-item"><a href="c.do?id=6" class="nav-list-tit"
-		id="nav_field">球场</a>
-		<ul class="nav-sub-menu clear-fix">
-			<li class="nav-sub-item"><a href="club.do">球场</a></li>
-			<li class="nav-sub-item"><a href="practice.do">练习</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=1">球会</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=1">会籍</a></li>
+		id="nav_zixun">资讯</a>
+		<ul class="nav-sub-menu clear-fix" style="width:80px">
+			<li class="nav-sub-item"><a href="sc.do?id=38">球会</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=39">会籍</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=32">活动</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=41">练习场</a></li>
 		</ul></li>
-	<li class="nav-list-item"><a href="" class="nav-list-tit"
-		id="nav_team">球队</a>
-		<ul class="nav-sub-menu clear-fix" style="width: 40px">
-			<li class="nav-sub-item"><a href="ut.do">之家</a></li>
-			<li class="nav-sub-item"><a href="uis.do">图片</a></li>
-		</ul></li>
-	<li class="nav-list-item"><a href="products.do" class="nav-list-tit"
-		id="nav_shop">商城</a>
-		<ul class="nav-sub-menu clear-fix">
-			<li class="nav-sub-item"><a href="products.do?type=1">球具</a></li>
-			<li class="nav-sub-item"><a href="products.do?type=2">服饰</a></li>
-			<li class="nav-sub-item"><a href="products.do?type=3">用品</a></li>
-			<li class="nav-sub-item"><a href="products.do?type=4">附件</a></li>
-		</ul></li>
+	<li class="nav-list-item"><a href="products.do"
+		class="nav-list-tit" id="nav_shop">商城</a>
+	</li>
+	<li class="nav-list-item"><a href="club.do" class="nav-list-tit"
+		id="nav_qiuchang">球场</a></li>
+	<li class="nav-list-item"><a href="teams.do" class="nav-list-tit"
+		id="nav_team">球队</a></li>
+	<li class="nav-list-item"><a href="pics.do" class="nav-list-tit"
+		id="nav_pic">图片</a></li>
+	<li class="nav-list-item"><a href="specials.do" class="nav-list-tit"
+		id="nav_zhuanti">专题</a></li>
 	<!-- <li class="nav-list-item"><a href="" class="nav-list-tit"
 		id="nav_util">实用</a>
 		<ul class="nav-sub-menu clear-fix">
@@ -69,9 +75,10 @@
 		</ul></li> -->
 	<li class="nav-list-item"><a href="" class="nav-list-tit"
 		id="nav_interact">互动</a>
-		<ul class="nav-sub-menu clear-fix">
-			<li class="nav-sub-item"><a href="co.do">预定</a></li>
-			<li class="nav-sub-item"><a href="uml.do">留言</a></li>
-			<li class="nav-sub-item"><a href="una.do">发布</a></li>
+		<ul class="nav-sub-menu clear-fix" style="width:120px;">
+			<li class="nav-sub-item"><a href="orderCourt.do">预定球场</a></li>
+			<li class="nav-sub-item"><a href="addNews.do">发布新闻</a></li>
+			<li class="nav-sub-item"><a href="addNews.do">用户留言</a></li>
+			<li class="nav-sub-item"><a href="addNews.do">赛事服务</a></li>
 		</ul></li>
 </ul>

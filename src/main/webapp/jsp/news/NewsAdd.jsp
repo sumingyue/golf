@@ -10,7 +10,6 @@
 <link rel='stylesheet' type='text/css' href='css/admin.css' />
 <link rel='stylesheet' type='text/css' href='css/calendar.css' />
 <script src="js/calendar.js" type="text/javascript"></script>
-<link type="text/css" rel="stylesheet"	href="ckeditor/_samples/sample.css" />
 <link rel='stylesheet' type='text/css' href='css/admin.css' />
 <script src="js/jquery-1.7.1.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
@@ -75,10 +74,12 @@ var calendar = null;
 					</tr>
 					<tr>
 						<td width="15%" class="left">二级分类<span style='color: red'>*</span></td>
-						<td class="right"><select id="news_smallCategoryId"
-							name="news.smallCategoryId" class="select">
-								<option value="0">_ALL</option>
-						</select></td>
+						<td class="right">
+						<s:select name="news.smallCategoryId" 
+								list="smallCategoryList" listKey="id" listValue="name"
+								value="smallCategoryId" theme="simple" cssClass="select">
+							</s:select>
+						</td>
 					</tr>
 					<tr>
 						<td width="15%" class="left">新闻标题<span style='color: red'>*</span></td>

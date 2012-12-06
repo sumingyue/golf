@@ -8,9 +8,6 @@
 	<title>苏州高尔夫网</title>
 	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="css/news.css">
-	<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
-	<script type="text/javascript" src="js/base.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
 </head>
 <style>
 #table-container .mod-bd{
@@ -42,7 +39,7 @@
 					<ul class="mod-article-list">
 						<s:iterator value="qiuhui" status="vs">
 							<li class="article-item"><a href="#"><s:property
-										value="title" /></a><span class="time"><s:property
+										value="normalTitle" /></a><span class="time"><s:property
 										value="dateStr" /></span></li>
 						</s:iterator>
 					</ul>
@@ -58,7 +55,7 @@
 					<ul class="mod-article-list">
 						<s:iterator value="xiehui" status="vs">
 							<li class="article-item"><a href="#"><s:property
-										value="title" /></a><span class="time"><s:property
+										value="normalTitle" /></a><span class="time"><s:property
 										value="dateStr" /></span></li>
 						</s:iterator>
 					</ul>
@@ -74,7 +71,7 @@
 					<ul class="mod-article-list">
 						<s:iterator value="huiji" status="vs">
 							<li class="article-item"><a href="#"><s:property
-										value="title" /></a><span class="time"><s:property
+										value="normalTitle" /></a><span class="time"><s:property
 										value="dateStr" /></span></li>
 						</s:iterator>
 					</ul>
@@ -91,7 +88,7 @@
 					
 					<ul class="mod-article-list">
 						<s:iterator value="news" status="vs">
-							<li class="article-item"><a href="nd.do?id=<s:property value="id"/>"><s:property value="title" /></a></li>
+							<li class="article-item"><a href="news.do?id=<s:property value="id"/>"><s:property value="normalTitle" /></a></li>
 						</s:iterator>
 						</ul>
 					</div><div class="paginate">
