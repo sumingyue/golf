@@ -6,11 +6,7 @@
 					border="0">
 			</div>
 		</div>
-		<div class="grid_20">
-			<a href="${adwordsService.adwords[0].url}" target="_blank"><img
-				class="img-full" src="${adwordsService.adwords[0].image.path}"
-				height="70" border="0"></a>
-		</div>
+		
 <ul class="nav grid_24 ">
 	<li class="nav-list-item" style="width: 30px;"><a
 		href="index.do    " class="nav-list-tit" id="nav_index">首页</a></li>
@@ -59,6 +55,8 @@
 	</li>
 	<li class="nav-list-item"><a href="club.do" class="nav-list-tit"
 		id="nav_qiuchang">球场</a></li>
+	<li class="nav-list-item"><a href="learn.do?id=42" class="nav-list-tit"
+		id="nav_qiuchang">球场</a></li>
 	<li class="nav-list-item"><a href="teams.do" class="nav-list-tit"
 		id="nav_team">球队</a></li>
 	<li class="nav-list-item"><a href="pics.do" class="nav-list-tit"
@@ -82,3 +80,18 @@
 			<li class="nav-sub-item"><a href="addNews.do">赛事服务</a></li>
 		</ul></li>
 </ul>
+
+<div class="grid_12">
+  &nbsp;2012年12月08日 星期六</div>
+  
+        <div class="grid_12">
+<form class="searchform" method="get" action="">
+          站内搜索<input name="srchtxt" type="text" class="nav10" id="srchtxt" value="">
+          <input type="submit" class="nav12" name="button" id="button" value="搜索">
+        </form>
+</div>
+<div class="grid_24">
+			<a href="${adwordsService.adwords[0].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[0].image.path}"
+				height="70" border="0"></a>
+		</div>

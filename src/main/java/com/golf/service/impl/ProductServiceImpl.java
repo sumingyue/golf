@@ -145,7 +145,10 @@ public class ProductServiceImpl implements InitializingBean, ProductService {
 		List<Image> results = new ArrayList<Image>();
 		List<ProductImage> images = m_productImageDao.findByProductId(productId);
 		for (ProductImage image : images) {
-			results.add(m_imageService.findImage(image.getImageId()));
+			Image findImage = m_imageService.findImage(image.getImageId());
+			if(findImage!=null){
+				results.add(findImage);
+			}
 		}
 		return results;
 	}

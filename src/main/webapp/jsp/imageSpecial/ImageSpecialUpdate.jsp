@@ -35,7 +35,7 @@ $(document).ready(function(){
 					<tr>
 						<td width="15%" class="left">一级分类<span style='color: red'>*</span></td>
 						<td class="right"><s:select name="imageSpecial.categoryId"
-								onchange="categoryChanged()" 
+								onchange="imageCategoryChanged()" 
 								list="categoryList" listKey="id" listValue="name"
 								value="imageSpecial.categoryId" theme="simple" cssClass="select">
 							</s:select></td>

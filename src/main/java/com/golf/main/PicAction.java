@@ -37,7 +37,7 @@ public class PicAction extends ActionSupport {
 
 	private ImageService m_imageService;
 
-	private PagedTool m_pagedTool = new PagedTool(12);
+	private PagedTool m_pagedTool = new PagedTool(8);
 
 	private int m_categoryId;
 
@@ -111,6 +111,10 @@ public class PicAction extends ActionSupport {
 	public void setId(int imageSpecialId) {
 		m_imageSpecialId = imageSpecialId;
 	}
+	
+	public int getId(){
+		return m_imageSpecialId;
+	}
 
 	public void setImageService(ImageService imageService) {
 		m_imageService = imageService;
@@ -150,6 +154,14 @@ public class PicAction extends ActionSupport {
 
 	public void setSmallCategoryId(int smallCategoryId) {
 		m_smallCategoryId = smallCategoryId;
+	}
+
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
 	}
 
 }

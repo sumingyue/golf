@@ -48,9 +48,9 @@ function smallCategoryChanged(){
 			<ul class="gallery">
 				<s:iterator value="imageSpecials" status="vs">
 					<li class="image-item">
-					<a href="pics.do?id=<s:property value="id"/>"><img src="<s:property value="image.path"/>" alt="图片">
+					<a href="pic.do?id=<s:property value="id"/>"><img src="<s:property value="image.path"/>" alt="图片">
 					</a>
-					<a href="pics.do?id=<s:property value="id"/>"><s:property value="name"/></a>
+					<a href="pic.do?id=<s:property value="id"/>"><s:property value="name"/></a>
 					</li>
 				</s:iterator>
 			</ul>

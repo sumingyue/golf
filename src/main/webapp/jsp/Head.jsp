@@ -5,7 +5,7 @@
 			<a class="btn btn-navbar" data-toggle="collapse"
 				data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 				class="icon-bar"></span> <span class="icon-bar"></span>
-			</a> <a class="brand" href="#">苏州高尔夫网</a>
+			</a> <a class="brand" href="index.do">苏州高尔夫网</a>
 			<div class="nav-collapse collapse">
 				<p class="navbar-text pull-right">
 					Logged in as <a href="#" class="navbar-link">Username</a>

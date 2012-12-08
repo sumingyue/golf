@@ -33,7 +33,7 @@
 						value="title" /></a><span class="time"><s:property value="dateStr"/></span></li>
 				</s:iterator>
 			</ul>
-			<div class="paginate">
+			<div class="paginate mod-hd">
 				共&nbsp;<s:property value="pagedTool.totalNumber"/>&nbsp;条记录
 				<a href="sc.do?pagedTool.pageIndex=0">首页</a>&nbsp;&nbsp;
 				<a href="sc.do?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex-1"/>&id=<s:property value="smallCategoryId"/>">上一页</a>&nbsp;&nbsp;

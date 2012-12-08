@@ -16,6 +16,9 @@
 		<action name="news" class="newsDetailAction">
 			<result name="success">main/NewsDetail.jsp</result>
 		</action>
+		<action name="learn" class="smallCategoryNewsAction">
+			<result name="success">main/Learn.jsp</result>
+		</action>
 		<action name="comment" class="newsDetailAction" method="addComments">
 			<result name="success" type="redirect">nd.action?id=${newsId}</result>
 		</action>

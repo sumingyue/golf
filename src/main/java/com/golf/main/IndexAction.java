@@ -189,9 +189,9 @@ public class IndexAction extends ActionSupport {
 
 		m_teamNews = m_teamNewsService.queryFixedTeamNewss(10);
 
-		List<Court> all = m_courtService.queryFixedCourts(4);
+		List<Court> all = m_courtService.queryFixedCourts(6);
 		m_court = all.get(0);
-		m_courts = all.subList(1, 4);
+		m_courts = all.subList(1, 6);
 
 		List<CourtImage> images = m_courtImageService.queryAllCourtImages(m_court.getId());
 		if (images.size() > 0) {

@@ -11,7 +11,13 @@
 <body youdao="bind">
 	<div class="wrap container_24">
 		<jsp:include page="./Head.jsp"></jsp:include>
-		<div class="clear"></div>		
+		<div class="clear"></div>	
+		<div class="grid_24">
+			<div class="mod-hd">
+					您当前所在位置：首页 -&gt;
+					高球新闻
+				</div>
+		</div>	
 		<div class="grid_24">
 			<div id="slidearticles">
 				<div class="news-slide">
@@ -40,7 +46,7 @@
 				
 					<s:iterator value="newsGroup"> 
 						<li class="headline">
-							<h3 class="mod-hd"><a href="newDetail?id=${first.id}" target="_blank">${first.maxTitle}</a></h3>
+							<h3 class="mod-hd"><a href="news.do?id=${first.id}" target="_blank">${first.maxTitle}</a></h3>
 							<div class="mod-bd">
 								<ul class="news-list clear-fix active tab-pannel-item">
 										<s:iterator value="news"> 

@@ -16,28 +16,7 @@
 		<!-- 单行大广告 -->
 		<jsp:include page="./Head.jsp"></jsp:include>
 		<!--  导航 -->
-		<div class="clear"></div>
-		<!-- 三格广告 -->
-		<div class="grid_6">
-			<a href="${adwordsService.adwords[1].url}" target="_blank"><img
-				class="img-full" src="${adwordsService.adwords[1].image.path}"
-				height="90" border="0"></a>
-		</div>
-		<div class="grid_6">
-			<a href="${adwordsService.adwords[2].url}" target="_blank"><img
-				class="img-full" src="${adwordsService.adwords[2].image.path}"
-				height="90" border="0"></a>
-		</div>
-		<div class="grid_6">
-			<a href="${adwordsService.adwords[3].url}" target="_blank"><img
-				class="img-full" src="${adwordsService.adwords[3].image.path}"
-				height="90" border="0"></a>
-		</div>
-		<div class="grid_6">
-			<a href="${adwordsService.adwords[4].url}" target="_blank"><img
-				class="img-full" src="${adwordsService.adwords[4].image.path}"
-				height="90" border="0"></a>
-		</div>
+
 		<div class="clear"></div>
 		<!-- 一行 -->
 		<div class="grid_7 slide-list-container" id="slide">
@@ -237,10 +216,6 @@
 					 
 					<ul class="mod-article-list">
 						<s:iterator value="courts" status="vs">
-							<li class="article-item"><a
-								href="court.do?id=<s:property value="id"/>" target="_blank"><s:property
-										value="name" /></a></li>
-										
 							<li class="article-item"><a
 								href="court.do?id=<s:property value="id"/>" target="_blank"><s:property
 										value="name" /></a></li>
@@ -551,22 +526,31 @@
 	<div class="left-banner side-banner">
 		<div>
 			<a href="#" class="close">x</a>
-			<img src="/admin/uploadfile/201052817314883032.jpg" width="146" height="99" border="0">
+			<a href="${adwordsService.adwords[1].url}" target="_blank"><img 
+			src="${adwordsService.adwords[1].image.path}"
+				height="150" border="0"  width="150">
+			</a>
 		</div>
 		<div>
 			<a href="#" class="close">x</a>
-			<img src="/admin/uploadfile/201052817314883032.jpg" width="146" height="99" border="0">
+			<a href="${adwordsService.adwords[2].url}" target="_blank"><img 
+			src="${adwordsService.adwords[2].image.path}"
+			height="150" border="0"  width="150">
 		</div>
 	</div>
 	
 	<div class="right-banner side-banner">
 		<div>
 			<a href="#" class="close">x</a>
-			<img src="/admin/uploadfile/201052817314883032.jpg" width="146" height="99" border="0">
+			<a href="${adwordsService.adwords[3].url}" target="_blank"><img 
+			src="${adwordsService.adwords[3].image.path}"
+			height="150" border="0"  width="150">
 		</div>
 		<div>
 			<a href="#" class="close">x</a>
-			<img src="/admin/uploadfile/201052817314883032.jpg" width="146" height="99" border="0">
+			<a href="${adwordsService.adwords[4].url}" target="_blank"><img 
+			src="${adwordsService.adwords[4].image.path}"
+			height="150" border="0"  width="150">
 		</div>
 	</div>
 	

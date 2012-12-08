@@ -64,7 +64,6 @@ public class UserProductAction extends ActionSupport {
 
 		m_products = m_productService.queryPagedProducts(m_pagedTool, m_type, m_productCategoryId);
 
-		System.out.println(m_products.size());
 		for (Product product : m_products) {
 			product = m_productService.findProduct(product.getId());
 

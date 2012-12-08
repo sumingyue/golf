@@ -140,21 +140,11 @@
 		
 		<div class="grid_8">
 			<div class="mod-box-horizon mod-box-horizon-last">
-				<div class="mod-hd"><span class="more"><a href="">更多</a></span>球员风采</div>
-				<div class="mod-bd slide-list-container" id="slide">
-					<ul class="slide-list">
-						<li class="active slide-list-item">
-							<img class="slide-list-img" src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" alt="">
-							<a class="slide-list-tit" href="">title 1</a>
-						</li>
-						<li class="slide-list-item">
-							<img class="slide-list-img" src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" alt="">
-							<a class="slide-list-tit" href="">title 2</a>
-						</li>
-						<li class="slide-list-item">
-							<img class="slide-list-img" src="http://www.512golf.cn/admin/uploadfile/201092714481132168.jpg" alt="">
-							<a class="slide-list-tit" href="">title 3</a>
-						</li>
+				<div class="mod-hd"><span class="more"><a href="teamNewss.do?teamId=<s:property value="team.id"/>&type=5">更多</a></span>规章制度</div>
+				<div class="mod-bd"><ul class="mod-article-list">
+						<s:iterator value="news4" status="vs">
+							<li class="article-item"><a href="teamNews.do?teamNewsId=<s:property value="id"/>"><s:property value="title"/></a></li>
+						</s:iterator>
 					</ul>
 				</div>
 			</div>

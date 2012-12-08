@@ -344,6 +344,7 @@ INSERT INTO smallCategory values (38,6,'球会资讯',now());
 INSERT INTO smallCategory values (39,6,'会籍资讯',now());
 INSERT INTO smallCategory values (40,6,'供求信息',now());
 INSERT INTO smallCategory values (41,6,'练习场',now());
+INSERT INTO smallCategory values (42,6,'学球资讯',now());
 
 insert into adwords values(1,'首页','首页横幅广告',790,90,'http://szgolfer.com',0,now());
 insert into adwords values(2,'首页','首页菜单下广告01',270,90,'http://szgolfer.com',0,now());

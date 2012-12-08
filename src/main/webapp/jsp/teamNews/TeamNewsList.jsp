@@ -60,6 +60,7 @@ $(document).ready(function(){
 							<option value="2">活动报道</option>
 							<option value="3">月历成绩</option>
 							<option value="4">精彩图文</option>
+							<option value="5">规章制度</option>
 						</select>
 					</th>
 					<th width="75%">新闻标题</th>
