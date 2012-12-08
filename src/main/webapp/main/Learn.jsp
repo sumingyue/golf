@@ -15,8 +15,7 @@
 		<s:iterator value="news" status="vs">
 			<div class="grid_8">
 			<div class="mod-box-horizon">
-				<div class="mod-hd"><a href="news.do?id=${id}"
-					target="_blank">${smallTitle}</a></div>
+				<div class="mod-hd">${smallTitle}</div>
 				<div class="mod-bd">
 				<s:property value="content" escape="false" />
 				</div>

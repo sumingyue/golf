@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/newsDetail.css">
 </head>
-<body youdao="bind">
+<body>
 	<div class="wrap container_24">
 		<jsp:include page="./Head.jsp"></jsp:include>
 

@@ -8,7 +8,7 @@
 	<style>
 	mod-article-list{padding:8px;}
 	.mod-article-list .article-item{margin:7px;font-size:13px;}
-	.adwords-full{height:198px;margin-bottom:5px;width:100%;}
+	.adwords-full{height:218px;margin-bottom:5px;width:100%;}
 	.img-full-last{margin-bottom:0;}
 	.news-article-list{height:600px;}
 	.paginate{text-align:center;padding:5px 0;font-size:13px;background-color:#F0F7E7;}
@@ -32,10 +32,10 @@
 			</ul>
 			<div class="paginate">
 				共&nbsp;<s:property value="pagedTool.totalNumber"/>&nbsp;条记录
-				<a href="?pagedTool.pageIndex=0">首页</a>&nbsp;&nbsp;
-				<a href="?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex-1"/>&id=<s:property value="smallCategoryId"/>">上一页</a>&nbsp;&nbsp;
-				<a href="?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex+1"/>&id=<s:property value="smallCategoryId"/>">下一页</a>&nbsp;&nbsp;
-				<a href="?pagedTool.pageIndex=<s:property value="pagedTool.totalPage"/>&id=<s:property value="smallCategoryId"/>">末页</a>&nbsp;&nbsp;
+				<a href="?index=0">首页</a>&nbsp;&nbsp;
+				<a href="?index=<s:property value="pagedTool.pageIndex-1"/>">上一页</a>&nbsp;&nbsp;
+				<a href="?index=<s:property value="pagedTool.pageIndex+1"/>">下一页</a>&nbsp;&nbsp;
+				<a href="?index=<s:property value="pagedTool.totalPage"/>">末页</a>&nbsp;&nbsp;
 				共&nbsp;<s:property value="pagedTool.totalPage"/>&nbsp;页,当前第&nbsp;<s:property value="pagedTool.pageIndex"/>页&nbsp;
 				<s:property value="pagedTool.pageSize"/>条记录/页&nbsp;
 			</div>
@@ -47,6 +47,9 @@
 				class="adwords-full" src="${adwordsService.adwords[21].image.path}"
 				 border="0"></a>
 			<a href="${adwordsService.adwords[22].url}" target="_blank"><img
+				class="adwords-full" src="${adwordsService.adwords[22].image.path}"
+				border="0"></a>
+			<a href="${adwordsService.adwords[23].url}" target="_blank"><img
 				class="adwords-full" src="${adwordsService.adwords[22].image.path}"
 				border="0"></a>
 		</div>

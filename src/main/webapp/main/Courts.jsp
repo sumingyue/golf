@@ -81,9 +81,9 @@
 					<div class="mod-inner">
 						<table class="table" style="border:0px">
 							<tr>
-								<th width="50%">名称</th>
-								<th width="30%">地址</th>
-								<th width="20%">电话</th>
+								<th width="35%">名称</th>
+								<th width="35%">地址</th>
+								<th width="30%">电话</th>
 							</tr>
 							<s:iterator value="courts" status="vs">
 								<tr class="${vs.index%2==0?'odd':'even'}">
@@ -96,10 +96,10 @@
 					</div>
 					<div class="paginate">
 					共&nbsp;<s:property value="pagedTool.totalNumber"/>&nbsp;条记录
-					<a href="?pagedTool.pageIndex=0">首页</a>&nbsp;&nbsp;
-					<a href="?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex-1"/>">上一页</a>&nbsp;&nbsp;
-					<a href="?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex+1"/>">下一页</a>&nbsp;&nbsp;
-					<a href="?pagedTool.pageIndex=<s:property value="pagedTool.totalPage"/>">末页</a>&nbsp;&nbsp;
+					<a href="?pageIndex=0">首页</a>&nbsp;&nbsp;
+					<a href="?pageIndex=<s:property value="pagedTool.pageIndex-1"/>">上一页</a>&nbsp;&nbsp;
+					<a href="?pageIndex=<s:property value="pagedTool.pageIndex+1"/>">下一页</a>&nbsp;&nbsp;
+					<a href="?pageIndex=<s:property value="pagedTool.totalPage"/>">末页</a>&nbsp;&nbsp;
 					共&nbsp;<s:property value="pagedTool.totalPage"/>&nbsp;页,当前第&nbsp;<s:property value="pagedTool.pageIndex"/>页&nbsp;
 					<s:property value="pagedTool.pageSize"/>条记录/页&nbsp;
 					</div>

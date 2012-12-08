@@ -74,7 +74,7 @@
 						<s:iterator value="secondJiaoDians" status="vs">
 							<li class="article-item"><a
 								href="news.do?id=<s:property value="id"/>" target="_blank">[<s:property
-										value="smallCategory.name" />]<s:property value="maxTitle" /></a></li>
+										value="smallCategory.name" />]&nbsp;&nbsp;<s:property value="maxTitle" /></a></li>
 						</s:iterator>
 					</ul>
 				</div>
@@ -188,7 +188,8 @@
 					<ul class="mod-article-list">
 						<s:iterator value="secondSaiShis" status="vs">
 							<li class="article-item"><a
-								href="news.do?id=<s:property value="id"/>" target="_blank"><s:property
+								href="news.do?id=<s:property value="id"/>" target="_blank">[<s:property
+										value="smallCategory.name" />]&nbsp;&nbsp;<s:property
 										value="maxTitle" /></a></li>
 						</s:iterator>
 					</ul>
@@ -325,7 +326,8 @@
 					<ul class="mod-article-list">
 						<s:iterator value="lvYous" status="vs">
 							<li class="article-item"><a
-								href="news.do?id=<s:property value="id"/>" target="_blank"><s:property
+								href="news.do?id=<s:property value="id"/>" target="_blank">[<s:property
+										value="smallCategory.name" />]&nbsp;&nbsp;<s:property
 										value="maxTitle" /></a></li>
 						</s:iterator>
 					</ul>

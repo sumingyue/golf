@@ -8,7 +8,7 @@
 		</div> -->	
 <div class="grid_24" style="text-align:right">
 <form class="searchform" method="get" action="queryNews.do">
-          加入收藏  设为首页  联系我们  <input name="keyword" type="text" class="nav10" id="srchtxt" value="">
+          <input name="keyword" type="text" class="nav10" id="srchtxt" value="">
           <input type="submit"  value="站内搜索">
         </form>
 </div>
@@ -55,12 +55,9 @@
 			<li class="nav-sub-item"><a href="sc.do?id=27">技术</a></li>
 			<li class="nav-sub-item"><a href="sc.do?id=28">挥杆</a></li>
 		</ul></li>
-	<li class="nav-list-item"><a href="products.do"
-		class="nav-list-tit" id="nav_shop">商城</a>
-	</li>
-	<li class="nav-list-item"><a href="club.do" class="nav-list-tit"
-		id="nav_qiuchang">球场</a></li>
 	<li class="nav-list-item"><a href="learn.do?id=42" class="nav-list-tit"
+		id="nav_qiuchang">学球</a></li>
+	<li class="nav-list-item"><a href="club.do" class="nav-list-tit"
 		id="nav_qiuchang">球场</a></li>
 	<li class="nav-list-item"><a href="teams.do" class="nav-list-tit"
 		id="nav_team">球队</a></li>
@@ -68,6 +65,9 @@
 		id="nav_pic">图片</a></li>
 	<li class="nav-list-item"><a href="specials.do" class="nav-list-tit"
 		id="nav_zhuanti">专题</a></li>
+	<li class="nav-list-item"><a href="products.do"
+		class="nav-list-tit" id="nav_shop">商城</a>
+	</li>
 	<!-- <li class="nav-list-item"><a href="" class="nav-list-tit"
 		id="nav_util">实用</a>
 		<ul class="nav-sub-menu clear-fix">
