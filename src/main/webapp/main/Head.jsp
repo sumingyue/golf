@@ -6,7 +6,12 @@
 					border="0">
 			</div>
 		</div>
-		
+<div class="grid_12">
+<form class="searchform" method="get" action="">
+          站内搜索<input name="srchtxt" type="text" class="nav10" id="srchtxt" value="">
+          <input type="submit" class="nav12" name="button" id="button" value="搜索">
+        </form>
+</div>
 <ul class="nav grid_24 ">
 	<li class="nav-list-item" style="width: 30px;"><a
 		href="index.do    " class="nav-list-tit" id="nav_index">首页</a></li>
@@ -81,15 +86,6 @@
 		</ul></li>
 </ul>
 
-<div class="grid_12">
-  &nbsp;2012年12月08日 星期六</div>
-  
-        <div class="grid_12">
-<form class="searchform" method="get" action="">
-          站内搜索<input name="srchtxt" type="text" class="nav10" id="srchtxt" value="">
-          <input type="submit" class="nav12" name="button" id="button" value="搜索">
-        </form>
-</div>
 <div class="grid_24">
 			<a href="${adwordsService.adwords[0].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[0].image.path}"

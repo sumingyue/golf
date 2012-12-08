@@ -50,6 +50,9 @@
 				self.select(self.current-1);
 			}	
 		},
+		getTotal:function(){
+			return this.total;
+		},
 		getCurrent:function(){
 			return this.current;
 		}

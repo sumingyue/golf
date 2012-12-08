@@ -196,6 +196,10 @@ body {
   display: block;
   content:"";
 }
+
+.wrap{
+  position:relative;
+}
 .logo{}
 .hd .grid_1{
   margin-bottom:10px;
@@ -453,5 +457,27 @@ body {
 .mod-article-list .article-item .time{
 	float:right;
 	color:#999;
+}
+
+.form .legend{border-bottom:1px dashed #ccc;display:block;width:100%;padding:3px;margin-bottom:10px;}
+.form .input{font-size:14px;width:90px;border: 1px solid #CCC;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;}
+.form .s-input{width:35px;}
+.form .l-input{width:220px;}
+.form .row label{width:60px;text-align:right;display:block;float:left;margin-right:10px;}
+.form .btn{
+	color: #333;
+	background-color: #E6E6E6;
+	padding: 4px 12px;
+	border: 1px solid #BBB;
+	cursor:pointer;
+	border-radius:3px;
+	background-image: -moz-linear-gradient(top, white, #E6E6E6);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#E6E6E6));
+	background-image: -webkit-linear-gradient(top, white, #E6E6E6);
+	background-image: -o-linear-gradient(top, white, #E6E6E6);
+	background-image: linear-gradient(to bottom, white, #E6E6E6);
+	-webkit-border-radius:3px;-moz-border-radius:3px;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 .paginate{text-align:center;padding:5px 0; font-size:15px;}

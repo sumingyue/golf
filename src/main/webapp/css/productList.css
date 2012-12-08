@@ -1,6 +1,7 @@
 .news-slide{float:left;width:750px;}
 	.news-article{float:left;width:200px;}
 	.gallery{}
+	#slide{background-color:#3A5832;}
 	.gallery .bigpics{float:left;}
 	.gallery .bigpic{display: none;position: relative;}
 	.gallery .bigpic{float:left;}
@@ -17,12 +18,22 @@
 		.mod-inner{
 			margin:10px;
 		}
+		
+		.image-link{
+			display:block;
+			margin-bottom:10px;
+		}
 		.paginate{
 			margin-top:5px;
 		}
 		.image-item{width:130px;}
+		
 		.image-item img{
 			width:100%;
+		}
+		
+		.image-item p{
+			text-align:left;
 		}
 		.filter{margin-bottom:8px;}
 		.filter .tag{padding:3px;background-color:#F0F7E7;margin-right:5px;}
@@ -32,14 +43,5 @@
 		.menu .menu-item h3{font-size:16px;}
 		.menu .submenu li{float:left;margin-right:10px;margin-bottom:5px;}
 		
-		
-		#slide{margin-bottom:10px;}
-		#slide .bigpic{display:none;overflow:hidden;height:300px;}
-		#slide .bigpic .img-full{width:750px;}
-		#slide .active{display:block;}
-		#slide .smallpic-list{}
-		#slide .smallpic{float:left;cursor:pointer;}
-		#slide .smallpic img{width:115px;padding:5px;}
-		#slide .smallpic-list .active{background-color:#C2D39F;}
 		
 		#products img{width:130px;height:75px;}
