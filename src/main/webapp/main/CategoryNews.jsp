@@ -13,7 +13,7 @@
 		<jsp:include page="./Head.jsp"></jsp:include>
 		<div class="clear"></div>	
 		<div class="grid_24">
-			<div class="mod-hd">
+			<div class="bread-crumbs">
 					您当前所在位置：首页 -&gt;
 					高球新闻
 				</div>
