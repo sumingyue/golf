@@ -459,6 +459,8 @@ body {
 	color:#999;
 }
 
+.bread-crumbs{background-color:#F0F7E7;padding:5px;}
+
 .form .legend{border-bottom:1px dashed #ccc;display:block;width:100%;padding:3px;margin-bottom:10px;}
 .form .input{font-size:14px;width:90px;border: 1px solid #CCC;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;}
 .form .s-input{width:35px;}
