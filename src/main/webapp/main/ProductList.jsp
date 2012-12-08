@@ -149,16 +149,16 @@
 					<li class="image-item"><a
 						href="product.do?id=<s:property value="id"/>"><img
 							src="<s:property value="image.path"/>" alt="图片"></a>
-						<p href="">
-							名称：
+						<p>
+							<span class="label">名称：</span>
 							<s:property value="name" />
 						</p>
-						<p href="">
-							原价：
+						<p>
+							<span class="label">原价：</span>
 							<s:property value="price" />
 						</p>
-						<p href="">
-							会员价：
+						<p>
+							<span class="label">会员价：</span>
 							<span style="color:#f33;"><s:property value="memberPrice" /></span>
 						</p></li>
 				</s:iterator>

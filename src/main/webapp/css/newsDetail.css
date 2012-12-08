@@ -1,3 +1,7 @@
+.mod-box-horizon .mod-bd{
+	height: 230px; 
+	overflow:hidden;
+}
 .arc-head {
 	text-align: center;
 	border-bottom: 1px solid #ccc;
@@ -24,7 +28,9 @@
 	margin-bottom: 15px;
 	line-height: 22px;
 }
-
+.mod-hd{
+	text-align:center;
+}
 .mod-bd {
 	padding: 30px;
 }

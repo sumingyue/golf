@@ -13,10 +13,14 @@
 		<jsp:include page="./Head.jsp"></jsp:include>
 
 		<s:iterator value="news" status="vs">
-			<div class="grid_8" style="height: 300px; overflow: hidden;">
-				<li class="article-item"><a href="news.do?id=${id}"
-					target="_blank">${smallTitle}</a></li>
-				<li><s:property value="content" escape="false" /></li>
+			<div class="grid_8">
+			<div class="mod-box-horizon">
+				<div class="mod-hd"><a href="news.do?id=${id}"
+					target="_blank">${smallTitle}</a></div>
+				<div class="mod-bd">
+				<s:property value="content" escape="false" />
+				</div>
+			</div>
 			</div>
 		</s:iterator>
 		<jsp:include page="./Foot.jsp"></jsp:include>
