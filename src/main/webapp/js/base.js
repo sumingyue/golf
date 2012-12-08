@@ -15,7 +15,10 @@
 			var headers = self.headers = container.find(this.opts.headCS);
 			var pannels =self.pannels = container.find(this.opts.itemCS);
 			var activeCls = self.activeCls = this.opts.activeCls;
-			
+			self.onSelected = this.opts.onSelected || function(current,next){
+				current.removeClass(activeCls);
+				next.addClass(activeCls);
+			}
 			self.current = null;
 			self.total = headers.length;
 			headers.on(this.opts.triggerType,function(){
@@ -29,13 +32,11 @@
 			var headers = self.headers;
 			var pannels = self.pannels;
 			var activeCls = self.activeCls;
-			
-			self.current = i;
-			headers.removeClass(activeCls);
-			pannels.removeClass(activeCls);
-			
+			var current = self.current;
+			headers.eq(current).removeClass(activeCls);
 			headers.eq(i).addClass(activeCls);
-			pannels.eq(i).addClass(activeCls);
+			self.onSelected.call(this,pannels.eq(current),pannels.eq(i));
+			self.current = i;
 		},
 		next:function(){
 			var self = this;
@@ -48,7 +49,9 @@
 			if(self.current > 0 ){
 				self.select(self.current-1);
 			}	
-
+		},
+		getCurrent:function(){
+			return this.current;
 		}
 	}
 	
