@@ -18,19 +18,24 @@
 		<!--  导航 -->
 		<div class="clear"></div>
 		<!-- 三格广告 -->
-		<div class="grid_7">
+		<div class="grid_6">
 			<a href="${adwordsService.adwords[1].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[1].image.path}"
 				height="90" border="0"></a>
 		</div>
-		<div class="grid_10">
+		<div class="grid_6">
 			<a href="${adwordsService.adwords[2].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[2].image.path}"
 				height="90" border="0"></a>
 		</div>
-		<div class="grid_7">
+		<div class="grid_6">
 			<a href="${adwordsService.adwords[3].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[3].image.path}"
+				height="90" border="0"></a>
+		</div>
+		<div class="grid_6">
+			<a href="${adwordsService.adwords[4].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[4].image.path}"
 				height="90" border="0"></a>
 		</div>
 		<div class="clear"></div>

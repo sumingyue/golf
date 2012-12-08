@@ -78,7 +78,7 @@
 		<ul class="nav-sub-menu clear-fix" style="width:120px;">
 			<li class="nav-sub-item"><a href="orderCourt.do">预定球场</a></li>
 			<li class="nav-sub-item"><a href="addNews.do">发布新闻</a></li>
-			<li class="nav-sub-item"><a href="addNews.do">用户留言</a></li>
+			<li class="nav-sub-item"><a href="messages.do">用户留言</a></li>
 			<li class="nav-sub-item"><a href="addNews.do">赛事服务</a></li>
 		</ul></li>
 </ul>
