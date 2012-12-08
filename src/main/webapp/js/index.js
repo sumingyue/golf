@@ -10,7 +10,7 @@ $(function(){
 	
 	setInterval(function(){
 		var next = pannel.getCurrent()+1;
-		if(next==3){next = 0}
+		if(next==pannel.getTotal()){next = 0}
 		pannel.select(next);
 	},5000);
 	

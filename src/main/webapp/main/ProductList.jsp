@@ -70,18 +70,18 @@
 					</ul>
 				</li>
 			</ul>
-			<a href="${adwordsService.adwords[27].url}" target="_blank"><img
+			<a class="image-link" href="${adwordsService.adwords[27].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[27].image.path}"
 				border="0" style="height: 300px" ></a>
-				<a href="${adwordsService.adwords[28].url}" target="_blank"><img
+			<a class="image-link" href="${adwordsService.adwords[28].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[28].image.path}"
 				border="0" style="height: 300px" ></a>
 		</div>
 		<div class="grid_19">
-			<div class="news-slide">
+			<div class="news-slide" id="slide">
 				<div id="slide-container" class="gallery clear-fix">
 					<ul class="bigpics clear-fix">
-						<li class="bigpic">
+						<li class="bigpic active">
 							<h3>Title</h3>
 							<p>
 								<img class="img-full"
@@ -105,7 +105,7 @@
 									border="0">
 							</p>
 						</li>
-						<li class="bigpic active">
+						<li class="bigpic">
 							<h3>Title</h3>
 							<p>
 								<img class="img-full"
@@ -115,7 +115,7 @@
 						</li>
 					</ul>
 					<ul class="smallpics">
-						<li class="smallpic"><a href="${adwordsService.adwords[28].url}" target="_blank"><img
+						<li class="smallpic active"><a href="${adwordsService.adwords[28].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[23].image.path}"
 				border="0"></a></li>
 						<li class="smallpic"><a href="${adwordsService.adwords[28].url}" target="_blank"><img
@@ -124,7 +124,7 @@
 						<li class="smallpic"><a href="${adwordsService.adwords[28].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[25].image.path}"
 				border="0"></a></li>
-						<li class="smallpic active"><a href="${adwordsService.adwords[28].url}" target="_blank"><img
+						<li class="smallpic"><a href="${adwordsService.adwords[28].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[26].image.path}"
 				border="0"></a></li>
 					</ul>
@@ -150,7 +150,7 @@
 						href="product.do?id=<s:property value="id"/>"><img
 							src="<s:property value="image.path"/>" alt="图片"></a>
 						<p href="">
-							名称:
+							名称：
 							<s:property value="name" />
 						</p>
 						<p href="">
@@ -159,11 +159,11 @@
 						</p>
 						<p href="">
 							会员价：
-							<s:property value="memberPrice" />
+							<span style="color:#f33;"><s:property value="memberPrice" /></span>
 						</p></li>
 				</s:iterator>
 			</ul>
-			<div>
+			<div class="paginate">
 				共&nbsp;
 				<s:property value="pagedTool.totalNumber" />
 				&nbsp;条记录 <a href="?pagedTool.pageIndex=0">首页</a>&nbsp;&nbsp; <a

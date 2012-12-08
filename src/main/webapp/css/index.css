@@ -208,10 +208,10 @@
 	margin-bottom:50px;
 }
 .left-banner{
-	left:-15px;
+	margin-left:-150px;
 }
 .right-banner{
-	right:-15px;
+	margin-left:965px;
 }
 .left-banner .close{display:block;text-align:right;}
 .right-banner .close{display:block;text-align:left;}

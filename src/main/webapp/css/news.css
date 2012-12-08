@@ -5,10 +5,11 @@
 	.gallery .bigpic{display: none;position: relative;}
 	.gallery .bigpic{float:left;}
 	.gallery .bigpic img{width:500px;height:300px;}
-	.gallery .bigpic h3{position: absolute;bottom:0;background-color: rgba(0,0,0,0.5);width:100%;color:#fff;padding:10px 0;text-align: center;}
+	.gallery .bigpic h3{position: absolute;bottom:0;background:#000;;background-color: rgba(0,0,0,0.5);width:100%;color:#fff;padding:10px 0;text-align: center;}
+	.gallery .bigpic h3 a{color:#fff;}
 	.gallery .bigpics .active{display: block;}
 	.gallery .smallpics{float:left;}
-	.gallery .smallpic{padding:6px 10px;}
+	.gallery .smallpic{padding:6px 10px;width:62px;}
 	.gallery .smallpics .active{background-image:url(http://i0.sinaimg.cn/ty/2011hqj/golf/images/sports_golf_zxh_0214_02.png);}
 
 	.news-article .article-item{border-bottom:1px dashed #ccc;padding:10px 0;width:350px;text-align: center}

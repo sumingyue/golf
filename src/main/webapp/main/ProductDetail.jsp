@@ -23,25 +23,81 @@
 		.filter .tag{padding:3px;background-color:#F0F7E7;margin-right:5px;}
 		.filter .active{background-color:#C2D39F;color:#fff;}
 
-		.menu{background-color:#3A5832;padding:10px 0;}
+
+		.menu{padding:10px 0;}
 		.menu .menu-item{margin:5px 10px;}
 		.menu .menu-item h3{font-size:16px;}
-		.menu .menu-item h3 a{color:#E4CD24;}
-		.menu .menu-item a{color:#fff;}
 		.menu .submenu li{float:left;margin-right:10px;margin-bottom:5px;}
 		
+		.image-link {
+			display: block;
+			margin-bottom: 10px;
+		}
+		
+		.slide-list-container{
+			position:relative;
+		}
+		
+		.slide-list .slide-list-item{
+			overflow:hidden;
+			display:none;
+		}
 		
 		
-		#slide{margin-bottom:10px;}
-		#slide .bigpic{display:none;width:470px;height:300px;overflow:hidden;}
-		#slide .bigpic img{width:470px;height:300px;}
-		#slide .active{display:block;}
-		#slide .smallpic-list{}
-		#slide .smallpic{float:left;cursor:pointer;width:117px;}
-		#slide .smallpic img{width:115px;padding:5px;}
-		#slide .smallpic-list .active{background-color:#C2D39F;}
+		.slide-list .slide-list-tit{
+			text-align:left;
+			padding-left:15px;
+		}
 		
-		.form .input{width:90px;}
+		.slide-list-container .slide-nums{
+			color:#fff;
+			position:absolute;
+			right:5px;
+			bottom:5px;
+			text-align:left;
+			z-index:999;
+			width:100px;
+		}
+		
+		.slide-list-container .slide-nums li{
+			background-color:#333;
+			margin-right:3px;
+			float:left;
+			padding:0 5px;
+		}
+		
+		
+		.slide-list-container .slide-nums .active{
+			background-color:#fff;
+		}
+		
+		.slide-list-container .slide-nums li a{
+			color:#fff;
+		}
+		
+		.slide-list-container .slide-nums .active a{
+			color:#333;
+		}
+		
+		.slide-list .slide-nums li{
+			position:absolute;
+			float:left;
+		}
+		
+		
+		.slide-list .active{
+			display:block;
+		}
+		
+		#slide-team-home .slide-list-item{
+			width:220px;
+		}
+		
+		#slide .slide-list-img{
+			height:325px;
+			width:430px;
+		}
+		
 	</style>
 </head>
 <body youdao="bind">
@@ -92,50 +148,49 @@
 					</ul>
 				</li>
 			</ul>
-			<a href="${adwordsService.adwords[27].url}" target="_blank"><img
+			<a class="image-link" href="${adwordsService.adwords[27].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[27].image.path}"
 				border="0" style="height: 300px" ></a>
-				<a href="${adwordsService.adwords[28].url}" target="_blank"><img
+			<a class="image-link" href="${adwordsService.adwords[28].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[28].image.path}"
 				border="0" style="height: 300px" ></a>
 		</div>
 		
 		<div class="grid_19">
-			<div class="grid_12 alpha">
-				<div id="slide">
-					<ul>
-						<s:iterator value="product.images" status="vs">
-							<s:if test="#vs.first">
-								<li class="bigpic active">
-									<img src="<s:property value="path"/>" alt="大图" class="img-full" />
-								</li>
-							</s:if>
-							<s:else>
-								<li class="bigpic">
-									<img src="<s:property value="path"/>" alt="大图" class="img-full" />
-								</li>
-							</s:else>
-						</s:iterator>
-					</ul>
-					<ul class="smallpic-list clear-fix">
-					
+			<div class="grid_11 alpha">
+			
+			
+				<div id="slide" class="slide-list-container">
+					<ul class="slide-list">
 					<s:iterator value="product.images" status="vs">
-							<s:if test="#vs.first">
-								<li class="smallpic active">
-									<img src="<s:property value="path"/>" alt="小图" class="img-full" />
-								</li>
-							</s:if>
-							<s:else>
-								<li class="smallpic">
-									<img src="<s:property value="path"/>" alt="小图" class="img-full" />
-								</li>
-							</s:else>
-						</s:iterator>
+						<s:if test="#vs.first">
+							<li class="active slide-list-item">
+								<img class="slide-list-img" src="<s:property value="path"/>" alt="大图${vs.index}" class="img-full" />
+								<a class="slide-list-tit" href="#">标题</a>
+							</li>
+						</s:if>
+						<s:else>
+							<li class="slide-list-item">
+								<img class="slide-list-img" src="<s:property value="path"/>" alt="大图${vs.index}" class="img-full" />
+								<a class="slide-list-tit" href="#">标题</a>
+							</li>
+						</s:else>
+					</s:iterator>
+					</ul>
+					<ul class="slide-nums">
+					<s:iterator value="product.images" status="vs">
+						<s:if test="#vs.index==0">
+							<li class="active"><a href="#">${vs.index+1}</a></li>
+						</s:if>
+						<s:else>
+							<li><a href="#">${vs.index+1}</a></li>
+						</s:else>
+					</s:iterator>
 					</ul>
 				</div>
 			</div>
-			<div class="grid_7 omega">
-				<table class="table">
+			<div class="grid_8 omega">
+				<table class="table" style="margin-bottom:6px;">
 					<tr>
 						<td colspan=2>名称:<s:property value="product.name"/></td>
 					</tr>
@@ -159,19 +214,20 @@
 						<td colspan=2>会员价格:<s:property value="product.memberPrice"/></td>
 					</tr>
 				</table>
-				<hr style="border:1px dashed #ccc;"/>
 				<form class="shop-form form" action="orderProduct.do">
 					<legend class="legend">订购提交</legend>
 					<input type="hidden" name="productOrder.productId" class="input" value='<s:property value="product.id"/>'/>
 					<div class="row">
 						<label for="f_content">联系人:</label><input type="text" name="productOrder.userName" class="input" />
+					</div>
+					<div class="row">
 						<label for="f_mobile">手机:</label><input type="text"  name="productOrder.userPhone" class="input" />
 					</div>
 					<div class="row">
 						<label for="f_num">购买数量:</label><input type="text"  name="productOrder.orderNumber" class="input s-input" />
 					</div>
 					<div class="row">
-						<label for="f_addr">收件地址:</label><input type="text" id="f_addr" name="productOrder.userAddress" class="input" />
+						<label for="f_addr">收件地址:</label><input type="text" id="f_addr" name="productOrder.userAddress" class="input l-input" />
 					</div>
 					<div class="row"><input type="submit" value="提交" class="btn"/></div>
 				</form>
@@ -189,13 +245,26 @@
 		<jsp:include page="./Foot.jsp"></jsp:include>
 	</div>
 	<script type="text/javascript">
-		new TabPannel({
-			container : $("#slide"),
-			triggerType : "hover",
-			headCS : ".smallpic",
-			itemCS : ".bigpic",
-			activeCls : "active"
+	(function(){
+		var pannel = new TabPannel({
+			container:$("#slide"),
+			triggerType:"click",
+			headCS:".slide-nums li",
+			itemCS:".slide-list-item",
+			activeCls:"active"
 		});
+		
+		setInterval(function(){
+			var next = pannel.getCurrent()+1;
+			if(next==pannel.getTotal()){next = 0}
+			pannel.select(next);
+		},5000);
+		
+		$(".side-banner .close").click(function(){
+			$(this).parent().remove();
+			return false;
+		});
+	})();
 	</script>
 </body>
 </html>
