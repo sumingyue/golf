@@ -8,7 +8,7 @@
 			</a> <a class="brand" href="index.do">苏州高尔夫网</a>
 			<div class="nav-collapse collapse">
 				<p class="navbar-text pull-right">
-					Logged in as <a href="#" class="navbar-link">Username</a>
+					Logged in as <a href="#" class="navbar-link">${session.user.userName}</a>
 				</p>
 				<ul class="nav">
 					<li class="active"><a href="#">Home</a></li>

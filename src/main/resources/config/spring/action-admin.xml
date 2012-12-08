@@ -223,4 +223,7 @@
 			<ref bean="adwordsService" />
 		</property>
 	</bean>
+	<bean id="loginAction" class="com.golf.action.LoginAction"
+		scope="prototype">
+	</bean>
 </beans>  

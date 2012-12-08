@@ -14,4 +14,4 @@ li{
 	list-style: none;
 }
 </STYLE>
-<s:actionerror />
+<s:actionerror/>

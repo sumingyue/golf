@@ -131,11 +131,11 @@ public class CourtAction extends ActionSupport {
 		return m_all;
 	}
 
-	public Collection<RaiderGroup> getGroups() {
+	public List<RaiderGroup> getGroups() {
 		Collection<RaiderGroup> values = m_groups.values();
 		List<RaiderGroup> result = new ArrayList<RaiderGroup>(values);
 		Collections.sort(result, new RadierGroupCompartor());
-		return values;
+		return result;
 	}
 
 	private AdwordsService m_adwordsService;
