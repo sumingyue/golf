@@ -185,18 +185,24 @@
 }
 
 #xincheluxian table .item {
-	border: 1px solid #999;
+	border: 1px solid #ccc;
+	background-color:#f5f5f5;
 	padding: 1px;
 }
 
 #xincheluxian .maps {
-	border: 1px solid #999;
-	padding: 1px;
+	border-top:1px dashed #ccc;
+	padding: 6px;
+}
+
+
+#xincheluxian .maps img{
+	float:left;
+	margin-right:10px;
 }
 
 #xincheluxian .maps .map {
 	display: none;
-	width: 200px;
 	height: 200px;
 }
 
@@ -206,6 +212,11 @@
 
 #qiuchangluxian {
 	
+}
+
+#qiuchangluxian img{
+	width:377px;
+	margin-bottom:5px;
 }
 
 #qiuchangluxian .mod-bd {
@@ -258,6 +269,7 @@
 					<s:property value="court.introduction" escape="false" />
 				</div>
 			</div>
+			
 			<div class="mod-box-horizon mod-box-horizon-last" id="pinjiajieshao">
 				<div class="mod-hd">评价介绍</div>
 				<div class="mod-bd">
@@ -267,39 +279,6 @@
 		</div>
 		<div class="clear"></div>
 		<div class="grid_14">
-			<div class="content">
-				<s:property value="court.customIntro" escape="false" />
-			</div>
-			<div class="mod-box-horizon">
-				<div class="mod-hd">最新评论</div>
-				<div class="mod-bd">
-					<ul class="comment-list">
-						<s:iterator value="courtComments" status="vs">
-							<li class="article-item"><a href="#"><s:property
-											value="userName" />：</a><span class="time"><s:property
-											value="content" /></span></li>
-						</s:iterator>
-					</ul>
-					<form action="courtComment.do" class="form">
-						<input type="hidden" size="30" name="comments.courtId"
-							value="<s:property value="court.id" />" />
-						<div class="row">
-							<label for="comments.userName">称呼：</label><input class="input"
-								type="text" size="30" name="comments.userName" />
-						</div>
-						<div class="row">
-							<label for="comments.content">内容：</label>
-							<textarea class="input" name="comments.content" rows="3"
-								cols="40"></textarea>
-						</div>
-						<div class="row">
-							<input type="submit" value="提交" class="btn" />
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-		<div class="grid_10">
 			<div class="mod-box-horizon" id="xincheluxian">
 				<div class="mod-hd">球道路线</div>
 				<div class="mod-bd">
@@ -315,10 +294,57 @@
 					</table>
 					<ul class="maps">
 						<s:iterator value="all" status="vs">
-							<s:if test="#vs.index==0"><li class="active map"><img src="<s:property value="image.path"/>" style="width:200px;height:200px;"/></li></s:if>
-							<s:else><li class="map"><img src="<s:property value="image.path"/>" style="width:200px;height:200px;"/></li></s:else>
+							<s:if test="#vs.index==0">
+							<li class="active map">
+								<img src="<s:property value="image.path"/>" style="width:200px;height:200px;"/>
+								<p>内容内容</p>
+							</li></s:if>
+							<s:else>
+							<li class="map">
+								<img src="<s:property value="image.path"/>" style="width:200px;height:200px;"/>
+								<p>内容内容</p>
+							</li>
+							</s:else>
 						</s:iterator>
 					</ul>
+				</div>
+			</div>
+			
+			
+			<div class="mod-box-horizon">
+				<div class="mod-hd">最新评论</div>
+				<div class="mod-bd">
+					<ul class="comment-list">
+						<s:iterator value="courtComments" status="vs">
+							<li class="article-item"><a href="#"><s:property
+											value="userName" />：</a><span class="time"><s:property
+											value="content" /></span></li>
+						</s:iterator>
+					</ul>
+					<form action="courtComment.do" class="form">
+						<input type="hidden" size="30" name="comments.courtId"
+							value="<s:property value="court.id" />" />
+						<div class="row">
+							<label for="comments.userName">称呼：</label><input class="input l-input"
+								type="text" size="30" name="comments.userName" />
+						</div>
+						<div class="row">
+							<label for="comments.content">内容：</label>
+							<textarea class="input l-input" name="comments.content" rows="3"
+								cols="40"></textarea>
+						</div>
+						<div class="row">
+							<input type="submit" value="提交" class="btn" style="margin-left:250px;" />
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="grid_10">
+			<div class="mod-box-horizon">
+				<div class="mod-hd">详细介绍</div>
+				<div class="mod-bd">
+					<s:property value="court.customIntro" escape="false" />
 				</div>
 			</div>
 			<div class="mod-box-horizon mod-box-horizon-last" id="qiuchangluxian">

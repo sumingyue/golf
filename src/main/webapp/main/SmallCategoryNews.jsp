@@ -6,21 +6,12 @@
 		<title>苏州高尔夫网</title>
 	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="css/news.css">
-	<style>
-	.mod-article-list{padding:8px;}
-	
-	.mod-article-list .article-item{margin:7px;font-size:13px;}
-	.adwords-full{height:198px;margin-bottom:5px;width:100%;}
-	.img-full-last{margin-bottom:0;}
-	.news-article-list{height:600px;}
-	.paginate{text-align:center;padding:5px 0;font-size:13px;background-color:#F0F7E7;}
-	</style>
 </head>
 <body youdao="bind">
 	<div class="wrap container_24">
 		<jsp:include page="./Head.jsp"></jsp:include>
 		<div class="clear"></div>
-		<div class="grid_17">
+		<div class="grid_17 main">
 		<div class="mod-box-horizon-last mod-box-horizon">
 		<div class="mod-hd">
 					您当前所在位置：首页 ->
@@ -31,7 +22,7 @@
 		<div class="mod-bd">
 			<ul class="mod-article-list news-article-list">
 				<s:iterator value="news" status="vs">
-					<li class="article-item"><a href="news.do?id=<s:property value="id"/>"><s:property
+					<li class="article-item ${vs.index%2==0?'even':'odd'}"><a href="news.do?id=<s:property value="id"/>"><s:property
 						value="title" /></a><span class="time"><s:property value="dateStr"/></span></li>
 				</s:iterator>
 			</ul>
