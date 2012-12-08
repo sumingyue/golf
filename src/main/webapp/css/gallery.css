@@ -5,6 +5,10 @@
 	margin-right: 7px;
 }
 
+.gallery .image-item img{
+	width:190px;
+}
+
 .gallery .image-item{
 	padding:40px 20px;
 }

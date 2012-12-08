@@ -213,5 +213,15 @@
 	margin-left:970px;
 }
 
-.left-banner .close{display:block;text-align:right;}
-.right-banner .close{display:block;text-align:left;}
+.side-banner .banner-img{
+	position:relative;
+}
+.side-banner .close{
+	background-color:#F0F7E7;
+	padding:3px;
+	color:#333;
+	position:absolute;
+	z-index:999;
+}
+.left-banner .close{top:0;right:0;}
+.right-banner .close{top:0;left:0;}

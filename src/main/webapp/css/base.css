@@ -11,7 +11,7 @@ body {
 }
 a{text-decoration: none;color:#333;}
 a:hover{color:#933;}
-img{display: block;}
+img{display: block;border:none;}
 ul,li{list-style-type: none;}
 
 body {
@@ -212,7 +212,7 @@ body {
   height: 50px;
   margin-bottom:5px;
 }
-
+/* 
 #nav_index{background-image:url(../img/dot1.jpg);}
 #nav_news{background-image:url(../img/dot2.jpg);}
 #nav_match{background-image:url(../img/dot3.jpg);}
@@ -227,17 +227,23 @@ body {
 #nav_zhuanti{background-image:url(../img/zhuanti.jpg);}
 #nav_pic{background-image:url(../img/pic.jpg);}
 #nav_qiudui{background-image:url(../img/qiudui.jpg);}
-#nav_zixun{background-image:url(../img/zixun.jpg);}
-
+#nav_zixun{background-image:url(../img/zixun.jpg);} */
+ 
 .nav .nav-list-item{float:left;margin: 0 3px;}
 .nav .nav-list-item .nav-list-tit{
-  line-height: 60px;
-  background-repeat:no-repeat;
-  display: block;
-  width: 28px;
-  float: left;
-  text-indent:-9999px;
-  background-position: 0 -10px;
+  	background-repeat: no-repeat;
+	display: block;
+	width: 28px;
+	float: left;
+	background-position: 0 -10px;
+	font-size: 15px;
+	position: relative;
+	top: 6px;
+	left: 7px;
+	color:#f5da59;
+	line-height:18px;
+	font-weight:bold;
+	text-shadow:2px 2px 1px #333;
 }
 .nav .nav-list-item .nav-sub-menu{
   margin: 5px 0 5px 30px;

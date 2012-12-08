@@ -27,7 +27,11 @@
 			margin-top:5px;
 		}
 		.image-item{width:130px;}
-		
+		.image-item .label{
+			float:left;
+			width:60px;
+			text-align:right;
+		}
 		.image-item img{
 			width:100%;
 		}
