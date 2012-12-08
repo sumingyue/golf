@@ -16,7 +16,11 @@
 		<!-- 单行大广告 -->
 		<jsp:include page="./Head.jsp"></jsp:include>
 		<!--  导航 -->
-
+		<div class="grid_24">
+			<a href="${adwordsService.adwords[0].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[0].image.path}"
+				height="70" border="0"></a>
+		</div>
 		<div class="clear"></div>
 		<!-- 一行 -->
 		<div class="grid_7 slide-list-container" id="slide">

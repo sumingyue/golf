@@ -1,15 +1,15 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <div class="clear"></div>
-		<div class="grid_4">
+	<!-- <div class="grid_4">
 			<div class="logo">
 				<img src="./img/logo.jpg" class="img-full" alt="" height="70"
 					border="0">
 			</div>
-		</div>
-<div class="grid_12">
+		</div> -->	
+<div class="grid_24" style="text-align:right">
 <form class="searchform" method="get" action="">
-          站内搜索<input name="srchtxt" type="text" class="nav10" id="srchtxt" value="">
-          <input type="submit" class="nav12" name="button" id="button" value="搜索">
+         首页  加入收藏  设为首页  联系我们  <input name="srchtxt" type="text" class="nav10" id="srchtxt" value="">
+          <input type="submit" class="nav12" name="button" id="button" value="站内搜索">
         </form>
 </div>
 <ul class="nav grid_24 ">
@@ -85,9 +85,3 @@
 			<li class="nav-sub-item"><a href="addNews.do">赛事服务</a></li>
 		</ul></li>
 </ul>
-
-<div class="grid_24">
-			<a href="${adwordsService.adwords[0].url}" target="_blank"><img
-				class="img-full" src="${adwordsService.adwords[0].image.path}"
-				height="70" border="0"></a>
-		</div>
