@@ -91,6 +91,20 @@
 								<td><s:property value="address" /></td>
 								<td><s:property value="phone" /></td>
 								</tr>
+								<tr class="${vs.index%2==0?'odd':'even'}">
+								<td><a href="court.do?id=${id}"><s:property value="name" /></a></td>
+								<td><s:property value="address" /></td>
+								<td><s:property value="phone" /></td>
+								</tr>
+								<tr class="${vs.index%2==0?'odd':'even'}">
+								<td><a href="court.do?id=${id}"><s:property value="name" /></a></td>
+								<td><s:property value="address" /></td>
+								<td><s:property value="phone" /></td>
+								</tr><tr class="${vs.index%2==0?'odd':'even'}">
+								<td><a href="court.do?id=${id}"><s:property value="name" /></a></td>
+								<td><s:property value="address" /></td>
+								<td><s:property value="phone" /></td>
+								</tr>
 							</s:iterator>
 						</table>
 					</div>

@@ -73,8 +73,8 @@
 				<s:property value="pagedTool.pageSize"/>条记录/页&nbsp;
 			</div>
 			</div>
-			<jsp:include page="./Foot.jsp"></jsp:include>
 		</div>
+			<jsp:include page="./Foot.jsp"></jsp:include>
 		<script type="text/javascript">
 		var tabPannel = new TabPannel({
 			container:$("#gallery"),

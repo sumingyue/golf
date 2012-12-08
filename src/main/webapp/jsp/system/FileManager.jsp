@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld"%>
-<html>
+<!DOCTYPE html><html>
 <head>
 <title>图片列表</title>
 <script type="text/javascript">

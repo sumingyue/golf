@@ -1,8 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld"%>
 <%@ taglib uri="http://ckeditor.com" prefix="ckeditor"%>
-
-<html>
+<!DOCTYPE html><html>
 <head>
 <title>苏州高尔夫网</title>
 
@@ -60,25 +59,10 @@ var calendar = null;
 		<jsp:include page="./Head.jsp"></jsp:include>
 
 		<div class="grid_24">
-			<h2 style="text-align:center;color:#666;font-size:16px">新增新闻</h2>
+			<h2 style="text-align:center;color:#666;font-size:16px">用户新增新闻</h2>
 			<form action="addNewsSub.do" id="form" method="post"
 				enctype="multipart/form-data">
 				<table align="center" cellpadding="2" cellspacing="1" width="100%">
-					<%-- <tr>
-						<td width="15%" class="left">一级分类<span style='color: red'>*</span></td>
-						<td class="right"><s:select name="news.categoryId"
-								onchange="categoryChanged()"
-								list="categoryList" listKey="id" listValue="name"
-								value="categoryId" theme="simple" cssClass="select">
-							</s:select></td>
-					</tr>
-					<tr>
-						<td width="15%" class="left">二级分类<span style='color: red'>*</span></td>
-						<td class="right"><select id="news_smallCategoryId"
-							name="news.smallCategoryId" class="select">
-								<option value="0">_ALL</option>
-						</select></td>
-					</tr> --%>
 					<tr>
 						<td width="15%" class="left">新闻标题<span style='color: red'>*</span></td>
 						<td class="right"><input type="text" size="50"
@@ -129,7 +113,7 @@ var calendar = null;
 										<option value="9">9</option>
 										<option value="10">10</option>
 								</select> | --%>
-							</font><input type="text" size="14"
+							</font><input type="text" size="20"
 								name="news.validateDate" id="news.validateDate" /> <img
 								src="img/calendar.gif"
 								onclick="showCalendar('news.validateDate');"></td>

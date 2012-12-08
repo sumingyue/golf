@@ -82,10 +82,10 @@
 		<action name="addMessage" class="userMessageAction" method="userMessageAddSubmit">
 			<result name="success" type="redirect">uml.action</result>
 		</action>
-		<action name="special" class="specialNewsAction" method="specialNewsUpdate" >
+		<action name="special" class="userSpecialNewsAction" method="specialNewsUpdate" >
 			<result name="success">main/SpecialNews.jsp</result>
 		</action>
-		<action name="specials" class="specialNewsAction" method="specialNewsList">
+		<action name="specials" class="userSpecialNewsAction" method="specialNewsList">
 			<result name="success">main/SpecialNewsList.jsp</result>
 		</action>
 	</package>	

@@ -83,6 +83,7 @@
 		</s:iterator>
 		
 		<jsp:include page="./Foot.jsp"></jsp:include>
+		
 	</div>
 	<script type="text/javascript">
 

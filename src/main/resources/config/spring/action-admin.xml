@@ -214,4 +214,13 @@
 			<ref bean="matchServiceService" />
 		</property>
 	</bean>
+	<bean id="specialNewsAction" class="com.golf.action.SpecialNewsAction"
+		scope="prototype">
+		<property name="specialNewsService">
+			<ref bean="specialNewsService" />
+		</property>
+		<property name="adwordsService">
+			<ref bean="adwordsService" />
+		</property>
+	</bean>
 </beans>  

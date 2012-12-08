@@ -28,10 +28,10 @@
 			</ul>
 			<div class="paginate">
 				共&nbsp;<s:property value="pagedTool.totalNumber"/>&nbsp;条记录
-				<a href="sc.do?pagedTool.pageIndex=0">首页</a>&nbsp;&nbsp;
-				<a href="sc.do?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex-1"/>&id=<s:property value="smallCategoryId"/>">上一页</a>&nbsp;&nbsp;
-				<a href="sc.do?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex+1"/>&id=<s:property value="smallCategoryId"/>">下一页</a>&nbsp;&nbsp;
-				<a href="sc.do?pagedTool.pageIndex=<s:property value="pagedTool.totalPage"/>&id=<s:property value="smallCategoryId"/>">末页</a>&nbsp;&nbsp;
+				<a href="?index=0">首页</a>&nbsp;&nbsp;
+				<a href="?index=<s:property value="pagedTool.pageIndex-1"/>&id=<s:property value="smallCategoryId"/>">上一页</a>&nbsp;&nbsp;
+				<a href="?index=<s:property value="pagedTool.pageIndex+1"/>&id=<s:property value="smallCategoryId"/>">下一页</a>&nbsp;&nbsp;
+				<a href="?index=<s:property value="pagedTool.totalPage"/>&id=<s:property value="smallCategoryId"/>">末页</a>&nbsp;&nbsp;
 				共&nbsp;<s:property value="pagedTool.totalPage"/>&nbsp;页,当前第&nbsp;<s:property value="pagedTool.pageIndex"/>页&nbsp;
 				<s:property value="pagedTool.pageSize"/>条记录/页&nbsp;
 			</div>

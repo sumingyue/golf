@@ -42,6 +42,8 @@ public class TeamAction extends ActionSupport {
 	private List<TeamNews> m_news3;
 
 	private List<TeamNews> m_news4;
+	
+	private List<TeamNews> m_news5;
 
 	private int m_teamNewsId;
 
@@ -68,6 +70,7 @@ public class TeamAction extends ActionSupport {
 		m_news2 = m_teamNewsService.queryNewByTeamAndType(8, m_teamId, 2);
 		m_news3 = m_teamNewsService.queryNewByTeamAndType(8, m_teamId, 3);
 		m_news4 = m_teamNewsService.queryNewByTeamAndType(8, m_teamId, 4);
+		m_news5 = m_teamNewsService.queryNewByTeamAndType(8, m_teamId, 5);
 
 		m_images = m_teamMemberImageService.queryAllTeamMemberImages(m_teamId);
 
@@ -204,6 +207,10 @@ public class TeamAction extends ActionSupport {
 	
 	public void setIndex(int index){
 		m_pagedTool.setPageIndex(index);
+	}
+
+	public List<TeamNews> getNews5() {
+		return m_news5;
 	}
 	
 }

@@ -173,7 +173,7 @@
 			<ref bean="categoryService" />
 		</property>
 	</bean>
-	<bean id="specialNewsAction" class="com.golf.action.SpecialNewsAction"
+	<bean id="userSpecialNewsAction" class="com.golf.main.SpecialNewsAction"
 		scope="prototype">
 		<property name="specialNewsService">
 			<ref bean="specialNewsService" />

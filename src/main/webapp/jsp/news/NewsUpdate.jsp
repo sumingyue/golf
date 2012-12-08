@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld"%>
 <%@ taglib uri="http://ckeditor.com" prefix="ckeditor"%>
-
-<html>
+<!DOCTYPE html>
+<!DOCTYPE html><html>
 <head>
 <title>苏州高尔夫后台管理系统</title>
 

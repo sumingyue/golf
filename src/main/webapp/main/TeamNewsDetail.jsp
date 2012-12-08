@@ -52,6 +52,7 @@
 					<s:elseif test="teamNews.type==2">活动报道</s:elseif>
 					<s:elseif test="teamNews.type==3">月历成绩</s:elseif>
 					<s:elseif test="teamNews.type==4">精彩图文</s:elseif>
+					<s:elseif test="teamNews.type==5">规章制度</s:elseif>
 					> 正文</div>
 		<div class="article">
 						<div class="arc-head">
