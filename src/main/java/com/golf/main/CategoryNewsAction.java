@@ -23,6 +23,8 @@ public class CategoryNewsAction extends ActionSupport {
 	private AdwordsService m_adwordsService;
 
 	private ImageService m_imageService;
+	
+	private Category m_category;
 
 	private int m_categoryId;
 
@@ -34,6 +36,7 @@ public class CategoryNewsAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
+		m_category = m_categoryService.findCategory(m_categoryId);
 		List<News> hotNews = m_newsService.queryHotNewsByCategoryId(15, m_categoryId);
 		NewsGroup group1 = new NewsGroup();
 		NewsGroup group2 = new NewsGroup();
@@ -158,5 +161,14 @@ public class CategoryNewsAction extends ActionSupport {
 			m_news = news;
 		}
 	}
+
+	public Category getCategory() {
+		return m_category;
+	}
+
+	public void setCategory(Category category) {
+		m_category = category;
+	}
+
 
 }

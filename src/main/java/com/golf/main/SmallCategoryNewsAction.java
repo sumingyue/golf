@@ -20,25 +20,35 @@ public class SmallCategoryNewsAction extends ActionSupport {
 	private AdwordsService m_adwordsService;
 
 	private int m_smallCategoryId;
-	
+
 	private List<News> m_news;
-	
+
 	private SmallCategory m_smallCategory;
-	
+
 	private CategoryService m_categoryService;
-	
+
 	private List<News> m_latestNews;
 
 	private PagedTool m_pagedTool = new PagedTool(Config.NEWS_PAGED_NUMBER);
-	
+
+	private String m_keyword;
+
+	public String queryNews(){
+		List<News> news = m_newsService.queryNewsByKeyWord(m_keyword);
+		m_pagedTool.setTotalNumber(news.size());
+		m_news = news.subList(m_pagedTool.getFromIndex(), m_pagedTool.getToIndex());
+		m_latestNews = m_newsService.queryFixedLatestNewsByCategoryId(8, 0);
+		return SUCCESS;
+	}
+
 	@Override
 	public String execute() throws Exception {
 		m_smallCategory = m_categoryService.findSmallCategory(m_smallCategoryId);
-		int totalSize = m_newsService.queryTotalSize(0,m_smallCategoryId);
+		int totalSize = m_newsService.queryTotalSize(0, m_smallCategoryId);
 		m_pagedTool.setTotalNumber(totalSize);
-		
+
 		m_news = m_newsService.queryPagedNews(m_pagedTool, 0, m_smallCategoryId);
-		m_latestNews = m_newsService.queryFixedLatestNewsByCategoryId(8,m_smallCategory.getCategoryId());
+		m_latestNews = m_newsService.queryFixedLatestNewsByCategoryId(8, m_smallCategory.getCategoryId());
 		return SUCCESS;
 	}
 
@@ -81,17 +91,26 @@ public class SmallCategoryNewsAction extends ActionSupport {
 	public void setCategoryService(CategoryService categoryService) {
 		m_categoryService = categoryService;
 	}
-	
+
 	public AdwordsService getAdwordsService() {
 		return m_adwordsService;
 	}
 
-	public void setIndex(int index){
+	public void setIndex(int index) {
 		m_pagedTool.setPageIndex(index);
 	}
 
 	public List<News> getLatestNews() {
 		return m_latestNews;
 	}
+
+	public String getKeyword() {
+		return m_keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		m_keyword = keyword;
+	}
 	
+
 }

@@ -250,17 +250,30 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 	}
 
 	@Override
-   public List<News> queryFixedLatestNewsByCategoryId(int size, int categoryId) {
+	public List<News> queryFixedLatestNewsByCategoryId(int size, int categoryId) {
 		List<News> all = queryAllShowNews(categoryId, 0);
 		Collections.sort(all, new DefaultNewsCompartor());
 
 		return resizeList(all, size);
 
-   }
+	}
 
 	@Override
-   public int increaseVisiteNumber(int id,int type) {
-		return m_newsDao.update(id,type);
-   }
+	public int increaseVisiteNumber(int id, int type) {
+		return m_newsDao.update(id, type);
+	}
+
+	@Override
+	public List<News> queryNewsByKeyWord(String keyword) {
+		List<News> all = queryAllShowNews(0, 0);
+		List<News> result = new ArrayList<News>();
+		for (News temp : all) {
+			if (temp.getTitle().indexOf(keyword) > -1 || temp.getKeyword().indexOf(keyword) > -1) {
+				result.add(temp);
+			}
+		}
+		Collections.sort(result, new DefaultNewsCompartor());
+		return result;
+	}
 
 }

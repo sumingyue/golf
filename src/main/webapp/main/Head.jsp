@@ -7,9 +7,9 @@
 			</div>
 		</div> -->	
 <div class="grid_24" style="text-align:right">
-<form class="searchform" method="get" action="">
-         首页  加入收藏  设为首页  联系我们  <input name="srchtxt" type="text" class="nav10" id="srchtxt" value="">
-          <input type="submit" class="nav12" name="button" id="button" value="站内搜索">
+<form class="searchform" method="get" action="queryNews.do">
+          加入收藏  设为首页  联系我们  <input name="keyword" type="text" class="nav10" id="srchtxt" value="">
+          <input type="submit"  value="站内搜索">
         </form>
 </div>
 <ul class="nav grid_24 ">
