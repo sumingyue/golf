@@ -15,7 +15,7 @@
 		<div class="grid_24">
 			<div class="bread-crumbs">
 					您当前所在位置：首页 -&gt;
-					高球新闻
+					${category.name}
 				</div>
 		</div>	
 		<div class="grid_24">

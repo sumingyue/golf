@@ -6,32 +6,37 @@
 		<title>苏州高尔夫网</title>
 	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="css/news.css">
+	<style>
+	.mod-article-list{padding:8px;}
+	.mod-article-list .article-item{margin:7px;font-size:13px;}
+	.adwords-full{height:198px;margin-bottom:5px;width:100%;}
+	.img-full-last{margin-bottom:0;}
+	.news-article-list{height:600px;}
+	.paginate{text-align:center;padding:5px 0;font-size:13px;background-color:#F0F7E7;}
+	</style>
 </head>
 <body>
 	<div class="wrap container_24">
 		<jsp:include page="./Head.jsp"></jsp:include>
 		<div class="clear"></div>
-		<div class="grid_17 main">
+		<div class="grid_17">
 		<div class="mod-box-horizon-last mod-box-horizon">
 		<div class="mod-hd">
-					您当前所在位置：首页 ->
-					<s:property value="smallCategory.category.name" />
-					->
-					<s:property value="smallCategory.name" />
+					您当前所在位置：首页 ->新闻查询
 				</div>
 		<div class="mod-bd">
 			<ul class="mod-article-list news-article-list">
 				<s:iterator value="news" status="vs">
-					<li class="article-item ${vs.index%2==0?'even':'odd'}"><a href="news.do?id=<s:property value="id"/>"><s:property
+					<li class="article-item"><a href="news.do?id=<s:property value="id"/>"><s:property
 						value="title" /></a><span class="time"><s:property value="dateStr"/></span></li>
 				</s:iterator>
 			</ul>
 			<div class="paginate">
 				共&nbsp;<s:property value="pagedTool.totalNumber"/>&nbsp;条记录
-				<a href="sc.do?pagedTool.pageIndex=0">首页</a>&nbsp;&nbsp;
-				<a href="sc.do?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex-1"/>&id=<s:property value="smallCategoryId"/>">上一页</a>&nbsp;&nbsp;
-				<a href="sc.do?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex+1"/>&id=<s:property value="smallCategoryId"/>">下一页</a>&nbsp;&nbsp;
-				<a href="sc.do?pagedTool.pageIndex=<s:property value="pagedTool.totalPage"/>&id=<s:property value="smallCategoryId"/>">末页</a>&nbsp;&nbsp;
+				<a href="?index=0&keyword=<s:property value="keyword"/>">首页</a>&nbsp;&nbsp;
+				<a href="?index=<s:property value="pagedTool.pageIndex-1"/>&keyword=<s:property value="keyword"/>">上一页</a>&nbsp;&nbsp;
+				<a href="?index=<s:property value="pagedTool.pageIndex+1"/>&keyword=<s:property value="keyword"/>">下一页</a>&nbsp;&nbsp;
+				<a href="?index=<s:property value="pagedTool.totalPage"/>&keyword=<s:property value="keyword"/>">末页</a>&nbsp;&nbsp;
 				共&nbsp;<s:property value="pagedTool.totalPage"/>&nbsp;页,当前第&nbsp;<s:property value="pagedTool.pageIndex"/>页&nbsp;
 				<s:property value="pagedTool.pageSize"/>条记录/页&nbsp;
 			</div>

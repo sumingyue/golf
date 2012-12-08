@@ -31,6 +31,8 @@ public interface NewsService {
 	public List<News> queryFixedNewsByCategoryId(int size, int categoryId);
 	//获取大分类的最新新闻
 	public List<News> queryFixedLatestNewsByCategoryId(int i, int categoryId);
+	//查询新闻
+	public List<News> queryNewsByKeyWord(String keyword);
 
 	public int increaseVisiteNumber(int id,int type);
 	
