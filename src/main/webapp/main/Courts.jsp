@@ -11,11 +11,8 @@
 #table-container .mod-bd{
 	position:relative;
 }
-.paginate{
-	bottom:0;
-	position:absolute;
-	width:100%;
-	text-align:center;
+#table-container td{
+	padding:8px;
 }
 </style>
 </head>
