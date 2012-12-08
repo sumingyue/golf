@@ -14,5 +14,11 @@
 
 	.news-article .article-item{border-bottom:1px dashed #ccc;padding:10px 0;width:350px;text-align: center}
 	
+	.main .mod-article-list .article-item{padding:7px;font-size:13px;}
+	.main .mod-article-list{padding:8px;}
+	.main .mod-article-list .article-item{margin:7px;font-size:13px;}
+	.adwords-full{height:198px;margin-bottom:5px;width:100%;}
+	.img-full-last{margin-bottom:0;}
+	
 	.headline{width:365px;height:100px;}
 	.headline .mod-bd .news-item a{padding:8px 10px}

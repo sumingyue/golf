@@ -1,5 +1,4 @@
 .mod-box-horizon .mod-bd{
-	height: 230px; 
 	overflow:hidden;
 }
 .arc-head {
@@ -28,12 +27,12 @@
 	margin-bottom: 15px;
 	line-height: 22px;
 }
-.mod-hd{
-	text-align:center;
-}
-.mod-bd {
+
+.article,.comment-list,.hot-pic,.form {
 	padding: 30px;
 }
+
+.form{}
 
 .mod-article-list {
 	margin: 10px 0 30px 0;
@@ -47,9 +46,6 @@
 	height:300px;
 }
 
-.comment-list{
-	margin-bottom:30px;
-}
 
 .comment-list .article-item{
 	padding:3px 5px;
@@ -62,7 +58,7 @@
 	display:block;
 }
 
-.comment-list .article-item a{float:left;color:#930;}
+.comment-list .article-item a{float:left;color:#930;text-align:right;width:60px;}
 .comment-list .article-item span{}
 
 .hot-pic .gallery img{
@@ -70,10 +66,7 @@
 	height:90px;
 }
 
-.row{margin-bottom:5px;}
-.row{margin-bottom:5px;}
-.row .input{border:1px solid #999;width:295px;}
-.row label{float:left;}
-.row .btn{margin-left:300px;}
+.form .btn{margin-left:250px;}
+.form textarea{width:500px;}
 .adwords-full{height:198px;margin-bottom:5px;width:100%;}
 	

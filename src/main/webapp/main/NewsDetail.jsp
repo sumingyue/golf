@@ -66,14 +66,15 @@
 											value="content" /></span></li>
 							</s:iterator>
 					</ul>
-					<form action="comment.do" class="from">
+					<form action="comment.do" class="form">
 						<input type="hidden" size="30" name="comments.newsId" value="<s:property value="news.id" />"/>
 						<div class="row">
-							<label for="comments.userName">称呼：</label><input class="input" type="text" size="30" name="comments.userName" />
+							<label for="comments.userName">称呼：</label>
+							<input class="input l-input" type="text" size="30" name="comments.userName" />
 						</div>
 						<div class="row">
 							<label for="comments.content">内容：</label>
-							<textarea  class="input" name="comments.content"  rows="3" cols="40"></textarea>
+							<textarea  class="input l-input" name="comments.content"  rows="3" cols="40"></textarea>
 						</div>
 						<div class="row">
 							<input type="submit" value="提交" class="btn" />

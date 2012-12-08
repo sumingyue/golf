@@ -199,29 +199,3 @@
 	float:left;
 }
 
-.side-banner{
-	top:50px;
-	position:fixed;
-}
-.side-banner img{
-	margin-bottom:150px;
-}
-.left-banner{
-	margin-left: -160px;
-}
-.right-banner{
-	margin-left:970px;
-}
-
-.side-banner .banner-img{
-	position:relative;
-}
-.side-banner .close{
-	background-color:#F0F7E7;
-	padding:3px;
-	color:#333;
-	position:absolute;
-	z-index:999;
-}
-.left-banner .close{top:0;right:0;}
-.right-banner .close{top:0;left:0;}
