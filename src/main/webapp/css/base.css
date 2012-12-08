@@ -272,7 +272,7 @@ body {
   width:100%;
 }
 .slide-list .slide-list-tit{
-  background-color:rgba(0,0,0,0.4);
+  background-color:rgba(0,0,0,0.3);
   line-height:30px;
   color:#fff;
   display:block;
@@ -350,6 +350,13 @@ body {
 	border-spacing:0;
 	border-left:1px solid #c2d39f;
 	border-top:1px solid #c2d39f;
+}
+
+.table .odd td{
+	background-color:#f5f5f5;
+}
+.table .even{
+	
 }
 
 .table th,.table td{

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <div class="ft grid_24">
-	<p>运营商：苏州高尔夫网 本站域名：www.szgolfer.com</p>
+	<p style="background-color:#72A354;text-align:center;padding:7px;margin-bottom:15px;color:#fff;">运营商：苏州高尔夫网 本站域名：www.szgolfer.com</p>
 	<p>
 		联系电话：13915501650 投稿信箱：szgolfer@163.com <a
 			href="http://www.miibeian.gov.cn/" target="_blank">苏ICP备08114614号</a>

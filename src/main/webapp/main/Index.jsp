@@ -43,9 +43,26 @@
 		<div class="grid_7 slide-list-container" id="slide">
 			<ul class="slide-list">
 			<s:iterator value="imageNews" status="vs">
-				<li class="active slide-list-item"><img class="slide-list-img"
+				<s:if test="#vs.index==0">
+					<li class="active slide-list-item"><img class="slide-list-img"
 					src="${image.path}"
 					alt=""> <a class="slide-list-tit" href="news.do?id=${id}">${smallTitle}</a></li>
+				</s:if>
+				<s:else>
+					<li class="slide-list-item"><img class="slide-list-img"
+					src="${image.path}"
+					alt=""> <a class="slide-list-tit" href="news.do?id=${id}">${smallTitle}</a></li>
+				</s:else>
+			</s:iterator>
+			</ul>
+			<ul class="slide-nums">
+			<s:iterator value="imageNews" status="vs">
+				<s:if test="#vs.index==0">
+					<li class="active"><a href="#">${vs.index+1}</a></li>
+				</s:if>
+				<s:else>
+					<li><a href="#">${vs.index+1}</a></li>
+				</s:else>
 			</s:iterator>
 			</ul>
 		</div>
@@ -81,7 +98,7 @@
 			</div>
 		</div>
 		<div class="grid_7">
-			<div class="mod-box-horizon mod-box-horizon-last">
+			<div class="mod-box-horizon mod-box-horizon-last" id="zhuantiqu">
 				<div class="mod-hd"><span class="more"><a href="specials.do" target="_blank">更多</a></span><a href="specials.do" target="_blank">专题区</a></div>
 				<div class="mod-bd" style="height: 268px; overflow: hidden;">
 					<ul class="mod-article-list">
@@ -220,6 +237,10 @@
 					 
 					<ul class="mod-article-list">
 						<s:iterator value="courts" status="vs">
+							<li class="article-item"><a
+								href="court.do?id=<s:property value="id"/>" target="_blank"><s:property
+										value="name" /></a></li>
+										
 							<li class="article-item"><a
 								href="court.do?id=<s:property value="id"/>" target="_blank"><s:property
 										value="name" /></a></li>
@@ -464,7 +485,7 @@
 									<td width="45%">球员</td>
 									<td width="40%">积分</td></tr>
 								<s:iterator value="jiFenPlayers" status="status">
-									<tr>
+									<tr class="${status.index%2==0?'odd':'even'}">
 										<td>${status.index+1}</td>
 										<td>${name}</td>
 										<td>${score}</td>
@@ -481,9 +502,10 @@
 									<td width="45%">球员</td>
 									<td width="40%">奖金</td></tr>
 								<s:iterator value="jiangJinPlayers" status="status">
-									<tr><td>${status.index+1}</td>
+									<tr class="${status.index%2==0?'odd':'even'}">
+										<td>${status.index+1}</td>
 										<td>${name}</td>
-										<td>${bonusStr}$</td>
+										<td>$${bonusStr}</td>
 									</tr>
 								</s:iterator>
 							</table>
@@ -494,42 +516,61 @@
 		</div>
 		<div class="clear"></div>
 		<div class="grid_24">
-			<table width="100%">
-				<tr>
-					<td width="25%">合作媒体</td><td width="25%"></td>
-					<td width="25%"></td><td width="25%"></td><td width="25%"></td>
-				</tr>
+			<div class="mod-box-horizon">
+				<div class="mod-hd">
+					合作媒体
+				</div>
+				<div class="mod-bd">
+					<ul class="link-list">
 				<s:iterator value="heZuoMedias" status="status">
-					<s:if test="#status.index%5==0">
-						<tr>
-					</s:if>
-					<td width="25%"><a href="${url}">${name}</a></td>
-					<s:if test="#status.index%5==4||#status.last">
-						</tr>
-					</s:if>
-				</s:iterator>
-			</table>
+						<li><a href="${url}">${name}</a></li>
+					</s:iterator>
+					</ul>
+				</div>
+			</div>
 		</div>
 		<br>
 		<div class="grid_24">
-			<table width="100%">
-				<tr>
-					<td colspan="5">友情链接</td><td width="25%"></td>
-					<td width="25%"></td><td width="25%"></td><td width="25%"></td>
-				</tr>
-				<s:iterator value="youQingMedias" status="status">
-					<s:if test="#status.index%5==0">
-						<tr>
-					</s:if>
-					<td width="25%"><a href="${url}">${name}</a></td>
-					<s:if test="#status.index%5==4||#status.last">
-						</tr>
-					</s:if>
-				</s:iterator>
-			</table>
+			<div class="mod-box-horizon">
+				<div class="mod-hd">
+					友情链接
+				</div>
+				<div class="mod-bd">
+					<ul class="link-list">
+					<s:iterator value="youQingMedias" status="status">
+						<li><a href="${url}">${name}</a></li>
+					</s:iterator>
+					</ul>
+				</div>
+			</div>
 		</div>
 
 		<jsp:include page="./Foot.jsp"></jsp:include>
+		
+		
+	<div class="left-banner side-banner">
+		<div>
+			<a href="#" class="close">x</a>
+			<img src="/admin/uploadfile/201052817314883032.jpg" width="146" height="99" border="0">
+		</div>
+		<div>
+			<a href="#" class="close">x</a>
+			<img src="/admin/uploadfile/201052817314883032.jpg" width="146" height="99" border="0">
+		</div>
 	</div>
+	
+	<div class="right-banner side-banner">
+		<div>
+			<a href="#" class="close">x</a>
+			<img src="/admin/uploadfile/201052817314883032.jpg" width="146" height="99" border="0">
+		</div>
+		<div>
+			<a href="#" class="close">x</a>
+			<img src="/admin/uploadfile/201052817314883032.jpg" width="146" height="99" border="0">
+		</div>
+	</div>
+	
+	</div>
+	
 </body>
 </html>
