@@ -168,7 +168,7 @@
 		</div>
 		<div class="grid_10">
 			<div class="mod-box-horizon  news-block">
-				<div class="mod-hd"><span class="more"><a href="c.do?id=2" target="_blank">更多</a></span>赛事新闻</div>
+				<div class="mod-hd"><span class="more"><a href="c.do?id=2" target="_blank">更多</a></span><a href="c.do?id=2" target="_blank">赛事新闻</a></div>
 				<div class="mod-bd">
 					<div class="headline">
 						<h3 class="mod-hd">
@@ -197,7 +197,7 @@
 
 			<div class="mod-box-vertical mod-box-vertical-last" id="tupianji">
 				<div class="mod-hd">
-					<h3><a href="uis.do" target="_blank">图片专题</a></h3>
+					<h3><a href="pics.do" target="_blank">图片专题</a></h3>
 				</div>
 				<div class="mod-bd">
 					<ul class="gallery">
@@ -212,7 +212,7 @@
 		</div>
 		<div class="grid_7">
 			<div class="mod-box-horizon mod-box-horizon" id="lianxichang">
-				<div class="mod-hd"><span class="more"><a href="sc.do?id=32" target="_blank">更多</a></span>球场</div>
+				<div class="mod-hd"><span class="more"><a href="club.do" target="_blank">更多</a></span><a href="club.do" target="_blank">球场</a></div>
 				<div class="mod-bd">
 					<a href="court.do?id=${courtImage.courtId}"><img
 						src="${courtImage.image.path}"

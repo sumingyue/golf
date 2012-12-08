@@ -76,14 +76,7 @@ public class ImageSpecialDetailAction extends ActionSupport {
 	public String imageSpecialDetailAddSubmit() {
 		try {
 			if (m_upload != null) {
-				String relativePath = Config.IMAGE_PATH
-				      + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.COURT);
-				String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-				m_uploadFile.setPath(relativePath);
-				m_uploadFile.setStorePath(storePath);
-
-				int imageId = m_imageService.insert(m_upload, m_uploadFile, Image.COURT);
+				int imageId = insertImage();
 				m_imageSpecialDetail.setImageId(imageId);
 			}
 			int id = m_imageSpecialDetailService.insertImageSpecialDetail(m_imageSpecialDetail);
@@ -114,14 +107,7 @@ public class ImageSpecialDetailAction extends ActionSupport {
 	public String imageSpecialDetailUpdateSubmit() {
 		try {
 			if (m_upload != null) {
-				String relativePath = Config.IMAGE_PATH
-				      + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.COURT);
-				String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-				m_uploadFile.setPath(relativePath);
-				m_uploadFile.setStorePath(storePath);
-
-				int imageId = m_imageService.insert(m_upload, m_uploadFile, Image.COURT);
+				int imageId = insertImage();
 				m_imageSpecialDetail.setImageId(imageId);
 			} else {
 				m_imageSpecialDetail.setImageId(m_imageSpecialDetailService.findImageSpecialDetail(m_imageSpecialDetail.getId()).getImageId());
@@ -137,6 +123,18 @@ public class ImageSpecialDetailAction extends ActionSupport {
 			return ERROR;
 		}
 	}
+
+	private int insertImage() {
+	   String relativePath = Config.IMAGE_PATH
+	         + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.PIC);
+	   String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
+
+	   m_uploadFile.setPath(relativePath);
+	   m_uploadFile.setStorePath(storePath);
+
+	   int imageId = m_imageService.insert(m_upload, m_uploadFile, Image.PIC);
+	   return imageId;
+   }
 
 	public String imageSpecialDetailDelete() {
 		try {

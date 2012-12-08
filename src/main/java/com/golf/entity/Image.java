@@ -13,8 +13,10 @@ public class Image {
 	public static final int TEAM = 4;
 
 	public static final int COURT = 5;
+	
+	public static final int PIC=6;
 
-	public static final int OTHER = 6;
+	public static final int OTHER = 7;
 
 	private int m_id;
 

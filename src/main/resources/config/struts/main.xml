@@ -49,6 +49,9 @@
 		<action name="court" class="userCourtAction" >
 			<result name="success">main/CourtDetail.jsp</result>
 		</action>
+		<action name="courtComment" class="userCourtAction" method="addComment">
+			<result name="success" type="redirect">court.action?id=${courtId}</result>
+		</action>
 		<action name="orderCourt" >
 			<result name="success">main/CourtOrder.jsp</result>
 		</action>

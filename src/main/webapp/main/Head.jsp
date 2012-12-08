@@ -38,14 +38,6 @@
 			<li class="nav-sub-item"><a href="sc.do?id=21">线路</a></li>
 			<li class="nav-sub-item"><a href="sc.do?id=22">游记</a></li>
 		</ul></li>
-	<li class="nav-list-item"><a href="c.do?id=5" class="nav-list-tit"
-		id="nav_school">学院</a>
-		<ul class="nav-sub-menu clear-fix">
-			<li class="nav-sub-item"><a href="sc.do?id=25">礼仪</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=26">规则</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=27">技术</a></li>
-			<li class="nav-sub-item"><a href="sc.do?id=28">挥杆</a></li>
-		</ul></li>
 	<li class="nav-list-item"><a href="c.do?id=6" class="nav-list-tit"
 		id="nav_zixun">资讯</a>
 		<ul class="nav-sub-menu clear-fix" style="width:80px">
@@ -53,6 +45,14 @@
 			<li class="nav-sub-item"><a href="sc.do?id=39">会籍</a></li>
 			<li class="nav-sub-item"><a href="sc.do?id=32">活动</a></li>
 			<li class="nav-sub-item"><a href="sc.do?id=41">练习场</a></li>
+		</ul></li>
+	<li class="nav-list-item"><a href="c.do?id=5" class="nav-list-tit"
+		id="nav_school">学院</a>
+		<ul class="nav-sub-menu clear-fix">
+			<li class="nav-sub-item"><a href="sc.do?id=25">礼仪</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=26">规则</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=27">技术</a></li>
+			<li class="nav-sub-item"><a href="sc.do?id=28">挥杆</a></li>
 		</ul></li>
 	<li class="nav-list-item"><a href="products.do"
 		class="nav-list-tit" id="nav_shop">商城</a>

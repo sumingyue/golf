@@ -2,6 +2,8 @@ package com.golf.main;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +28,7 @@ public class CourtAction extends ActionSupport {
 
 	private Court m_court;
 
-	private CourtComments m_comments;
+	private CourtComments m_comments = new CourtComments();
 
 	private CourtService m_courtService;
 
@@ -49,6 +51,7 @@ public class CourtAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		m_court = m_courtService.findCourt(m_courtId);
+		m_court.setMapImage(m_imageService.findImage(m_court.getMapImageId()));
 		m_courtComments = m_courtCommentsService.queryAllCourtCommentss(m_courtId);
 		m_courtImages = m_courtImageService.queryAllCourtImages(m_courtId);
 		for (CourtImage temp : m_courtImages) {
@@ -70,8 +73,13 @@ public class CourtAction extends ActionSupport {
 				m_groups.put(group, raiderGroup);
 			}
 			raiderGroup.getIndex().add(index);
-
 		}
+		return SUCCESS;
+	}
+
+	public String addComment() {
+		m_courtCommentsService.insertCourtComments(m_comments);
+		m_courtId = m_comments.getCourtId();
 		return SUCCESS;
 	}
 
@@ -82,7 +90,7 @@ public class CourtAction extends ActionSupport {
 	public void setId(int courtId) {
 		m_courtId = courtId;
 	}
-	
+
 	public void setCourtId(int courtId) {
 		m_courtId = courtId;
 	}
@@ -124,17 +132,34 @@ public class CourtAction extends ActionSupport {
 	}
 
 	public Collection<RaiderGroup> getGroups() {
-		return m_groups.values();
+		Collection<RaiderGroup> values = m_groups.values();
+		List<RaiderGroup> result = new ArrayList<RaiderGroup>(values);
+		Collections.sort(result, new RadierGroupCompartor());
+		return values;
 	}
+
 	private AdwordsService m_adwordsService;
 
 	public void setAdwordsService(AdwordsService adwordsService) {
 		m_adwordsService = adwordsService;
 	}
-	
+
 	public AdwordsService getAdwordsService() {
 		return m_adwordsService;
 	}
+
+	public int getCourtId() {
+		return m_courtId;
+	}
+
+	public static class RadierGroupCompartor implements Comparator<RaiderGroup> {
+
+		@Override
+		public int compare(RaiderGroup o1, RaiderGroup o2) {
+			return o1.getName().compareTo(o2.getName());
+		}
+	}
+
 	public static class RaiderGroup {
 		private String m_name;
 
@@ -155,7 +180,6 @@ public class CourtAction extends ActionSupport {
 		public void setIndex(List<String> index) {
 			m_index = index;
 		}
-
 	}
 
 }

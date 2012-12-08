@@ -59,6 +59,8 @@ public class AdwordsServiceImpl implements InitializingBean, AdwordsService {
 		int id = m_adwordsDao.update(adwords);
 		if (id > 0) {
 			m_adwordss.put(adwords.getId(), adwords);
+			m_adwordsArray[adwords.getId()-1] = adwords;
+			adwords.setImage(m_imageService.findImage(adwords.getImageId()));
 		}
 		return id;
 	}
