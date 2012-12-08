@@ -12,9 +12,6 @@
 		.mod-inner{
 			margin:10px;
 		}
-		.paginate{
-			margin-top:5px;
-		}
 		.image-item{width:100px;}
 		.image-item img{
 			width:100%;
@@ -32,65 +29,6 @@
 		.image-link {
 			display: block;
 			margin-bottom: 10px;
-		}
-		
-		.slide-list-container{
-			position:relative;
-		}
-		
-		.slide-list .slide-list-item{
-			overflow:hidden;
-			display:none;
-		}
-		
-		
-		.slide-list .slide-list-tit{
-			text-align:left;
-			padding-left:15px;
-		}
-		
-		.slide-list-container .slide-nums{
-			color:#fff;
-			position:absolute;
-			right:5px;
-			bottom:5px;
-			text-align:left;
-			z-index:999;
-			width:100px;
-		}
-		
-		.slide-list-container .slide-nums li{
-			background-color:#333;
-			margin-right:3px;
-			float:left;
-			padding:0 5px;
-		}
-		
-		
-		.slide-list-container .slide-nums .active{
-			background-color:#fff;
-		}
-		
-		.slide-list-container .slide-nums li a{
-			color:#fff;
-		}
-		
-		.slide-list-container .slide-nums .active a{
-			color:#333;
-		}
-		
-		.slide-list .slide-nums li{
-			position:absolute;
-			float:left;
-		}
-		
-		
-		.slide-list .active{
-			display:block;
-		}
-		
-		#slide-team-home .slide-list-item{
-			width:220px;
 		}
 		
 		#slide .slide-list-img{
