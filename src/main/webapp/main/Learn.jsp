@@ -6,7 +6,13 @@
 <meta charset="UTF-8">
 <title>苏州高尔夫网</title>
 <link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/newsDetail.css">
+<style>
+.mod-box-horizon .mod-bd{
+	padding:20px;
+	height:220px;
+	overflow:hidden;
+}
+</style>
 </head>
 <body youdao="bind">
 	<div class="wrap container_24">

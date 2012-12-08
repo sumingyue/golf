@@ -10,10 +10,11 @@
 	<script type="text/javascript" src="js/base.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <style type="text/css">
-		.qalist li{margin-bottom:10px;padding-bottom:10px;}
-		.qalist .question{color:#333;}
-		.qalist .awanser{margin:10px;border:1px dashed #ccc;padding:5px;background:#f5f5f5;}
-		.error{color:red;}
+	.qalist{border:1px solid #ccc;padding:15px;}
+	.qalist .question{color:#333;}
+	.qalist .awanser{margin:10px;border:1px dashed #ccc;padding:5px;background:#f5f5f5;}
+	.error{color:red;}
+	.message-form{border:1px solid #ccc;margin-bottom:10px;}
 	</style>
 	
 <script type="text/javascript">
@@ -39,7 +40,7 @@ $(document).ready(function() {
 		<jsp:include page="./Head.jsp"></jsp:include>
 		<div class="clear"></div>
 		<div class="grid_24">
-			<form action="addMessage.do" id="form" method="post">
+			<form action="addMessage.do" id="form" method="post" class="message-form form">
 				<table width="100%" border="0" cellspacing="1" cellpadding="0">
 					<tbody>
 						<tr height="30">
@@ -49,7 +50,7 @@ $(document).ready(function() {
 						</tr>
 						<tr>
 							<td height="30" align="center"><font style="font-size: 12px">咨询内容：</font></td>
-							<td align="left" width="85%">&nbsp;<textarea
+							<td align="left" width="85%">&nbsp;<textarea class="input"
 									name="userMessage.content" style="width: 95%; height: 100px;"></textarea></td>
 						</tr>
 						<tr>
