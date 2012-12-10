@@ -38,15 +38,29 @@ public class AdwordsAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
-	private int insertImage() {
+	private int insertImage(Adwords adwords) {
 		try {
-			String relativePath = Config.IMAGE_PATH
-			      + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.ADWORDS);
+			String fileName = m_uploadFile.getFilename();
+			String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.ADWORDS);
 			String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
+
+			String compressRelativePath = Config.IMAGE_PATH
+			      + ImageTools.getImageStorePath(fileName, "_small", Image.ADWORDS);
+			String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/"
+			      + compressRelativePath;
+
+			String originalPath = ImageTools.getOriginalPath(fileName, Image.ADWORDS);
+			m_uploadFile.setOriginalPath(originalPath);
 
 			m_uploadFile.setPath(relativePath);
 			m_uploadFile.setStorePath(storePath);
-			int id = m_imageService.insert(m_upload, m_uploadFile, Image.ADWORDS);
+
+			m_uploadFile.setCompressedPath(compressRelativePath);
+			m_uploadFile.setCompressedStorePath(compressStorePath);
+
+			int id = m_imageService.insert(m_upload, m_uploadFile, Image.ADWORDS, adwords.getWidth(), adwords.getHeight(),
+			      false, 0, 0);
+
 			return id;
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
@@ -68,7 +82,7 @@ public class AdwordsAction extends ActionSupport {
 	public String adwordsAddSubmit() {
 		try {
 			if (m_upload != null) {
-				int imageId = insertImage();
+				int imageId = insertImage(m_adwords);
 				m_adwords.setImageId(imageId);
 			}
 			int id = m_adwordsService.insertAdwords(m_adwords);
@@ -100,7 +114,7 @@ public class AdwordsAction extends ActionSupport {
 			Adwords last = m_adwordsService.findAdwords(m_adwords.getId());
 
 			if (m_upload != null) {
-				int imageId = insertImage();
+				int imageId = insertImage(m_adwords);
 				m_adwords.setImageId(imageId);
 			} else {
 				m_adwords.setImageId(last.getImageId());

@@ -22,6 +22,7 @@
 					<s:elseif test="type==2">活动报道</s:elseif>
 					<s:elseif test="type==3">月历成绩</s:elseif>
 					<s:elseif test="type==4">精彩图文</s:elseif>
+					<s:elseif test="type==5">规则制度</s:elseif>
 				</div>
 				<ul class="mod-article-list">
 					<s:iterator value="teamNewss" status="vs">

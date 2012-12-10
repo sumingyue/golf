@@ -18,7 +18,7 @@
 			<ul class="menu">
 				<li class="menu-item">
 					<h3>
-						<a href="?type=1">球具</a>
+						<a href="products.do?type=1">球具</a>
 					</h3>
 					<ul class="submenu clear-fix">
 						<s:iterator value="category1" status="vs">
@@ -30,7 +30,7 @@
 
 				<li class="menu-item">
 					<h3>
-						<a href="?type=2">服饰</a>
+						<a href="products.do?type=2">服饰</a>
 					</h3>
 					<ul class="submenu clear-fix">
 						<ul class="submenu clear-fix">
@@ -44,7 +44,7 @@
 
 				<li class="menu-item">
 					<h3>
-						<a href="?type=3">用品</a>
+						<a href="products.do?type=3">用品</a>
 					</h3>
 					<ul class="submenu clear-fix">
 						<ul class="submenu clear-fix">
@@ -58,7 +58,7 @@
 
 				<li class="menu-item">
 					<h3>
-						<a href="?type=4">附件</a>
+						<a href="products.do?type=4">附件</a>
 					</h3>
 					<ul class="submenu clear-fix">
 						<ul class="submenu clear-fix">
@@ -90,7 +90,7 @@
 							</p>
 						</li>
 						<li class="bigpic">
-							<h3>Title</h3>
+							<h3></h3>
 							<p>
 								<img class="img-full"
 									src="${adwordsService.adwords[24].image.path}" 
@@ -98,7 +98,7 @@
 							</p>
 						</li>
 						<li class="bigpic">
-							<h3>Title</h3>
+							<h3></h3>
 							<p>
 								<img class="img-full"
 									src="${adwordsService.adwords[25].image.path}" 
@@ -106,7 +106,7 @@
 							</p>
 						</li>
 						<li class="bigpic">
-							<h3>Title</h3>
+							<h3></h3>
 							<p>
 								<img class="img-full"
 									src="${adwordsService.adwords[26].image.path}"
@@ -115,16 +115,16 @@
 						</li>
 					</ul>
 					<ul class="smallpics">
-						<li class="smallpic active"><a href="${adwordsService.adwords[28].url}" target="_blank"><img
+						<li class="smallpic active"><a href="${adwordsService.adwords[23].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[23].image.path}"
 				border="0"></a></li>
-						<li class="smallpic"><a href="${adwordsService.adwords[28].url}" target="_blank"><img
+						<li class="smallpic"><a href="${adwordsService.adwords[24].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[24].image.path}"
 				border="0"></a></li>
-						<li class="smallpic"><a href="${adwordsService.adwords[28].url}" target="_blank"><img
+						<li class="smallpic"><a href="${adwordsService.adwords[25].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[25].image.path}"
 				border="0"></a></li>
-						<li class="smallpic"><a href="${adwordsService.adwords[28].url}" target="_blank"><img
+						<li class="smallpic"><a href="${adwordsService.adwords[26].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[26].image.path}"
 				border="0"></a></li>
 					</ul>

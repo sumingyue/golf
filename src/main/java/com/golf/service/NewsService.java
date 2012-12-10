@@ -35,5 +35,9 @@ public interface NewsService {
 	public List<News> queryNewsByKeyWord(String keyword);
 
 	public int increaseVisiteNumber(int id,int type);
+
+	public int queryTotalSize(int categoryId, int smallCategoryId, int status, int recommand);
+
+	public List<News> queryPagedNews(PagedTool pagedTool, int categoryId, int smallCategoryId, int status, int recommand);
 	
 }

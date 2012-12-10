@@ -14,6 +14,10 @@
 #table-container td{
 	padding:8px;
 }
+
+.title{
+	font-weight:bold;
+}
 </style>
 </head>
 <body>
@@ -24,12 +28,12 @@
 
 			<div class="mod-box-horizon">
 				<div class="mod-hd">
-					<span class="more">更多</span>球会资讯
+					<span class="more"><a href="sc.do?id=38">更多</a></span><a href="sc.do?id=38">球会资讯</a>
 				</div>
 				<div class="mod-bd">
 					<ul class="mod-article-list">
 						<s:iterator value="qiuhui" status="vs">
-							<li class="article-item"><a href="#"><s:property
+							<li class="article-item"><a href="new.do?id=${id}"><s:property
 										value="normalTitle" /></a><span class="time"><s:property
 										value="dateStr" /></span></li>
 						</s:iterator>
@@ -40,12 +44,12 @@
 
 			<div class="mod-box-horizon">
 				<div class="mod-hd">
-					<span class="more">更多</span>协会新闻
+					<span class="more"><a href="sc.do?id=17">更多</a></span><a href="sc.do?id=17">协会新闻</a>
 				</div>
 				<div class="mod-bd">
 					<ul class="mod-article-list">
 						<s:iterator value="xiehui" status="vs">
-							<li class="article-item"><a href="#"><s:property
+							<li class="article-item"><a href="new.do?id=${id}"><s:property
 										value="normalTitle" /></a><span class="time"><s:property
 										value="dateStr" /></span></li>
 						</s:iterator>
@@ -56,12 +60,12 @@
 
 			<div class="mod-box-horizon mod-box-horizon-last">
 				<div class="mod-hd">
-					<span class="more">更多</span>会籍关注
+					<span class="more"><a href="sc.do?id=39">更多</a></span><a href="sc.do?id=39">会籍资讯</a>
 				</div>
 				<div class="mod-bd">
 					<ul class="mod-article-list">
 						<s:iterator value="huiji" status="vs">
-							<li class="article-item"><a href="#"><s:property
+							<li class="article-item"><a href="new.do?id=${id}"><s:property
 										value="normalTitle" /></a><span class="time"><s:property
 										value="dateStr" /></span></li>
 						</s:iterator>
@@ -75,29 +79,15 @@
 					<h3>球场</h3>
 				</div>
 				<div class="mod-bd">
-					<div class="mod-inner">
+					<div class="mod-inner" style="height:600px;">
 						<table class="table" style="border:0px">
 							<tr>
-								<th width="35%">名称</th>
-								<th width="35%">地址</th>
-								<th width="30%">电话</th>
+								<td width="35%" class="title">名称</td>
+								<td width="35%" class="title">地址</td>
+								<td width="30%" class="title">电话</td>
 							</tr>
 							<s:iterator value="courts" status="vs">
 								<tr class="${vs.index%2==0?'odd':'even'}">
-								<td><a href="court.do?id=${id}"><s:property value="name" /></a></td>
-								<td><s:property value="address" /></td>
-								<td><s:property value="phone" /></td>
-								</tr>
-								<tr class="${vs.index%2==0?'odd':'even'}">
-								<td><a href="court.do?id=${id}"><s:property value="name" /></a></td>
-								<td><s:property value="address" /></td>
-								<td><s:property value="phone" /></td>
-								</tr>
-								<tr class="${vs.index%2==0?'odd':'even'}">
-								<td><a href="court.do?id=${id}"><s:property value="name" /></a></td>
-								<td><s:property value="address" /></td>
-								<td><s:property value="phone" /></td>
-								</tr><tr class="${vs.index%2==0?'odd':'even'}">
 								<td><a href="court.do?id=${id}"><s:property value="name" /></a></td>
 								<td><s:property value="address" /></td>
 								<td><s:property value="phone" /></td>

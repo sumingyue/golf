@@ -5,19 +5,30 @@ import java.io.Serializable;
 public class UploadFile implements Serializable {
 
 	private static final long serialVersionUID = -1555299968770401677L;
+
 	private Integer m_id;
+
 	/**
 	 * 上传时的文件名。
 	 */
 	private String m_filename;
+
 	/**
 	 * 文件存在服务器上相对路径。
 	 */
 	private String m_path;
+
+	private String m_compressedPath;
+	
+	private String m_originalPath;
+
 	/**
 	 * 文件存在服务器上的路径。
 	 */
 	private String m_storePath;
+
+	private String m_compressedStorePath;
+
 	/**
 	 * 上传文件时所需的，是文件类型的表示。
 	 */
@@ -47,6 +58,14 @@ public class UploadFile implements Serializable {
 		this.m_storePath = storePath;
 	}
 
+	public String getCompressedStorePath() {
+		return m_compressedStorePath;
+	}
+
+	public void setCompressedStorePath(String compressedStorPath) {
+		m_compressedStorePath = compressedStorPath;
+	}
+
 	public String getContentType() {
 		return m_contentType;
 	}
@@ -62,5 +81,22 @@ public class UploadFile implements Serializable {
 	public void setPath(String path) {
 		m_path = path;
 	}
+
+	public String getCompressedPath() {
+		return m_compressedPath;
+	}
+
+	public void setCompressedPath(String compressedPath) {
+		m_compressedPath = compressedPath;
+	}
+
+	public String getOriginalPath() {
+		return m_originalPath;
+	}
+
+	public void setOriginalPath(String originalStore) {
+		m_originalPath = originalStore;
+	}
+	
 
 }

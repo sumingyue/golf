@@ -88,7 +88,7 @@ var calendar = null;
 					<tr>
 						<td width="15%" class="left">新闻图片</td>
 						<td class="right"><input type="file" name="upload"
-							id="fileUpload_upload"></td>
+							id="fileUpload_upload"><span style="color:red">(100K内)</span></td>
 					</tr>
 					<tr>
 						<td width="15%" class="left">新闻内容<span style='color: red'>*</span></td>
@@ -113,11 +113,11 @@ var calendar = null;
 						<tr>
 							<td class="left">系统设置</td>
 							<td class="right"><input type="radio" name="news.status"
-								value="1" checked="">已审 <input type="radio"
-								name="news.status" value="0">未审 &nbsp;&nbsp;<font
+								value="2" checked="">已审 <input type="radio"
+								name="news.status" value="1">未审 &nbsp;&nbsp;<font
 								color="#006600">|</font>&nbsp;&nbsp; <input type="radio"
-								name="news.recommend" value="1">已首页推荐 <input
-								type="radio" name="news.recommend" value="0" checked="">未首页推荐
+								name="news.recommend" value="2">已首页推荐 <input
+								type="radio" name="news.recommend" value="1" checked="">未首页推荐
 								&nbsp;&nbsp;<font color="#006600"> <font color="#006600">|</font>&nbsp;&nbsp;
 									优先级： <select name="news.priority" id="new_priority">
 										<option value="1">1</option>

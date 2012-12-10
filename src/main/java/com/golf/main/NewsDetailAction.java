@@ -50,6 +50,10 @@ public class NewsDetailAction extends ActionSupport {
 	@Override
 	public String execute() {
 		m_news = m_newsService.findNews(m_newsId);
+		
+		if(m_news.getImageId()>0){
+			m_news.setImage(m_imageService.findImage(m_news.getImageId()));
+		}
 		m_smallCategory = m_categoryService.findSmallCategory(m_news.getSmallCategoryId());
 		m_newsComments = m_newsCommentsService.queryNewsCommentsByNewsId(m_newsId);
 		m_newsHot = m_newsService.queryHotNewsByCategoryId(10, m_smallCategory.getCategoryId());

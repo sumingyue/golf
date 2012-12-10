@@ -46,6 +46,27 @@ public class ImageSpecialDetailAction extends ActionSupport {
 	
 	private PagedTool m_pagedTool = new PagedTool(Config.NEWS_PAGED_NUMBER);
 
+	private int insertImage() {
+		String fileName = m_uploadFile.getFilename();
+		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.PIC);
+		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
+
+		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.PIC);
+		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
+
+		String originalPath = ImageTools.getOriginalPath(fileName, Image.PIC);
+		m_uploadFile.setOriginalPath(originalPath);
+
+		m_uploadFile.setPath(relativePath);
+		m_uploadFile.setStorePath(storePath);
+
+		m_uploadFile.setCompressedPath(compressRelativePath);
+		m_uploadFile.setCompressedStorePath(compressStorePath);
+
+		return m_imageService.insert(m_upload, m_uploadFile, Image.PIC, Image.PIC_WIDTH, Image.PIC_HEIGHT, true,Image.PIC_WIDTH,Image.PIC_HEIGHT);
+
+	}
+	
 	public String imageSpecialDetailList() {
 		try {
 			m_imageSpecials = m_imageSpecialService.queryAllImageSpecials();
@@ -123,18 +144,6 @@ public class ImageSpecialDetailAction extends ActionSupport {
 			return ERROR;
 		}
 	}
-
-	private int insertImage() {
-	   String relativePath = Config.IMAGE_PATH
-	         + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.PIC);
-	   String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-	   m_uploadFile.setPath(relativePath);
-	   m_uploadFile.setStorePath(storePath);
-
-	   int imageId = m_imageService.insert(m_upload, m_uploadFile, Image.PIC);
-	   return imageId;
-   }
 
 	public String imageSpecialDetailDelete() {
 		try {

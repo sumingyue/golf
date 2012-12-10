@@ -5,11 +5,8 @@
 <head>
 <title>苏州高尔夫网</title>
 
-<link rel='stylesheet' type='text/css' href='css/calendar.css' />
-<script src="js/calendar.js" type="text/javascript"></script>
 <link type="text/css" rel="stylesheet"
 <link rel='stylesheet' type='text/css' href='css/admin.css' />
-<script src="js/admin.js" type="text/javascript"></script>
 <script src="ckeditor/ckeditor.js" type="text/javascript"></script>
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/index.css">
@@ -34,19 +31,11 @@ var calendar = null;
 				rules : {
 					"news.title" : {
 						required : true
-					},
-					"news.validateDate" :{
-						required : true,
-						date: true
 					}
 				},
 				messages : {
 					"news.title" : {
 						required : "请输入新闻标题"
-					},
-					"news.validateDate" :{
-						required : "请点击选择新闻发布日期",
-						date : "请输入正确的日期格式"
 					}
 				}
 
@@ -60,7 +49,7 @@ var calendar = null;
 
 		<div class="grid_24">
 			<h2 style="text-align:center;color:#666;font-size:16px">用户新增新闻</h2>
-			<form action="addNewsSub.do" id="form" method="post"
+			<form action="userAddNewsSub.do" id="form" method="post"
 				enctype="multipart/form-data">
 				<table align="center" cellpadding="2" cellspacing="1" width="100%">
 					<tr>
@@ -92,32 +81,6 @@ var calendar = null;
 						<td class="right"><input type="text" size="80"
 							name="news.keyword" /><span class="red">&nbsp;多个关键字用 | 隔开</span></td>
 					</tr>
-						<tr>
-							<td class="left">发表时间</td>
-							<td class="right"><%-- <input type="radio" name="news.status"
-								value="1" checked="">已审 <input type="radio"
-								name="news.status" value="0">未审 &nbsp;&nbsp;<font
-								color="#006600">|</font>&nbsp;&nbsp; <input type="radio"
-								name="news.recommend" value="1">已首页推荐 <input
-								type="radio" name="news.recommend" value="0" checked="">未首页推荐
-								&nbsp;&nbsp;<font color="#006600"> <font color="#006600">|</font>&nbsp;&nbsp;
-									优先级： <select name="news.priority" id="new_priority">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option value="6">6</option>
-										<option value="7">7</option>
-										<option value="8">8</option>
-										<option value="9">9</option>
-										<option value="10">10</option>
-								</select> | --%>
-							</font><input type="text" size="20"
-								name="news.validateDate" id="news.validateDate" /> <img
-								src="img/calendar.gif"
-								onclick="showCalendar('news.validateDate');"></td>
-						</tr>
 						<tr>
 							<td colspan="2" align="center">
 								<button type="submit" class="btn">提交</button>

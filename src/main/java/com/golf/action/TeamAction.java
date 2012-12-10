@@ -41,6 +41,27 @@ public class TeamAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
+	private int insertImage() {
+		String fileName = m_uploadFile.getFilename();
+		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.TEAM);
+		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
+
+		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.TEAM);
+		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
+
+		String originalPath = ImageTools.getOriginalPath(fileName, Image.TEAM);
+		m_uploadFile.setOriginalPath(originalPath);
+
+		m_uploadFile.setPath(relativePath);
+		m_uploadFile.setStorePath(storePath);
+
+		m_uploadFile.setCompressedPath(compressRelativePath);
+		m_uploadFile.setCompressedStorePath(compressStorePath);
+
+		return m_imageService.insert(m_upload, m_uploadFile, Image.TEAM, Image.TEAM_WIDTH, Image.TEAM_HEIGHT, true,
+		      Image.TEAM_SMALL_WIDTH, Image.TEAM_SMALL_HEIGHT);
+	}
+
 	public String teamList() {
 		try {
 			m_pagedTool.setTotalNumber(m_teamService.queryAllTeams().size());
@@ -108,13 +129,7 @@ public class TeamAction extends ActionSupport {
 
 	public String updateTeamLogo() {
 		try {
-			String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.TEAM);
-			String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-			m_uploadFile.setPath(relativePath);
-			m_uploadFile.setStorePath(storePath);
-
-			int imageId = m_imageService.insert(m_upload, m_uploadFile, Image.TEAM);
+			int imageId = insertImage();
 			if (imageId > 0) {
 				int count = m_teamService.updateTeamLogo(m_teamId, imageId);
 				if (count < 0) {

@@ -276,4 +276,45 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 		return result;
 	}
 
+	@Override
+	public int queryTotalSize(int categoryId, int smallCategoryId, int status, int recommand) {
+		List<News> result = queryAll(categoryId, smallCategoryId, status, recommand);
+		return result.size();
+	}
+
+	private List<News> queryAll(int categoryId, int smallCategoryId, int status, int recommand) {
+		List<News> result = new ArrayList<News>();
+		List<News> all = queryAllNews();
+		for (News news : all) {
+			if (status > 0) {
+				if (news.getStatus() != status) {
+					continue;
+				}
+			}
+			if (recommand > 0) {
+				if (news.getRecommend() != recommand) {
+					continue;
+				}
+			}
+			if (smallCategoryId > 0) {
+				if (news.getSmallCategoryId() == smallCategoryId) {
+					result.add(news);
+				}
+			} else if (categoryId > 0) {
+				if (news.getCategoryId() == categoryId) {
+					result.add(news);
+				}
+			} else {
+				result.add(news);
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public List<News> queryPagedNews(PagedTool pagedTool, int categoryId, int smallCategoryId, int status, int recommand) {
+		List<News> result = queryAll(categoryId, smallCategoryId, status, recommand);
+		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
+	}
+
 }

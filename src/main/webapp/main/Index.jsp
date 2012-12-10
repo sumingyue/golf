@@ -87,7 +87,7 @@
 					<ul class="mod-article-list">
 						<s:iterator value="specialNews" status="vs">
 							<li class="article-item"><a
-								href="snews.do?id=<s:property value="id"/>" target="_blank"><s:property value="title" /></a></li>
+								href="special.do?id=<s:property value="id"/>" target="_blank"><s:property value="title" /></a></li>
 						</s:iterator>
 					</ul>
 				</div>
@@ -205,7 +205,7 @@
 						<s:iterator value="imageSpecials" status="vs">
 							<li class="image-item"><img
 							src="${image.path}"
-							alt="专题图片"> <a href="isd.do?id=${id}">${shortName}</a></li>
+							alt="专题图片"> <a href="pic.do?id=${id}">${shortName}</a></li>
 							</s:iterator>
 					</ul>
 				</div>

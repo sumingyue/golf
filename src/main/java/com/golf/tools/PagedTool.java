@@ -1,6 +1,8 @@
 package com.golf.tools;
 
+
 public class PagedTool {
+	
 	private int m_totalPage;// 总共页码
 
 	private int m_pageSize;// 页码大小

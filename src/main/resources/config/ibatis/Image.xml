@@ -4,7 +4,7 @@
 	<typeAlias alias="image" type="com.golf.entity.Image" />
 	
 	<sql id="image.columns">
-		id,type,name,path,storePath,netPath,creationDate
+		id,type,name,path,smallPath,originalPath,netPath,creationDate
 	</sql>
 	<select id="image.findAll" resultClass="image">
 		select
@@ -21,13 +21,13 @@
 		insert into image (
 		<include refid="image.columns" />
 		) values
-		(#id#,#type#,#name#,#path#,#storePath#,#netPath#,now())
+		(#id#,#type#,#name#,#path#,#smallPath#,#originalPath#,#netPath#,now())
 		<selectKey resultClass="int" keyProperty="id">
              <![CDATA[   select last_insert_id() as id  ]]>
 		</selectKey>
 	</insert>
 	<update id="image.update" parameterClass="image">
-		update image set name=#name#,path=#path#,storePath=#storePath# where id=#id#
+		update image set name=#name# where id=#id#
 	</update>
 	<delete id="image.delete" parameterClass="int">
 		delete from image

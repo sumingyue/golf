@@ -45,7 +45,7 @@
 <div class="grid_5">
 			<ul class="menu">
 				<li class="menu-item">
-					<h3><a href="?type=1">球具</a></h3>
+					<h3><a href="products.do?type=1">球具</a></h3>
 					<ul class="submenu clear-fix">
 						<s:iterator value="category1" status="vs">
 							<li><a href="products.do?id=<s:property value="id"/>"><s:property value="name"/></a></li>
@@ -54,7 +54,7 @@
 				</li>
 				
 				<li class="menu-item">
-					<h3><a href="?type=2">服饰</a></h3>
+					<h3><a href="products.do?type=2">服饰</a></h3>
 					<ul class="submenu clear-fix">
 					<ul class="submenu clear-fix">
 						<s:iterator value="category2" status="vs">
@@ -65,7 +65,7 @@
 				</li>
 				
 				<li class="menu-item">
-					<h3><a href="?type=3">用品</a></h3>
+					<h3><a href="products.do?type=3">用品</a></h3>
 					<ul class="submenu clear-fix">
 					<ul class="submenu clear-fix">
 						<s:iterator value="category3" status="vs">
@@ -76,7 +76,7 @@
 				</li>
 				
 				<li class="menu-item">
-					<h3><a href="?type=4">附件</a></h3>
+					<h3><a href="products.do?type=4">附件</a></h3>
 					<ul class="submenu clear-fix">
 					<ul class="submenu clear-fix">
 						<s:iterator value="category4" status="vs">
@@ -104,13 +104,13 @@
 						<s:if test="#vs.first">
 							<li class="active slide-list-item">
 								<img class="slide-list-img" src="<s:property value="path"/>" alt="大图${vs.index}" class="img-full" />
-								<a class="slide-list-tit" href="#">标题</a>
+								<a class="slide-list-tit" href="#"></a>
 							</li>
 						</s:if>
 						<s:else>
 							<li class="slide-list-item">
 								<img class="slide-list-img" src="<s:property value="path"/>" alt="大图${vs.index}" class="img-full" />
-								<a class="slide-list-tit" href="#">标题</a>
+								<a class="slide-list-tit" href="#"></a>
 							</li>
 						</s:else>
 					</s:iterator>
@@ -172,7 +172,7 @@
 			</div>
 			<div class="clear"></div>
 			<div class="article">
-				<h2 class="article-title">产品介绍</h2>
+				<div class="bread-crumbs">产品介绍</div>
 				<div class="article-body">
 					<p>
 						<s:property value="product.introduction"/>

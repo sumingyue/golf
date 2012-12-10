@@ -128,7 +128,7 @@ public class IndexAction extends ActionSupport {
 
 	private void queryLvYou() {
 		m_lvYouImages = m_newsService.queryFixedImageNewsByCategoryId(2, Config.CATE_LvYou);
-		m_lvYous = m_newsService.queryFixedImageNewsByCategoryId(8, Config.CATE_LvYou);
+		m_lvYous = m_newsService.queryFixedImageNewsByCategoryId(6, Config.CATE_LvYou);
 	}
 
 	private void querySaiShi() {

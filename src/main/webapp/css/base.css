@@ -15,7 +15,7 @@ img{display: block;border:none;}
 ul,li{list-style-type: none;}
 
 body {
-  font: 13px/1.5 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+  font: 13px/1.5 Tahoma,sans-serif,'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
 }
 
 pre,
@@ -237,9 +237,9 @@ body {
 	margin-right:10px;
 	float: left;
 	background-position: 0 -10px;
-	font-size: 15px;
+	font-size: 16px;
 	position: relative;
-	top: 6px;
+	top: 7px;
 	left: 7px;
 	color:#f5da59;
 	line-height:18px;

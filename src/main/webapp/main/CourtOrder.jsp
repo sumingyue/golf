@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>苏州高尔夫网</title>
 <link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/admin.css">
 <script type="text/javascript" src="js/jquery-1.7.1.js"></script>
-<script type="text/javascript" src="js/base.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <style type="text/css">
 .left{
@@ -31,8 +31,7 @@ $(document).ready(function() {
 				required : true,
 				digits: true
 			},"courtOrder.date" : {
-				required : true,
-				date : true
+				required : true
 			}
 		},
 		messages : {
@@ -48,7 +47,6 @@ $(document).ready(function() {
 				digits: "请输入正确的订场人数"
 			},"courtOrder.date" : {
 				required : "请输入订场日期",
-				date : "请输入正确的订场日期"
 			}
 		}
 	});
@@ -77,7 +75,7 @@ $(document).ready(function() {
 								name="courtOrder.courtName" /></td>
 						</tr>
 						<tr>
-							<td class="left" width="40%">时间(10/10/2012)<span style='color: red'>*</span></td>
+							<td class="left" width="40%">订场时间<span style='color: red'>*</span></td>
 							<td ><input type="text" size="30"
 								name="courtOrder.date" id="courtOrder.date" /></td>
 						</tr>

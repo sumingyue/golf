@@ -30,35 +30,57 @@ public class ProductAction extends ActionSupport {
 	private List<ProductCategory> m_productCategorys;
 
 	private int m_productId;
-	
+
 	private int m_imageId;
-	
+
 	private int m_type;
-	
+
 	private int m_productCategoryId;
 
 	private ProductService m_productService;
 
 	private ProductCategoryService m_productCategoryService;
-	
+
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
 	private Product m_product = new Product();
-	
+
 	private ImageService m_imageService;
 
 	private UploadFile m_uploadFile = new UploadFile();
 
 	private File m_upload;
 
+	private int insertImage() {
+		String fileName = m_uploadFile.getFilename();
+		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.PRODUCT);
+		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
+
+		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.PRODUCT);
+		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
+
+		String originalPath = ImageTools.getOriginalPath(fileName, Image.PRODUCT);
+		m_uploadFile.setOriginalPath(originalPath);
+
+		m_uploadFile.setPath(relativePath);
+		m_uploadFile.setStorePath(storePath);
+
+		m_uploadFile.setCompressedPath(compressRelativePath);
+		m_uploadFile.setCompressedStorePath(compressStorePath);
+
+		return m_imageService.insert(m_upload, m_uploadFile, Image.PRODUCT, Image.PRODUCT_WIDTH, Image.PRODUCT_HEIGHT,
+		      true, Image.PRODUCT_SMALL_WIDTH, Image.PRODUCT_SMALL_HEIGHT);
+
+	}
+
 	public String productList() {
 		try {
 			m_productCategorys = m_productCategoryService.queryProductCategoryByType(m_type);
-			int totalSize = m_productService.queryTotalSize(m_type,m_productCategoryId);
+			int totalSize = m_productService.queryTotalSize(m_type, m_productCategoryId);
 
 			m_pagedTool.setTotalNumber(totalSize);
-			
-			m_products = m_productService.queryPagedProducts(m_pagedTool,m_type,m_productCategoryId);
+
+			m_products = m_productService.queryPagedProducts(m_pagedTool, m_type, m_productCategoryId);
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
@@ -89,14 +111,7 @@ public class ProductAction extends ActionSupport {
 
 	public String productAddImageSubmit() {
 		try {
-			String relativePath = Config.IMAGE_PATH
-			      + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.PRODUCT);
-			String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-			m_uploadFile.setPath(relativePath);
-			m_uploadFile.setStorePath(storePath);
-
-			int imageId = m_imageService.insert(m_upload, m_uploadFile, Image.PRODUCT);
+			int imageId = insertImage();
 			if (imageId > 0) {
 				m_productId = m_product.getId();
 				ProductImage productImage = new ProductImage();
@@ -156,21 +171,23 @@ public class ProductAction extends ActionSupport {
 			return ERROR;
 		}
 	}
-	public String productImageDelete(){
+
+	public String productImageDelete() {
 		ProductImage productImage = new ProductImage();
 		productImage.setProductId(m_productId);
 		productImage.setImageId(m_imageId);
-		
+
 		m_productId = productImage.getProductId();
-		
-		int count = (Integer)m_productService.deleteProductImage(productImage);
-		if(count>0){
+
+		int count = (Integer) m_productService.deleteProductImage(productImage);
+		if (count > 0) {
 			return SUCCESS;
-		}else{
+		} else {
 			this.addActionError("Delete Image Error");
 			return ERROR;
 		}
 	}
+
 	public Product getProduct() {
 		return m_product;
 	}
@@ -239,7 +256,7 @@ public class ProductAction extends ActionSupport {
 		m_productCategoryId = productCategoryId;
 	}
 
-	public void setIndex(int index){
+	public void setIndex(int index) {
 		m_pagedTool.setPageIndex(index);
 	}
 

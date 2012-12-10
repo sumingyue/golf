@@ -1,6 +1,7 @@
 package com.golf.action;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -45,6 +46,10 @@ public class NewsAction extends ActionSupport {
 	private int m_categoryId;
 
 	private int m_smallCategoryId;
+	
+	private int m_status;
+	
+	private int m_recommand;
 
 	private PagedTool m_pagedTool = new PagedTool(Config.NEWS_PAGED_NUMBER);
 
@@ -55,29 +60,36 @@ public class NewsAction extends ActionSupport {
 	private File m_upload;
 
 	private int insertImage() {
-		try {
-			String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.NEWS);
-			String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
+		String fileName = m_uploadFile.getFilename();
+		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.NEWS);
+		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
 
-			m_uploadFile.setPath(relativePath);
-			m_uploadFile.setStorePath(storePath);
-			int id = m_imageService.insert(m_upload, m_uploadFile, Image.NEWS);
-			return id;
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return -1;
-		}
+		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.NEWS);
+		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
+
+		String originalPath = ImageTools.getOriginalPath(fileName, Image.NEWS);
+		m_uploadFile.setOriginalPath(originalPath);
+
+		m_uploadFile.setPath(relativePath);
+		m_uploadFile.setStorePath(storePath);
+
+		m_uploadFile.setCompressedPath(compressRelativePath);
+		m_uploadFile.setCompressedStorePath(compressStorePath);
+
+		return m_imageService.insert(m_upload, m_uploadFile, Image.NEWS, Image.NEWS_WIDTH, Image.NEWS_HEIGHT, true,Image.NEWS_SMALL_WIDTH,Image.NEWS_SMALL_HEIGHT);
+
 	}
-
+	
 	public String newsList() {
 		try {
 			m_categoryList = m_categoryService.queryAllCategories(Category.NEWS);
 			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS, m_categoryId);
-			int totalSize = m_newsService.queryTotalSize(m_categoryId, m_smallCategoryId);
-
+			//int totalSize = m_newsService.queryTotalSize(m_categoryId, m_smallCategoryId);
+			int totalSize = m_newsService.queryTotalSize(m_categoryId, m_smallCategoryId,m_status,m_recommand);
 			m_pagedTool.setTotalNumber(totalSize);
 
-			m_newsList = m_newsService.queryPagedNews(m_pagedTool, m_categoryId, m_smallCategoryId);
+			//m_newsList = m_newsService.queryPagedNews(m_pagedTool, m_categoryId, m_smallCategoryId);
+			m_newsList = m_newsService.queryPagedNews(m_pagedTool, m_categoryId, m_smallCategoryId,m_status,m_recommand);
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
@@ -112,6 +124,16 @@ public class NewsAction extends ActionSupport {
 				m_news.setImageId(-1);
 			}
 			m_news.setCreationDate(new Date());
+			
+			if(m_news.getRecommend()==0){
+				m_news.setRecommend(1);
+			}
+			if(m_news.getStatus()==0){
+				m_news.setStatus(1);
+			}
+			if(m_news.getValidateDate()==null){
+				m_news.setValidateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date()));
+			}
 			int id = m_newsService.insertNews(m_news);
 
 			m_categoryId = m_news.getCategoryId();
@@ -130,6 +152,9 @@ public class NewsAction extends ActionSupport {
 	public String newsUpdate() {
 		try {
 			m_news = m_newsService.findNews(m_newsId);
+			if(m_news.getImageId()>0){
+				m_news.setImage(m_imageService.findImage(m_news.getImageId()));
+			}
 			m_categoryList = m_categoryService.queryAllCategories(Category.NEWS);
 			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS,
 			      m_news.getCategoryId());
@@ -267,5 +292,23 @@ public class NewsAction extends ActionSupport {
 	public int getSmallCategoryId() {
 		return m_smallCategoryId;
 	}
+
+	public int getStatus() {
+		return m_status;
+	}
+
+	public void setStatus(int status) {
+		m_status = status;
+	}
+
+	public int getRecommand() {
+		return m_recommand;
+	}
+
+	public void setRecommand(int recommand) {
+		m_recommand = recommand;
+	}
+	
+	
 
 }

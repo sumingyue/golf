@@ -12,7 +12,7 @@
 <style>
 	.image-item img{
 		width:217px;
-		height:200px;
+		height:108px;
 	}
 </style>
 </head>
@@ -22,10 +22,9 @@
 
 		<div class="grid_24">
 			<ul class="gallery">
-				
 				<s:iterator value="teams" status="vs">
 					<li class="image-item">
-					<img src="<s:property value="logo.path"/>" alt="图片">
+					<a href="team.do?teamId=<s:property value="id"/>"><img src="<s:property value="logo.path"/>" alt="图片"></a>
 					<a href="team.do?teamId=<s:property value="id"/>"><s:property value="name"/></a>
 					</li>
 				</s:iterator>

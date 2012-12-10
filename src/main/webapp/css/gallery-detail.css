@@ -31,7 +31,7 @@
 
 .bigpic-list .big-pic{
 	display:none;
-	height:500px;
+	height:666px;
 	overflow: hidden;
 }
 
@@ -44,7 +44,7 @@
 }
 #pan-prev,#pan-next{
 	position: absolute;
-	height:500px;
+	height: 666px;
 	width:475px;
 }
 

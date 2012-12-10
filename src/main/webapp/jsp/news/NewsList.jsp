@@ -23,17 +23,26 @@ $(document).ready(function(){
 		return confirm("确定要删除此分类吗(不可恢复)？");
 	});
 	$('#newsList').addClass("active");
+	
+	var status = ${status};
+	var recommand = ${recommand};
+	$('#status').attr("value",status);
+	$('#recommand').attr("value",recommand);
 });
 
 function categoryChanged(){
 	var categoryId = $('#news_categoryId').val();
-	window.location="?categoryId="+categoryId;
+	var status=$('#status').val();
+	var recommand=$('#recommand').val();
+	window.location="?categoryId="+categoryId+"&status="+status+"&recommand="+recommand;
 }
 
 function smallCategoryChanged(){
 	var categoryId = $('#news_categoryId').val();
 	var smallCategoryId = $('#news_smallCategoryId').val();
-	window.location="?categoryId="+categoryId+"&smallCategoryId="+smallCategoryId;
+	var status=$('#status').val();
+	var recommand=$('#recommand').val();
+	window.location="?categoryId="+categoryId+"&smallCategoryId="+smallCategoryId+"&status="+status+"&recommand="+recommand;
 }
 </script>
 </head>
@@ -65,29 +74,35 @@ function smallCategoryChanged(){
 								value="smallCategoryId" theme="simple" >
 							</s:select>
 						</th>
-					<th width="56%">标题</th>
-					<th width="12%">时间</th>
-					<th width="4%">状态</th>
-					<th width="4%">首页</th>
-					<th width="4%">图片</th>
+					<th width="42%">标题</th>
+					<th width="8%">
+						<select id="status" onchange="smallCategoryChanged()">
+							<option value="0">_ALL</option>
+							<option value="1">未审</option>
+							<option value="2">已审</option>
+						</select>
+					</th>
+					<th width="8%">
+						<select id="recommand" onchange="smallCategoryChanged()">
+							<option value="0">_ALL</option>
+							<option value="2">推荐首页</option>
+							<option value="1">未推荐</option>
+						</select>
+					</th>
 					<th width="4%">级别</th>
 					<th width="8%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="newsAdd.do?categoryId=${categoryId}&smallCategoryId=${smallCategoryId}" >新增</a></th>
 				</tr>
 				<s:iterator value="newsList" status="vs">
 					<tr>
-					<td><s:property value='#vs.index+1'/></td>
+					<td title="<s:property value="creationDateStr" />"><s:property value='#vs.index+1'/></td>
 					<td><s:property value="category.name" /></td>
 					<td><s:property value="smallCategory.name" /></td>
-					<td><s:property value="title" /></td>
-					<td><s:property value="creationDateStr" /></td>
+					<td  title="<s:property value="creationDateStr" />"><a href="news.do?id=<s:property value="id"/>"><s:property value="title" /></a></td>
 					<td>
-						<s:if test="status==0"><a href="newsUpdate.do?newsId=<s:property value="id"/>">审核</a></s:if>
+						<s:if test="status==1"><span style="color:red;">未审</span></s:if>
 					</td>
 					<td>
-						<s:if test="recommend==1"><span style="color:red;">是</span></s:if>
-					</td>
-					<td>
-						<s:if test="imageId>0"><span style="color:red;">有</span></s:if>
+						<s:if test="recommend==2"><span style="color:red;">是</span></s:if>
 					</td>
 					<td><s:property value="priority" /></td>
 					<td>
@@ -101,10 +116,10 @@ function smallCategoryChanged(){
 				<tr>
 					<td style="color:#060;">
 						共&nbsp;<s:property value="pagedTool.totalNumber"/>&nbsp;条记录
-						<a href="newsList.do?pagedTool.pageIndex=0">首页</a>&nbsp;&nbsp;
-						<a href="newsList.do?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex-1"/>&categoryId=<s:property value="categoryId"/>&smallCategoryId=<s:property value="smallCategoryId"/>">上一页</a>&nbsp;&nbsp;
-						<a href="newsList.do?pagedTool.pageIndex=<s:property value="pagedTool.pageIndex+1"/>&categoryId=<s:property value="categoryId"/>&smallCategoryId=<s:property value="smallCategoryId"/>">下一页</a>&nbsp;&nbsp;
-						<a href="newsList.do?pagedTool.pageIndex=<s:property value="pagedTool.totalPage"/>&categoryId=<s:property value="categoryId"/>&smallCategoryId=<s:property value="smallCategoryId"/>">末页</a>&nbsp;&nbsp;
+						<a href="?index=0&categoryId=<s:property value="categoryId"/>&smallCategoryId=<s:property value="smallCategoryId"/>&status=${status}&recommand=${recommand}">首页</a>&nbsp;&nbsp;
+						<a href="?index=<s:property value="pagedTool.pageIndex-1"/>&categoryId=<s:property value="categoryId"/>&smallCategoryId=<s:property value="smallCategoryId"/>&status=${status}&recommand=${recommand}">上一页</a>&nbsp;&nbsp;
+						<a href="?index=<s:property value="pagedTool.pageIndex+1"/>&categoryId=<s:property value="categoryId"/>&smallCategoryId=<s:property value="smallCategoryId"/>&status=${status}&recommand=${recommand}">下一页</a>&nbsp;&nbsp;
+						<a href="?index=<s:property value="pagedTool.totalPage"/>&categoryId=<s:property value="categoryId"/>&smallCategoryId=<s:property value="smallCategoryId"/>&status=${status}&recommand=${recommand}">末页</a>&nbsp;&nbsp;
 						共&nbsp;<s:property value="pagedTool.totalPage"/>&nbsp;页,当前第&nbsp;<s:property value="pagedTool.pageIndex"/>页&nbsp;
 						<s:property value="pagedTool.pageSize"/>条记录/页&nbsp;
 					</td>

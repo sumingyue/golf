@@ -45,14 +45,35 @@ public class CourtImageAction extends ActionSupport {
 	private File m_upload;
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
-	
+
+	private int insertImage() {
+		String fileName = m_uploadFile.getFilename();
+		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.COURT);
+		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
+
+		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.COURT);
+		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
+
+		String originalPath = ImageTools.getOriginalPath(fileName, Image.COURT);
+		m_uploadFile.setOriginalPath(originalPath);
+
+		m_uploadFile.setPath(relativePath);
+		m_uploadFile.setStorePath(storePath);
+
+		m_uploadFile.setCompressedPath(compressRelativePath);
+		m_uploadFile.setCompressedStorePath(compressStorePath);
+
+		return m_imageService.insert(m_upload, m_uploadFile, Image.COURT, Image.COURT_WIDTH, Image.COURT_HEIGHT, true,
+		      Image.COURT_SMALL_WIDTH, Image.COURT_SMALL_HEIGHT);
+	}
+
 	public String courtImageList() {
 		try {
 			m_courts = m_courtService.queryAllCourts();
 			m_pagedTool.setTotalNumber(m_courtImageService.queryAllCourtImages(m_courtId).size());
-			m_courtImages = m_courtImageService.queryPagedCourtImages(m_pagedTool,m_courtId);
-			
-			for(CourtImage temp:m_courtImages){
+			m_courtImages = m_courtImageService.queryPagedCourtImages(m_pagedTool, m_courtId);
+
+			for (CourtImage temp : m_courtImages) {
 				temp.setImage(m_imageService.findImage(temp.getImageId()));
 			}
 		} catch (Exception e) {
@@ -70,14 +91,7 @@ public class CourtImageAction extends ActionSupport {
 	public String courtImageAddSubmit() {
 		try {
 			if (m_upload != null) {
-				String relativePath = Config.IMAGE_PATH
-				      + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.COURT);
-				String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-				m_uploadFile.setPath(relativePath);
-				m_uploadFile.setStorePath(storePath);
-
-				int imageId = m_imageService.insert(m_upload, m_uploadFile, Image.COURT);
+				int imageId = insertImage();
 				m_courtImage.setImageId(imageId);
 			}
 			int id = m_courtImageService.insertCourtImage(m_courtImage);
@@ -108,14 +122,7 @@ public class CourtImageAction extends ActionSupport {
 	public String courtImageUpdateSubmit() {
 		try {
 			if (m_upload != null) {
-				String relativePath = Config.IMAGE_PATH
-				      + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.COURT);
-				String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-				m_uploadFile.setPath(relativePath);
-				m_uploadFile.setStorePath(storePath);
-
-				int imageId = m_imageService.insert(m_upload, m_uploadFile, Image.COURT);
+				int imageId = insertImage();
 				m_courtImage.setImageId(imageId);
 			} else {
 				m_courtImage.setImageId(m_courtImageService.findCourtImage(m_courtImage.getId()).getImageId());
@@ -197,6 +204,7 @@ public class CourtImageAction extends ActionSupport {
 	public void setImageService(ImageService imageService) {
 		m_imageService = imageService;
 	}
+
 	public PagedTool getPagedTool() {
 		return m_pagedTool;
 	}
@@ -205,7 +213,7 @@ public class CourtImageAction extends ActionSupport {
 		m_pagedTool = pagedTool;
 	}
 
-	public void setIndex(int index){
+	public void setIndex(int index) {
 		m_pagedTool.setPageIndex(index);
 	}
 }

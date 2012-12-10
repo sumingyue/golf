@@ -51,13 +51,36 @@ public class ImageSpecialAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
+	private int insertImage() {
+		String fileName = m_uploadFile.getFilename();
+		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.PIC);
+		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
+
+		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.PIC);
+		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
+
+		String originalPath = ImageTools.getOriginalPath(fileName, Image.PIC);
+		m_uploadFile.setOriginalPath(originalPath);
+
+		m_uploadFile.setPath(relativePath);
+		m_uploadFile.setStorePath(storePath);
+
+		m_uploadFile.setCompressedPath(compressRelativePath);
+		m_uploadFile.setCompressedStorePath(compressStorePath);
+
+		return m_imageService.insert(m_upload, m_uploadFile, Image.PIC, Image.PIC_MAIN_WIDTH, Image.PIC_MAIN_HEIGHT,
+		      true, Image.PIC_MAIN_SMALL_WIDTH, Image.PIC_MAIN_SMALL_HEIGHT);
+
+	}
+
 	public String imageSpecialList() {
 		try {
 			m_categoryList = m_categoryService.queryAllCategories(Category.IMAGE);
 			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.IMAGE, m_categoryId);
 
-			m_pagedTool.setTotalNumber(m_imageSpecialService.queryAllImageSpecials(m_categoryId,m_smallCategoryId).size());
-			m_imageSpecials = m_imageSpecialService.queryPagedImageSpecials(m_pagedTool,m_categoryId,m_smallCategoryId);
+			m_pagedTool
+			      .setTotalNumber(m_imageSpecialService.queryAllImageSpecials(m_categoryId, m_smallCategoryId).size());
+			m_imageSpecials = m_imageSpecialService.queryPagedImageSpecials(m_pagedTool, m_categoryId, m_smallCategoryId);
 
 			for (ImageSpecial temp : m_imageSpecials) {
 				temp.setCategory(m_categoryService.findCategory(temp.getCategoryId()));
@@ -74,14 +97,14 @@ public class ImageSpecialAction extends ActionSupport {
 		try {
 			m_categoryList = m_categoryService.queryAllCategories(Category.IMAGE);
 
-			if(m_categoryId==0){
+			if (m_categoryId == 0) {
 				if (m_categoryList != null && m_categoryList.size() > 0) {
 					Category temp = m_categoryList.get(0);
 					m_categoryId = temp.getId();
 				}
 			}
 			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.IMAGE, m_categoryId);
-			
+
 			return SUCCESS;
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
@@ -92,18 +115,11 @@ public class ImageSpecialAction extends ActionSupport {
 	public String imageSpecialAddSubmit() {
 		try {
 			if (m_upload != null) {
-				String relativePath = Config.IMAGE_PATH
-				      + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.COURT);
-				String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-				m_uploadFile.setPath(relativePath);
-				m_uploadFile.setStorePath(storePath);
-
-				int imageId = m_imageService.insert(m_upload, m_uploadFile, Image.COURT);
+				int imageId = insertImage();
 				m_imageSpecial.setImageId(imageId);
 			}
 			int id = m_imageSpecialService.insertImageSpecial(m_imageSpecial);
-			
+
 			m_categoryId = m_imageSpecial.getCategoryId();
 			m_smallCategoryId = m_imageSpecial.getSmallCategoryId();
 			if (id > 0) {
@@ -136,14 +152,7 @@ public class ImageSpecialAction extends ActionSupport {
 	public String imageSpecialUpdateSubmit() {
 		try {
 			if (m_upload != null) {
-				String relativePath = Config.IMAGE_PATH
-				      + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.COURT);
-				String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-				m_uploadFile.setPath(relativePath);
-				m_uploadFile.setStorePath(storePath);
-
-				int imageId = m_imageService.insert(m_upload, m_uploadFile, Image.COURT);
+				int imageId = insertImage();
 				m_imageSpecial.setImageId(imageId);
 			} else {
 				m_imageSpecial.setImageId(m_imageSpecialService.findImageSpecial(m_imageSpecial.getId()).getImageId());

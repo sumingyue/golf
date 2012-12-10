@@ -15,5 +15,9 @@ public interface ImageService {
 
 	public Image findImage(int imageId);
 
-	public int insert(File file, UploadFile uploadFile, int type);
+   //public int insert(File file, UploadFile uploadFile, int type);
+	
+	public int insert(File upload, UploadFile uploadFile, int type, int width, int heigth, boolean compressed,
+	      int compressedWidh, int compressedHeigth);
+	
 }

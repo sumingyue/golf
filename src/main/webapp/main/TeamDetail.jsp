@@ -11,10 +11,10 @@
 	<style>
 		#main-img{
 			width:630px;
-			height:300px;
+			height:315px;
 		}
 		#qiuduigonggao .mod-bd{
-			height:263px;
+			height:277px;
 			padding:3px;
 			line-height:22px;
 		}
@@ -50,7 +50,7 @@
 		</div>
 		<div class="grid_8">
 			<div class="mod-box-horizon mod-box-horizon-last" id="qiuduigonggao">
-				<div class="mod-hd">球队公告</div>
+				<div class="mod-hd" align="center">球队公告</div>
 				<div class="mod-bd">
 					<s:property value="team.announcement"/>
 				</div>

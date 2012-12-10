@@ -46,14 +46,35 @@ public class TeamMemberImageAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
+	private int insertImage() {
+		String fileName = m_uploadFile.getFilename();
+		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.TEAM);
+		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
+
+		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.TEAM);
+		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
+
+		String originalPath = ImageTools.getOriginalPath(fileName, Image.TEAM);
+		m_uploadFile.setOriginalPath(originalPath);
+
+		m_uploadFile.setPath(relativePath);
+		m_uploadFile.setStorePath(storePath);
+
+		m_uploadFile.setCompressedPath(compressRelativePath);
+		m_uploadFile.setCompressedStorePath(compressStorePath);
+
+		return m_imageService.insert(m_upload, m_uploadFile, Image.TEAM, Image.TEAM_WIDTH, Image.TEAM_HEIGHT, true,
+		      Image.TEAM_SMALL_WIDTH, Image.TEAM_SMALL_HEIGHT);
+	}
+
 	public String teamMemberImageList() {
 		try {
 			m_teams = m_teamService.queryAllTeams();
 			m_pagedTool.setTotalNumber(m_teamMemberImageService.queryAllTeamMemberImages(m_teamId).size());
-			
-			m_teamMemberImages = m_teamMemberImageService.queryPagedTeamMemberImages(m_pagedTool,m_teamId);
-			
-			for(TeamMemberImage temp:m_teamMemberImages){
+
+			m_teamMemberImages = m_teamMemberImageService.queryPagedTeamMemberImages(m_pagedTool, m_teamId);
+
+			for (TeamMemberImage temp : m_teamMemberImages) {
 				temp.setImage(m_imageService.findImage(temp.getImageId()));
 			}
 		} catch (Exception e) {
@@ -71,14 +92,7 @@ public class TeamMemberImageAction extends ActionSupport {
 	public String teamMemberImageAddSubmit() {
 		try {
 			if (m_upload != null) {
-				String relativePath = Config.IMAGE_PATH
-				      + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.COURT);
-				String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-				m_uploadFile.setPath(relativePath);
-				m_uploadFile.setStorePath(storePath);
-
-				int imageId = m_imageService.insert(m_upload, m_uploadFile, Image.COURT);
+				int imageId = insertImage();
 				m_teamMemberImage.setImageId(imageId);
 			}
 			int id = m_teamMemberImageService.insertTeamMemberImage(m_teamMemberImage);
@@ -109,17 +123,11 @@ public class TeamMemberImageAction extends ActionSupport {
 	public String teamMemberImageUpdateSubmit() {
 		try {
 			if (m_upload != null) {
-				String relativePath = Config.IMAGE_PATH
-				      + ImageTools.getImageStorePath(m_uploadFile.getFilename(), Image.COURT);
-				String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-				m_uploadFile.setPath(relativePath);
-				m_uploadFile.setStorePath(storePath);
-
-				int imageId = m_imageService.insert(m_upload, m_uploadFile, Image.COURT);
+				int imageId = insertImage();
 				m_teamMemberImage.setImageId(imageId);
 			} else {
-				m_teamMemberImage.setImageId(m_teamMemberImageService.findTeamMemberImage(m_teamMemberImage.getId()).getImageId());
+				m_teamMemberImage.setImageId(m_teamMemberImageService.findTeamMemberImage(m_teamMemberImage.getId())
+				      .getImageId());
 			}
 			int count = m_teamMemberImageService.updateTeamMemberImage(m_teamMemberImage);
 			if (count > 0) {
@@ -198,6 +206,7 @@ public class TeamMemberImageAction extends ActionSupport {
 	public void setImageService(ImageService imageService) {
 		m_imageService = imageService;
 	}
+
 	public PagedTool getPagedTool() {
 		return m_pagedTool;
 	}
@@ -206,7 +215,7 @@ public class TeamMemberImageAction extends ActionSupport {
 		m_pagedTool = pagedTool;
 	}
 
-	public void setIndex(int index){
+	public void setIndex(int index) {
 		m_pagedTool.setPageIndex(index);
 	}
 }

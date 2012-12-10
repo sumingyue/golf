@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <title></title>
 <link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/cort.css">
+<link rel="stylesheet" href="css/court.css">
 <script type="text/javascript" src="js/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
 
 </head>
-<body youdao="bind">
+<body>
 	<div class="wrap container_24">
 		<jsp:include page="./Head.jsp"></jsp:include>
 		<div class="clear"></div>
@@ -20,11 +20,11 @@
 				<ul class="slide-list">
 					<s:iterator value="courtImages" status="vs">
 						<s:if test="#vs.index==0">
-						<li class="slide-list-item active"><img class="img-full"
+						<li class="slide-list-item active"><img class="img-full" style="height:350px;"
 							src="<s:property value="image.path"/>" /></li>
 							</s:if>
 						<s:else>
-						<li class="slide-list-item"><img class="img-full"
+						<li class="slide-list-item"><img class="img-full" style="height:350px;"
 							src="<s:property value="image.path"/>" /></li>
 							</s:else>
 					</s:iterator>
@@ -42,6 +42,12 @@
 			</div>
 			
 			
+				<div class="mod-box-horizon" id="xiangxijieshao">
+				<div class="mod-hd">详细介绍</div>
+				<div class="mod-bd">
+					<s:property value="court.customIntro" escape="false" />
+				</div>
+				</div>
 			<div class="mod-box-horizon" id="xincheluxian">
 				<div class="mod-hd">球道路线</div>
 				<div class="mod-bd">
@@ -59,46 +65,17 @@
 						<s:iterator value="all" status="vs">
 							<s:if test="#vs.index==0">
 							<li class="active map">
-								<img src="<s:property value="image.path"/>" style="width:200px;height:200px;"/>
-								<p>内容内容</p>
+								<img src="<s:property value="image.path"/>" style="width:350px;height:350px;"/>
+								<p><s:property value="des"/></p>
 							</li></s:if>
 							<s:else>
 							<li class="map">
-								<img src="<s:property value="image.path"/>" style="width:200px;height:200px;"/>
-								<p>内容内容</p>
+								<img src="<s:property value="image.path"/>" style="width:350px;height:350px;"/>
+								<p><s:property value="des"/></p>
 							</li>
 							</s:else>
 						</s:iterator>
 					</ul>
-				</div>
-			</div>
-				
-			<div class="mod-box-horizon">
-				<div class="mod-hd">最新评论</div>
-				<div class="mod-bd">
-					<ul class="comment-list">
-						<s:iterator value="courtComments" status="vs">
-							<li class="article-item"><a href="#"><s:property
-											value="userName" />：</a><span class="time"><s:property
-											value="content" /></span></li>
-						</s:iterator>
-					</ul>
-					<form action="courtComment.do" class="form">
-						<input type="hidden" size="30" name="comments.courtId"
-							value="<s:property value="court.id" />" />
-						<div class="row">
-							<label for="comments.userName">称呼：</label><input class="input l-input"
-								type="text" size="30" name="comments.userName" />
-						</div>
-						<div class="row">
-							<label for="comments.content">内容：</label>
-							<textarea class="input l-input" name="comments.content" rows="3"
-								cols="40"></textarea>
-						</div>
-						<div class="row">
-							<input type="submit" value="提交" class="btn" style="margin-left:250px;" />
-						</div>
-					</form>
 				</div>
 			</div>
 		</div>
@@ -116,13 +93,6 @@
 				<div class="mod-hd">评价介绍</div>
 				<div class="mod-bd">
 					<s:property value="court.awards" escape="false" />
-				</div>
-			</div>
-			
-			<div class="mod-box-horizon">
-				<div class="mod-hd">详细介绍</div>
-				<div class="mod-bd">
-					<s:property value="court.customIntro" escape="false" />
 				</div>
 			</div>
 			<div class="mod-box-horizon mod-box-horizon-last" id="qiuchangluxian">
