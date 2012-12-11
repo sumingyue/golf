@@ -181,12 +181,13 @@ public class IndexAction extends ActionSupport {
 		}
 
 		m_imageSpecials = m_imageSpecialService.queryFixedImageSpecials(4);
-		for (ImageSpecial temp : m_imageSpecials) {
-			temp.setImage(m_imageService.findImage(temp.getImageId()));
+		if (m_imageSpecials != null) {
+			for (ImageSpecial temp : m_imageSpecials) {
+				temp.setImage(m_imageService.findImage(temp.getImageId()));
+			}
 		}
 
 		m_specialNews = m_specialNewsService.queryLastestSpecialNews(10);
-
 		m_teamNews = m_teamNewsService.queryFixedTeamNewss(10);
 
 		List<Court> all = m_courtService.queryFixedCourts(6);
@@ -194,7 +195,7 @@ public class IndexAction extends ActionSupport {
 		m_courts = all.subList(1, 6);
 
 		List<CourtImage> images = m_courtImageService.queryAllCourtImages(m_court.getId());
-		if (images.size() > 0) {
+		if (images != null && images.size() > 0) {
 			m_courtImage = images.get(0);
 			m_courtImage.setImage(m_imageService.findImage(m_courtImage.getImageId()));
 		}

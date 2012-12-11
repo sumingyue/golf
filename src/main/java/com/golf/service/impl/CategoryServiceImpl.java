@@ -30,6 +30,7 @@ public class CategoryServiceImpl implements InitializingBean, CategoryService {
 		List<Category> categories = m_categoryDao.findAllCategory();
 
 		for (Category category : categories) {
+			System.out.println(category.getName());
 			m_categories.put(category.getId(), category);
 		}
 

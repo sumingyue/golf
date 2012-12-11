@@ -63,7 +63,8 @@ CREATE TABLE  `image` (
   `type` int(11) NOT NULL COMMENT '1表示新闻首页图,2表示广告图,3表示新闻内容图,4球队的图片',
   `name` varchar(512) NOT NULL COMMENT '图片的真实名称',
   `path` varchar(512) NOT NULL COMMENT '图片相对路径',
-  `storePath` varchar(512) NOT NULL COMMENT '图片绝对路径',
+  `smallPath` varchar(512) NOT NULL COMMENT '图片压缩后存储路径',
+  `originalPath` varchar(512) NOT NULL COMMENT '原始图片存储路径  /data/appdatas/golf/',
   `netPath` varchar(512) NOT NULL COMMENT '图片服务器存储路径',
   `creationDate` datetime NOT NULL COMMENT '图片创建时间',
   PRIMARY KEY (`id`)
@@ -283,6 +284,7 @@ CREATE TABLE  `matchService` (
   `userName` varchar(100) NOT NULL COMMENT '客户姓名',
   `userPhone`  varchar(100)  NOT NULL COMMENT '电话号码',
   `content` varchar(2000) NOT NULL COMMENT '自定义内容',
+   `status`  int(11) NOT NULL COMMENT '订单状态，0表示未处理，1表示待定，2表示已处理',
   `creationDate` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='赛事服务基本信息';
@@ -346,11 +348,11 @@ INSERT INTO smallCategory values (40,6,'供求信息',now());
 INSERT INTO smallCategory values (41,6,'练习场',now());
 INSERT INTO smallCategory values (42,6,'学球资讯',now());
 
-insert into adwords values(1,'首页','首页横幅广告',790,90,'http://szgolfer.com',0,now());
-insert into adwords values(2,'首页','首页菜单下广告01',270,90,'http://szgolfer.com',0,now());
-insert into adwords values(3,'首页','首页菜单下广告02',270,90,'http://szgolfer.com',0,now());
-insert into adwords values(4,'首页','首页菜单下广告03',270,90,'http://szgolfer.com',0,now());
-insert into adwords values(5,'首页','首页菜单下广告04',270,90,'http://szgolfer.com',0,now());
+insert into adwords values(1,'首页','首页横幅广告',950,90,'http://szgolfer.com',0,now());
+insert into adwords values(2,'首页','首页菜单下广告01',150,150,'http://szgolfer.com',0,now());
+insert into adwords values(3,'首页','首页菜单下广告02',150,150,'http://szgolfer.com',0,now());
+insert into adwords values(4,'首页','首页菜单下广告03',150,150,'http://szgolfer.com',0,now());
+insert into adwords values(5,'首页','首页菜单下广告04',150,150,'http://szgolfer.com',0,now());
 insert into adwords values(6,'首页','中间广告01',470,90,'http://szgolfer.com',0,now());
 insert into adwords values(7,'首页','中间广告02',470,90,'http://szgolfer.com',0,now());
 insert into adwords values(8,'首页','下部小广告01',150,90,'http://szgolfer.com',0,now());

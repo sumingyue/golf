@@ -1,7 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld"%>
 <!DOCTYPE html>
-<html>
 <head>
 	<title>苏州高尔夫网</title>
 	<link rel="stylesheet" href="css/base.css">
