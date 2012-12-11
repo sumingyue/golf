@@ -28,8 +28,9 @@ public class NewsCommentsAction extends ActionSupport {
 
 	public String newsCommentsList() {
 		try {
-			m_pagedTool.setTotalNumber(m_newsCommentsService.queryAllNewsCommentss().size());
-			m_newsCommentss = m_newsCommentsService.queryPagedNewsCommentss(m_pagedTool);
+			//m_pagedTool.setTotalNumber(m_newsCommentsService.queryAllNewsCommentss().size());
+			//m_newsCommentss = m_newsCommentsService.queryPagedNewsCommentss(m_pagedTool);
+			m_newsCommentss = m_newsCommentsService.queryAllNewsCommentss();
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

@@ -10,7 +10,7 @@
 			<li class="nav-header">球队管理</li>
 			<li id="teamList"><a href="teamList.do">球队信息</a></li>
 			<li id="teamNewsList"><a href="teamNewsList.do">球队新闻</a></li>
-			<li id="teamMemberImageList"><a href="teamMemberImageList.do">精彩图片</a></li>
+			<!-- <li id="teamMemberImageList"><a href="teamMemberImageList.do">精彩图片</a></li> -->
 			<li class="nav-header">球场管理</li>
 			<li id="courtList"><a href="courtList.do">基本信息</a></li>
 			<li id="courtImageList"><a href="courtImageList.do">球场图片</a></li>
@@ -31,8 +31,8 @@
 			<li id="mediaList"><a href="mediaList.do">媒体合作</a></li>
 			<li id="playerList"><a href="playerList.do">积分奖金</a></li>
 			<li class="nav-header">系统分类</li>
-			<li id="categoryList"><a href="categoryList.do?type=1">一级分类</a></li>
-			<li id="smallCategoryList"><a href="smallCategoryList.do?type=1">二级分类</a></li>
+			<li id="categoryList"><a href="categoryList.do">一级分类</a></li>
+			<li id="smallCategoryList"><a href="smallCategoryList.do">二级分类</a></li>
 		</ul>
 	</div>
 </div>

@@ -8,6 +8,8 @@ public class CourtComments {
 
 	private int m_courtId;
 
+	private Court m_court;
+	
 	private String m_userName;
 
 	private String m_content;
@@ -54,4 +56,12 @@ public class CourtComments {
 		m_creationDate = creationDate;
 	}
 
+	public Court getCourt() {
+		return m_court;
+	}
+
+	public void setCourt(Court court) {
+		m_court = court;
+	}
+	
 }

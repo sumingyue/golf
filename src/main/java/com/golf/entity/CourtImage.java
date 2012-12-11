@@ -8,6 +8,8 @@ public class CourtImage {
 	private int m_imageId;
 
 	private Image m_image;
+	
+	private Court m_court;
 
 	private int m_courtId;
 
@@ -63,4 +65,12 @@ public class CourtImage {
 		m_image = image;
 	}
 
+	public Court getCourt() {
+		return m_court;
+	}
+
+	public void setCourt(Court court) {
+		m_court = court;
+	}
+	
 }

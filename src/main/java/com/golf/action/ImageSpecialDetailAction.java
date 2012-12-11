@@ -69,18 +69,19 @@ public class ImageSpecialDetailAction extends ActionSupport {
 	
 	public String imageSpecialDetailList() {
 		try {
-			m_imageSpecials = m_imageSpecialService.queryAllImageSpecials();
+//			m_imageSpecials = m_imageSpecialService.queryAllImageSpecials();
+//			
+//			int totalSize = m_imageSpecialDetailService.queryAllImageSpecialDetails(m_imageSpecialId).size();
+//
+//			m_pagedTool.setTotalNumber(totalSize);
+//			
+//			m_imageSpecialDetails = m_imageSpecialDetailService.queryPagedImageSpecialDetails(m_pagedTool,m_imageSpecialId);
 			
-			int totalSize = m_imageSpecialDetailService.queryAllImageSpecialDetails(m_imageSpecialId).size();
-
-			m_pagedTool.setTotalNumber(totalSize);
-			
-			m_imageSpecialDetails = m_imageSpecialDetailService.queryPagedImageSpecialDetails(m_pagedTool,m_imageSpecialId);
-			
-			//m_imageSpecialDetails = m_imageSpecialDetailService.queryAllImageSpecialDetails(m_imageSpecialId);
+			m_imageSpecialDetails = m_imageSpecialDetailService.queryAllImageSpecialDetails(0);
 			
 			for(ImageSpecialDetail temp:m_imageSpecialDetails){
 				temp.setImage(m_imageService.findImage(temp.getImageId()));
+				temp.setImageSpecial(m_imageSpecialService.findImageSpecial(temp.getImageSpecialId()));
 			}
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);

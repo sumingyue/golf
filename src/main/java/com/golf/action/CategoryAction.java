@@ -30,8 +30,9 @@ public class CategoryAction extends ActionSupport {
 
 	public String categoryList() {
 		try {
-			m_pagedTool.setTotalNumber(m_categoryService.queryAllCategories(m_type).size());
-			m_categories = m_categoryService.queryPagedCategories(m_pagedTool,m_type);
+			//m_pagedTool.setTotalNumber(m_categoryService.queryAllCategories(m_type).size());
+			//m_categories = m_categoryService.queryPagedCategories(m_pagedTool,m_type);
+			m_categories = m_categoryService.queryAllCategories();
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

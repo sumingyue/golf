@@ -5,7 +5,7 @@
 <struts>
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <!-- 发布时需要修改为false -->
-    <constant name="struts.devMode" value="true" />    
+    <constant name="struts.devMode" value="false" />    
     <constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory"/> 
     <!-- 国际化 -->
     <constant name="struts.custom.i18n.resources" value="resource.messageResource"></constant>

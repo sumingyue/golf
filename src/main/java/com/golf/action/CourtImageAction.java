@@ -69,12 +69,13 @@ public class CourtImageAction extends ActionSupport {
 
 	public String courtImageList() {
 		try {
-			m_courts = m_courtService.queryAllCourts();
-			m_pagedTool.setTotalNumber(m_courtImageService.queryAllCourtImages(m_courtId).size());
-			m_courtImages = m_courtImageService.queryPagedCourtImages(m_pagedTool, m_courtId);
-
+			//m_courts = m_courtService.queryAllCourts();
+			//m_pagedTool.setTotalNumber(m_courtImageService.queryAllCourtImages(m_courtId).size());
+			//m_courtImages = m_courtImageService.queryPagedCourtImages(m_pagedTool, m_courtId);
+			m_courtImages = m_courtImageService.queryAllCourtImages(0);
 			for (CourtImage temp : m_courtImages) {
 				temp.setImage(m_imageService.findImage(temp.getImageId()));
+				temp.setCourt(m_courtService.findCourt(temp.getCourtId()));
 			}
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);

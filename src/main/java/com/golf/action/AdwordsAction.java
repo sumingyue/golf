@@ -70,8 +70,9 @@ public class AdwordsAction extends ActionSupport {
 
 	public String adwordsList() {
 		try {
-			m_pagedTool.setTotalNumber(m_adwordsService.queryAllAdwordss().size());
-			m_adwordss = m_adwordsService.queryPagedAdwordss(m_pagedTool);
+			//m_pagedTool.setTotalNumber(m_adwordsService.queryAllAdwordss().size());
+			//m_adwordss = m_adwordsService.queryPagedAdwordss(m_pagedTool);
+			m_adwordss = m_adwordsService.queryAllAdwordss();
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

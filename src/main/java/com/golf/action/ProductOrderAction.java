@@ -28,8 +28,10 @@ public class ProductOrderAction extends ActionSupport {
 
 	public String productOrderList() {
 		try {
-			m_pagedTool.setTotalNumber(m_productOrderService.queryAllProductOrders().size());
-			m_productOrders = m_productOrderService.queryPagedProductOrders(m_pagedTool);
+//			m_pagedTool.setTotalNumber(m_productOrderService.queryAllProductOrders().size());
+//			m_productOrders = m_productOrderService.queryPagedProductOrders(m_pagedTool);
+//			
+			m_productOrders = m_productOrderService.queryAllProductOrders();
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

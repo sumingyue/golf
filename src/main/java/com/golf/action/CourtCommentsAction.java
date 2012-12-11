@@ -36,10 +36,13 @@ public class CourtCommentsAction extends ActionSupport {
 
 	public String courtCommentsList() {
 		try {
-			m_courts =m_courtService.queryAllCourts();
-			m_pagedTool.setTotalNumber(m_courtCommentsService.queryAllCourtCommentss(m_courtId).size());
-			m_courtCommentss = m_courtCommentsService.queryPagedCourtCommentss(m_pagedTool,m_courtId);
-			
+			//m_courts =m_courtService.queryAllCourts();
+			//m_pagedTool.setTotalNumber(m_courtCommentsService.queryAllCourtCommentss(m_courtId).size());
+			//m_courtCommentss = m_courtCommentsService.queryPagedCourtCommentss(m_pagedTool,m_courtId);
+			m_courtCommentss=m_courtCommentsService.queryAllCourtCommentss(0);
+			for(CourtComments temp:m_courtCommentss){
+				temp.setCourt(m_courtService.findCourt(temp.getCourtId()));
+			}
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

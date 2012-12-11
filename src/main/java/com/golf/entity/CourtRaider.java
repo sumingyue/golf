@@ -8,6 +8,8 @@ public class CourtRaider {
 
 	private int m_courtId;
 
+	private Court m_court;
+	
 	private String m_name;
 
 	private int m_imageId;
@@ -84,5 +86,14 @@ public class CourtRaider {
 	public void setCreationDate(Date creationDate) {
 		m_creationDate = creationDate;
 	}
+
+	public Court getCourt() {
+		return m_court;
+	}
+
+	public void setCourt(Court court) {
+		m_court = court;
+	}
+	
 
 }

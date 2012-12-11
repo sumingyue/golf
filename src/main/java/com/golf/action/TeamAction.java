@@ -64,8 +64,9 @@ public class TeamAction extends ActionSupport {
 
 	public String teamList() {
 		try {
-			m_pagedTool.setTotalNumber(m_teamService.queryAllTeams().size());
-			m_teams = m_teamService.queryPagedTeams(m_pagedTool);
+			//m_pagedTool.setTotalNumber(m_teamService.queryAllTeams().size());
+			//m_teams = m_teamService.queryPagedTeams(m_pagedTool);
+			m_teams = m_teamService.queryAllTeams();
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

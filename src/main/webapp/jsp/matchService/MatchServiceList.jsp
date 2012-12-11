@@ -8,22 +8,15 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" matchService="screen">
 <link rel='stylesheet' type='text/css' href='css/admin.css' />
 <script src="js/jquery-1.7.1.js" type="text/javascript"></script>
+<script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+<link rel='stylesheet' type='text/css' href='css/table_jui.css' />
+<script src="js/tableInit.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	$("tr:even").addClass("even");
-	$("tr:odd").addClass("odd");
-	$("tr").bind("mouseout",function(){
-		this.style.backgroundColor='';
+	$(document).ready(function() {
+		init();
+		$('#matchServiceList').addClass('active');
 	});
-	$("tr").bind("mouseover",function(){
-		this.style.backgroundColor='#BFDFFF'
-	});
-	$(".delete").bind("click",function(){
-		return confirm("确定要删除此分类吗(不可恢复)？");
-	});
-	$('#matchServiceList').addClass("active");
-});
 </script>
 </head>
 <body>
@@ -35,17 +28,17 @@ $(document).ready(function(){
       <%@include file="./../Menu.jsp"%>
       <div class="span10"><!-- 
         	<h4 style="text-align:center">赛事服务信息管理</h4> -->
-			<table  align="center" cellpadding="2" cellspacing="1"  class="table" id="matchServiceList">
-				<tr class="title">
+			<table  align="center" cellpadding="2" cellspacing="1"  class="table" id="contents">
+				<thead><tr class="title">
 					<th width="5%">序号</th>
 					<th width="25%">时间</th>
 					<th width="20%">客户姓名</th>
 					<th width="20%">客户电话</th>
 					<th width="20%">订单状态</th>
 					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="matchServiceAdd.do" >新增</a></th>
-				</tr>
+				</tr></thead><tbody>
 				<s:iterator value="matchServices" status="vs">
-					<tr>
+					<tr class="trDetail">
 					<td><s:property value='#vs.index+1'/></td>
 					<td><s:property value="dateStr" /></td>
 					<td><s:property value="userName" /></td>
@@ -54,22 +47,8 @@ $(document).ready(function(){
 					<td><a href="matchServiceUpdate.do?matchServiceId=<s:property value="id"/>">编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
 					<a class="delete" href="matchServiceDelete.do?matchServiceId=<s:property value="id"/>">删除</a></td>
 					</tr>
-				</s:iterator>
+				</s:iterator></tbody>
 			</table>
-				</br>
-				<table  align="center">
-					<tr >
-						<td>
-							共&nbsp;<s:property value="pagedTool.totalNumber"/>&nbsp;条记录
-							<a href="?index=0">首页</a>&nbsp;&nbsp;
-							<a href="?index=<s:property value="pagedTool.pageIndex-1"/>">上一页</a>&nbsp;&nbsp;
-							<a href="?index=<s:property value="pagedTool.pageIndex+1"/>">下一页</a>&nbsp;&nbsp;
-							<a href="?index=<s:property value="pagedTool.totalPage"/>">末页</a>&nbsp;&nbsp;
-							共&nbsp;<s:property value="pagedTool.totalPage"/>&nbsp;页,当前第&nbsp;<s:property value="pagedTool.pageIndex"/>页&nbsp;
-							<s:property value="pagedTool.pageSize"/>条记录/页&nbsp;
-						</td>
-					</tr>
-				</table>
       </div>
     </div>
     <%@include file="./../Foot.jsp"%>

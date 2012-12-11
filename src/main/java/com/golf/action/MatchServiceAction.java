@@ -28,9 +28,9 @@ public class MatchServiceAction extends ActionSupport {
 
 	public String matchServiceList() {
 		try {
-			m_pagedTool.setTotalNumber(m_matchServiceService.queryAllMatchServices().size());
-			
-			m_matchServices = m_matchServiceService.queryPagedMatchServices(m_pagedTool);
+			//m_pagedTool.setTotalNumber(m_matchServiceService.queryAllMatchServices().size());
+			//m_matchServices = m_matchServiceService.queryPagedMatchServices(m_pagedTool);
+			m_matchServices = m_matchServiceService.queryAllMatchServices();
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

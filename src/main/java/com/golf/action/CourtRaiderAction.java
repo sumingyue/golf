@@ -70,8 +70,12 @@ public class CourtRaiderAction extends ActionSupport {
 	public String courtRaiderList() {
 		try {
 			m_courts = m_courtService.queryAllCourts();
-			m_pagedTool.setTotalNumber(m_courtRaiderService.queryAllCourtRaiders(m_courtId).size());
-			m_courtRaiders = m_courtRaiderService.queryPagedCourtRaiders(m_pagedTool, m_courtId);
+			//m_pagedTool.setTotalNumber(m_courtRaiderService.queryAllCourtRaiders(m_courtId).size());
+			//m_courtRaiders = m_courtRaiderService.queryPagedCourtRaiders(m_pagedTool, m_courtId);
+			m_courtRaiders = m_courtRaiderService.queryAllCourtRaiders(0);
+			for(CourtRaider temp:m_courtRaiders){
+				temp.setCourt(m_courtService.findCourt(temp.getCourtId()));
+			}
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

@@ -75,12 +75,13 @@ public class ProductAction extends ActionSupport {
 
 	public String productList() {
 		try {
-			m_productCategorys = m_productCategoryService.queryProductCategoryByType(m_type);
-			int totalSize = m_productService.queryTotalSize(m_type, m_productCategoryId);
-
-			m_pagedTool.setTotalNumber(totalSize);
-
-			m_products = m_productService.queryPagedProducts(m_pagedTool, m_type, m_productCategoryId);
+//			m_productCategorys = m_productCategoryService.queryProductCategoryByType(m_type);
+//			int totalSize = m_productService.queryTotalSize(m_type, m_productCategoryId);
+//
+//			m_pagedTool.setTotalNumber(totalSize);
+//
+//			m_products = m_productService.queryPagedProducts(m_pagedTool, m_type, m_productCategoryId);
+			m_products = m_productService.queryAllProducts();
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

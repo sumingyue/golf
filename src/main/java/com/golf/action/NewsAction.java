@@ -82,14 +82,15 @@ public class NewsAction extends ActionSupport {
 	
 	public String newsList() {
 		try {
-			m_categoryList = m_categoryService.queryAllCategories(Category.NEWS);
-			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS, m_categoryId);
+			//m_categoryList = m_categoryService.queryAllCategories(Category.NEWS);
+			//m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS, m_categoryId);
 			//int totalSize = m_newsService.queryTotalSize(m_categoryId, m_smallCategoryId);
-			int totalSize = m_newsService.queryTotalSize(m_categoryId, m_smallCategoryId,m_status,m_recommand);
-			m_pagedTool.setTotalNumber(totalSize);
+			//int totalSize = m_newsService.queryTotalSize(m_categoryId, m_smallCategoryId,m_status,m_recommand);
+			//m_pagedTool.setTotalNumber(totalSize);
 
 			//m_newsList = m_newsService.queryPagedNews(m_pagedTool, m_categoryId, m_smallCategoryId);
-			m_newsList = m_newsService.queryPagedNews(m_pagedTool, m_categoryId, m_smallCategoryId,m_status,m_recommand);
+			//m_newsList = m_newsService.queryPagedNews(m_pagedTool, m_categoryId, m_smallCategoryId,m_status,m_recommand);
+			m_newsList = m_newsService.queryAllNews();
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

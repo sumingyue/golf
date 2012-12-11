@@ -69,10 +69,11 @@ public class TeamMemberImageAction extends ActionSupport {
 
 	public String teamMemberImageList() {
 		try {
-			m_teams = m_teamService.queryAllTeams();
-			m_pagedTool.setTotalNumber(m_teamMemberImageService.queryAllTeamMemberImages(m_teamId).size());
-
-			m_teamMemberImages = m_teamMemberImageService.queryPagedTeamMemberImages(m_pagedTool, m_teamId);
+//			m_teams = m_teamService.queryAllTeams();
+//			m_pagedTool.setTotalNumber(m_teamMemberImageService.queryAllTeamMemberImages(m_teamId).size());
+//
+//			m_teamMemberImages = m_teamMemberImageService.queryPagedTeamMemberImages(m_pagedTool, m_teamId);
+			m_teamMemberImages = m_teamMemberImageService.queryAllTeamMemberImages(0);
 
 			for (TeamMemberImage temp : m_teamMemberImages) {
 				temp.setImage(m_imageService.findImage(temp.getImageId()));

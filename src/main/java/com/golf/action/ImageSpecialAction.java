@@ -75,12 +75,13 @@ public class ImageSpecialAction extends ActionSupport {
 
 	public String imageSpecialList() {
 		try {
-			m_categoryList = m_categoryService.queryAllCategories(Category.IMAGE);
-			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.IMAGE, m_categoryId);
+			//m_categoryList = m_categoryService.queryAllCategories(Category.IMAGE);
+			//m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.IMAGE, m_categoryId);
 
-			m_pagedTool
-			      .setTotalNumber(m_imageSpecialService.queryAllImageSpecials(m_categoryId, m_smallCategoryId).size());
-			m_imageSpecials = m_imageSpecialService.queryPagedImageSpecials(m_pagedTool, m_categoryId, m_smallCategoryId);
+			//m_pagedTool
+			//      .setTotalNumber(m_imageSpecialService.queryAllImageSpecials(m_categoryId, m_smallCategoryId).size());
+			//m_imageSpecials = m_imageSpecialService.queryPagedImageSpecials(m_pagedTool, m_categoryId, m_smallCategoryId);
+			m_imageSpecials = m_imageSpecialService.queryAllImageSpecials();
 
 			for (ImageSpecial temp : m_imageSpecials) {
 				temp.setCategory(m_categoryService.findCategory(temp.getCategoryId()));

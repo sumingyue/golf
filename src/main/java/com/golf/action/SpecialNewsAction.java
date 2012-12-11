@@ -31,8 +31,9 @@ public class SpecialNewsAction extends ActionSupport {
 	
 	public String specialNewsList() {
 		try {
-			m_pagedTool.setTotalNumber(m_specialNewsService.queryAllSpecialNewss().size());
-			m_specialNewss = m_specialNewsService.queryPagedSpecialNewss(m_pagedTool);
+			//m_pagedTool.setTotalNumber(m_specialNewsService.queryAllSpecialNewss().size());
+			//m_specialNewss = m_specialNewsService.queryPagedSpecialNewss(m_pagedTool);
+			m_specialNewss = m_specialNewsService.queryAllSpecialNewss();
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

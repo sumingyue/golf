@@ -40,8 +40,9 @@ public class CourtAction extends ActionSupport {
 
 	public String courtList() {
 		try {
-			m_pagedTool.setTotalNumber(m_courtService.queryAllCourts().size());
-			m_courts = m_courtService.queryPagedCourts(m_pagedTool);
+			//m_pagedTool.setTotalNumber(m_courtService.queryAllCourts().size());
+			//m_courts = m_courtService.queryPagedCourts(m_pagedTool);
+			m_courts=m_courtService.queryAllCourts();
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

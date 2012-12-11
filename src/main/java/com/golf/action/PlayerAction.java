@@ -31,8 +31,9 @@ public class PlayerAction extends ActionSupport {
 
 	public String playerList() {
 		try {
-			m_pagedTool.setTotalNumber(m_playerService.queryAllPlayers(m_sort).size());
-			m_players = m_playerService.queryPagedPlayers(m_pagedTool,m_sort);
+			//m_pagedTool.setTotalNumber(m_playerService.queryAllPlayers(m_sort).size());
+			//m_players = m_playerService.queryPagedPlayers(m_pagedTool,m_sort);
+			m_players = m_playerService.queryAllPlayers(m_sort);
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

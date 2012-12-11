@@ -38,9 +38,13 @@ public class TeamNewsAction extends ActionSupport {
 
 	public String teamNewsList() {
 		try {
-			m_teams = m_teamService.queryAllTeams();
-			m_pagedTool.setTotalNumber(m_teamNewsService.queryNewByTeamAndType(m_teamId,m_type).size());
-			m_teamNewss = m_teamNewsService.queryPagedNewByTeamAndType(m_pagedTool,m_teamId,m_type);
+//			m_teams = m_teamService.queryAllTeams();
+//			m_pagedTool.setTotalNumber(m_teamNewsService.queryNewByTeamAndType(m_teamId,m_type).size());
+//			m_teamNewss = m_teamNewsService.queryPagedNewByTeamAndType(m_pagedTool,m_teamId,m_type);
+			m_teamNewss = m_teamNewsService.queryAllTeamNewss();
+			for(TeamNews temp:m_teamNewss){
+				temp.setTeam(m_teamService.findTeam(temp.getTeamId()));
+			}
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

@@ -8,23 +8,15 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link rel='stylesheet' type='text/css' href='css/admin.css' />
 <script src="js/jquery-1.7.1.js" type="text/javascript"></script>
+<script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+<link rel='stylesheet' type='text/css' href='css/table_jui.css' />
+<script src="js/tableInit.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	$("tr:even").addClass("even");
-	$("tr:odd").addClass("odd");
-	$("tr").bind("mouseout",function(){
-		this.style.backgroundColor='';
+	$(document).ready(function() {
+		init();
+		$('#courtOrderList').addClass('active');
 	});
-	$("tr").bind("mouseover",function(){
-		this.style.backgroundColor='#BFDFFF'
-	});
-	$(".delete").bind("click",function(){
-		return confirm("确定要删除此分类吗(不可恢复)？");
-	});
-	$('#courtOrderList').addClass("active");
-});
-	var calendar = null;
 </script>
 </head>
 <body>
@@ -37,7 +29,8 @@ $(document).ready(function(){
       <div class="span10">
 <!--         <h4 style="text-align:center">顾客球场预定管理</h4>
  -->			
-			<table  align="center" cellpadding="2" cellspacing="1"  class="table" id="courtOrderList">
+			<table  align="center" cellpadding="2" cellspacing="1"  class="table" id="contents">
+			<thead>
 				<tr class="title">
 					<th width="5%">序号</th>
 					<th width="8%">类型</th>
@@ -47,9 +40,9 @@ $(document).ready(function(){
 					<th width="10%">用户</th>
 					<th width="20%">电话</th>
 					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="courtOrderAdd.do" >新增</a></th>
-				</tr>
+				</tr></thead><tbody>
 				<s:iterator value="courtOrders" status="vs">
-					<tr>
+					<tr class="trDetail">
 					<td><s:property value='#vs.index+1'/></td>
 					<td><s:if test="type==0">练习场</s:if>
 					<s:elseif test="type==1">球场</s:elseif></td>
@@ -62,22 +55,8 @@ $(document).ready(function(){
 					<td><a href="courtOrderUpdate.do?courtOrderId=<s:property value="id"/>">编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
 					<a class="delete" href="courtOrderDelete.do?courtOrderId=<s:property value="id"/>">删除</a></td>
 					</tr>
-				</s:iterator>
+				</s:iterator></tbody>
 			</table>
-				</br>
-				<table  align="center">
-					<tr >
-						<td>
-							共&nbsp;<s:property value="pagedTool.totalNumber"/>&nbsp;条记录
-							<a href="?index=0&courtId=<s:property value="courtId"/>">首页</a>&nbsp;&nbsp;
-							<a href="?index=<s:property value="pagedTool.pageIndex-1"/>">上一页</a>&nbsp;&nbsp;
-							<a href="?index=<s:property value="pagedTool.pageIndex+1"/>">下一页</a>&nbsp;&nbsp;
-							<a href="?index=<s:property value="pagedTool.totalPage"/>">末页</a>&nbsp;&nbsp;
-							共&nbsp;<s:property value="pagedTool.totalPage"/>&nbsp;页,当前第&nbsp;<s:property value="pagedTool.pageIndex"/>页&nbsp;
-							<s:property value="pagedTool.pageSize"/>条记录/页&nbsp;
-						</td>
-					</tr>
-				</table>
       </div>
     </div>
     <%@include file="./../Foot.jsp"%>

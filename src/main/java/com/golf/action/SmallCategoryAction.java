@@ -40,11 +40,13 @@ public class SmallCategoryAction extends ActionSupport {
 
 	public String smallCategoryList() {
 		try {
-			m_categories = m_categoryService.queryAllCategories(m_type);
-			m_pagedTool.setTotalNumber(m_categoryService.queryAllSmallCategoryByTypeCategoryId(m_type, m_categoryId)
-			      .size());
-			m_smallCategories = m_categoryService.queryPagedSmallCategoryByTypeCategoryId(m_pagedTool, m_type,
-			      m_categoryId);
+//			m_categories = m_categoryService.queryAllCategories(m_type);
+//			m_pagedTool.setTotalNumber(m_categoryService.queryAllSmallCategoryByTypeCategoryId(m_type, m_categoryId)
+//			      .size());
+//			m_smallCategories = m_categoryService.queryPagedSmallCategoryByTypeCategoryId(m_pagedTool, m_type,
+//			      m_categoryId);
+			m_smallCategories = m_categoryService.queryAllSmallCategory();
+//			m_smallCategories = m_categoryService.queryAllSmallCategoryByTypeCategoryId(0, 0);
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

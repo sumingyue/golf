@@ -29,8 +29,9 @@ public class UserMessageAction extends ActionSupport {
 
 	public String userMessageList() {
 		try {
-			m_pagedTool.setTotalNumber(m_userMessageService.queryAllUserMessages().size());
-			m_userMessages = m_userMessageService.queryPagedUserMessages(m_pagedTool.getPageIndex(), Config.DEFAULT_PAGE_NUMBER);
+			//	m_pagedTool.setTotalNumber(m_userMessageService.queryAllUserMessages().size());
+			//m_userMessages = m_userMessageService.queryPagedUserMessages(m_pagedTool.getPageIndex(), Config.DEFAULT_PAGE_NUMBER);
+			m_userMessages = m_userMessageService.queryAllUserMessages();
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

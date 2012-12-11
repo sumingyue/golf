@@ -28,8 +28,9 @@ public class CourtOrderAction extends ActionSupport {
 
 	public String courtOrderList() {
 		try {
-			m_pagedTool.setTotalNumber(m_courtOrderService.queryAllCourtOrders().size());
-			m_courtOrders = m_courtOrderService.queryPagedCourtOrders(m_pagedTool);
+			//m_pagedTool.setTotalNumber(m_courtOrderService.queryAllCourtOrders().size());
+			//m_courtOrders = m_courtOrderService.queryPagedCourtOrders(m_pagedTool);
+			m_courtOrders = m_courtOrderService.queryAllCourtOrders();
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;

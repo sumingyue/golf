@@ -30,7 +30,6 @@ public class CategoryServiceImpl implements InitializingBean, CategoryService {
 		List<Category> categories = m_categoryDao.findAllCategory();
 
 		for (Category category : categories) {
-			System.out.println(category.getName());
 			m_categories.put(category.getId(), category);
 		}
 
@@ -183,5 +182,15 @@ public class CategoryServiceImpl implements InitializingBean, CategoryService {
 		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
 
 	}
+
+	@Override
+   public List<Category> queryAllCategories() {
+	   return new ArrayList<Category>(m_categories.values());
+   }
+
+	@Override
+   public List<SmallCategory> queryAllSmallCategory() {
+	   return new ArrayList<SmallCategory>(m_smallCategories.values());
+   }
 
 }

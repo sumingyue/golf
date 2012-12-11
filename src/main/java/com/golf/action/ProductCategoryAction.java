@@ -28,8 +28,11 @@ public class ProductCategoryAction extends ActionSupport {
 
 	public String productCategoryList() {
 		try {
-			m_pagedTool.setTotalNumber(m_productCategoryService.queryAllProductCategorys().size());
-			m_productCategorys = m_productCategoryService.queryPagedProductCategorys(m_pagedTool);
+			//m_pagedTool.setTotalNumber(m_productCategoryService.queryAllProductCategorys().size());
+			//m_productCategorys = m_productCategoryService.queryPagedProductCategorys(m_pagedTool);
+
+			m_productCategorys = m_productCategoryService.queryAllProductCategorys();
+			
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
