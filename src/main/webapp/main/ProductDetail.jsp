@@ -24,7 +24,8 @@
 		.menu{padding:10px 0;}
 		.menu .menu-item{margin:5px 10px;}
 		.menu .menu-item h3{font-size:16px;}
-		.menu .submenu li{float:left;margin-right:10px;margin-bottom:5px;}
+		.menu .submenu li{float:left;margin-bottom:5px;}
+		.menu .submenu li a{_margin-left:5px;}
 		
 		.image-link {
 			display: block;
@@ -180,6 +181,8 @@
 				</div>
 			</div>
 		</div>
+		
+			<div class="clear"></div>
 		<jsp:include page="./Foot.jsp"></jsp:include>
 	</div>
 	<script type="text/javascript">

@@ -118,20 +118,20 @@
 				<div class="mod-bd tab-pannel">
 					<ul class="active tab-pannel-item mod-article-list">
 						<s:iterator value="huoDongZiXuns" status="vs">
-							<li class="article-item"><a
-								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
+							<li class="article-item"><span class="time">${dateStr}</span><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a></li>
 						</s:iterator>
 					</ul>
 					<ul class="tab-pannel-item mod-article-list">
 						<s:iterator value="youHuiXinXis" status="vs">
-							<li class="article-item"><a
-								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
+							<li class="article-item"><span class="time">${dateStr}</span><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a></li>
 						</s:iterator>
 					</ul>
 					<ul class="tab-pannel-item mod-article-list">
 						<s:iterator value="renCaiQiuGongs" status="vs">
-							<li class="article-item"><a
-								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
+							<li class="article-item"><span class="time">${dateStr}</span><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a></li>
 						</s:iterator>
 					</ul>
 				</div>
@@ -315,7 +315,7 @@
 					<span class="more"><a href="c.do?id=4" target="_blank">更多</a></span><a href="c.do?id=4" target="_blank">高球旅游</a>
 				</div>
 				<div class="mod-bd">
-					<ul class="gallery">
+					<ul class="gallery clear-fix">
 						<s:iterator value="lvYouImages" status="vs">
 							<li class="image-item"><img
 								src="<s:property value="image.path"/>" /> <a
@@ -388,8 +388,9 @@
 				<div class="mod-bd">
 					<ul class="mod-article-list">
 						<s:iterator value="renWus" status="vs">
-							<li class="article-item"><a
-								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
+							<li class="article-item">
+							<span class="time">${dateStr}</span>
+							<a href="news.do?id=${id}" target="_blank">${smallTitle}</a></li>
 						</s:iterator>
 					</ul>
 				</div>
@@ -401,8 +402,8 @@
 				<div class="mod-bd">
 					<ul class="mod-article-list">
 						<s:iterator value="guanDianPingLuns" status="vs">
-							<li class="article-item"><a
-								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
+							<li class="article-item"><span class="time">${dateStr}</span><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a></li>
 						</s:iterator>
 					</ul>
 				</div>
@@ -417,8 +418,8 @@
 				<div class="mod-bd">
 					<ul class="mod-article-list">
 						<s:iterator value="gaoQiuDongTais" status="vs">
-							<li class="article-item"><a
-								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
+							<li class="article-item"><span class="time">${dateStr}</span><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a></li>
 						</s:iterator>
 					</ul>
 				</div>
@@ -430,8 +431,8 @@
 				<div class="mod-bd">
 					<ul class="mod-article-list">
 						<s:iterator value="xieHuiXinWens" status="vs">
-							<li class="article-item"><a
-								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
+							<li class="article-item"><span class="time">${dateStr}</span><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a></li>
 						</s:iterator>
 					</ul>
 				</div>
@@ -445,8 +446,8 @@
 				<div class="mod-bd">
 					<ul class="mod-article-list">
 						<s:iterator value="qiuJieGuShis" status="vs">
-							<li class="article-item"><a
-								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
+							<li class="article-item"><span class="time">${dateStr}</span><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a></li>
 						</s:iterator>
 					</ul>
 				</div>

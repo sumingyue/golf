@@ -22,10 +22,10 @@
 				<div class="mod-bd">
 					<ul class="mod-article-list news-article-list">
 						<s:iterator value="news" status="vs">
-							<li class="article-item ${vs.index%2==0?'even':'odd'}"><a
+							<li class="article-item ${vs.index%2==0?'even':'odd'}"><span class="time"><s:property
+										value="dateStr" /></span><a
 								href="news.do?id=<s:property value="id"/>"><s:property
-										value="title" /></a><span class="time"><s:property
-										value="dateStr" /></span></li>
+										value="title" /></a></li>
 						</s:iterator>
 					</ul>
 					<div class="paginate">
@@ -56,8 +56,8 @@
 				<div class="mod-bd">
 					<ul class="mod-article-list">
 						<s:iterator value="latestNews" status="vs">
-							<li class="article-item"><a
-								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
+							<li class="article-item"><span class="time">${dateStr}</span><a
+								href="news.do?id=${id}" target="_blank">${smallTitle}</a></li>
 						</s:iterator>
 					</ul>
 				</div>

@@ -61,9 +61,9 @@
 				<div class="mod-bd">
 					<ul class="comment-list">
 						<s:iterator value="newsComments" status="vs">
-								<li class="article-item"><a href="#"><s:property
-											value="userName" />：</a><span class="time"><s:property
-											value="content" /></span></li>
+								<li class="article-item"><span class="time"><s:property
+											value="content" /></span><a href="#"><s:property
+											value="userName" />：</a></li>
 							</s:iterator>
 					</ul>
 					<form action="comment.do" class="form">

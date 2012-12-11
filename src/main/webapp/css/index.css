@@ -39,9 +39,14 @@
 
 #guibintongdao .mod-bd{
 	height: 347px;
+	overflow:hidden;
+}
+#guibintongdao li{
+	margin:4px 0;
+	padding:0 4px;
+	zoom:1;
 }
 #guibintongdao .img-full{
-	margin:4px;
 	height: 53px;
 	width:258px;
 }
@@ -129,6 +134,14 @@
 	margin:8px;
 }
 
+.link-list{
+	zoom:1;
+}
+.link-list:after{
+	clear:both;
+	display:block;
+	content:"";
+}
 .link-list{
 	padding:5px 10px;
 }
