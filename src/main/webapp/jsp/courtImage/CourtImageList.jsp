@@ -35,7 +35,7 @@
 					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="courtImageAdd.do" >新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="courtImages" status="vs">
-					<tr>
+					<tr class="trDetail">
 					<td><s:property value='#vs.index+1'/></td>
 					<td><s:property value="court.name" /></td>
 					<td><s:property value="image.name" /></td>

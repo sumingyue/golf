@@ -36,7 +36,7 @@
 					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="smallCategoryAdd.do?type=${type}&categoryId=<s:property value="categoryId"/>">新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="smallCategories" status="vs">
-					<tr>
+					<tr class="trDetail">
 					<td><s:property value='#vs.index+1'/></td>
 					<td><s:if test="category.type==1">新闻分类</s:if>
 					<s:elseif test="category.type==2">图片专题</s:elseif></td>
