@@ -33,9 +33,9 @@
 				<div class="mod-bd">
 					<ul class="mod-article-list">
 						<s:iterator value="qiuhui" status="vs">
-							<li class="article-item"><a href="new.do?id=${id}"><s:property
-										value="normalTitle" /></a><span class="time"><s:property
-										value="dateStr" /></span></li>
+							<li class="article-item"><span class="time"><s:property
+										value="dateStr" /></span><a href="new.do?id=${id}"><s:property
+										value="normalTitle" /></a></li>
 						</s:iterator>
 					</ul>
 				</div>

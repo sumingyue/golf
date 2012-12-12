@@ -68,7 +68,7 @@
 				<a href="sc.do?id=<s:property value="smallCategory.id"/>"><s:property value="smallCategory.name"/></a> </div>
 				<div class="mod-bd"><ul class="mod-article-list">
 						<s:iterator value="news" status="vs1">
-							<li class="article-item"><a href="news.do?id=<s:property value="id"/>"><s:property value="normalTitle"/></a><span class="time"><s:property value="dateStr"/></span></li>
+							<li class="article-item"><span class="time"><s:property value="dateStr"/></span><a href="news.do?id=<s:property value="id"/>"><s:property value="normalTitle"/></a></li>
 						</s:iterator>
 					</ul>
 				</div>

@@ -15,7 +15,7 @@ img{display: block;border:none;}
 ul,li{list-style-type: none;}
 
 body {
-  font: 13px/1.5 Tahoma,sans-serif,'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+  font: 13px/1.5 Arial,'Microsoft Yahei', sans-serif;
 }
 
 pre,
@@ -190,6 +190,11 @@ body {
   background-position: 0 -10px;
   overflow: hidden;
 }
+
+.clear-fix{
+	zoom:1;
+}
+
 .clear,
 .clear-fix:after {
   clear: both;
@@ -234,29 +239,30 @@ body {
   	background-repeat: no-repeat;
 	display: block;
 	width: 18px;
-	margin-right:10px;
+  	margin: 6px 6px 6px 3px;
+  	_margin-right:0;
 	float: left;
 	background-position: 0 -10px;
 	font-size: 16px;
-	position: relative;
-	top: 7px;
-	left: 7px;
 	color:#f5da59;
-	line-height:18px;
+  	line-height: 18px;
 	font-weight:bold;
 	text-shadow:2px 2px 1px #333;
 }
 .nav .nav-list-item .nav-sub-menu{
   margin: 5px 0 5px 30px;
   width: 70px;
+  zoom:1;
 }
 .nav .nav-list-item .nav-sub-item{
   float:left;
-  margin-right:5px;
-  margin-bottom: 2px;
+  zoom:1;
+  margin-right:4px;
+  margin-bottom:2px;
 }
 .nav .nav-list-item .nav-sub-item a{
   color:#fff;
+  zoom:1;
 }
 
 .img-full{
@@ -311,6 +317,7 @@ body {
 }
 .mod-box-horizon .mod-bd{
   border:1px solid #c2d39f;
+  overflow:hidden;
 }
 
 .mod-box-vertical{
@@ -359,6 +366,7 @@ body {
 .table{
 	width:100%;
 	border-spacing:0;
+	border-collapse:collapse;
 	border-left:1px solid #c2d39f;
 	border-top:1px solid #c2d39f;
 }
@@ -426,6 +434,7 @@ body {
 .tab-list{}
 .tab-list .tab-hd{
 	padding:0;
+	zoom:1;
 	background-color:#eee;
 	border-top:#eee;
 	border-right:#eee;
@@ -555,6 +564,7 @@ body {
 .side-banner{
 	top:50px;
 	position:fixed;
+	_position:absolute;
 }
 .side-banner img{
 	margin-bottom:150px;

@@ -49,7 +49,7 @@
 		</ul></li>
 	<li class="nav-list-item"><a href="c.do?id=6" class="nav-list-tit"
 		id="nav_zixun">资讯</a>
-		<ul class="nav-sub-menu clear-fix" style="width:80px">
+		<ul class="nav-sub-menu clear-fix" style="width:80px;_width:75px;">
 			<li class="nav-sub-item"><a href="sc.do?id=38">球会</a></li>
 			<li class="nav-sub-item"><a href="sc.do?id=39">会籍</a></li>
 			<li class="nav-sub-item"><a href="sc.do?id=32">活动</a></li>
