@@ -44,9 +44,17 @@ public class CourtRaiderAction extends ActionSupport {
 
 	private File m_upload;
 
+	private File[] m_uploads = new File[10];
+
+	private UploadFile[] m_uploadFiles = new UploadFile[10];
+
+	private String[] m_des = new String[10];
+
+	private String[] m_index = new String[10];
+
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
-	private int insertImage() {
+	private int insertImage(File m_upload, UploadFile m_uploadFile) {
 		String fileName = m_uploadFile.getFilename();
 		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.COURT);
 		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
@@ -70,10 +78,10 @@ public class CourtRaiderAction extends ActionSupport {
 	public String courtRaiderList() {
 		try {
 			m_courts = m_courtService.queryAllCourts();
-			//m_pagedTool.setTotalNumber(m_courtRaiderService.queryAllCourtRaiders(m_courtId).size());
-			//m_courtRaiders = m_courtRaiderService.queryPagedCourtRaiders(m_pagedTool, m_courtId);
+			// m_pagedTool.setTotalNumber(m_courtRaiderService.queryAllCourtRaiders(m_courtId).size());
+			// m_courtRaiders = m_courtRaiderService.queryPagedCourtRaiders(m_pagedTool, m_courtId);
 			m_courtRaiders = m_courtRaiderService.queryAllCourtRaiders(0);
-			for(CourtRaider temp:m_courtRaiders){
+			for (CourtRaider temp : m_courtRaiders) {
 				temp.setCourt(m_courtService.findCourt(temp.getCourtId()));
 			}
 		} catch (Exception e) {
@@ -89,22 +97,47 @@ public class CourtRaiderAction extends ActionSupport {
 	}
 
 	public String courtRaiderAddSubmit() {
-		try {
-			if (m_upload != null) {
-				int imageId = insertImage();
-				m_courtRaider.setImageId(imageId);
-			}
-			int id = m_courtRaiderService.insertCourtRaider(m_courtRaider);
-			if (id > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
+		int size = m_uploads.length;
 
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
+		String result = SUCCESS;
+
+		for (int i = 0; i < size; i++) {
+			try {
+				CourtRaider temp = new CourtRaider();
+				File file = m_uploads[i];
+
+				if (file != null) {
+					String des = "";
+					String indexName = "";
+					if (m_des.length < i) {
+						des = "";
+					} else {
+						des = m_des[i];
+					}
+					if (m_index.length < i) {
+						indexName = "";
+					} else {
+						indexName = m_index[i];
+					}
+					int imageId = insertImage(file,m_uploadFiles[i]);
+					temp.setName(m_courtRaider.getName());
+					temp.setCourtId(m_courtRaider.getCourtId());
+					temp.setDes(des);
+					temp.setIndexName(indexName);
+					temp.setImageId(imageId);
+					
+					int id = m_courtRaiderService.insertCourtRaider(temp);
+					
+					if (id <= 0) {
+						result = ERROR;
+					}
+				}
+			} catch (Exception e) {
+				m_logger.error(e);
+				result = ERROR;
+			}
 		}
+		return result;
 	}
 
 	public String courtRaiderUpdate() {
@@ -124,7 +157,7 @@ public class CourtRaiderAction extends ActionSupport {
 	public String courtRaiderUpdateSubmit() {
 		try {
 			if (m_upload != null) {
-				int imageId = insertImage();
+				int imageId = insertImage(m_upload,m_uploadFile);
 				m_courtRaider.setImageId(imageId);
 			} else {
 				m_courtRaider.setImageId(m_courtRaiderService.findCourtRaider(m_courtRaider.getId()).getImageId());
@@ -219,4 +252,44 @@ public class CourtRaiderAction extends ActionSupport {
 		m_pagedTool.setPageIndex(index);
 	}
 
+	public void setUploadsFileName(String filename) {
+		String[] fileNames = filename.split(",");
+		for (int i = 0; i < fileNames.length; i++) {
+			UploadFile upload = m_uploadFiles[i];
+			if (upload == null) {
+				upload = new UploadFile();
+				m_uploadFiles[i] = upload;
+			}
+			m_uploadFiles[i].setFilename(fileNames[i]);
+		}
+	}
+
+	public void setUploadsContentType(String contentType) {
+		String[] contentTypes = contentType.split(",");
+		for (int i = 0; i < contentTypes.length; i++) {
+			UploadFile upload = m_uploadFiles[i];
+			if (upload == null) {
+				upload = new UploadFile();
+				m_uploadFiles[i] = upload;
+			}
+			m_uploadFiles[i].setContentType(contentTypes[i]);
+		}
+	}
+
+	public void setUploads(File[] uploads) {
+		m_uploads = uploads;
+	}
+
+	public void setUploadFiles(UploadFile[] uploadFiles) {
+		m_uploadFiles = uploadFiles;
+	}
+
+	public void setIndex(String[] index) {
+		m_index = index;
+	}
+
+	public void setDes(String[] des) {
+		m_des = des;
+	}
+	
 }

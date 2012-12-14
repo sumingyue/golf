@@ -27,27 +27,97 @@ $(document).ready(function() {
 			<h4 style="text-align:center">新增高尔夫专题图片信息</h4>
 			<form action="imageSpecialDetailAddSubmit.do" id="form" method="post"  
 				enctype="multipart/form-data">
-				<table align="center" cellpadding="2" cellspacing="1" width="100%">
+				<table align="center" cellpadding="4" cellspacing="1" width="100%" rules="all" border="1">
 					<tr>
-						<td class="left" width="40%">专题名称<span style='color: red'>*</span></td>
-						<td class="right">
+						<td class="left" width="40%" colspan="2">专题名称<span style='color: red'>*</span></td>
+						<td class="right" colspan="2">
 							<s:select name="imageSpecialDetail.imageSpecialId" id="imageSpecialId"
 								list="imageSpecials" listKey="id" listValue="name"  theme="simple" >
 							</s:select>
 						</td>
 					</tr>
 					<tr>
-						<td class="left">上传图片<span style='color: red'>*</span></td>
-						<td class="right"><input type="file" name="upload"
+						<td class="left">上传图片01<span style='color: red'>*</span></td>
+						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
-					</tr>
-					<tr>
 						<td class="left">图片简介<span style='color: red'>*</span></td>
-						<td class="right"><textarea  name="imageSpecialDetail.imageDes"  rows="5" cols="60"></textarea>
+						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2" align="center">
+						<td class="left">上传图片02<span style='color: red'>*</span></td>
+						<td class="right"><input type="file" name="uploads"
+							id="fileUpload_upload"></td>
+						<td class="left">图片简介<span style='color: red'>*</span></td>
+						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="left">上传图片03<span style='color: red'>*</span></td>
+						<td class="right"><input type="file" name="uploads"
+							id="fileUpload_upload"></td>
+						<td class="left">图片简介<span style='color: red'>*</span></td>
+						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="left">上传图片04<span style='color: red'>*</span></td>
+						<td class="right"><input type="file" name="uploads"
+							id="fileUpload_upload"></td>
+						<td class="left">图片简介<span style='color: red'>*</span></td>
+						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="left">上传图片05<span style='color: red'>*</span></td>
+						<td class="right"><input type="file" name="uploads"
+							id="fileUpload_upload"></td>
+						<td class="left">图片简介<span style='color: red'>*</span></td>
+						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="left">上传图片06<span style='color: red'>*</span></td>
+						<td class="right"><input type="file" name="uploads"
+							id="fileUpload_upload"></td>
+						<td class="left">图片简介<span style='color: red'>*</span></td>
+						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="left">上传图片07<span style='color: red'>*</span></td>
+						<td class="right"><input type="file" name="uploads"
+							id="fileUpload_upload"></td>
+						<td class="left">图片简介<span style='color: red'>*</span></td>
+						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="left">上传图片08<span style='color: red'>*</span></td>
+						<td class="right"><input type="file" name="uploads"
+							id="fileUpload_upload"></td>
+						<td class="left">图片简介<span style='color: red'>*</span></td>
+						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="left">上传图片09<span style='color: red'>*</span></td>
+						<td class="right"><input type="file" name="uploads"
+							id="fileUpload_upload"></td>
+						<td class="left">图片简介<span style='color: red'>*</span></td>
+						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="left">上传图片10<span style='color: red'>*</span></td>
+						<td class="right"><input type="file" name="uploads"
+							id="fileUpload_upload"></td>
+						<td class="left">图片简介<span style='color: red'>*</span></td>
+						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4" align="center">
 							<button type="submit" class="btn">提交</button>
 					</tr>
 					</table>

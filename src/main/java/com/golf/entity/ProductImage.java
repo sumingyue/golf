@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class ProductImage {
 
+	private int m_id;
+	
 	private int m_productId;
 
 	private int m_imageId;
@@ -32,6 +34,14 @@ public class ProductImage {
 
 	public void setCreationDate(Date creationDate) {
 		m_creationDate = creationDate;
+	}
+
+	public int getId() {
+		return m_id;
+	}
+
+	public void setId(int id) {
+		m_id = id;
 	}
 
 }

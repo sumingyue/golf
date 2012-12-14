@@ -50,22 +50,25 @@ public class NewsDetailAction extends ActionSupport {
 	@Override
 	public String execute() {
 		m_news = m_newsService.findNews(m_newsId);
-		
-		if(m_news.getImageId()>0){
+		m_newsComments = m_newsCommentsService.queryNewsCommentsByNewsId(m_newsId);
+
+		if (m_news.getImageId() > 0) {
 			m_news.setImage(m_imageService.findImage(m_news.getImageId()));
 		}
 		m_smallCategory = m_categoryService.findSmallCategory(m_news.getSmallCategoryId());
-		m_newsComments = m_newsCommentsService.queryNewsCommentsByNewsId(m_newsId);
-		m_newsHot = m_newsService.queryHotNewsByCategoryId(10, m_smallCategory.getCategoryId());
+		if (m_smallCategory != null) {
+			m_newsHot = m_newsService.queryHotNewsByCategoryId(10, m_smallCategory.getCategoryId());
+			m_newsLatest = m_newsService.queryFixedLatestNewsByCategoryId(10, m_smallCategory.getCategoryId());
+		}
+
 		m_imageSpecials = m_imageSpecialService.queryFixedImageSpecials(4);
 
 		for (ImageSpecial temp : m_imageSpecials) {
 			temp.setImage(m_imageService.findImage(temp.getImageId()));
 		}
 
-		m_newsLatest = m_newsService.queryFixedLatestNewsByCategoryId(10, m_smallCategory.getCategoryId());
-		m_news.setViewNumber(m_news.getViewNumber()+1);
-		m_newsService.increaseVisiteNumber(m_news.getId(),News.TYPE_VIEW);
+		m_news.setViewNumber(m_news.getViewNumber() + 1);
+		m_newsService.increaseVisiteNumber(m_news.getId(), News.TYPE_VIEW);
 		return SUCCESS;
 	}
 

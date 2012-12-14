@@ -48,11 +48,13 @@ public class ProductAction extends ActionSupport {
 	private ImageService m_imageService;
 
 	private UploadFile m_uploadFile = new UploadFile();
+	
+	private UploadFile[] m_uploadFiles = new UploadFile[5];
 
-	private File m_upload;
-
-	private int insertImage() {
-		String fileName = m_uploadFile.getFilename();
+	private File[] m_uploads = new File[5];
+	
+	private int insertImage(File file,UploadFile uploadFile) {
+		String fileName = uploadFile.getFilename();
 		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.PRODUCT);
 		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
 
@@ -60,15 +62,15 @@ public class ProductAction extends ActionSupport {
 		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
 
 		String originalPath = ImageTools.getOriginalPath(fileName, Image.PRODUCT);
-		m_uploadFile.setOriginalPath(originalPath);
+		uploadFile.setOriginalPath(originalPath);
 
-		m_uploadFile.setPath(relativePath);
-		m_uploadFile.setStorePath(storePath);
+		uploadFile.setPath(relativePath);
+		uploadFile.setStorePath(storePath);
 
-		m_uploadFile.setCompressedPath(compressRelativePath);
-		m_uploadFile.setCompressedStorePath(compressStorePath);
+		uploadFile.setCompressedPath(compressRelativePath);
+		uploadFile.setCompressedStorePath(compressStorePath);
 
-		return m_imageService.insert(m_upload, m_uploadFile, Image.PRODUCT, Image.PRODUCT_WIDTH, Image.PRODUCT_HEIGHT,
+		return m_imageService.insert(file, uploadFile, Image.PRODUCT, Image.PRODUCT_WIDTH, Image.PRODUCT_HEIGHT,
 		      true, Image.PRODUCT_SMALL_WIDTH, Image.PRODUCT_SMALL_HEIGHT);
 
 	}
@@ -111,24 +113,33 @@ public class ProductAction extends ActionSupport {
 	}
 
 	public String productAddImageSubmit() {
-		try {
-			int imageId = insertImage();
-			if (imageId > 0) {
-				m_productId = m_product.getId();
-				ProductImage productImage = new ProductImage();
-				productImage.setImageId(imageId);
-				productImage.setProductId(m_productId);
-				m_productService.insertProductImage(productImage);
-			} else {
-				addActionError("Upload Image Fail");
-				return ERROR;
+		int size = m_uploads.length;
+
+		String result = SUCCESS;
+
+		for (int i = 0; i < size; i++) {
+			try {
+				ProductImage temp = new ProductImage();
+				File file = m_uploads[i];
+
+				if (file != null) {
+					int imageId = insertImage(file,m_uploadFiles[i]);
+
+					temp.setImageId(imageId);
+					temp.setProductId(m_product.getId());
+					int id = m_productService.insertProductImage(temp);
+					
+					if (id <= 0) {
+						result = ERROR;
+					}
+				}
+			} catch (Exception e) {
+				m_logger.error(e);
+				result = ERROR;
 			}
-		} catch (Exception e) {
-			addActionError(e.getMessage());
-			return ERROR;
 		}
-		addActionMessage("Upload Success!");
-		return SUCCESS;
+		m_productId = m_product.getId();
+		return result;
 	}
 
 	public String productUpdate() {
@@ -221,10 +232,6 @@ public class ProductAction extends ActionSupport {
 		return m_productId;
 	}
 
-	public void setUpload(File file) {
-		m_upload = file;
-	}
-
 	public void setUploadFileName(String filename) {
 		m_uploadFile.setFilename(filename);
 	}
@@ -267,5 +274,32 @@ public class ProductAction extends ActionSupport {
 
 	public void setPagedTool(PagedTool pagedTool) {
 		m_pagedTool = pagedTool;
+	}
+	public void setUploads(File[] uploads) {
+		m_uploads = uploads;
+	}
+
+	public void setUploadsFileName(String filename) {
+		String[] fileNames = filename.split(",");
+		for(int i=0;i<fileNames.length;i++){
+			UploadFile upload = m_uploadFiles[i];
+			if(upload==null){
+				upload =new UploadFile();
+				m_uploadFiles[i]= upload;
+			}
+			m_uploadFiles[i].setFilename(fileNames[i]);
+		}
+	}
+
+	public void setUploadsContentType(String contentType) {
+		String[] contentTypes = contentType.split(",");
+		for(int i=0;i<contentTypes.length;i++){
+			UploadFile upload = m_uploadFiles[i];
+			if(upload==null){
+				upload =new UploadFile();
+				m_uploadFiles[i]= upload;
+			}
+			m_uploadFiles[i].setContentType(contentTypes[i]);
+		}
 	}
 }

@@ -51,7 +51,7 @@ $(document).ready(function(){
 			<h4 style="text-align:center">修改高尔夫俱乐部球道信息</h4>
 			<form action="courtRaiderUpdateSubmit.do" id="form" method="post"  
 				enctype="multipart/form-data">
-				<table align="center" cellpadding="2" cellspacing="1" width="100%">
+				<table align="center" cellpadding="2" cellspacing="1" width="100%" rules="all" border="1">
 					<tr>
 						<input type="hidden" name="courtRaider.id" value="<s:property value="courtRaider.id"/>"/>
 						<td class="left" width="40%">俱乐部<span style='color: red'>*</span></td>
@@ -70,7 +70,7 @@ $(document).ready(function(){
 						<td class="right"><input type="text" size="30" name="courtRaider.indexName" value="<s:property value="courtRaider.indexName"/>"/></td>
 					</tr>
 					<tr>
-						<td class="left">球道图片<span style='color: red'>*</span></td>
+						<td class="left">更换图片<span style='color: red'>*</span></td>
 						<td class="right"><input type="file" name="upload"
 							id="fileUpload_upload">
 						</td>
@@ -78,7 +78,7 @@ $(document).ready(function(){
 					<tr>
 						<td class="left">图片样例<span style='color: red'>*</span></td>
 						<td class="right">
-							<img src="<s:property value="courtRaider.image.path"/>" onclick=""style="width:200px;height:200px">
+							<img src="<s:property value="courtRaider.image.path"/>">
 							<s:if test="courtImage.imageId>0">名称:&nbsp;&nbsp; <s:property value='courtRaider.image.name'/></s:if>
 							<s:else>未上传图片</s:else>
 						</td>

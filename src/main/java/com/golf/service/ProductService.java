@@ -25,7 +25,7 @@ public interface ProductService {
 
 	public List<Image> findImagesByProductId(int productId);
 	
-	public void insertProductImage(ProductImage productImage);
+	public int insertProductImage(ProductImage productImage);
 	
 	public Object deleteProductImage(ProductImage productImage);
 }

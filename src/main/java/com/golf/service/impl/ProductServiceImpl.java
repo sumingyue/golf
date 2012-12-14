@@ -154,8 +154,8 @@ public class ProductServiceImpl implements InitializingBean, ProductService {
 	}
 
 	@Override
-	public void insertProductImage(ProductImage productImage) {
-		m_productImageDao.insert(productImage);
+	public int insertProductImage(ProductImage productImage) {
+		return m_productImageDao.insert(productImage);
 	}
 
 	public void setImageService(ImageService imageService) {

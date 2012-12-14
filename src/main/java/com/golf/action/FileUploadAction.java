@@ -25,15 +25,15 @@ public class FileUploadAction extends ActionSupport {
 	public String execute() throws Exception {
 		try {
 			String fileName = m_uploadFile.getFilename();
-			String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.OTHER);
+			String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.NEWS);
 			String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
 
 			String compressRelativePath = Config.IMAGE_PATH
-			      + ImageTools.getImageStorePath(fileName, "_small", Image.OTHER);
+			      + ImageTools.getImageStorePath(fileName, "_small", Image.NEWS);
 			String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/"
 			      + compressRelativePath;
 
-			String originalPath = ImageTools.getOriginalPath(fileName, Image.OTHER);
+			String originalPath = ImageTools.getOriginalPath(fileName, Image.NEWS);
 			m_uploadFile.setOriginalPath(originalPath);
 
 			m_uploadFile.setPath(relativePath);
@@ -42,8 +42,8 @@ public class FileUploadAction extends ActionSupport {
 			m_uploadFile.setCompressedPath(compressRelativePath);
 			m_uploadFile.setCompressedStorePath(compressStorePath);
 
-			m_imageService.insert(m_upload, m_uploadFile, Image.OTHER, Image.OTHER_WIDTH, Image.OTHER_HEIGHT, true,
-			      Image.OTHER_SMALL_WIDTH, Image.OTHER_SMALL_HEIGHT);
+			m_imageService.insert(m_upload, m_uploadFile, Image.NEWS, Image.NEWS_WIDTH, Image.NEWS_HEIGHT, true,
+			      Image.NEWS_SMALL_WIDTH, Image.NEWS_SMALL_HEIGHT);
 		} catch (Exception e) {
 			addActionError(e.getMessage());
 			return ERROR;

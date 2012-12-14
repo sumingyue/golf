@@ -30,7 +30,7 @@ $(document).ready(function(){
 				<table align="center" cellpadding="2" cellspacing="1" width="100%">
 					<tr>
 						<input type="hidden" name="courtImage.id" value="<s:property value="courtImage.id"/>"/>
-						<td class="left" width="40%">俱乐部<span style='color: red'>*</span></td>
+						<td class="left" width="40%">球场<span style='color: red'>*</span></td>
 						<td class="right">
 							<s:select name="courtImage.courtId" id="courtId"
 								list="courts" listKey="id" value="courtImage.courtId" listValue="name"  theme="simple" >
@@ -38,7 +38,7 @@ $(document).ready(function(){
 						</td>
 					</tr>
 					<tr>
-						<td class="left">俱乐部图片<span style='color: red'>*</span></td>
+						<td class="left">更换图片<span style='color: red'>*</span></td>
 						<td class="right"><input type="file" name="upload"
 							id="fileUpload_upload">
 							</td>	
@@ -47,8 +47,7 @@ $(document).ready(function(){
 					<tr>
 						<td class="left">图片样例<span style='color: red'>*</span></td>
 						<td class="right">
-							<img src="<s:property value="courtImage.image.path"/>" onclick="" width="200"
-								height="200">
+							<img src="<s:property value="courtImage.image.path"/>" >
 							<s:if test="courtImage.imageId>0">名称:&nbsp;&nbsp; <s:property value='courtImage.image.name'/></s:if>
 							<s:else>未上传图片</s:else>
 						</td>	

@@ -15,7 +15,8 @@ img{display: block;border:none;}
 ul,li{list-style-type: none;}
 
 body {
-  font: 13px/1.5 Arial,'Microsoft Yahei', sans-serif;
+  /* font: 13px/1.5 Tahoma,sans-serif,'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; */
+   font: 13px/1.5 Arial,'Microsoft Yahei', sans-serif; 
 }
 
 pre,
@@ -568,12 +569,20 @@ body {
 }
 .side-banner img{
 	margin-bottom:150px;
-}
+}/* 
 .left-banner{
 	margin-left: -160px;
 }
 .right-banner{
 	margin-left:970px;
+} */
+
+
+.left-banner{
+	left: 70px;
+}
+.right-banner{
+    right: 70px;
 }
 
 .side-banner .banner-img{

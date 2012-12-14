@@ -41,7 +41,9 @@ public class FileManagerAction extends ActionSupport {
 				if (temp.isDirectory()) {
 					m_dirs.add(name);
 				} else {
-					m_pics.add(Config.IMAGE_PATH+"/"+name);
+					if(name.indexOf("_normal")>-1){
+						m_pics.add(Config.IMAGE_PATH+"/"+name);
+					}
 				}
 			}
 		}

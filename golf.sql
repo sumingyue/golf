@@ -125,10 +125,11 @@ CREATE TABLE  `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商城产品具体信息';
 
 CREATE TABLE   `productImage` ( 
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `productId` int(11) NOT NULL COMMENT '产品的ID',
   `imageId` int(11) NOT NULL COMMENT '图片的ID',
   `creationDate` datetime NOT NULL COMMENT '创建时间',
-  PRIMARY KEY (`productId`,`imageId`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品图片信息';
 
 CREATE TABLE   `productOrder` (

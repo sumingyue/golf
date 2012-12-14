@@ -27,7 +27,7 @@ $(document).ready(function(){
 			<h4 style="text-align:center">修改高尔夫图片专题图片信息</h4>
 			<form action="imageSpecialDetailUpdateSubmit.do" id="form" method="post"  
 				enctype="multipart/form-data">
-				<table align="center" cellpadding="2" cellspacing="1" width="100%">
+				<table align="center" cellpadding="2" cellspacing="1" width="100%" rules="all" border="1">
 					<tr>
 						<input type="hidden" name="imageSpecialDetail.id" value="<s:property value="imageSpecialDetail.id"/>"/>
 						<td class="left" width="40%">专题名称<span style='color: red'>*</span></td>
@@ -47,8 +47,7 @@ $(document).ready(function(){
 					<tr>
 						<td class="left">图片样例<span style='color: red'>*</span></td>
 						<td class="right">
-							<img src="<s:property value="imageSpecialDetail.image.path"/>" onclick="" width="200"
-								height="200">
+							<img src="<s:property value="imageSpecialDetail.image.path"/>" >
 							<s:if test="imageSpecialDetail.imageId>0">名称:&nbsp;&nbsp; <s:property value='imageSpecialDetail.image.name'/></s:if>
 							<s:else>未上传图片</s:else>
 						</td>	

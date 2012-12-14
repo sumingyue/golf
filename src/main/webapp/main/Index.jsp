@@ -535,14 +535,14 @@
 			<a href="#" class="close">x</a>
 			<a href="${adwordsService.adwords[1].url}" target="_blank"><img 
 			src="${adwordsService.adwords[1].image.path}"
-				height="150" border="0"  width="150">
+				height="150" border="0"  width="150" />
 			</a>
 		</div>
 		<div class="banner-img">
 			<a href="#" class="close">x</a>
 			<a href="${adwordsService.adwords[2].url}" target="_blank"><img 
 			src="${adwordsService.adwords[2].image.path}"
-			height="150" border="0"  width="150">
+			height="150" border="0"  width="150" /></a>
 		</div>
 	</div>
 	
@@ -551,14 +551,14 @@
 			<a href="#" class="close">x</a>
 			<a href="${adwordsService.adwords[3].url}" target="_blank"><img 
 			src="${adwordsService.adwords[3].image.path}"
-			height="150" border="0"  width="150">
+			height="150" border="0"  width="150" />
 			</a>
 		</div>
 		<div class="banner-img">
 			<a href="#" class="close">x</a>
 			<a href="${adwordsService.adwords[4].url}" target="_blank"><img 
 			src="${adwordsService.adwords[4].image.path}"
-			height="150" border="0"  width="150">
+			height="150" border="0"  width="150" />
 			</a>
 		</div>
 	</div>

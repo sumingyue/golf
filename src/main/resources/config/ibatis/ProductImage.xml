@@ -4,7 +4,7 @@
 	<typeAlias alias="productImage" type="com.golf.entity.ProductImage" />
 	
 	<sql id="productImage.columns">
-		productId,imageId,creationDate
+		id,productId,imageId,creationDate
 	</sql>
 	<select id="productImage.findByProductId" resultClass="productImage"
 		parameterClass="int">
@@ -16,7 +16,10 @@
 		insert into productImage (
 		<include refid="productImage.columns" />
 		) values
-		(#productId#,#imageId#,now())
+		(#id#,#productId#,#imageId#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
 	</insert>
 	<delete id="productImage.delete" parameterClass="productImage">
 		delete from productImage

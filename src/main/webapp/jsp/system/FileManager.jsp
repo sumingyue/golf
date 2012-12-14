@@ -3,7 +3,16 @@
 <!DOCTYPE html><html>
 <head>
 <title>图片列表</title>
+<script src="js/jquery-1.7.1.js" type="text/javascript"></script>
 <script type="text/javascript">
+	function setValue(img){
+		if(confirm('确定选择这张图片吗?')){
+			console.log(img.src);
+			var input = $('#cke_104_textInput', window.opener.document);
+			input.val(img.src);
+			window.close();
+		}
+	}
 </script>
 </head>
 <body>
@@ -21,7 +30,7 @@
 				<tr>
 			</s:if>
 				<td><img src="<s:property/>"
-				onclick="" width="200" height="200"></td>
+				onclick="setValue(this)"></td>
 			<s:if test="#status.index%3==2||#status.last">
 				</tr>
 			</s:if>

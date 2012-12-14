@@ -4,7 +4,7 @@ public class Config {
 
 	public static final boolean DUBUG = true;
 
-	public static final String IMAGE_PATH = "upload";
+	public static final String IMAGE_PATH = "upload/news";
 
 	public static final int DEFAULT_PAGE_NUMBER = 15;
 

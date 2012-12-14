@@ -17,12 +17,11 @@ public class ProductImageDao {
 		return  m_baseDao.queryForList("productImage.findByProductId", productId);
 	}
 
-	public Object insert(ProductImage productImage) {
-		return (Object) m_baseDao.insert("productImage.insert", productImage);
+	public int insert(ProductImage productImage) {
+		return (Integer) m_baseDao.insert("productImage.insert", productImage);
 	}
 
-	public Object delete(ProductImage productImage) {
-		Object object = m_baseDao.delete("productImage.delete", productImage);
-		return  object;
+	public int delete(ProductImage productImage) {
+		return (Integer)m_baseDao.delete("productImage.delete", productImage);
 	}
 }
