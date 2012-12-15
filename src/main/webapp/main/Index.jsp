@@ -81,9 +81,23 @@
 			</div>
 		</div>
 		<div class="grid_7">
+			<div class="mod-box-vertical mod-box-vertical-last" id="tupianji">
+				<div class="mod-hd">
+					<h3 style="padding-top:20px;"><a href="pics.do" target="_blank">图片专题</a></h3>
+				</div>
+				<div class="mod-bd">
+					<ul class="gallery">
+						<s:iterator value="imageSpecials" status="vs">
+							<li class="image-item"><img
+							src="${image.path}"
+							alt="专题图片"> <a href="pic.do?id=${id}">${shortName}</a></li>
+							</s:iterator>
+					</ul>
+				</div>
+			</div>
 			<div class="mod-box-horizon mod-box-horizon-last" id="zhuantiqu">
 				<div class="mod-hd"><span class="more"><a href="specials.do" target="_blank">更多</a></span><a href="specials.do" target="_blank">专题区</a></div>
-				<div class="mod-bd" style="height: 268px; overflow: hidden;">
+				<div class="mod-bd" style="height:143px; overflow: hidden;">
 					<ul class="mod-article-list">
 						<s:iterator value="specialNews" status="vs">
 							<li class="article-item"><a
@@ -137,7 +151,7 @@
 				</div>
 			</div>
 
-			<div class="mod-box-horizon mod-box-horizon-last tab-list lxctab">
+			<%-- <div class="mod-box-horizon mod-box-horizon-last tab-list lxctab">
 				<div class="mod-hd tab-hd">
 					<h3 class="tab-hd-item active"><a href="sc.do?id=36" target="_blank">本地时尚</a></h3>
 					<h3 class="tab-hd-item"><a href="sc.do?id=37" target="_blank">社会热点</a></h3>
@@ -163,7 +177,7 @@
 						</s:iterator>
 					</ul>
 				</div>
-			</div>
+			</div> --%>
 
 		</div>
 		<div class="grid_10">
@@ -195,24 +209,9 @@
 					</ul>
 				</div>
 			</div>
-
-			<div class="mod-box-vertical mod-box-vertical-last" id="tupianji">
-				<div class="mod-hd">
-					<h3><a href="pics.do" target="_blank">图片专题</a></h3>
-				</div>
-				<div class="mod-bd">
-					<ul class="gallery">
-						<s:iterator value="imageSpecials" status="vs">
-							<li class="image-item"><img
-							src="${image.path}"
-							alt="专题图片"> <a href="pic.do?id=${id}">${shortName}</a></li>
-							</s:iterator>
-					</ul>
-				</div>
-			</div>
 		</div>
 		<div class="grid_7">
-			<div class="mod-box-horizon mod-box-horizon" id="lianxichang">
+			<%-- <div class="mod-box-horizon mod-box-horizon" id="lianxichang">
 				<div class="mod-hd"><span class="more"><a href="club.do" target="_blank">更多</a></span><a href="club.do" target="_blank">球场</a></div>
 				<div class="mod-bd">
 					<a href="court.do?id=${courtImage.courtId}"><img
@@ -227,10 +226,13 @@
 						</s:iterator>
 					</ul>
 				</div>
-			</div><div class="mod-box-horizon mod-box-horizon-last" id="lianxichang">
-				<div class="mod-hd"><span class="more"><a href="sc.do?id=41" target="_blank">更多</a></span><a href="sc.do?id=41" target="_blank">练习场</a></div>
+			</div> --%><div class="mod-box-horizon mod-box-horizon-last" id="lianxichang">
+				<div class="mod-hd"><span class="more"><a href="sc.do?id=43" target="_blank">更多</a></span><a href="sc.do?id=41" target="_blank">练习场新闻</a></div>
 				<div class="mod-bd">
 					<ul class="mod-article-list">
+							<a href="news.do?id=${lianXiChang.id}"><img
+						src="${lianXiChang.image.path}"
+						class="img-full img-ads" alt="图片"></a>
 							<ul class="mod-article-list">
 								<s:iterator value="lianXiChangs" status="vs">
 									<li class="article-item"><a
@@ -279,32 +281,21 @@
 
 		<!-- 球队之家 高球旅游 贵宾通道 -->
 		<div class="grid_7">
-			<div class="mod-box-vertical mod-box-vertical-last"
-				id="qiuduihuodong">
-				<div class="mod-hd">
-					<h3><a href="sc.do?id=40" target="_blank">供求信息</a></h3>
-				</div>
+		
+			<div class="mod-box-horizon mod-box-horizon-last" id="qiudui">
+				<div class="mod-hd"><span class="more"><a href="teams.do" target="_blank">更多</a></span><a href="teams.do" target="_blank">球队</a></div>
 				<div class="mod-bd">
 					<ul class="mod-article-list">
-						<s:iterator value="gongQiuXinXis" status="vs">
-							<li class="article-item"><a
-								href="news.do?id=${id}" target="_blank">${smallTitle}</a><span class="time">${dateStr}</span></li>
-						</s:iterator>
-					</ul>
-				</div>
-			</div>
-			<br>
-			<div class="mod-box-vertical mod-box-vertical-last"
-				id="qiuduihuodong">
-				<div class="mod-hd">
-					<h3><a href="teams.do" target="_blank">高尔夫球队</a></h3>
-				</div>
-				<div class="mod-bd">
-					<ul class="mod-article-list">
-					<s:iterator value="teamNews" status="vs">
-						<li class="article-item"><a
-								href="teamNews.do?id=${id}" target="_blank">${shortTitle}</a></li>
-						</s:iterator>
+							<%-- <a href="news.do?id=${lianXiChang.id}"><img
+						src="${lianXiChang.image.path}"
+						class="img-full img-ads" alt="图片"></a> --%>
+							<ul class="mod-article-list">
+								<s:iterator value="teamNews" status="vs">
+									<li class="article-item"><a
+										href="teamNews.do?id=<s:property value="id"/>" target="_blank"><s:property
+												value="shortTitle" /></a></li>
+								</s:iterator>
+							</ul>
 					</ul>
 				</div>
 			</div>
@@ -360,10 +351,6 @@
 						<li><a href="${adwordsService.adwords[17].url}"
 							target="_blank"><img class="img-full"
 								src="${adwordsService.adwords[17].image.path}" height="90"
-								border="0"></a></li>
-						<li><a href="${adwordsService.adwords[18].url}"
-							target="_blank"><img class="img-full"
-								src="${adwordsService.adwords[18].image.path}" height="90"
 								border="0"></a></li>
 					</ul>
 				</div>
@@ -441,11 +428,11 @@
 		<div class="grid_8">
 			<div class="mod-box-horizon">
 				<div class="mod-hd">
-					<span class="more"><a href="sc.do?id=14" target="_blank">更多</a></span><a href="sc.do?id=14" target="_blank">球界故事</a>
+					<span class="more"><a href="sc.do?id=40" target="_blank">更多</a></span><a href="sc.do?id=40" target="_blank">供求信息</a>
 				</div>
 				<div class="mod-bd">
 					<ul class="mod-article-list">
-						<s:iterator value="qiuJieGuShis" status="vs">
+						<s:iterator value="gongQiuXinXis" status="vs">
 							<li class="article-item"><span class="time">${dateStr}</span><a
 								href="news.do?id=${id}" target="_blank">${smallTitle}</a></li>
 						</s:iterator>

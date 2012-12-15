@@ -41,6 +41,9 @@
 						<s:if test="#vs.first">
 							<li class="big-pic active"><img
 								src="<s:property value="image.path"/>" alt=""></li>
+							<div>
+								<s:property value="imageDes"/>
+							</div>
 						</s:if>
 						<s:else>
 							<li class="big-pic"><img

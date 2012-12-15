@@ -75,7 +75,7 @@
 			</div>
 		</div>
 		<s:if test="#vs.index==2">
-		<div class="grid_24">
+		<div class="grid_24" style="margin-bottom:15px;">
 			<a href="${adwordsService.adwords[20].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[20].image.path}"
 				height="90" border="0"></a>

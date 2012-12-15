@@ -75,22 +75,22 @@
 						<tr>
 							<td  width="30%" class="left">广告位置<span style='color: red'>*</span></td>
 							<td class="right"><input type="text" size="60"
-								name="adwords.position"
+								name="adwords.position" readonly
 								value="<s:property value="adwords.position"/>" /></td>
 						</tr>
 						<tr>
 							<td class="left">广告名称<span style='color: red'>*</span></td>
-							<td class="right"><input type="text" size="60"
+							<td class="right"><input type="text" size="60" readonly
 								name="adwords.name" value="<s:property value="adwords.name"/>" /></td>
 						</tr>
 						<tr>
 							<td class="left">广告宽度<span style='color: red'>*</span></td>
-							<td class="right"><input type="text" size="40"
+							<td class="right"><input type="text" size="40" readonly
 								name="adwords.width" value="<s:property value="adwords.width"/>" /></td>
 						</tr>
 						<tr>
 							<td class="left">广告高度<span style='color: red'>*</span></td>
-							<td class="right"><input type="text" size="40"
+							<td class="right"><input type="text" size="40" readonly
 								name="adwords.height"
 								value="<s:property value="adwords.height"/>" /></td>
 						</tr>

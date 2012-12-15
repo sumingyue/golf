@@ -34,7 +34,7 @@
 					<ul class="mod-article-list">
 						<s:iterator value="qiuhui" status="vs">
 							<li class="article-item"><span class="time"><s:property
-										value="dateStr" /></span><a href="new.do?id=${id}"><s:property
+										value="dateStr" /></span><a href="news.do?id=${id}"><s:property
 										value="normalTitle" /></a></li>
 						</s:iterator>
 					</ul>
@@ -49,7 +49,7 @@
 				<div class="mod-bd">
 					<ul class="mod-article-list">
 						<s:iterator value="xiehui" status="vs">
-							<li class="article-item"><a href="new.do?id=${id}"><s:property
+							<li class="article-item"><a href="news.do?id=${id}"><s:property
 										value="normalTitle" /></a><span class="time"><s:property
 										value="dateStr" /></span></li>
 						</s:iterator>
@@ -65,7 +65,7 @@
 				<div class="mod-bd">
 					<ul class="mod-article-list">
 						<s:iterator value="huiji" status="vs">
-							<li class="article-item"><a href="new.do?id=${id}"><s:property
+							<li class="article-item"><a href="news.do?id=${id}"><s:property
 										value="normalTitle" /></a><span class="time"><s:property
 										value="dateStr" /></span></li>
 						</s:iterator>

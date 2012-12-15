@@ -15,8 +15,8 @@ public class Config {
 	public static final int NEWS_PAGED_NUMBER = 15;
 
 	public static final int DEFAULT_MAX_TITLE_LENGTH = 18;
-	
-	public static final int DEFAULT_NORMAL_TITLE_LENGTH=15;
+
+	public static final int DEFAULT_NORMAL_TITLE_LENGTH = 15;
 
 	public static final int DEFAULT_SMALL_TITLE_LENGTH = 12;
 
@@ -145,19 +145,24 @@ public class Config {
 
 	public static final int ZiXun_RenCaiGongQiu = 34;
 
-	public static final int ZiXun_ZongheZiXun = 35;
-
-	public static final int ZiXun_BenDiShiShang = 36;
-
-	public static final int ZiXun_SheHuiReDian = 37;
+	//
+	// public static final int ZiXun_ZongheZiXun = 35;
+	//
+	// public static final int ZiXun_BenDiShiShang = 36;
+	//
+	// public static final int ZiXun_SheHuiReDian = 37;
 
 	public static final int ZiXun_QiuHuiZiXun = 38;
 
 	public static final int ZiXun_HuiJiZiXun = 39;
 
-	public static final int ZiXun_GongQiuXinXi = 39;
+	public static final int ZiXun_GongQiuXinXi = 40;
 
-	public static final int ZiXun_LianXiChang = 40;
+	public static final int ZiXun_LianXiChang = 41;
+
+	public static final int ZiXun_XueQiuZiXun = 42;
+
+	public static final int ZiXun_LianXiChangNews = 43;
 
 	public static final String Anonymous = "匿名";
 

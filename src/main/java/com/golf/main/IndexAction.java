@@ -84,12 +84,6 @@ public class IndexAction extends ActionSupport {
 
 	private List<News> m_renCaiQiuGongs;
 
-	private List<News> m_benDiShiShangs;
-
-	private List<News> m_sheHuiReDians;
-
-	private List<News> m_zongHeZiXuns;
-
 	private List<TeamNews> m_qiuDuiHuoDongs;
 
 	private List<News> m_lvYouImages;
@@ -109,6 +103,8 @@ public class IndexAction extends ActionSupport {
 	private List<News> m_guanDianPingLuns;
 
 	private List<News> m_gongQiuXinXis;
+
+	private News m_lianXiChang;
 
 	private List<News> m_lianXiChangs;
 
@@ -149,15 +145,16 @@ public class IndexAction extends ActionSupport {
 
 	private void queryZiXun() {
 		// 综合咨询
-		m_huoDongZiXuns = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_HuoDongZiXun);
-		m_youHuiXinXis = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_YouHuiXinXi);
-		m_renCaiQiuGongs = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_RenCaiGongQiu);
+		m_huoDongZiXuns = m_newsService.queryFixedNewsBySmallCategoryId(12, Config.ZiXun_HuoDongZiXun);
+		m_youHuiXinXis = m_newsService.queryFixedNewsBySmallCategoryId(12, Config.ZiXun_YouHuiXinXi);
+		m_renCaiQiuGongs = m_newsService.queryFixedNewsBySmallCategoryId(12, Config.ZiXun_RenCaiGongQiu);
 
-		m_benDiShiShangs = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_BenDiShiShang);
-		m_sheHuiReDians = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_SheHuiReDian);
-		m_zongHeZiXuns = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_ZongheZiXun);
 		m_gongQiuXinXis = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_GongQiuXinXi);
-		m_lianXiChangs = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_LianXiChang);
+		m_lianXiChangs = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_LianXiChangNews);
+		List<News> lianXiImages = m_newsService.queryFixedImageNewsByCategoryId(1, Config.ZiXun_LianXiChangNews);
+
+		m_lianXiChang = lianXiImages.get(0);
+		m_lianXiChang.setImage(m_imageService.findImage(m_lianXiChang.getImageId()));
 	}
 
 	@Override
@@ -180,15 +177,15 @@ public class IndexAction extends ActionSupport {
 			temp.setImage(m_imageService.findImage(temp.getImageId()));
 		}
 
-		m_imageSpecials = m_imageSpecialService.queryFixedImageSpecials(4);
+		m_imageSpecials = m_imageSpecialService.queryFixedImageSpecials(2);
 		if (m_imageSpecials != null) {
 			for (ImageSpecial temp : m_imageSpecials) {
 				temp.setImage(m_imageService.findImage(temp.getImageId()));
 			}
 		}
 
-		m_specialNews = m_specialNewsService.queryLastestSpecialNews(10);
-		m_teamNews = m_teamNewsService.queryFixedTeamNewss(10);
+		m_specialNews = m_specialNewsService.queryLastestSpecialNews(6);
+		m_teamNews = m_teamNewsService.queryFixedTeamNewss(12);
 
 		List<Court> all = m_courtService.queryFixedCourts(6);
 		m_court = all.get(0);
@@ -276,18 +273,6 @@ public class IndexAction extends ActionSupport {
 
 	public List<News> getRenCaiQiuGongs() {
 		return m_renCaiQiuGongs;
-	}
-
-	public List<News> getBenDiShiShangs() {
-		return m_benDiShiShangs;
-	}
-
-	public List<News> getSheHuiReDians() {
-		return m_sheHuiReDians;
-	}
-
-	public List<News> getZongHeZiXuns() {
-		return m_zongHeZiXuns;
 	}
 
 	public List<TeamNews> getQiuDuiHuoDongs() {
@@ -396,6 +381,10 @@ public class IndexAction extends ActionSupport {
 
 	public List<News> getImageNews() {
 		return m_imageNews;
+	}
+
+	public News getLianXiChang() {
+		return m_lianXiChang;
 	}
 
 }

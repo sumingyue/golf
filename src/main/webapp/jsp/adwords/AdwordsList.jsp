@@ -35,7 +35,7 @@
 						<th width="10%">宽度</th>
 						<th width="10%">高度</th>
 						<th width="30%">链接</th>
-						<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="adwordsAdd.do">新增</a></th>
+						<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<!-- <a href="adwordsAdd.do">新增</a> --></th>
 					</tr></thead><tbody>
 					<s:iterator value="adwordss" status="vs">
 						<tr class="trDetail">

@@ -38,7 +38,7 @@
 
 
 #guibintongdao .mod-bd{
-	height: 347px;
+	height: 259px;
 	overflow:hidden;
 }
 #guibintongdao li{
@@ -47,7 +47,7 @@
 	zoom:1;
 }
 #guibintongdao .img-full{
-	height: 53px;
+	height: 47px;
 	width:258px;
 }
 
@@ -57,11 +57,11 @@
 }
 
 #gaoqiulvyou .mod-bd{
-	height: 347px;
+	height: 260px;
 }
 #gaoqiulvyou .image-item img{
 	width:160px;
-	height: 160px;
+	height: 80px;
 }
 #gaoqiulvyou .gallery{
 	border-bottom:1px dashed #ccc;
@@ -75,9 +75,9 @@
 	list-style:disc;
 }
 
-#tupianji{height:117px;}
-#tupianji .image-item{height:100px;width:68px;}
-#tupianji .image-item img{width:75px;height: 75px;}
+#tupianji{height:117px;margin-bottom:5px;}
+#tupianji .image-item{height:100px;width: 95px;}
+#tupianji .image-item img{width: 102px;height: 64px;}
 
 .news-block .mod-article-list .article-item{
 	line-height:20px;
@@ -86,7 +86,7 @@
 }
 
 .lxctab .tab-pannel{
-	height:180px;
+	height: 273px;
 	overflow:hidden;
 }
 
@@ -103,7 +103,7 @@
 
 
 #lianxichang .img-ads{
-	height:67px;
+	height: 92px;
 }
 
 #paiming .tab-hd-item{
@@ -112,6 +112,14 @@
 
 #lianxichang .article-item{
 	margin:3px 5px
+}
+
+#qiudui  .article-item{
+	margin: 2px 5px;}
+
+#qiudui .mod-bd{
+	height:259px;
+	overflow:hidden;
 }
 #qiuchang{
 	overflow:hidden;
@@ -125,7 +133,7 @@
 	height:180px;
 }
 #zhuantiqu .article-item{
-	font-size:14px;
+	font-size: 12px;
 	padding:1px 5px;
 	border-bottom:1px dashed #ccc;
 }
