@@ -33,7 +33,7 @@
 			<result name="success">main/QueryNews.jsp</result>
 		</action>
 		<action name="comment" class="newsDetailAction" method="addComments">
-			<result name="success" type="redirect">nd.action?id=${newsId}</result>
+			<result name="success" type="redirect">news.action?id=${newsId}</result>
 		</action>
 		<action name="practice" class="practiceAction"  method="practiceList">
 			<result name="success">main/Practices.jsp</result>

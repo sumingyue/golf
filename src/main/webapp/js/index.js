@@ -21,21 +21,19 @@ $(function(){
 	
 	
 	var win,scrolls;
-	if($.browser.msie && $.browser.version == 6){
+	//if($.browser.msie && $.browser.version == 6){
 		scrolls = $(".side-banner");
 		scrolls.css({
 			"position":"absolute"
 		});
-		$(".left-banner").css("left",-160);
-		$(".right-banner").css("right",-160);
 		win = $(window);
 		$(window).scroll(function(e){
-			if(win.height() + win.scrollTop() < $("body").height()){
+			if(win.height() + win.scrollTop() < $(".wrap").height()){
 				scrolls.css({
 					top:50+win.scrollTop()
 				});
 			}
 		});
-	}
+	//}
 	
 });

@@ -564,8 +564,7 @@ body {
 
 .side-banner{
 	top:50px;
-	position:fixed;
-	_position:absolute;
+	position:absolute;
 }
 .side-banner img{
 	margin-bottom:150px;
@@ -579,10 +578,10 @@ body {
 
 
 .left-banner{
-	left: 70px;
+	left: -160px;
 }
 .right-banner{
-    right: 70px;
+    right: -160px;
 }
 
 .side-banner .banner-img{

@@ -22,7 +22,7 @@
 					<s:property value="smallCategory.name" />
 					-> 正文
 				</div>
-				<div class="mod-bd">
+				<div class="mod-bd" style="overflow:normal">
 					<div class="article">
 						<div class="arc-head">
 							<div class="arc-title">
@@ -45,7 +45,7 @@
 						</div>
 					</div>
 
-					<div class="hot-pic">
+					<div class="hot-pic" style="height:130px;">
 						<h3>精选专题</h3>
 						<ul class="gallery">
 								<s:iterator value="imageSpecials" status="vs">
@@ -61,9 +61,9 @@
 				<div class="mod-bd">
 					<ul class="comment-list">
 						<s:iterator value="newsComments" status="vs">
-								<li class="article-item"><span class="time"><s:property
-											value="content" /></span><a href="#"><s:property
-											value="userName" />：</a></li>
+								<li class="article-item"><a href="#"><s:property
+											value="userName" />：</a><span class="time"><s:property
+											value="content" /></span></li>
 							</s:iterator>
 					</ul>
 					<form action="comment.do" class="form">
