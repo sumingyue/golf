@@ -20,10 +20,12 @@
 	<logger name="java.sql" additivity="false">  
         <level value="ERROR" />
         <appender-ref ref="CONSOLE" />
+		<appender-ref ref="CONSOLE_FILE"/>
     </logger>
     <logger name="com.ibatis" additivity="false">
         <level value="ERROR" />
         <appender-ref ref="CONSOLE" />
+		<appender-ref ref="CONSOLE_FILE"/>
     </logger>
    <root>
 		<level value="INFO" />

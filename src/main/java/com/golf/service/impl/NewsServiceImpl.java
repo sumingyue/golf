@@ -235,7 +235,7 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 				if (o1.getPriority() != o2.getPriority()) {
 					return o2.getPriority() - o1.getPriority();
 				} else {
-					return o1.getValidateDate().compareTo(o2.getValidateDate());
+					return o2.getValidateDate().compareTo(o1.getValidateDate());
 				}
 			}
 		}
@@ -245,7 +245,7 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 
 		@Override
 		public int compare(News o1, News o2) {
-			return o2.getId() - o1.getId();
+			return o2.getValidateDate().compareTo(o1.getValidateDate());
 		}
 	}
 

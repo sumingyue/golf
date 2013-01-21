@@ -1,6 +1,8 @@
 package com.golf.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -113,6 +115,7 @@ public class CategoryServiceImpl implements InitializingBean, CategoryService {
 				}
 			}
 		}
+		Collections.sort(smallCategories, new SmallCategoryCompartor());
 		return smallCategories;
 	}
 
@@ -180,17 +183,25 @@ public class CategoryServiceImpl implements InitializingBean, CategoryService {
 	public List<SmallCategory> queryPagedSmallCategoryByTypeCategoryId(PagedTool pagedTool, int type, int categoryId) {
 		List<SmallCategory> result = queryAllSmallCategoryByTypeCategoryId(type, categoryId);
 		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
-
 	}
 
 	@Override
-   public List<Category> queryAllCategories() {
-	   return new ArrayList<Category>(m_categories.values());
-   }
+	public List<Category> queryAllCategories() {
+		return new ArrayList<Category>(m_categories.values());
+	}
 
 	@Override
-   public List<SmallCategory> queryAllSmallCategory() {
-	   return new ArrayList<SmallCategory>(m_smallCategories.values());
-   }
+	public List<SmallCategory> queryAllSmallCategory() {
+		return new ArrayList<SmallCategory>(m_smallCategories.values());
+	}
+
+	public static class SmallCategoryCompartor implements Comparator<SmallCategory> {
+
+		@Override
+		public int compare(SmallCategory arg0, SmallCategory arg1) {
+			return arg0.getId() - arg1.getId();
+		}
+
+	}
 
 }

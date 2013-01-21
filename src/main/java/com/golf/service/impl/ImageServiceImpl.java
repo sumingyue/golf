@@ -167,9 +167,15 @@ public class ImageServiceImpl implements ImageService, InitializingBean {
 	private void storeOriginalImage(File upload, String desPath) throws FileNotFoundException, IOException {
 		InputStream in = new FileInputStream(upload);
 		File file = new File(desPath);
-		file.getParentFile().mkdirs();
-		OutputStream os = new FileOutputStream(file);
-		Files.forIO().copy(in, os);
+		boolean result = file.getParentFile().mkdirs();
+
+		if (result) {
+			file.createNewFile();
+			OutputStream os = new FileOutputStream(file);
+			Files.forIO().copy(in, os);
+		} else {
+			m_logger.error("Can't create file" + desPath);
+		}
 	}
 
 }

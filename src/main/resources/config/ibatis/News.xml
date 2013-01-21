@@ -23,7 +23,7 @@
 		) values
 		(#id#,#title#,#content#,#source#,#keyword#,#author#,#good#,#bad#,
 		#viewNumber#,#status#,#recommend#,#priority#,#validateDate#,
-		#categoryId#,#imageId#,#smallCategoryId#,#creationDate#,now())
+		#categoryId#,#smallCategoryId#,#imageId#,#creationDate#,now())
 		<selectKey resultClass="int" keyProperty="id">
              <![CDATA[   select last_insert_id() as id  ]]>
 		</selectKey>

@@ -98,7 +98,7 @@ var calendar = null;
 					<tr>
 						<td width="15%" class="left">新闻作者</td>
 						<td class="right"><input type="text" size="50"
-							name="news.author" /></td>
+							name="news.author" value="youyong"/></td>
 					</tr>
 					<tr>
 						<td width="15%" class="left">新闻来源</td>

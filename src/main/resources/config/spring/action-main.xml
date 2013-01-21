@@ -32,6 +32,9 @@
 		<property name="courtImageService">
 			<ref bean="courtImageService" />
 		</property>
+		<property name="categoryService">
+			<ref bean="categoryService" />
+		</property>
 	</bean>
 	<bean id="categoryNewsAction" class="com.golf.main.CategoryNewsAction"
 		scope="prototype">

@@ -30,7 +30,7 @@ public class Config {
 
 	public static final int CATE_SaiShi = 2;
 
-	public static final int CATE_RenWu = 3;
+	public static final int CATE_PingLun = 3;
 
 	public static final int CATE_LvYou = 4;
 
