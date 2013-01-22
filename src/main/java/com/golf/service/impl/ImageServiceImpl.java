@@ -33,11 +33,31 @@ public class ImageServiceImpl implements ImageService, InitializingBean {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		List<Image> categories = m_imageDao.findAllImage();
+		List<Image> images = m_imageDao.findAllImage();
 
-		for (Image image : categories) {
+		for (Image image : images) {
 			m_images.put(image.getId(), image);
 		}
+
+		for (Image image : images) {
+			String smallPath = image.getSmallPath();
+			String path = image.getPath();
+			String oldPath = "news/news";
+			String newPath = "news";
+
+			if (smallPath.indexOf(oldPath) > -1 && path.indexOf(oldPath) > -1) {
+				smallPath = smallPath.replace(oldPath, newPath);
+				path = path.replace(oldPath, newPath);
+
+				image.setSmallPath(smallPath);
+				image.setPath(path);
+
+				updateImage(image);
+				m_logger.info("Update image id " + image.getId()+ image.getSmallPath()+image.getPath());
+			}
+		}
+		// reload image file
+
 	}
 
 	@Override
@@ -167,15 +187,15 @@ public class ImageServiceImpl implements ImageService, InitializingBean {
 	private void storeOriginalImage(File upload, String desPath) throws FileNotFoundException, IOException {
 		InputStream in = new FileInputStream(upload);
 		File file = new File(desPath);
-		boolean result = file.getParentFile().mkdirs();
-
-		if (result) {
-			file.createNewFile();
-			OutputStream os = new FileOutputStream(file);
-			Files.forIO().copy(in, os);
-		} else {
-			m_logger.error("Can't create file" + desPath);
+		if (!file.getParentFile().exists()) {
+			if (!file.getParentFile().mkdirs()) {
+				m_logger.error("Error create parent file " + desPath);
+			}
 		}
+
+		file.createNewFile();
+		OutputStream os = new FileOutputStream(file);
+		Files.forIO().copy(in, os);
 	}
 
 }

@@ -8,7 +8,7 @@ function init(){
 	
 	$('#contents').dataTable({
 		"sPaginationType": "full_numbers",
-		'iDisplayLength': 15,
+		"bStateSave": true,
 		"oLanguage": {
             "sProcessing": "正在加载中......",
             "sLengthMenu": "每页显示 _MENU_ 条记录",
@@ -25,9 +25,9 @@ function init(){
             }
         }
 	});
-	$("select[name='contents_length']").prepend('<option value="15">15</option>');
-	var value=$("select[name='contents_length']")[0];
-    value.value=15;
+//	$("select[name='contents_length']").prepend('<option value="15">15</option>');
+//	var value=$("select[name='contents_length']")[0];
+//  value.value=15;
     
 	$(".delete").bind("click", function() {
 		return confirm("确定要删除此分类吗(不可恢复)？");

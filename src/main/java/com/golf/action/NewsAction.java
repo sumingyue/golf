@@ -46,9 +46,9 @@ public class NewsAction extends ActionSupport {
 	private int m_categoryId;
 
 	private int m_smallCategoryId;
-	
+
 	private int m_status;
-	
+
 	private int m_recommand;
 
 	private PagedTool m_pagedTool = new PagedTool(Config.NEWS_PAGED_NUMBER);
@@ -76,20 +76,22 @@ public class NewsAction extends ActionSupport {
 		m_uploadFile.setCompressedPath(compressRelativePath);
 		m_uploadFile.setCompressedStorePath(compressStorePath);
 
-		return m_imageService.insert(m_upload, m_uploadFile, Image.NEWS, Image.NEWS_WIDTH, Image.NEWS_HEIGHT, true,Image.NEWS_SMALL_WIDTH,Image.NEWS_SMALL_HEIGHT);
+		return m_imageService.insert(m_upload, m_uploadFile, Image.NEWS, Image.NEWS_WIDTH, Image.NEWS_HEIGHT, true,
+		      Image.NEWS_SMALL_WIDTH, Image.NEWS_SMALL_HEIGHT);
 
 	}
-	
+
 	public String newsList() {
 		try {
-			//m_categoryList = m_categoryService.queryAllCategories(Category.NEWS);
-			//m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS, m_categoryId);
-			//int totalSize = m_newsService.queryTotalSize(m_categoryId, m_smallCategoryId);
-			//int totalSize = m_newsService.queryTotalSize(m_categoryId, m_smallCategoryId,m_status,m_recommand);
-			//m_pagedTool.setTotalNumber(totalSize);
+			// m_categoryList = m_categoryService.queryAllCategories(Category.NEWS);
+			// m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS, m_categoryId);
+			// int totalSize = m_newsService.queryTotalSize(m_categoryId, m_smallCategoryId);
+			// int totalSize = m_newsService.queryTotalSize(m_categoryId, m_smallCategoryId,m_status,m_recommand);
+			// m_pagedTool.setTotalNumber(totalSize);
 
-			//m_newsList = m_newsService.queryPagedNews(m_pagedTool, m_categoryId, m_smallCategoryId);
-			//m_newsList = m_newsService.queryPagedNews(m_pagedTool, m_categoryId, m_smallCategoryId,m_status,m_recommand);
+			// m_newsList = m_newsService.queryPagedNews(m_pagedTool, m_categoryId, m_smallCategoryId);
+			// m_newsList = m_newsService.queryPagedNews(m_pagedTool, m_categoryId,
+			// m_smallCategoryId,m_status,m_recommand);
 			m_newsList = m_newsService.queryAllNews();
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
@@ -102,7 +104,7 @@ public class NewsAction extends ActionSupport {
 		try {
 			m_categoryList = m_categoryService.queryAllCategories(Category.NEWS);
 
-			if(m_categoryId==0){
+			if (m_categoryId == 0) {
 				if (m_categoryList != null && m_categoryList.size() > 0) {
 					Category temp = m_categoryList.get(0);
 					m_categoryId = temp.getId();
@@ -125,14 +127,14 @@ public class NewsAction extends ActionSupport {
 				m_news.setImageId(-1);
 			}
 			m_news.setCreationDate(new Date());
-			
-			if(m_news.getRecommend()==0){
+
+			if (m_news.getRecommend() == 0) {
 				m_news.setRecommend(1);
 			}
-			if(m_news.getStatus()==0){
+			if (m_news.getStatus() == 0) {
 				m_news.setStatus(1);
 			}
-			if(m_news.getValidateDate()==null){
+			if (m_news.getValidateDate() == null) {
 				m_news.setValidateDate(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date()));
 			}
 			int id = m_newsService.insertNews(m_news);
@@ -153,12 +155,15 @@ public class NewsAction extends ActionSupport {
 	public String newsUpdate() {
 		try {
 			m_news = m_newsService.findNews(m_newsId);
-			if(m_news.getImageId()>0){
-				m_news.setImage(m_imageService.findImage(m_news.getImageId()));
+
+			if (m_news != null) {
+				if (m_news.getImageId() > 0) {
+					m_news.setImage(m_imageService.findImage(m_news.getImageId()));
+				}
+				m_categoryList = m_categoryService.queryAllCategories(Category.NEWS);
+				m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS,
+				      m_news.getCategoryId());
 			}
-			m_categoryList = m_categoryService.queryAllCategories(Category.NEWS);
-			m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS,
-			      m_news.getCategoryId());
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
@@ -309,7 +314,5 @@ public class NewsAction extends ActionSupport {
 	public void setRecommand(int recommand) {
 		m_recommand = recommand;
 	}
-	
-	
 
 }
