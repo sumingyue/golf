@@ -109,7 +109,7 @@ public class IndexAction extends ActionSupport {
 
 		for (int i = 0; i < categorys.size(); i++) {
 			SmallCategory smallCategory = categorys.get(i);
-			List<News> lastestNews = m_newsService.queryFixedNewsBySmallCategoryId(12, smallCategory.getId());
+			List<News> lastestNews = m_newsService.queryFixedNewsBySmallCategoryId(9, smallCategory.getId());
 
 			temp.setSmallCategoryNews(i + 1, smallCategory, lastestNews);
 		}
@@ -310,6 +310,12 @@ public class IndexAction extends ActionSupport {
 		private SmallCategory m_smallCategory5;
 
 		private SmallCategory m_smallCategory6;
+		
+		private SmallCategory m_smallCategory7;
+
+		private SmallCategory m_smallCategory8;
+
+		private SmallCategory m_smallCategory9;
 
 		private List<News> m_smallCategoryNews1;
 
@@ -322,6 +328,12 @@ public class IndexAction extends ActionSupport {
 		private List<News> m_smallCategoryNews5;
 
 		private List<News> m_smallCategoryNews6;
+		
+		private List<News> m_smallCategoryNews7;
+
+		private List<News> m_smallCategoryNews8;
+
+		private List<News> m_smallCategoryNews9;
 
 		public void setSmallCategoryNews(int index, SmallCategory smallCategory, List<News> news) {
 			if (index == 1) {
@@ -342,6 +354,15 @@ public class IndexAction extends ActionSupport {
 			} else if (index == 6) {
 				m_smallCategoryNews6 = news;
 				m_smallCategory6 = smallCategory;
+			}else if (index == 7) {
+				m_smallCategoryNews7 = news;
+				m_smallCategory7 = smallCategory;
+			}else if (index == 8) {
+				m_smallCategoryNews8 = news;
+				m_smallCategory8 = smallCategory;
+			}else if (index == 9) {
+				m_smallCategoryNews9 = news;
+				m_smallCategory9 = smallCategory;
 			}
 		}
 
@@ -447,6 +468,30 @@ public class IndexAction extends ActionSupport {
 
 		public SmallCategory getSmallCategory6() {
 			return m_smallCategory6;
+		}
+
+		public SmallCategory getSmallCategory7() {
+			return m_smallCategory7;
+		}
+
+		public SmallCategory getSmallCategory8() {
+			return m_smallCategory8;
+		}
+
+		public SmallCategory getSmallCategory9() {
+			return m_smallCategory9;
+		}
+
+		public List<News> getSmallCategoryNews7() {
+			return m_smallCategoryNews7;
+		}
+
+		public List<News> getSmallCategoryNews8() {
+			return m_smallCategoryNews8;
+		}
+
+		public List<News> getSmallCategoryNews9() {
+			return m_smallCategoryNews9;
 		}
 
 	}

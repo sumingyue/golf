@@ -28,7 +28,7 @@
 								<li class="bigpic active"></s:if>
 								<s:else><li class="bigpic"></s:else>
 								<h3><a href="news.do?id=${id}">${maxTitle}</a></h3>
-								<p><img src="${image.path}" style="width:500px;height:300px;"></p>
+								<p><img src="${image.path}"></p>
 							</li>
 							</s:iterator>
 						</ul>
@@ -36,7 +36,7 @@
 							<s:iterator value="imageNews"> 
 								<s:if test="#vs.index==0"><li class="smallpic active"></s:if>
 								<s:else><li class="smallpic"  ></s:else>
-								<a href="news.do?id=${id}"><img src="${image.path}" style="width:62px;height:62px;"></a></li>
+								<a href="news.do?id=${id}"><img src="${image.path}"></a></li>
 							</li>
 							</s:iterator>
 						</ul>
@@ -46,11 +46,11 @@
 				
 					<s:iterator value="newsGroup"> 
 						<li class="headline">
-							<h3 class="mod-hd"><a href="news.do?id=${first.id}" target="_blank">${first.maxTitle}</a></h3>
+							<h3 class="mod-hd"><a href="news.do?id=${first.id}" target="_blank">${first.title}</a></h3>
 							<div class="mod-bd new-group">
 								<ul class="news-list clear-fix active tab-pannel-item">
 										<s:iterator value="news"> 
-										<li class="news-item"><a href="news.do?id=${id}" target="_blank">${title }</a></li>
+										<li class="news-item"><a href="news.do?id=${id}" target="_blank">${title}</a></li>
 										</s:iterator>
 								</ul>
 							</div>
@@ -59,8 +59,6 @@
 				</ul>
 			</div>
 		</div><div class="clear"></div>		
-		
-		<div class="clear"></div>
 		<s:iterator value="categoryNews" status="vs">
 		<div class="grid_12">
 			<div class="mod-box-horizon">

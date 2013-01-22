@@ -36,7 +36,76 @@
 				height="90" border="0"></a>
 		</div>
 		<jsp:include page="./index/SaiShi.jsp"></jsp:include>
+		<!-- 六块广告 -->
+		<div class="grid_6">
+			<a href="${adwordsService.adwords[7].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[7].image.path}"
+				height="90" border="0"></a>
+		</div>
+		<div class="grid_6">
+			<a href="${adwordsService.adwords[8].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[8].image.path}"
+				height="90" border="0"></a>
+		</div>
+		<div class="grid_6">
+			<a href="${adwordsService.adwords[9].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[9].image.path}"
+				height="90" border="0"></a>
+		</div>
+		<div class="grid_6">
+			<a href="${adwordsService.adwords[10].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[10].image.path}"
+				height="90" border="0"></a>
+		</div>
+		<%-- <div class="grid_4">
+			<a href="${adwordsService.adwords[11].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[11].image.path}"
+				height="90" border="0"></a>
+		</div>
+		<div class="grid_4">
+			<a href="${adwordsService.adwords[12].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[12].image.path}"
+				height="90" border="0"></a>
+		</div> --%>
+		<div class="clear"></div>
 		<jsp:include page="./index/LvYou.jsp"></jsp:include>
+		<div class="grid_4">
+			<a href="${adwordsService.adwords[13].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[13].image.path}"
+				height="90" border="0"></a>
+		</div>
+		<div class="grid_4">
+			<a href="${adwordsService.adwords[14].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[14].image.path}"
+				height="90" border="0"></a>
+		</div>
+		<div class="grid_4">
+			<a href="${adwordsService.adwords[15].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[15].image.path}"
+				height="90" border="0"></a>
+		</div>
+		<div class="grid_4">
+			<a href="${adwordsService.adwords[16].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[16].image.path}"
+				height="90" border="0"></a>
+		</div>
+		<div class="grid_4">
+			<a href="${adwordsService.adwords[17].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[17].image.path}"
+				height="90" border="0"></a>
+		</div>
+		<div class="grid_4">
+			<a href="${adwordsService.adwords[18].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[18].image.path}"
+				height="90" border="0"></a>
+		</div>
+		<jsp:include page="./index/PingLun.jsp"></jsp:include>
+		<!-- 单行大广告 -->
+		<div class="grid_24">
+			<a href="${adwordsService.adwords[19].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[19].image.path}"
+				height="70" border="0"></a>
+		</div>
 		<jsp:include page="./index/ZiXun.jsp"></jsp:include>
 		<div class="clear"></div>
 	<jsp:include page="./Foot.jsp"></jsp:include>
@@ -75,6 +144,5 @@
 		</div>
 	</div>
 	</div>
-	
 </body>
 </html>

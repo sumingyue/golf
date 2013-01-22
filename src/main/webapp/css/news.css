@@ -1,4 +1,4 @@
-.news-slide{float:left;width:585px;background-image:url(http://i0.sinaimg.cn/ty/2011hqj/golf/images/sports_golf_zxh_0214_02.png);}
+.news-slide{float:left;width:470px;background-image:url(http://i0.sinaimg.cn/ty/2011hqj/golf/images/sports_golf_zxh_0214_02.png);}
 	.news-article{float:left;width:200px;}
 	.gallery{}
 	.gallery .bigpics{float:left;}
@@ -20,8 +20,8 @@
 	.adwords-full{height:198px;margin-bottom:5px;width:100%;}
 	.img-full-last{margin-bottom:0;}
 	
-	.headline{width:365px;height:100px;}
-	.headline .mod-bd .news-item{width:180px;}
+	.headline{width:470px;}
+	.headline .mod-bd .news-item{width:235px;}
 	.headline .mod-bd .news-item a{padding:8px 10px}
 	
 .news-item a{
@@ -30,4 +30,13 @@
 	float: left;
 	display:block;
 	text-overflow: ellipsis;
+}
+
+.news-slide .gallery .bigpics img{
+	width:385px;
+	height:258px;
+}
+.news-slide .gallery .smallpics img{
+	width:62px;
+	height:52px;
 }

@@ -37,7 +37,7 @@
 					<div class="headline">
 						<h3 class="mod-hd">
 							<a href="news.do?id=<s:property value="newsLvYou.firstNews.id"/>"
-								target="_blank"><s:property value="newsLvYou.firstNews.title" /></a>
+								target="_blank"><s:property value="newsLvYou.firstNews.maxTitle" /></a>
 						</h3>
 						<div class="mod-bd">
 							<ul class="news-list clear-fix active tab-pannel-item">
@@ -80,7 +80,7 @@
 						</s:iterator>
 					</ul>
 					<ul class="tab-pannel-item mod-article-list">
-						<s:iterator value="news	.smallCategoryNews3" status="vs">
+						<s:iterator value="newsLvYou.smallCategoryNews3" status="vs">
 							<li class="article-item  small"><a
 								href="news.do?id=${id}" target="_blank">${title}</a></li>
 						</s:iterator>
