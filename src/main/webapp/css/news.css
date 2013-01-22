@@ -23,3 +23,11 @@
 	.headline{width:365px;height:100px;}
 	.headline .mod-bd .news-item{width:180px;}
 	.headline .mod-bd .news-item a{padding:8px 10px}
+	
+.news-item a{
+	height: 13px;
+	overflow: hidden;
+	float: left;
+	display:block;
+	text-overflow: ellipsis;
+}

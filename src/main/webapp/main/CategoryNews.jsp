@@ -47,10 +47,10 @@
 					<s:iterator value="newsGroup"> 
 						<li class="headline">
 							<h3 class="mod-hd"><a href="news.do?id=${first.id}" target="_blank">${first.maxTitle}</a></h3>
-							<div class="mod-bd">
+							<div class="mod-bd new-group">
 								<ul class="news-list clear-fix active tab-pannel-item">
 										<s:iterator value="news"> 
-										<li class="news-item"><a href="news.do?id=${id}" target="_blank">${smallTitle }</a></li>
+										<li class="news-item"><a href="news.do?id=${id}" target="_blank">${title }</a></li>
 										</s:iterator>
 								</ul>
 							</div>
@@ -62,20 +62,26 @@
 		
 		<div class="clear"></div>
 		<s:iterator value="categoryNews" status="vs">
-		<div class="grid_8">
+		<div class="grid_12">
 			<div class="mod-box-horizon">
 				<div class="mod-hd"><span class="more"><a href="sc.do?id=<s:property value="smallCategory.id"/>">更多</a></span> 
 				<a href="sc.do?id=<s:property value="smallCategory.id"/>"><s:property value="smallCategory.name"/></a> </div>
 				<div class="mod-bd"><ul class="mod-article-list">
 						<s:iterator value="news" status="vs1">
-							<li class="article-item"><span class="time"><s:property value="dateStr"/></span><a href="news.do?id=<s:property value="id"/>"><s:property value="normalTitle"/></a></li>
+							<li class="article-item"><span class="time"><s:property value="dateStr"/></span><a href="news.do?id=<s:property value="id"/>"><s:property value="title"/></a></li>
 						</s:iterator>
 					</ul>
 				</div>
 			</div>
 		</div>
-		<s:if test="#vs.index==2">
-		<div class="grid_24" style="margin-bottom:15px;">
+		<s:if test="#vs.index==1">
+		<div class="grid_24" style="margin-bottom:5px;">
+			<a href="${adwordsService.adwords[20].url}" target="_blank"><img
+				class="img-full" src="${adwordsService.adwords[20].image.path}"
+				height="90" border="0"></a>
+		</div></s:if>
+		<s:if test="#vs.index==3">
+		<div class="grid_24" style="margin-bottom:5px;">
 			<a href="${adwordsService.adwords[20].url}" target="_blank"><img
 				class="img-full" src="${adwordsService.adwords[20].image.path}"
 				height="90" border="0"></a>
