@@ -31,31 +31,6 @@ public class ProductCategoryServiceImpl implements InitializingBean, ProductCate
 	}
 
 	@Override
-	public List<ProductCategory> queryAllProductCategorys() {
-		ArrayList<ProductCategory> arrayList = new ArrayList<ProductCategory>(m_productCategorys.values());
-		Collections.sort(arrayList, new ProductCategoryCompator());
-		return arrayList;
-	}
-
-	@Override
-	public int insertProductCategory(ProductCategory productCategory) {
-		int id = m_productCategoryDao.insert(productCategory);
-		if (id > 0) {
-			m_productCategorys.put(productCategory.getId(), productCategory);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateProductCategory(ProductCategory productCategory) {
-		int id = m_productCategoryDao.update(productCategory);
-		if (id > 0) {
-			m_productCategorys.put(productCategory.getId(), productCategory);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteProductCategory(int productCategoryId) {
 		int id = m_productCategoryDao.delete(productCategoryId);
 		if (id > 0) {
@@ -77,9 +52,28 @@ public class ProductCategoryServiceImpl implements InitializingBean, ProductCate
 		return productCategory;
 	}
 
-	public void setProductCategoryDao(ProductCategoryDao productCategoryDao) {
-		m_productCategoryDao = productCategoryDao;
+	@Override
+	public int insertProductCategory(ProductCategory productCategory) {
+		int id = m_productCategoryDao.insert(productCategory);
+		if (id > 0) {
+			m_productCategorys.put(productCategory.getId(), productCategory);
+		}
+		return id;
 	}
+
+	@Override
+	public List<ProductCategory> queryAllProductCategorys() {
+		ArrayList<ProductCategory> arrayList = new ArrayList<ProductCategory>(m_productCategorys.values());
+		Collections.sort(arrayList, new ProductCategoryCompator());
+		return arrayList;
+	}
+
+	@Override
+   public List<ProductCategory> queryPagedProductCategorys(PagedTool pagedTool) {
+		List<ProductCategory> result = queryAllProductCategorys();
+		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
+
+   }
 
 	@Override
 	public List<ProductCategory> queryProductCategoryByType(int type) {
@@ -94,6 +88,19 @@ public class ProductCategoryServiceImpl implements InitializingBean, ProductCate
 		return result;
 	}
 
+	public void setProductCategoryDao(ProductCategoryDao productCategoryDao) {
+		m_productCategoryDao = productCategoryDao;
+	}
+
+	@Override
+	public int updateProductCategory(ProductCategory productCategory) {
+		int id = m_productCategoryDao.update(productCategory);
+		if (id > 0) {
+			m_productCategorys.put(productCategory.getId(), productCategory);
+		}
+		return id;
+	}
+
 	public static class ProductCategoryCompator implements Comparator<ProductCategory> {
 
 		@Override
@@ -104,11 +111,4 @@ public class ProductCategoryServiceImpl implements InitializingBean, ProductCate
 		}
 
 	}
-
-	@Override
-   public List<ProductCategory> queryPagedProductCategorys(PagedTool pagedTool) {
-		List<ProductCategory> result = queryAllProductCategorys();
-		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
-
-   }
 }

@@ -35,24 +35,24 @@ public class UserCourtOrderAction extends ActionSupport {
 		}
 	}
 
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
+	}
+
 	public CourtOrder getCourtOrder() {
 		return m_courtOrder;
 	}
 
-	public void setCourtOrder(CourtOrder courtOrder) {
-		m_courtOrder = courtOrder;
-	}
-
-	public void setCourtOrderService(CourtOrderService courtOrderService) {
-		m_courtOrderService = courtOrderService;
-	}
-	
 	public void setAdwordsService(AdwordsService adwordsService) {
 		m_adwordsService = adwordsService;
 	}
 	
-	public AdwordsService getAdwordsService() {
-		return m_adwordsService;
+	public void setCourtOrder(CourtOrder courtOrder) {
+		m_courtOrder = courtOrder;
+	}
+	
+	public void setCourtOrderService(CourtOrderService courtOrderService) {
+		m_courtOrderService = courtOrderService;
 	}
 
 }

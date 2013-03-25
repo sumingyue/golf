@@ -30,31 +30,6 @@ public class UserMessageServiceImpl implements InitializingBean, UserMessageServ
 	}
 
 	@Override
-	public List<UserMessage> queryAllUserMessages() {
-		ArrayList<UserMessage> arrayList = new ArrayList<UserMessage>(m_userMessages.values());
-		Collections.sort(arrayList, new UserMessageCompartor());
-		return arrayList;
-	}
-
-	@Override
-	public int insertUserMessage(UserMessage userMessage) {
-		int id = m_userMessageDao.insert(userMessage);
-		if (id > 0) {
-			m_userMessages.put(userMessage.getId(), userMessage);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateUserMessage(UserMessage userMessage) {
-		int id = m_userMessageDao.update(userMessage);
-		if (id > 0) {
-			m_userMessages.put(userMessage.getId(), userMessage);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteUserMessage(int userMessageId) {
 		int id = m_userMessageDao.delete(userMessageId);
 		if (id > 0) {
@@ -76,16 +51,20 @@ public class UserMessageServiceImpl implements InitializingBean, UserMessageServ
 		return userMessage;
 	}
 
-	public void setUserMessageDao(UserMessageDao userMessageDao) {
-		m_userMessageDao = userMessageDao;
+	@Override
+	public int insertUserMessage(UserMessage userMessage) {
+		int id = m_userMessageDao.insert(userMessage);
+		if (id > 0) {
+			m_userMessages.put(userMessage.getId(), userMessage);
+		}
+		return id;
 	}
 
-	public static class UserMessageCompartor implements Comparator<UserMessage> {
-
-		@Override
-		public int compare(UserMessage o1, UserMessage o2) {
-			return o2.getId() - o1.getId();
-		}
+	@Override
+	public List<UserMessage> queryAllUserMessages() {
+		ArrayList<UserMessage> arrayList = new ArrayList<UserMessage>(m_userMessages.values());
+		Collections.sort(arrayList, new UserMessageCompartor());
+		return arrayList;
 	}
 
 	@Override
@@ -105,5 +84,26 @@ public class UserMessageServiceImpl implements InitializingBean, UserMessageServ
 		}
 		return result.subList(fromIndex, toIndex);
    }
+
+	public void setUserMessageDao(UserMessageDao userMessageDao) {
+		m_userMessageDao = userMessageDao;
+	}
+
+	@Override
+	public int updateUserMessage(UserMessage userMessage) {
+		int id = m_userMessageDao.update(userMessage);
+		if (id > 0) {
+			m_userMessages.put(userMessage.getId(), userMessage);
+		}
+		return id;
+	}
+
+	public static class UserMessageCompartor implements Comparator<UserMessage> {
+
+		@Override
+		public int compare(UserMessage o1, UserMessage o2) {
+			return o2.getId() - o1.getId();
+		}
+	}
 
 }

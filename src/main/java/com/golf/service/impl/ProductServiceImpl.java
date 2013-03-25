@@ -43,10 +43,67 @@ public class ProductServiceImpl implements InitializingBean, ProductService {
 	}
 
 	@Override
+	public int deleteProduct(int productId) {
+		int id = m_productDao.delete(productId);
+		if (id > 0) {
+			m_products.remove(productId);
+		}
+		return id;
+	}
+	
+	@Override
+   public Object deleteProductImage(ProductImage productImage) {
+		return m_productImageDao.delete(productImage);
+   }
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Image> findImagesByProductId(int productId) {
+		List<Image> results = new ArrayList<Image>();
+		List<ProductImage> images = m_productImageDao.findByProductId(productId);
+		for (ProductImage image : images) {
+			Image findImage = m_imageService.findImage(image.getImageId());
+			if(findImage!=null){
+				results.add(findImage);
+			}
+		}
+		return results;
+	}
+
+
+	@Override
+	public Product findProduct(int productId) {
+		Product product = m_products.get(productId);
+		if (product == null) {
+			Product temp = m_productDao.findById(productId);
+			if (temp != null) {
+				m_products.put(productId, temp);
+			}
+			return temp;
+		}
+		return product;
+	}
+
+	@Override
+	public int insertProduct(Product product) {
+		int id = m_productDao.insert(product);
+		if (id > 0) {
+			product.setProductCategory(m_productCategoryService.findProductCategory(product.getProductCategoryId()));
+			m_products.put(product.getId(), product);
+		}
+		return id;
+	}
+
+	@Override
+	public int insertProductImage(ProductImage productImage) {
+		return m_productImageDao.insert(productImage);
+	}
+
+	@Override
 	public List<Product> queryAllProducts() {
 		return new ArrayList<Product>(m_products.values());
 	}
-	
+
 	public List<Product> queryPagedProducts(PagedTool pagedTool,int type,int productCategoryId){
 		List<Product> result = new ArrayList<Product>();
 
@@ -88,15 +145,20 @@ public class ProductServiceImpl implements InitializingBean, ProductService {
 		return result.size();
 	}
 
+	public void setImageService(ImageService imageService) {
+		m_imageService = imageService;
+	}
 
-	@Override
-	public int insertProduct(Product product) {
-		int id = m_productDao.insert(product);
-		if (id > 0) {
-			product.setProductCategory(m_productCategoryService.findProductCategory(product.getProductCategoryId()));
-			m_products.put(product.getId(), product);
-		}
-		return id;
+	public void setProductCategoryService(ProductCategoryService productCategoryService) {
+		m_productCategoryService = productCategoryService;
+	}
+
+	public void setProductDao(ProductDao productDao) {
+		m_productDao = productDao;
+	}
+
+	public void setProductImageDao(ProductImageDao productImageDao) {
+		m_productImageDao = productImageDao;
 	}
 
 	@Override
@@ -108,67 +170,5 @@ public class ProductServiceImpl implements InitializingBean, ProductService {
 		}
 		return id;
 	}
-
-	@Override
-	public int deleteProduct(int productId) {
-		int id = m_productDao.delete(productId);
-		if (id > 0) {
-			m_products.remove(productId);
-		}
-		return id;
-	}
-
-	@Override
-	public Product findProduct(int productId) {
-		Product product = m_products.get(productId);
-		if (product == null) {
-			Product temp = m_productDao.findById(productId);
-			if (temp != null) {
-				m_products.put(productId, temp);
-			}
-			return temp;
-		}
-		return product;
-	}
-
-	public void setProductDao(ProductDao productDao) {
-		m_productDao = productDao;
-	}
-
-	public void setProductCategoryService(ProductCategoryService productCategoryService) {
-		m_productCategoryService = productCategoryService;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Image> findImagesByProductId(int productId) {
-		List<Image> results = new ArrayList<Image>();
-		List<ProductImage> images = m_productImageDao.findByProductId(productId);
-		for (ProductImage image : images) {
-			Image findImage = m_imageService.findImage(image.getImageId());
-			if(findImage!=null){
-				results.add(findImage);
-			}
-		}
-		return results;
-	}
-
-	@Override
-	public int insertProductImage(ProductImage productImage) {
-		return m_productImageDao.insert(productImage);
-	}
-
-	public void setImageService(ImageService imageService) {
-		m_imageService = imageService;
-	}
-
-	public void setProductImageDao(ProductImageDao productImageDao) {
-		m_productImageDao = productImageDao;
-	}
-
-	@Override
-   public Object deleteProductImage(ProductImage productImage) {
-		return m_productImageDao.delete(productImage);
-   }
 	
 }

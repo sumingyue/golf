@@ -31,31 +31,6 @@ public class SpecialNewsServiceImpl implements InitializingBean, SpecialNewsServ
 	}
 
 	@Override
-	public List<SpecialNews> queryAllSpecialNewss() {
-		ArrayList<SpecialNews> arrayList = new ArrayList<SpecialNews>(m_specialNewss.values());
-		Collections.sort(arrayList, new SpecialNewsCompartor());
-		return arrayList;
-	}
-
-	@Override
-	public int insertSpecialNews(SpecialNews specialNews) {
-		int id = m_specialNewsDao.insert(specialNews);
-		if (id > 0) {
-			m_specialNewss.put(specialNews.getId(), specialNews);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateSpecialNews(SpecialNews specialNews) {
-		int id = m_specialNewsDao.update(specialNews);
-		if (id > 0) {
-			m_specialNewss.put(specialNews.getId(), specialNews);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteSpecialNews(int specialNewsId) {
 		int id = m_specialNewsDao.delete(specialNewsId);
 		if (id > 0) {
@@ -76,17 +51,27 @@ public class SpecialNewsServiceImpl implements InitializingBean, SpecialNewsServ
 		return specialNews;
 	}
 
-	public void setSpecialNewsDao(SpecialNewsDao specialNewsDao) {
-		m_specialNewsDao = specialNewsDao;
+	@Override
+	public int insertSpecialNews(SpecialNews specialNews) {
+		int id = m_specialNewsDao.insert(specialNews);
+		if (id > 0) {
+			m_specialNewss.put(specialNews.getId(), specialNews);
+		}
+		return id;
 	}
 
-	public static class SpecialNewsCompartor implements Comparator<SpecialNews> {
+	@Override
+	public List<SpecialNews> queryAllSpecialNewss() {
+		ArrayList<SpecialNews> arrayList = new ArrayList<SpecialNews>(m_specialNewss.values());
+		Collections.sort(arrayList, new SpecialNewsCompartor());
+		return arrayList;
+	}
 
-		@Override
-		public int compare(SpecialNews o1, SpecialNews o2) {
-			return o2.getId() - o1.getId();
-		}
-
+	@Override
+	public List<SpecialNews> queryLastestSpecialNews(int size) {
+		List<SpecialNews> all = queryAllSpecialNewss();
+		resizeList(all, size);
+		return all;
 	}
 
 	@Override
@@ -109,11 +94,26 @@ public class SpecialNewsServiceImpl implements InitializingBean, SpecialNewsServ
 		return all;
 	}
 
+	public void setSpecialNewsDao(SpecialNewsDao specialNewsDao) {
+		m_specialNewsDao = specialNewsDao;
+	}
+
 	@Override
-	public List<SpecialNews> queryLastestSpecialNews(int size) {
-		List<SpecialNews> all = queryAllSpecialNewss();
-		resizeList(all, size);
-		return all;
+	public int updateSpecialNews(SpecialNews specialNews) {
+		int id = m_specialNewsDao.update(specialNews);
+		if (id > 0) {
+			m_specialNewss.put(specialNews.getId(), specialNews);
+		}
+		return id;
+	}
+
+	public static class SpecialNewsCompartor implements Comparator<SpecialNews> {
+
+		@Override
+		public int compare(SpecialNews o1, SpecialNews o2) {
+			return o2.getId() - o1.getId();
+		}
+
 	}
 
 }

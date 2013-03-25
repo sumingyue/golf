@@ -31,29 +31,6 @@ public class PlayerServiceImpl implements InitializingBean, PlayerService {
 	}
 
 	@Override
-	public List<Player> queryAllPlayers() {
-		return new ArrayList<Player>(m_players.values());
-	}
-
-	@Override
-	public int insertPlayer(Player player) {
-		int id = m_playerDao.insert(player);
-		if (id > 0) {
-			m_players.put(player.getId(), player);
-		}
-		return id;
-	}
-
-	@Override
-	public int updatePlayer(Player player) {
-		int id = m_playerDao.update(player);
-		if (id > 0) {
-			m_players.put(player.getId(), player);
-		}
-		return id;
-	}
-
-	@Override
 	public int deletePlayer(int playerId) {
 		int id = m_playerDao.delete(playerId);
 		if (id > 0) {
@@ -75,10 +52,43 @@ public class PlayerServiceImpl implements InitializingBean, PlayerService {
 		return player;
 	}
 
-	public void setPlayerDao(PlayerDao playerDao) {
-		m_playerDao = playerDao;
+	@Override
+	public int insertPlayer(Player player) {
+		int id = m_playerDao.insert(player);
+		if (id > 0) {
+			m_players.put(player.getId(), player);
+		}
+		return id;
 	}
 
+	@Override
+	public List<Player> queryAllPlayers() {
+		return new ArrayList<Player>(m_players.values());
+	}
+
+	public List<Player> queryAllPlayers(String sort) {
+		List<Player> players = queryAllPlayers();
+		Collections.sort(players, new PlayerCompator(sort));
+		
+		return players;
+	}
+
+	@Override
+	public List<Player> queryPagedPlayers(PagedTool pagedTool, String sort) {
+		List<Player> result = queryAllPlayers(sort);
+		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
+
+	}
+
+	@Override
+	public List<Player> queryPlayers(String sort,int size) {
+		List<Player> players = queryAllPlayers();
+		Collections.sort(players, new PlayerCompator(sort));
+		
+		resizeList(players,size);
+		return players;
+	}
+	
 	private List<Player> resizeList(List<Player> all, int size) {
 		int totalSize = all.size();
 		if (size > totalSize) {
@@ -92,21 +102,18 @@ public class PlayerServiceImpl implements InitializingBean, PlayerService {
 		return all;
 	}
 	
-	@Override
-	public List<Player> queryPlayers(String sort,int size) {
-		List<Player> players = queryAllPlayers();
-		Collections.sort(players, new PlayerCompator(sort));
-		
-		resizeList(players,size);
-		return players;
-	}
-	
 
-	public List<Player> queryAllPlayers(String sort) {
-		List<Player> players = queryAllPlayers();
-		Collections.sort(players, new PlayerCompator(sort));
-		
-		return players;
+	public void setPlayerDao(PlayerDao playerDao) {
+		m_playerDao = playerDao;
+	}
+
+	@Override
+	public int updatePlayer(Player player) {
+		int id = m_playerDao.update(player);
+		if (id > 0) {
+			m_players.put(player.getId(), player);
+		}
+		return id;
 	}
 
 	public static class PlayerCompator implements Comparator<Player> {
@@ -125,13 +132,6 @@ public class PlayerServiceImpl implements InitializingBean, PlayerService {
 				return (int) ((o2.getBonus() - o1.getBonus()) * 100);
 			}
 		}
-	}
-
-	@Override
-	public List<Player> queryPagedPlayers(PagedTool pagedTool, String sort) {
-		List<Player> result = queryAllPlayers(sort);
-		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
-
 	}
 
 }

@@ -31,38 +31,6 @@ public class CourtRaiderServiceImpl implements InitializingBean, CourtRaiderServ
 	}
 
 	@Override
-	public List<CourtRaider> queryAllCourtRaiders(int courtId) {
-		ArrayList<CourtRaider> arrayList = new ArrayList<CourtRaider>(m_courtRaiders.values());
-		List<CourtRaider> result = new ArrayList<CourtRaider>();
-		
-		for (CourtRaider temp : arrayList) {
-			if (temp.getCourtId() == courtId || courtId == 0) {
-				result.add(temp);
-			}
-		}
-		Collections.sort(result, new CourtRaiderCompartor());
-		return result;
-	}
-
-	@Override
-	public int insertCourtRaider(CourtRaider courtRaider) {
-		int id = m_courtRaiderDao.insert(courtRaider);
-		if (id > 0) {
-			m_courtRaiders.put(courtRaider.getId(), courtRaider);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateCourtRaider(CourtRaider courtRaider) {
-		int id = m_courtRaiderDao.update(courtRaider);
-		if (id > 0) {
-			m_courtRaiders.put(courtRaider.getId(), courtRaider);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteCourtRaider(int courtRaiderId) {
 		int id = m_courtRaiderDao.delete(courtRaiderId);
 		if (id > 0) {
@@ -83,8 +51,46 @@ public class CourtRaiderServiceImpl implements InitializingBean, CourtRaiderServ
 		return courtRaider;
 	}
 
+	@Override
+	public int insertCourtRaider(CourtRaider courtRaider) {
+		int id = m_courtRaiderDao.insert(courtRaider);
+		if (id > 0) {
+			m_courtRaiders.put(courtRaider.getId(), courtRaider);
+		}
+		return id;
+	}
+
+	@Override
+	public List<CourtRaider> queryAllCourtRaiders(int courtId) {
+		ArrayList<CourtRaider> arrayList = new ArrayList<CourtRaider>(m_courtRaiders.values());
+		List<CourtRaider> result = new ArrayList<CourtRaider>();
+		
+		for (CourtRaider temp : arrayList) {
+			if (temp.getCourtId() == courtId || courtId == 0) {
+				result.add(temp);
+			}
+		}
+		Collections.sort(result, new CourtRaiderCompartor());
+		return result;
+	}
+
+	@Override
+   public List<CourtRaider> queryPagedCourtRaiders(PagedTool pagedTool, int courtId) {
+		List<CourtRaider> result = queryAllCourtRaiders(courtId);
+		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
+	}
+
 	public void setCourtRaiderDao(CourtRaiderDao courtRaiderDao) {
 		m_courtRaiderDao = courtRaiderDao;
+	}
+
+	@Override
+	public int updateCourtRaider(CourtRaider courtRaider) {
+		int id = m_courtRaiderDao.update(courtRaider);
+		if (id > 0) {
+			m_courtRaiders.put(courtRaider.getId(), courtRaider);
+		}
+		return id;
 	}
 
 	public static class CourtRaiderCompartor implements Comparator<CourtRaider> {
@@ -94,12 +100,6 @@ public class CourtRaiderServiceImpl implements InitializingBean, CourtRaiderServ
 			return o2.getId()-o1.getId();
 		}
 
-	}
-
-	@Override
-   public List<CourtRaider> queryPagedCourtRaiders(PagedTool pagedTool, int courtId) {
-		List<CourtRaider> result = queryAllCourtRaiders(courtId);
-		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
 	}
 
 }

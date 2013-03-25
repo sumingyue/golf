@@ -8,7 +8,8 @@ function init(){
 	
 	$('#contents').dataTable({
 		"sPaginationType": "full_numbers",
-		"bStateSave": true,
+//		"bStateSave": true,
+		"iDisplayLength": 50,
 		"oLanguage": {
             "sProcessing": "正在加载中......",
             "sLengthMenu": "每页显示 _MENU_ 条记录",

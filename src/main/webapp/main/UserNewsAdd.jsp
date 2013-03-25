@@ -3,7 +3,9 @@
 <%@ taglib uri="http://ckeditor.com" prefix="ckeditor"%>
 <!DOCTYPE html><html>
 <head>
-<title>苏州高尔夫网</title>
+<title>苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站</title>
+<meta name="Description" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
+<meta name="Keyword" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
 
 <link type="text/css" rel="stylesheet"
 <link rel='stylesheet' type='text/css' href='css/admin.css' />

@@ -31,38 +31,6 @@ public class CourtCommentsServiceImpl implements InitializingBean, CourtComments
 	}
 
 	@Override
-	public List<CourtComments> queryAllCourtCommentss(int courtId) {
-		ArrayList<CourtComments> arrayList = new ArrayList<CourtComments>(m_courtCommentss.values());
-		List<CourtComments> result = new ArrayList<CourtComments>();
-
-		for (CourtComments temp : arrayList) {
-			if (temp.getCourtId() == courtId || courtId == 0) {
-				result.add(temp);
-			}
-		}
-		Collections.sort(result, new CourtCommentsCompartor());
-		return result;
-	}
-
-	@Override
-	public int insertCourtComments(CourtComments courtComments) {
-		int id = m_courtCommentsDao.insert(courtComments);
-		if (id > 0) {
-			m_courtCommentss.put(courtComments.getId(), courtComments);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateCourtComments(CourtComments courtComments) {
-		int id = m_courtCommentsDao.update(courtComments);
-		if (id > 0) {
-			m_courtCommentss.put(courtComments.getId(), courtComments);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteCourtComments(int courtCommentsId) {
 		int id = m_courtCommentsDao.delete(courtCommentsId);
 		if (id > 0) {
@@ -84,8 +52,46 @@ public class CourtCommentsServiceImpl implements InitializingBean, CourtComments
 		return courtComments;
 	}
 
+	@Override
+	public int insertCourtComments(CourtComments courtComments) {
+		int id = m_courtCommentsDao.insert(courtComments);
+		if (id > 0) {
+			m_courtCommentss.put(courtComments.getId(), courtComments);
+		}
+		return id;
+	}
+
+	@Override
+	public List<CourtComments> queryAllCourtCommentss(int courtId) {
+		ArrayList<CourtComments> arrayList = new ArrayList<CourtComments>(m_courtCommentss.values());
+		List<CourtComments> result = new ArrayList<CourtComments>();
+
+		for (CourtComments temp : arrayList) {
+			if (temp.getCourtId() == courtId || courtId == 0) {
+				result.add(temp);
+			}
+		}
+		Collections.sort(result, new CourtCommentsCompartor());
+		return result;
+	}
+
+	@Override
+	public List<CourtComments> queryPagedCourtCommentss(PagedTool pagedTool, int courtId) {
+		List<CourtComments> result = queryAllCourtCommentss(courtId);
+		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
+	}
+
 	public void setCourtCommentsDao(CourtCommentsDao courtCommentsDao) {
 		m_courtCommentsDao = courtCommentsDao;
+	}
+
+	@Override
+	public int updateCourtComments(CourtComments courtComments) {
+		int id = m_courtCommentsDao.update(courtComments);
+		if (id > 0) {
+			m_courtCommentss.put(courtComments.getId(), courtComments);
+		}
+		return id;
 	}
 
 	public static class CourtCommentsCompartor implements Comparator<CourtComments> {
@@ -95,12 +101,6 @@ public class CourtCommentsServiceImpl implements InitializingBean, CourtComments
 			return o2.getId() - o1.getId();
 		}
 
-	}
-
-	@Override
-	public List<CourtComments> queryPagedCourtCommentss(PagedTool pagedTool, int courtId) {
-		List<CourtComments> result = queryAllCourtCommentss(courtId);
-		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
 	}
 
 }

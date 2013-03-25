@@ -1,37 +1,61 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld"%>
-<!DOCTYPE html PUBLIC "-//W3C//Dtd HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en-US"><head>
-	<meta charset="UTF-8">
-		<title>苏州高尔夫网</title>
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/news.css">
+<!DOCTYPE html>
+<html>
+<head>
+<title>苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站</title>
+<meta name="Description" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
+<meta name="Keyword" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.override.css" rel="stylesheet">
+<script src="js/jquery-1.7.1.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#news').addClass('active');
+	});
+</script>
 </head>
 <body>
-	<div class="wrap container_24">
+	<div class="container">
 		<jsp:include page="./Head.jsp"></jsp:include>
-		<div class="clear"></div>
-		<div class="grid_17 main">
-			<div class="mod-box-horizon-last mod-box-horizon">
-				<div class="mod-hd">
-					您当前所在位置：首页 ->
-					<s:property value="smallCategory.category.name" />
-					->
-					<s:property value="smallCategory.name" />
-				</div>
-				<div class="mod-bd">
-					<ul class="mod-article-list news-article-list">
-						<s:iterator value="news" status="vs">
-							<li class="article-item ${vs.index%2==0?'even':'odd'}"><span class="time"><s:property
-										value="dateStr" /></span><a
-								href="news.do?id=<s:property value="id"/>"><s:property
-										value="title" /></a></li>
+		<div>
+			<ul class="breadcrumb">
+				<li>当前位置：</li>
+				<li><a href="index.do">首页</a> <span class="divider">/</span></li>
+				<li><a href="c.do?categoryId=${smallCategory.category.id}">${smallCategory.category.name}</a>
+					<span class="divider">/</span></li>
+				<li class="active">${smallCategory.name}</li>
+			</ul>
+		</div>
+		<div class="row">
+			<div class="span2">
+				<div class="well sidebar-nav">
+					<ul class="nav nav-list" style="height: 440px;">
+						<li class="nav-header">${smallCategory.category.name}</li>
+						<li><a href="c.do?categoryId=${smallCategory.category.id}">最新新闻</a></li>
+						<li class="nav-header">分类新闻</li>
+						<s:iterator value="smallCategories" status="vs">
+							<s:if test="id==smallCategory.id"><li class="active"><a href="sc.do?id=<s:property value="id"/>">${name}</a></li></s:if>
+							<s:else>	<li><a href="sc.do?id=<s:property value="id"/>">${name}</a></li>
+							</s:else>
 						</s:iterator>
 					</ul>
-					<div class="paginate">
+				</div>
+			</div>
+			<div class="span10">
+				<table class="table table-striped table-bordered table-hover">
+							<tr><th width="80%">最新新闻</th><th width="20%">时间</th></tr>
+							<s:iterator value='news'>
+								<tr><td><a href="news.do?id=${id}" target="_blank">${maxTitle}</a></td>
+									<td>${dateStr}</td>
+								</tr>			
+							</s:iterator>
+						</table>
+						<div class="paginate table-bordered">
 						共&nbsp;
 						<s:property value="pagedTool.totalNumber" />
-						&nbsp;条记录 <a href="?index=0">首页</a>&nbsp;&nbsp; <a
+						&nbsp;条记录 <a href="?index=0&id=<s:property value="smallCategoryId"/>">首页</a>&nbsp;&nbsp; <a
 							href="?index=<s:property value="pagedTool.pageIndex-1"/>&id=<s:property value="smallCategoryId"/>">上一页</a>&nbsp;&nbsp;
 						<a
 							href="?index=<s:property value="pagedTool.pageIndex+1"/>&id=<s:property value="smallCategoryId"/>">下一页</a>&nbsp;&nbsp;
@@ -45,36 +69,9 @@
 						<s:property value="pagedTool.pageSize" />
 						条记录/页&nbsp;
 					</div>
-				</div>
 			</div>
-		</div>
-		<div class="grid_7">
-			<div class="mod-box-horizon">
-				<div class="mod-hd">
-					最新新闻
-				</div>
-				<div class="mod-bd">
-					<ul class="mod-article-list">
-						<s:iterator value="latestNews" status="vs">
-							<li class="article-item"><span class="time">${dateStr}</span><a
-								href="news.do?id=${id}" target="_blank">${smallTitle}</a></li>
-						</s:iterator>
-					</ul>
-				</div>
 			</div>
-		<div>
-			<a href="${adwordsService.adwords[21].url}" target="_blank"><img
-				class="adwords-full" src="${adwordsService.adwords[21].image.path}"
-				 border="0"></a>
-			<a href="${adwordsService.adwords[22].url}" target="_blank"><img
-				class="adwords-full" src="${adwordsService.adwords[22].image.path}"
-				border="0"></a>
-		</div>
-		</div>
-		<div class="grid_24">
-			<a href="${adwordsService.adwords[20].url}" target="_blank"><img
-				class="img-full" src="${adwordsService.adwords[20].image.path}"
-				height="90" border="0"></a>
-		</div>
-		<jsp:include page="./Foot.jsp"></jsp:include>
-</body></html>
+			<jsp:include page="./Foot.jsp"></jsp:include>
+			</div>
+</body>
+</html>

@@ -1,103 +1,110 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld"%>
 <!DOCTYPE html>
+<html>
 <head>
-	<title>苏州高尔夫网</title>
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/news.css">
-	<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
-	<script type="text/javascript" src="js/base.js"></script>
+<title>苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站</title>
+<meta name="Description" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
+<meta name="Keyword" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.override.css" rel="stylesheet">
+<script src="js/jquery-1.7.1.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#news').addClass('active');
+	});
+</script>
+<style type="text/css">
+	.news-img{
+		width:460px;
+		height:480px;
+	}
+
+</style>
 </head>
-<body youdao="bind">
-	<div class="wrap container_24">
+<body>
+	<div class="container">
 		<jsp:include page="./Head.jsp"></jsp:include>
-		<div class="clear"></div>	
-		<div class="grid_24">
-			<div class="bread-crumbs">
-					您当前所在位置：首页 -&gt;
-					${category.name}
-				</div>
-		</div>	
-		<div class="grid_24">
-			<div id="slidearticles">
-				<div class="news-slide">
-					<div id="slide-container" class="gallery clear-fix">
-						<ul class="bigpics clear-fix">
-							<s:iterator value="imageNews" status="vs"> 
-								<s:if test="#vs.index==0">
-								<li class="bigpic active"></s:if>
-								<s:else><li class="bigpic"></s:else>
-								<h3><a href="news.do?id=${id}">${maxTitle}</a></h3>
-								<p><img src="${image.path}"></p>
-							</li>
-							</s:iterator>
-						</ul>
-						<ul class="smallpics">
-							<s:iterator value="imageNews"> 
-								<s:if test="#vs.index==0"><li class="smallpic active"></s:if>
-								<s:else><li class="smallpic"  ></s:else>
-								<a href="news.do?id=${id}"><img src="${image.path}"></a></li>
-							</li>
-							</s:iterator>
-						</ul>
-					</div>
-				</div>
-				<ul class="news-article">
-				
-					<s:iterator value="newsGroup"> 
-						<li class="headline">
-							<h3 class="mod-hd"><a href="news.do?id=${first.id}" target="_blank">${first.title}</a></h3>
-							<div class="mod-bd new-group">
-								<ul class="news-list clear-fix active tab-pannel-item">
-										<s:iterator value="news"> 
-										<li class="news-item"><a href="news.do?id=${id}" target="_blank">${title}</a></li>
-										</s:iterator>
-								</ul>
-							</div>
-						</li>
-					</s:iterator>
-				</ul>
-			</div>
-		</div><div class="clear"></div>		
-		<s:iterator value="categoryNews" status="vs">
-		<div class="grid_12">
-			<div class="mod-box-horizon">
-				<div class="mod-hd"><span class="more"><a href="sc.do?id=<s:property value="smallCategory.id"/>">更多</a></span> 
-				<a href="sc.do?id=<s:property value="smallCategory.id"/>"><s:property value="smallCategory.name"/></a> </div>
-				<div class="mod-bd"><ul class="mod-article-list">
-						<s:iterator value="news" status="vs1">
-							<li class="article-item"><span class="time"><s:property value="dateStr"/></span><a href="news.do?id=<s:property value="id"/>"><s:property value="title"/></a></li>
+		<div>
+			<ul class="breadcrumb">
+				<li>当前位置：</li>
+				<li><a href="index.do">首页</a> <span class="divider">/</span></li>
+				<li><a href="c.do?categoryId=${category.id}">${category.name}</a>
+					<span class="divider">/</span></li>
+				<li class="active">最新新闻</li>
+			</ul>
+		</div>
+		<div class="row">
+			<div class="span2">
+				<div class="well sidebar-nav">
+					<ul class="nav nav-list" style="height: 440px;">
+						<li class="nav-header">${category.name}</li>
+						<li class="active"><a href="#">最新新闻</a></li>
+						<li class="nav-header">分类新闻</li>
+						<s:iterator value="smallCategories" status="vs">
+							<li><a href="sc.do?id=<s:property value="id"/>">${name}</a></li>
 						</s:iterator>
 					</ul>
 				</div>
 			</div>
-		</div>
-		<s:if test="#vs.index==1">
-		<div class="grid_24" style="margin-bottom:5px;">
-			<a href="${adwordsService.adwords[20].url}" target="_blank"><img
-				class="img-full" src="${adwordsService.adwords[20].image.path}"
-				height="90" border="0"></a>
-		</div></s:if>
-		<s:if test="#vs.index==3">
-		<div class="grid_24" style="margin-bottom:5px;">
-			<a href="${adwordsService.adwords[20].url}" target="_blank"><img
-				class="img-full" src="${adwordsService.adwords[20].image.path}"
-				height="90" border="0"></a>
-		</div></s:if>
-		</s:iterator>
-		
-		<jsp:include page="./Foot.jsp"></jsp:include>
-		
-	</div>
-	<script type="text/javascript">
-
-	var tabPannel = new TabPannel({
-		container:$("#slide-container"),
-		triggerType:"hover",
-		headCS:".smallpic",
-		itemCS:".bigpic",
-		activeCls:"active"
-	});
-
-	</script>
-</body></html>
+			<div class="span10">
+				<div class="row">
+					<div class="span6">
+						<div id="myCarousel" class="carousel slide">
+							<ol class="carousel-indicators">
+								<s:iterator value="imageNews" status="vs">
+									<s:if test="#vs.index==0">
+										<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+									</s:if>
+									<s:else>
+										<li data-target="#myCarousel" data-slide-to="${vs.index}"></li>
+									</s:else>
+								</s:iterator>
+							</ol>
+							<!-- Carousel items -->
+							<div class="carousel-inner">
+								<s:iterator value="imageNews" status="vs">
+									<s:if test="#vs.index==0">
+										<div class="active item">
+											<img class="news-img" src="<s:property value="image.path"/>" />
+											<div class="carousel-caption">
+												<p>
+													<a href="news.do?id=${id}">${maxTitle}</a>
+												</p>
+											</div>
+										</div>
+									</s:if>
+									<s:else>
+										<div class="item">
+											<img class="news-img" src="<s:property value="image.path"/>" />
+											<div class="carousel-caption">
+												<p>
+													<a href="news.do?id=${id}">${maxTitle}</a>
+												</p>
+											</div>
+										</div>
+									</s:else>
+								</s:iterator>
+							</div>
+							<!-- Carousel nav -->
+							<a class="carousel-control left" href="#myCarousel"
+								data-slide="prev">&lsaquo;</a> <a class="carousel-control right"
+								href="#myCarousel" data-slide="next">&rsaquo;</a>
+						</div>
+					</div>
+					<div class="span4">
+						<table class="table table-striped table-bordered table-hover">
+							<tr><th>最新新闻</th></tr>
+							<s:iterator value='hotNews'>
+								<tr><td><a href="news.do?id=${id}" target="_blank">${maxTitle}</a></td></tr>			
+							</s:iterator>
+						</table>
+					</div>
+				</div>
+			</div>
+			</div>
+			<jsp:include page="./Foot.jsp"></jsp:include>
+			</div><
+</body>
+</html>

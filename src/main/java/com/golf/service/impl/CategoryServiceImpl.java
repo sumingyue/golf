@@ -14,7 +14,6 @@ import com.golf.dao.SmallCategoryDao;
 import com.golf.entity.Category;
 import com.golf.entity.SmallCategory;
 import com.golf.service.CategoryService;
-import com.golf.tools.PagedTool;
 
 public class CategoryServiceImpl implements InitializingBean, CategoryService {
 
@@ -50,41 +49,19 @@ public class CategoryServiceImpl implements InitializingBean, CategoryService {
 	}
 
 	@Override
-	public List<Category> queryAllCategories(int type) {
-		ArrayList<Category> all = new ArrayList<Category>(m_categories.values());
-		List<Category> result = new ArrayList<Category>();
-
-		for (Category temp : all) {
-			if (temp.getType() == type) {
-				result.add(temp);
-			}
-		}
-		return result;
-	}
-
-	@Override
-	public int insertCategory(Category category) {
-		int id = m_categoryDao.insert(category);
-		if (id > 0) {
-			m_categories.put(category.getId(), category);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateCategory(Category category) {
-		int id = m_categoryDao.update(category);
-		if (id > 0) {
-			m_categories.put(category.getId(), category);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteCategory(int categoryId) {
 		int id = m_categoryDao.delete(categoryId);
 		if (id > 0) {
 			m_categories.remove(categoryId);
+		}
+		return id;
+	}
+
+	@Override
+	public int deleteSmallCategory(int smallCategoryId) {
+		int id = m_smallCategoryDao.delete(smallCategoryId);
+		if (id > 0) {
+			m_smallCategories.remove(smallCategoryId);
 		}
 		return id;
 	}
@@ -100,6 +77,63 @@ public class CategoryServiceImpl implements InitializingBean, CategoryService {
 			return temp;
 		}
 		return category;
+	}
+
+	@Override
+	public SmallCategory findSmallCategory(int smallCategoryId) {
+		SmallCategory smallCategory = m_smallCategories.get(smallCategoryId);
+		if (smallCategory == null) {
+			smallCategory = m_smallCategoryDao.findById(smallCategoryId);
+			if (smallCategory != null) {
+				smallCategory.setCategory(findCategory(smallCategory.getCategoryId()));
+				m_smallCategories.put(smallCategoryId, smallCategory);
+			}
+		}
+		return smallCategory;
+	}
+
+	@Override
+	public int insertCategory(Category category) {
+		int id = m_categoryDao.insert(category);
+		if (id > 0) {
+			m_categories.put(category.getId(), category);
+		}
+		return id;
+	}
+
+	@Override
+	public int insertSmallCategory(SmallCategory smallCategory) {
+		int id = m_smallCategoryDao.insert(smallCategory);
+		if (id > 0) {
+			Category category = findCategory(smallCategory.getCategoryId());
+
+			smallCategory.setCategory(category);
+			m_smallCategories.put(id, smallCategory);
+		}
+		return id;
+	}
+
+	@Override
+	public List<Category> queryAllCategories() {
+		return new ArrayList<Category>(m_categories.values());
+	}
+
+	@Override
+	public List<Category> queryAllCategories(int type) {
+		ArrayList<Category> all = new ArrayList<Category>(m_categories.values());
+		List<Category> result = new ArrayList<Category>();
+
+		for (Category temp : all) {
+			if (temp.getType() == type) {
+				result.add(temp);
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public List<SmallCategory> queryAllSmallCategory() {
+		return new ArrayList<SmallCategory>(m_smallCategories.values());
 	}
 
 	@Override
@@ -119,14 +153,19 @@ public class CategoryServiceImpl implements InitializingBean, CategoryService {
 		return smallCategories;
 	}
 
-	@Override
-	public int insertSmallCategory(SmallCategory smallCategory) {
-		int id = m_smallCategoryDao.insert(smallCategory);
-		if (id > 0) {
-			Category category = findCategory(smallCategory.getCategoryId());
+	public void setCategoryDao(CategoryDao categoryDao) {
+		m_categoryDao = categoryDao;
+	}
 
-			smallCategory.setCategory(category);
-			m_smallCategories.put(id, smallCategory);
+	public void setSmallCategoryDao(SmallCategoryDao smallCategoryDao) {
+		m_smallCategoryDao = smallCategoryDao;
+	}
+
+	@Override
+	public int updateCategory(Category category) {
+		int id = m_categoryDao.update(category);
+		if (id > 0) {
+			m_categories.put(category.getId(), category);
 		}
 		return id;
 	}
@@ -141,58 +180,6 @@ public class CategoryServiceImpl implements InitializingBean, CategoryService {
 			m_smallCategories.put(smallCategory.getId(), smallCategory);
 		}
 		return id;
-	}
-
-	@Override
-	public int deleteSmallCategory(int smallCategoryId) {
-		int id = m_smallCategoryDao.delete(smallCategoryId);
-		if (id > 0) {
-			m_smallCategories.remove(smallCategoryId);
-		}
-		return id;
-	}
-
-	@Override
-	public SmallCategory findSmallCategory(int smallCategoryId) {
-		SmallCategory smallCategory = m_smallCategories.get(smallCategoryId);
-		if (smallCategory == null) {
-			SmallCategory temp = m_smallCategoryDao.findById(smallCategoryId);
-			if (temp != null) {
-				m_smallCategories.put(smallCategoryId, temp);
-			}
-			return temp;
-		}
-		return smallCategory;
-	}
-
-	public void setCategoryDao(CategoryDao categoryDao) {
-		m_categoryDao = categoryDao;
-	}
-
-	public void setSmallCategoryDao(SmallCategoryDao smallCategoryDao) {
-		m_smallCategoryDao = smallCategoryDao;
-	}
-
-	@Override
-	public List<Category> queryPagedCategories(PagedTool tool, int type) {
-		List<Category> result = queryAllCategories(type);
-		return result.subList(tool.getFromIndex(), tool.getToIndex());
-	}
-
-	@Override
-	public List<SmallCategory> queryPagedSmallCategoryByTypeCategoryId(PagedTool pagedTool, int type, int categoryId) {
-		List<SmallCategory> result = queryAllSmallCategoryByTypeCategoryId(type, categoryId);
-		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
-	}
-
-	@Override
-	public List<Category> queryAllCategories() {
-		return new ArrayList<Category>(m_categories.values());
-	}
-
-	@Override
-	public List<SmallCategory> queryAllSmallCategory() {
-		return new ArrayList<SmallCategory>(m_smallCategories.values());
 	}
 
 	public static class SmallCategoryCompartor implements Comparator<SmallCategory> {

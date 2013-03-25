@@ -31,6 +31,41 @@ public class ImageSpecialServiceImpl implements InitializingBean, ImageSpecialSe
 	}
 
 	@Override
+	public int deleteImageSpecial(int imageSpecialId) {
+		int id = m_imageSpecialDao.delete(imageSpecialId);
+		if (id > 0) {
+			m_imageSpecials.remove(imageSpecialId);
+		}
+		return id;
+	}
+
+	@Override
+	public ImageSpecial findImageSpecial(int imageSpecialId) {
+		ImageSpecial imageSpecial = m_imageSpecials.get(imageSpecialId);
+		if (imageSpecial == null) {
+			imageSpecial = m_imageSpecialDao.findById(imageSpecialId);
+			if (imageSpecial != null) {
+				m_imageSpecials.put(imageSpecialId, imageSpecial);
+			}
+		}
+		return imageSpecial;
+	}
+
+	@Override
+	public int insertImageSpecial(ImageSpecial imageSpecial) {
+		int id = m_imageSpecialDao.insert(imageSpecial);
+		if (id > 0) {
+			m_imageSpecials.put(imageSpecial.getId(), imageSpecial);
+		}
+		return id;
+	}
+
+	@Override
+	public List<ImageSpecial> queryAllImageSpecials() {
+		return new ArrayList<ImageSpecial>(m_imageSpecials.values());
+	}
+
+	@Override
 	public List<ImageSpecial> queryAllImageSpecials(int categoryId, int smallCategoryId) {
 		ArrayList<ImageSpecial> all = new ArrayList<ImageSpecial>(m_imageSpecials.values());
 		List<ImageSpecial> result = new ArrayList<ImageSpecial>();
@@ -52,55 +87,10 @@ public class ImageSpecialServiceImpl implements InitializingBean, ImageSpecialSe
 	}
 
 	@Override
-	public int insertImageSpecial(ImageSpecial imageSpecial) {
-		int id = m_imageSpecialDao.insert(imageSpecial);
-		if (id > 0) {
-			m_imageSpecials.put(imageSpecial.getId(), imageSpecial);
-		}
-		return id;
-	}
+	public List<ImageSpecial> queryFixedImageSpecials(int size) {
+		List<ImageSpecial> all = queryAllImageSpecials();
 
-	@Override
-	public int updateImageSpecial(ImageSpecial imageSpecial) {
-		int id = m_imageSpecialDao.update(imageSpecial);
-		if (id > 0) {
-			m_imageSpecials.put(imageSpecial.getId(), imageSpecial);
-		}
-		return id;
-	}
-
-	@Override
-	public int deleteImageSpecial(int imageSpecialId) {
-		int id = m_imageSpecialDao.delete(imageSpecialId);
-		if (id > 0) {
-			m_imageSpecials.remove(imageSpecialId);
-		}
-		return id;
-	}
-
-	@Override
-	public ImageSpecial findImageSpecial(int imageSpecialId) {
-		ImageSpecial imageSpecial = m_imageSpecials.get(imageSpecialId);
-		if (imageSpecial == null) {
-			imageSpecial = m_imageSpecialDao.findById(imageSpecialId);
-			if (imageSpecial != null) {
-				m_imageSpecials.put(imageSpecialId, imageSpecial);
-			}
-		}
-		return imageSpecial;
-	}
-
-	public void setImageSpecialDao(ImageSpecialDao imageSpecialDao) {
-		m_imageSpecialDao = imageSpecialDao;
-	}
-
-	public static class ImageSpecialCompartor implements Comparator<ImageSpecial> {
-
-		@Override
-		public int compare(ImageSpecial o1, ImageSpecial o2) {
-			return o2.getId() - o1.getId();
-		}
-
+		return resizeList(all, size);
 	}
 
 	@Override
@@ -109,11 +99,6 @@ public class ImageSpecialServiceImpl implements InitializingBean, ImageSpecialSe
 
 		return all.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
 
-	}
-
-	@Override
-	public List<ImageSpecial> queryAllImageSpecials() {
-		return new ArrayList<ImageSpecial>(m_imageSpecials.values());
 	}
 
 	private List<ImageSpecial> resizeList(List<ImageSpecial> all, int size) {
@@ -129,11 +114,26 @@ public class ImageSpecialServiceImpl implements InitializingBean, ImageSpecialSe
 		return all;
 	}
 
-	@Override
-	public List<ImageSpecial> queryFixedImageSpecials(int size) {
-		List<ImageSpecial> all = queryAllImageSpecials();
+	public void setImageSpecialDao(ImageSpecialDao imageSpecialDao) {
+		m_imageSpecialDao = imageSpecialDao;
+	}
 
-		return resizeList(all, size);
+	@Override
+	public int updateImageSpecial(ImageSpecial imageSpecial) {
+		int id = m_imageSpecialDao.update(imageSpecial);
+		if (id > 0) {
+			m_imageSpecials.put(imageSpecial.getId(), imageSpecial);
+		}
+		return id;
+	}
+
+	public static class ImageSpecialCompartor implements Comparator<ImageSpecial> {
+
+		@Override
+		public int compare(ImageSpecial o1, ImageSpecial o2) {
+			return o2.getId() - o1.getId();
+		}
+
 	}
 
 }

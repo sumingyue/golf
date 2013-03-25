@@ -29,6 +29,49 @@ public class SpecialNewsAction extends ActionSupport {
 
 	private AdwordsService m_adwordsService;
 	
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
+	}
+
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public SpecialNews getSpecialNews() {
+		return m_specialNews;
+	}
+
+	public List<SpecialNews> getSpecialNewss() {
+		return m_specialNewss;
+	}
+
+	public void setAdwordsService(AdwordsService adwordsService) {
+		m_adwordsService = adwordsService;
+	}
+
+	public void setId(int specialNewsId) {
+		m_specialNewsId = specialNewsId;
+	}
+
+	public void setIndex(int index){
+		m_pagedTool.setPageIndex(index);
+	}
+	
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
+	}
+	public void setSpecialNews(SpecialNews specialNews) {
+		m_specialNews = specialNews;
+	}
+
+	public void setSpecialNewsId(int specialNewsId) {
+		m_specialNewsId = specialNewsId;
+	}
+
+	public void setSpecialNewsService(SpecialNewsService specialNewsService) {
+		m_specialNewsService = specialNewsService;
+	}
+	
 	public String specialNewsList() {
 		try {
 			m_pagedTool.setTotalNumber(m_specialNewsService.queryAllSpecialNewss().size());
@@ -48,48 +91,5 @@ public class SpecialNewsAction extends ActionSupport {
 			return ERROR;
 		}
 		return SUCCESS;
-	}
-
-	public SpecialNews getSpecialNews() {
-		return m_specialNews;
-	}
-
-	public void setSpecialNews(SpecialNews specialNews) {
-		m_specialNews = specialNews;
-	}
-
-	public void setSpecialNewsService(SpecialNewsService specialNewsService) {
-		m_specialNewsService = specialNewsService;
-	}
-
-	public List<SpecialNews> getSpecialNewss() {
-		return m_specialNewss;
-	}
-
-	public void setId(int specialNewsId) {
-		m_specialNewsId = specialNewsId;
-	}
-	
-	public void setSpecialNewsId(int specialNewsId) {
-		m_specialNewsId = specialNewsId;
-	}
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
-	public void setPagedTool(PagedTool pagedTool) {
-		m_pagedTool = pagedTool;
-	}
-
-	public void setIndex(int index){
-		m_pagedTool.setPageIndex(index);
-	}
-	
-	public void setAdwordsService(AdwordsService adwordsService) {
-		m_adwordsService = adwordsService;
-	}
-
-	public AdwordsService getAdwordsService() {
-		return m_adwordsService;
 	}
 }

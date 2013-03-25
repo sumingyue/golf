@@ -131,6 +131,94 @@ public class IndexAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
+	}
+
+	public Court getCourt() {
+		return m_court;
+	}
+
+	public CourtImage getCourtImage() {
+		return m_courtImage;
+	}
+
+	public List<Court> getCourts() {
+		return m_courts;
+	}
+
+	public List<Media> getHeZuoMedias() {
+		return m_heZuoMedias;
+	}
+
+	public List<ImageSpecial> getImageSpecials() {
+		return m_imageSpecials;
+	}
+
+	public List<Player> getJiangJinPlayers() {
+		return m_jiangJinPlayers;
+	}
+
+	public List<Player> getJiFenPlayers() {
+		return m_jiFenPlayers;
+	}
+
+	public News getLianXiChang() {
+		return m_lianXiChang;
+	}
+
+	public NewsGroup getNewsLvYou() {
+		return m_newsLvYou;
+	}
+
+	public NewsGroup getNewsPingLun() {
+		return m_newsPingLun;
+	}
+
+	public NewsGroup getNewsSaiShi() {
+		return m_newsSaiShi;
+	}
+
+	public NewsGroup getNewsXueYuan() {
+		return m_newsXueYuan;
+	}
+
+	public NewsGroup getNewsZiXun() {
+		return m_newsZiXun;
+	}
+
+	public NewsGroup getNewsZongHe() {
+		return m_newsZongHe;
+	}
+
+	public List<TeamNews> getQiuDuiHuoDongs() {
+		return m_qiuDuiHuoDongs;
+	}
+
+	public List<SpecialNews> getSpecialNews() {
+		return m_specialNews;
+	}
+
+	public List<TeamNews> getTeamNews() {
+		return m_teamNews;
+	}
+
+	public List<Media> getYouQingMedias() {
+		return m_youQingMedias;
+	}
+
+	private void queryMedia() {
+		List<Media> all = m_mediaService.queryAllMedias();
+
+		for (Media temp : all) {
+			if (temp.getType().equalsIgnoreCase(Config.YouQingLianJie)) {
+				m_youQingMedias.add(temp);
+			} else {
+				m_heZuoMedias.add(temp);
+			}
+		}
+	}
+
 	private void queryOther() {
 		m_imageSpecials = m_imageSpecialService.queryFixedImageSpecials(2);
 		if (m_imageSpecials != null) {
@@ -153,141 +241,53 @@ public class IndexAction extends ActionSupport {
 		}
 	}
 
-	private void queryMedia() {
-		List<Media> all = m_mediaService.queryAllMedias();
-
-		for (Media temp : all) {
-			if (temp.getType().equalsIgnoreCase(Config.YouQingLianJie)) {
-				m_youQingMedias.add(temp);
-			} else {
-				m_heZuoMedias.add(temp);
-			}
-		}
-	}
-
 	private void queryPlayer() {
 		m_jiangJinPlayers = m_playerService.queryPlayers("bonus", 6);
 		m_jiFenPlayers = m_playerService.queryPlayers("score", 6);
-	}
-
-	public void setPlayerService(PlayerService playerService) {
-		m_playerService = playerService;
-	}
-
-	public void setNewsService(NewsService newsService) {
-		m_newsService = newsService;
-	}
-
-	public void setMediaService(MediaService mediaService) {
-		m_mediaService = mediaService;
-	}
-
-	public void setImageService(ImageService imageService) {
-		m_imageService = imageService;
 	}
 
 	public void setAdwordsService(AdwordsService adwordsService) {
 		m_adwordsService = adwordsService;
 	}
 
-	public AdwordsService getAdwordsService() {
-		return m_adwordsService;
-	}
-
-	public List<TeamNews> getQiuDuiHuoDongs() {
-		return m_qiuDuiHuoDongs;
-	}
-
-	public List<Player> getJiangJinPlayers() {
-		return m_jiangJinPlayers;
-	}
-
-	public List<Player> getJiFenPlayers() {
-		return m_jiFenPlayers;
-	}
-
-	public List<Media> getYouQingMedias() {
-		return m_youQingMedias;
-	}
-
-	public List<Media> getHeZuoMedias() {
-		return m_heZuoMedias;
-	}
-
-	public void setSpecialNewsService(SpecialNewsService specialNewsService) {
-		m_specialNewsService = specialNewsService;
-	}
-
-	public List<SpecialNews> getSpecialNews() {
-		return m_specialNews;
-	}
-
-	public void setImageSpecialService(ImageSpecialService imageSpecialService) {
-		m_imageSpecialService = imageSpecialService;
-	}
-
-	public List<ImageSpecial> getImageSpecials() {
-		return m_imageSpecials;
-	}
-
-	public void setTeamNewsService(TeamNewsService teamNewsService) {
-		m_teamNewsService = teamNewsService;
-	}
-
-	public List<TeamNews> getTeamNews() {
-		return m_teamNews;
-	}
-
-	public Court getCourt() {
-		return m_court;
-	}
-
-	public List<Court> getCourts() {
-		return m_courts;
-	}
-
-	public void setCourtService(CourtService courtService) {
-		m_courtService = courtService;
+	public void setCategoryService(CategoryService cateogryService) {
+		m_categoryService = cateogryService;
 	}
 
 	public void setCourtImageService(CourtImageService courtImageService) {
 		m_courtImageService = courtImageService;
 	}
 
-	public CourtImage getCourtImage() {
-		return m_courtImage;
+	public void setCourtService(CourtService courtService) {
+		m_courtService = courtService;
 	}
 
-	public News getLianXiChang() {
-		return m_lianXiChang;
+	public void setImageService(ImageService imageService) {
+		m_imageService = imageService;
 	}
 
-	public void setCategoryService(CategoryService cateogryService) {
-		m_categoryService = cateogryService;
+	public void setImageSpecialService(ImageSpecialService imageSpecialService) {
+		m_imageSpecialService = imageSpecialService;
 	}
 
-	public NewsGroup getNewsZongHe() {
-		return m_newsZongHe;
+	public void setMediaService(MediaService mediaService) {
+		m_mediaService = mediaService;
 	}
 
-	public NewsGroup getNewsSaiShi() {
-		return m_newsSaiShi;
+	public void setNewsService(NewsService newsService) {
+		m_newsService = newsService;
 	}
 
-	public NewsGroup getNewsLvYou() {
-		return m_newsLvYou;
+	public void setPlayerService(PlayerService playerService) {
+		m_playerService = playerService;
 	}
 
-	public NewsGroup getNewsPingLun() {
-		return m_newsPingLun;
+	public void setSpecialNewsService(SpecialNewsService specialNewsService) {
+		m_specialNewsService = specialNewsService;
 	}
 
-	public NewsGroup getNewsXueYuan() {
-		return m_newsXueYuan;
-	}
-
-	public NewsGroup getNewsZiXun() {
-		return m_newsZiXun;
+	public void setTeamNewsService(TeamNewsService teamNewsService) {
+		m_teamNewsService = teamNewsService;
 	}
 
 	public static class NewsGroup {
@@ -335,115 +335,16 @@ public class IndexAction extends ActionSupport {
 
 		private List<News> m_smallCategoryNews9;
 
-		public void setSmallCategoryNews(int index, SmallCategory smallCategory, List<News> news) {
-			if (index == 1) {
-				m_smallCategoryNews1 = news;
-				m_smallCategory1 = smallCategory;
-			} else if (index == 2) {
-				m_smallCategoryNews2 = news;
-				m_smallCategory2 = smallCategory;
-			} else if (index == 3) {
-				m_smallCategoryNews3 = news;
-				m_smallCategory3 = smallCategory;
-			} else if (index == 4) {
-				m_smallCategoryNews4 = news;
-				m_smallCategory4 = smallCategory;
-			} else if (index == 5) {
-				m_smallCategoryNews5 = news;
-				m_smallCategory5 = smallCategory;
-			} else if (index == 6) {
-				m_smallCategoryNews6 = news;
-				m_smallCategory6 = smallCategory;
-			}else if (index == 7) {
-				m_smallCategoryNews7 = news;
-				m_smallCategory7 = smallCategory;
-			}else if (index == 8) {
-				m_smallCategoryNews8 = news;
-				m_smallCategory8 = smallCategory;
-			}else if (index == 9) {
-				m_smallCategoryNews9 = news;
-				m_smallCategory9 = smallCategory;
-			}
-		}
-
 		public News getFirstNews() {
 			return m_firstNews;
-		}
-
-		public void setFirstNews(News firstNews) {
-			m_firstNews = firstNews;
-		}
-
-		public List<News> getSecondNews() {
-			return m_secondNews;
-		}
-
-		public void setSecondNews(List<News> secondNews) {
-			m_secondNews = secondNews;
-		}
-
-		public List<News> getThirdNews() {
-			return m_thirdNews;
-		}
-
-		public void setThirdNews(List<News> thirdNews) {
-			m_thirdNews = thirdNews;
 		}
 
 		public List<News> getImageNews() {
 			return m_imageNews;
 		}
 
-		public void setImageNews(List<News> imageNews) {
-			m_imageNews = imageNews;
-		}
-
-		public List<News> getSmallCategoryNews1() {
-			return m_smallCategoryNews1;
-		}
-
-		public void setSmallCategoryNews1(List<News> smallCategoryNews1) {
-			m_smallCategoryNews1 = smallCategoryNews1;
-		}
-
-		public List<News> getSmallCategoryNews2() {
-			return m_smallCategoryNews2;
-		}
-
-		public void setSmallCategoryNews2(List<News> smallCategoryNews2) {
-			m_smallCategoryNews2 = smallCategoryNews2;
-		}
-
-		public List<News> getSmallCategoryNews3() {
-			return m_smallCategoryNews3;
-		}
-
-		public void setSmallCategoryNews3(List<News> smallCategoryNews3) {
-			m_smallCategoryNews3 = smallCategoryNews3;
-		}
-
-		public List<News> getSmallCategoryNews4() {
-			return m_smallCategoryNews4;
-		}
-
-		public void setSmallCategoryNews4(List<News> smallCategoryNews4) {
-			m_smallCategoryNews4 = smallCategoryNews4;
-		}
-
-		public List<News> getSmallCategoryNews5() {
-			return m_smallCategoryNews5;
-		}
-
-		public void setSmallCategoryNews5(List<News> smallCategoryNews5) {
-			m_smallCategoryNews5 = smallCategoryNews5;
-		}
-
-		public List<News> getSmallCategoryNews6() {
-			return m_smallCategoryNews6;
-		}
-
-		public void setSmallCategoryNews6(List<News> smallCategoryNews6) {
-			m_smallCategoryNews6 = smallCategoryNews6;
+		public List<News> getSecondNews() {
+			return m_secondNews;
 		}
 
 		public SmallCategory getSmallCategory1() {
@@ -482,6 +383,30 @@ public class IndexAction extends ActionSupport {
 			return m_smallCategory9;
 		}
 
+		public List<News> getSmallCategoryNews1() {
+			return m_smallCategoryNews1;
+		}
+
+		public List<News> getSmallCategoryNews2() {
+			return m_smallCategoryNews2;
+		}
+
+		public List<News> getSmallCategoryNews3() {
+			return m_smallCategoryNews3;
+		}
+
+		public List<News> getSmallCategoryNews4() {
+			return m_smallCategoryNews4;
+		}
+
+		public List<News> getSmallCategoryNews5() {
+			return m_smallCategoryNews5;
+		}
+
+		public List<News> getSmallCategoryNews6() {
+			return m_smallCategoryNews6;
+		}
+
 		public List<News> getSmallCategoryNews7() {
 			return m_smallCategoryNews7;
 		}
@@ -492,6 +417,81 @@ public class IndexAction extends ActionSupport {
 
 		public List<News> getSmallCategoryNews9() {
 			return m_smallCategoryNews9;
+		}
+
+		public List<News> getThirdNews() {
+			return m_thirdNews;
+		}
+
+		public void setFirstNews(News firstNews) {
+			m_firstNews = firstNews;
+		}
+
+		public void setImageNews(List<News> imageNews) {
+			m_imageNews = imageNews;
+		}
+
+		public void setSecondNews(List<News> secondNews) {
+			m_secondNews = secondNews;
+		}
+
+		public void setSmallCategoryNews(int index, SmallCategory smallCategory, List<News> news) {
+			if (index == 1) {
+				m_smallCategoryNews1 = news;
+				m_smallCategory1 = smallCategory;
+			} else if (index == 2) {
+				m_smallCategoryNews2 = news;
+				m_smallCategory2 = smallCategory;
+			} else if (index == 3) {
+				m_smallCategoryNews3 = news;
+				m_smallCategory3 = smallCategory;
+			} else if (index == 4) {
+				m_smallCategoryNews4 = news;
+				m_smallCategory4 = smallCategory;
+			} else if (index == 5) {
+				m_smallCategoryNews5 = news;
+				m_smallCategory5 = smallCategory;
+			} else if (index == 6) {
+				m_smallCategoryNews6 = news;
+				m_smallCategory6 = smallCategory;
+			}else if (index == 7) {
+				m_smallCategoryNews7 = news;
+				m_smallCategory7 = smallCategory;
+			}else if (index == 8) {
+				m_smallCategoryNews8 = news;
+				m_smallCategory8 = smallCategory;
+			}else if (index == 9) {
+				m_smallCategoryNews9 = news;
+				m_smallCategory9 = smallCategory;
+			}
+		}
+
+		public void setSmallCategoryNews1(List<News> smallCategoryNews1) {
+			m_smallCategoryNews1 = smallCategoryNews1;
+		}
+
+		public void setSmallCategoryNews2(List<News> smallCategoryNews2) {
+			m_smallCategoryNews2 = smallCategoryNews2;
+		}
+
+		public void setSmallCategoryNews3(List<News> smallCategoryNews3) {
+			m_smallCategoryNews3 = smallCategoryNews3;
+		}
+
+		public void setSmallCategoryNews4(List<News> smallCategoryNews4) {
+			m_smallCategoryNews4 = smallCategoryNews4;
+		}
+
+		public void setSmallCategoryNews5(List<News> smallCategoryNews5) {
+			m_smallCategoryNews5 = smallCategoryNews5;
+		}
+
+		public void setSmallCategoryNews6(List<News> smallCategoryNews6) {
+			m_smallCategoryNews6 = smallCategoryNews6;
+		}
+
+		public void setThirdNews(List<News> thirdNews) {
+			m_thirdNews = thirdNews;
 		}
 
 	}

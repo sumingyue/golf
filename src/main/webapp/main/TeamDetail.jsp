@@ -3,170 +3,93 @@
 <!DOCTYPE html PUBLIC "-//W3C//Dtd HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en-US"><head>
 	<meta charset="UTF-8">
-		<title>苏州高尔夫网</title>
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/news.css">
-	<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
-	<script type="text/javascript" src="js/base.js"></script>
+	<title>苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站</title>
+	<meta name="Description" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
+	<meta name="Keyword" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.override.css" rel="stylesheet">
+	<script src="js/jquery-1.7.1.js" type="text/javascript"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('#team').addClass('active');
+	});
+</script>
 	<style>
 		#main-img{
-			width:630px;
-			height:315px;
-		}
-		#qiuduigonggao .mod-bd{
-			height:277px;
-			padding:3px;
-			line-height:22px;
-		}
-		.grid_8 .mod-box-horizon .mod-bd{
-			height:200px;
-		}
-.slide-list .slide-list-item{
-	overflow:hidden;
-	display:none;
-}
-
-.slide-list .active{
-	display:block;
-}
-		.slide-list-container{overflow:hidden;}
-#slide-team-home .slide-list-item{
-	width:220px;
-}
-
-#slide .slide-list-img{
-	height: 200px;
-	width: 310px;
-}
-		
+			width:780px;
+			height:350px;
+		}	
 	</style>
 </head>
-<body youdao="bind">
-	<div class="wrap container_24">
+<body>
+	<div class="container">
 		<jsp:include page="./Head.jsp"></jsp:include>
-		<div class="clear"></div>
-		<div class="grid_16">
-			<img id="main-img" src="<s:property value="team.logo.path"/>"/>
+		<div class="position">
+			<ul class="breadcrumb border">
+				<li>当前位置：</li>
+				<li><a href="index.do">首页</a> <span class="divider">/</span></li>
+				<li><a href="teams.do">苏州球队</a><span class="divider">/</span></li>
+				<li class="active">${team.name}</li>
+			</ul>
 		</div>
-		<div class="grid_8">
-			<div class="mod-box-horizon mod-box-horizon-last" id="qiuduigonggao">
-				<div class="mod-hd" align="center">球队公告</div>
-				<div class="mod-bd">
-					<s:property value="team.announcement"/>
-				</div>
-			</div>
-		</div>
-		<div class="clear"></div>
-		<div class="grid_8 mod-box-horizon-last">
-			<div class="mod-box-horizon">
-				<div class="mod-hd"><span class="more"><a href="teamNewss.do?teamId=<s:property value="team.id"/>&type=1">更多</a></span>球队新闻</div>
-				<div class="mod-bd"><ul class="mod-article-list">
-						<s:iterator value="news1" status="vs">
-							<li class="article-item"><a href="teamNews.do?teamNewsId=<s:property value="id"/>"><s:property value="title"/></a></li>
-						</s:iterator>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="grid_8">
-			<div class="mod-box-horizon mod-box-horizon-last">
-				<div class="mod-hd"><span class="more"><a href="teamNewss.do?teamId=<s:property value="team.id"/>&type=2">更多</a></span>活动报道</div>
-				<div class="mod-bd"><ul class="mod-article-list">
-						<s:iterator value="news2" status="vs">
-							<li class="article-item"><a href="teamNews.do?teamNewsId=<s:property value="id"/>"><s:property value="title"/></a></li>
-						</s:iterator>
-					</ul>
-				</div>
-			</div>
-		</div>
-		
-		<div class="grid_8">
-			<div class="mod-box-horizon mod-box-horizon-last">
-				<div class="mod-hd">球队档案</div>
-				<div class="mod-bd">
-					<table>
-						<tr>
-							<td width="40%">建队时间:</td>
+		<div class="row">
+  			<div class="span2">
+  				<div class="well sidebar-nav">
+					<ul class="nav nav-list" style="height:600px;">
+						<li class="nav-header" >${team.name}</li>
+						<li id="newsList" class="active"><a href="#">球队介绍</a></li>
+						<li class="nav-header" >跟踪报道</li>
+						<li id="newsList"><a href="teamNewss.do?teamId=${team.id}&type=1">球队新闻</a></li>
+						<li id="newsList"><a href="teamNewss.do?teamId=${team.id}&type=2">活动报道</a></li>
+						<li id="newsList"><a href="teamNewss.do?teamId=${team.id}&type=3">月历成绩</a></li>
+						<li id="newsList"><a href="teamNewss.do?teamId=${team.id}&type=4">精彩图文</a></li>
+						<li id="newsList"><a href="teamNewss.do?teamId=${team.id}&type=5">球队章程</a></li>
+					</ul></div>
+  			</div>
+			<div class="span10">
+				<img id="main-img" src="<s:property value="team.logo.path"/>" />
+				<div class="row top">
+					<div class="span5 myhidden top" style="height: 400px">
+						<table class="table table-striped table-bordered table-hover">
+							<tbody>
+								<tr>
+							<th width="30%">建队时间</th>
 							<td><s:property value="team.setUpTime"/></td>
 						</tr>
 						<tr>
-							<td>首任会长:</td>
+							<th>首任会长</th>
 							<td><s:property value="team.founder"/></td>
 						</tr>
 						<tr>
-							<td>现任会长:</td>
+							<th>现任会长</th>
 							<td><s:property value="team.captain"/></td>
 						</tr>
 						<tr>
-							<td>成员组成:</td>
+							<th>成员组成</th>
 							<td><s:property value="team.members"/></td>
 						</tr>
 						<tr>
-							<td>球队口号:</td>
+							<th>球队口号</th>
 							<td><s:property value="team.slogan"/></td>
 						</tr>
 						<tr>
-							<td>球队战绩</td>
+							<th>球队战绩</th>
 							<td><s:property value="team.achievement"/></td>
 						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-		
-		<div class="clear"></div>
-		<div class="grid_8">
-			<div class="mod-box-horizon mod-box-horizon-last">
-				<div class="mod-hd"><span class="more"><a href="teamNewss.do?teamId=<s:property value="team.id"/>&type=3">更多</a></span>月历成绩</div>
-				<div class="mod-bd"><ul class="mod-article-list">
-						<s:iterator value="news3" status="vs">
-							<li class="article-item"><a href="teamNews.do?teamNewsId=<s:property value="id"/>"><s:property value="title"/></a></li>
-						</s:iterator>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="grid_8">
-			<div class="mod-box-horizon mod-box-horizon-last">
-				<div class="mod-hd"><span class="more"><a href="teamNewss.do?teamId=<s:property value="team.id"/>&type=4">更多</a></span>精彩图文</div>
-				<div class="mod-bd"><ul class="mod-article-list">
-						<s:iterator value="news4" status="vs">
-							<li class="article-item"><a href="teamNews.do?teamNewsId=<s:property value="id"/>"><s:property value="title"/></a></li>
-						</s:iterator>
-					</ul>
-				</div>
-			</div>
-		</div>
-		
-		<div class="grid_8">
-			<div class="mod-box-horizon mod-box-horizon-last">
-				<div class="mod-hd"><span class="more"><a href="teamNewss.do?teamId=<s:property value="team.id"/>&type=5">更多</a></span>规章制度</div>
-				<div class="mod-bd"><ul class="mod-article-list">
-						<s:iterator value="news5" status="vs">
-							<li class="article-item"><a href="teamNews.do?teamNewsId=<s:property value="id"/>"><s:property value="title"/></a></li>
-						</s:iterator>
-					</ul>
+							</tbody>
+						</table>
+					</div>
+					<div class="span5 myhidden top" style="height: 400px">
+						<div>
+							<h4 class="breadcrumb title ">球队公告</h4>
+							<div class="left">${team.introduction}</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 		<jsp:include page="./Foot.jsp"></jsp:include>
 	</div>
-	<script type="text/javascript">
-	$(function(){
-		
-		var pannel = new TabPannel({
-			container:$("#slide"),
-			triggerType:"hover",
-			itemCS:".slide-list-item",
-			activeCls:"active"
-		});
-		
-		var count = 0;
-		var total = 3;
-		setInterval(function(){
-			count++;
-			pannel.select(count%total);
-		},2000);		
-	});
-	</script>
-</body></html>
+</body>
+</html>

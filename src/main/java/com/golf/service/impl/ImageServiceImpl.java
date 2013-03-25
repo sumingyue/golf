@@ -61,28 +61,6 @@ public class ImageServiceImpl implements ImageService, InitializingBean {
 	}
 
 	@Override
-	public List<Image> queryAllCategories() {
-		return new ArrayList<Image>(m_images.values());
-	}
-
-	private int insertImage(Image image) {
-		int id = m_imageDao.insert(image);
-		if (id > 0) {
-			m_images.put(image.getId(), image);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateImage(Image image) {
-		int id = m_imageDao.update(image);
-		if (id > 0) {
-			m_images.put(image.getId(), image);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteImage(int imageId) {
 		int id = m_imageDao.delete(imageId);
 		if (id > 0) {
@@ -102,10 +80,6 @@ public class ImageServiceImpl implements ImageService, InitializingBean {
 			return temp;
 		}
 		return image;
-	}
-
-	public void setImageDao(ImageDao imageDao) {
-		m_imageDao = imageDao;
 	}
 
 	/***
@@ -184,6 +158,23 @@ public class ImageServiceImpl implements ImageService, InitializingBean {
 		}
 	}
 
+	private int insertImage(Image image) {
+		int id = m_imageDao.insert(image);
+		if (id > 0) {
+			m_images.put(image.getId(), image);
+		}
+		return id;
+	}
+
+	@Override
+	public List<Image> queryAllCategories() {
+		return new ArrayList<Image>(m_images.values());
+	}
+
+	public void setImageDao(ImageDao imageDao) {
+		m_imageDao = imageDao;
+	}
+
 	private void storeOriginalImage(File upload, String desPath) throws FileNotFoundException, IOException {
 		InputStream in = new FileInputStream(upload);
 		File file = new File(desPath);
@@ -196,6 +187,15 @@ public class ImageServiceImpl implements ImageService, InitializingBean {
 		file.createNewFile();
 		OutputStream os = new FileOutputStream(file);
 		Files.forIO().copy(in, os);
+	}
+
+	@Override
+	public int updateImage(Image image) {
+		int id = m_imageDao.update(image);
+		if (id > 0) {
+			m_images.put(image.getId(), image);
+		}
+		return id;
 	}
 
 }

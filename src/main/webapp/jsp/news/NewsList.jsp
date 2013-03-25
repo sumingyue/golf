@@ -47,7 +47,7 @@
 								value="smallCategoryId" theme="simple" >
 							</s:select> --%>
 						</th>
-					<th width="42%">标题</th>
+					<th width="40%">标题</th>
 					<th width="5%">审核
 						<%-- <select id="status" onchange="smallCategoryChanged()">
 							<option value="0">_ALL</option>
@@ -64,7 +64,7 @@
 					</th>
 					<th width="5%">级别</th>
 					<th width="5%">图片</th>
-					<th width="8%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="newsAdd.do?categoryId=${categoryId}&smallCategoryId=${smallCategoryId}" >新增</a></th>
+					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-small btn-primary" href="newsAdd.do?categoryId=${categoryId}&smallCategoryId=${smallCategoryId}"  target='_blank'>新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="newsList" status="vs">
 					<tr class="trDetail">
@@ -83,8 +83,8 @@
 						<s:if test="imageId>0"><span style="color:red;">有图</span></s:if>
 					</td>
 					<td>
-					<a href="newsUpdate.do?newsId=<s:property value="id"/>">编辑</a> &nbsp;
-					<a href="newsDelete.do?newsId=<s:property value="id"/>" class="delete">删除</a></td>
+					<a href="newsUpdate.do?newsId=<s:property value="id"/>"  class="btn btn-primary  btn-small" target='_blank'>编辑</a> &nbsp;
+					<a href="newsDelete.do?newsId=<s:property value="id"/>" class="btn btn-danger  btn-small delete" >删除</a></td>
 					</tr>
 				</s:iterator></tbody>
 			</table>

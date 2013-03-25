@@ -31,31 +31,6 @@ public class MediaServiceImpl implements InitializingBean, MediaService {
 	}
 
 	@Override
-	public List<Media> queryAllMedias() {
-		ArrayList<Media> arrayList = new ArrayList<Media>(m_medias.values());
-		Collections.sort(arrayList, new MediaCompartor());
-		return arrayList;
-	}
-
-	@Override
-	public int insertMedia(Media media) {
-		int id = m_mediaDao.insert(media);
-		if (id > 0) {
-			m_medias.put(media.getId(), media);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateMedia(Media media) {
-		int id = m_mediaDao.update(media);
-		if (id > 0) {
-			m_medias.put(media.getId(), media);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteMedia(int mediaId) {
 		int id = m_mediaDao.delete(mediaId);
 		if (id > 0) {
@@ -76,8 +51,40 @@ public class MediaServiceImpl implements InitializingBean, MediaService {
 		return media;
 	}
 
+	@Override
+	public int insertMedia(Media media) {
+		int id = m_mediaDao.insert(media);
+		if (id > 0) {
+			m_medias.put(media.getId(), media);
+		}
+		return id;
+	}
+
+	@Override
+	public List<Media> queryAllMedias() {
+		ArrayList<Media> arrayList = new ArrayList<Media>(m_medias.values());
+		Collections.sort(arrayList, new MediaCompartor());
+		return arrayList;
+	}
+
+	@Override
+	public List<Media> queryPagedMedias(PagedTool pagedTool) {
+		List<Media> result = queryAllMedias();
+		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
+
+	}
+
 	public void setMediaDao(MediaDao mediaDao) {
 		m_mediaDao = mediaDao;
+	}
+
+	@Override
+	public int updateMedia(Media media) {
+		int id = m_mediaDao.update(media);
+		if (id > 0) {
+			m_medias.put(media.getId(), media);
+		}
+		return id;
 	}
 
 	public static class MediaCompartor implements Comparator<Media> {
@@ -86,13 +93,6 @@ public class MediaServiceImpl implements InitializingBean, MediaService {
 		public int compare(Media o1, Media o2) {
 			return o2.getId() - o1.getId();
 		}
-
-	}
-
-	@Override
-	public List<Media> queryPagedMedias(PagedTool pagedTool) {
-		List<Media> result = queryAllMedias();
-		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
 
 	}
 

@@ -5,7 +5,8 @@
 			<li class="nav-header">新闻管理</li>
 			<li id="newsList"><a href="newsList.do">新闻列表</a></li>
 		 	<li id="newsCommentsList"><a href="newsCommentsList.do">新闻留言</a></li>
-			<li id="specialNewsList"><a href="specialNewsList.do">新闻专题</a></li>
+			<!--  --><li id="specialNewsList"><a href="specialNewsList.do">新闻专题</a></li>
+			<li class="nav-header">广告管理</li>
 			<li id="adwordsList"><a href="adwordsList.do">广告管理</a></li>
 			<li class="nav-header">球队管理</li>
 			<li id="teamList"><a href="teamList.do">球队信息</a></li>
@@ -16,13 +17,21 @@
 			<li id="courtImageList"><a href="courtImageList.do">球场图片</a></li>
 			<li id="courtRaiderList"><a href="courtRaiderList.do">球道攻略</a></li>
 			<li id="courtCommentsList"><a href="courtCommentsList.do">球场评论</a></li>
-			<li class="nav-header">高球商城</li>
+			<li class="nav-header">高尔夫旅游</li>
+			<li id="newsList"><a href="newsList.do">旅游套餐</a></li>
+			<li id="newsList"><a href="newsList.do">旅游评价</a></li>
+			<li id="newsList"><a href="newsList.do">旅游记录</a></li>
+			<li class="nav-header">本地资讯</li>
+			<li id="newsList"><a href="newsList.do">学球机构</a></li>
+			<li id="newsList"><a href="newsList.do">二手供求</a></li>
+			
+<!-- 			<li class="nav-header">高球商城</li>
 			<li id="productCategoryList"><a href="productCategoryList.do">商品分类</a></li>
 			<li id="productList"><a href="productList.do">商品管理</a></li>
-			<li class="nav-header">图片专题</li>
+ -->		<li class="nav-header">图片专题</li>
 			<li id="imageSpecialList"><a href="imageSpecialList.do">专题信息</a></li>
 			<li id="imageSpecialDetailList"><a href="imageSpecialDetailList.do">专题图片</a></li>
-			<li class="nav-header">用户相关</li>
+			<!-- <li class="nav-header">用户相关</li>
 			<li id="courtOrderList"><a href="courtOrderList.do">球场预定</a></li>
 			<li id="productOrderList"><a href="productOrderList.do">商品预定</a></li>
 			<li id="userMessageList"><a href="userMessageList.do">用户留言</a></li>
@@ -30,9 +39,10 @@
 			<li class="nav-header">媒体球员</li>
 			<li id="mediaList"><a href="mediaList.do">媒体合作</a></li>
 			<li id="playerList"><a href="playerList.do">积分奖金</a></li>
+			 -->
 			<li class="nav-header">系统分类</li>
 			<li id="categoryList"><a href="categoryList.do">一级分类</a></li>
-			<li id="smallCategoryList"><a href="smallCategoryList.do">二级分类</a></li>
+			<li id="smallCategoryList"><a href="smallCategoryList.do?type=1">二级分类</a></li>
 		</ul>
 	</div>
 </div>

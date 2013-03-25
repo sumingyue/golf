@@ -11,13 +11,11 @@
 			<result name="success">jsp/news/NewsAdd.jsp</result>
 		</action>
 		<action name="newsAddSubmit" class="newsAction" method="newsAddSubmit">
-			<result name="success" type="redirect">newsList.action?categoryId=${categoryId}&amp;smallCategoryId=${smallCategoryId}</result>
 		</action>
 		<action name="newsUpdate" class="newsAction" method="newsUpdate">
 			<result name="success">jsp/news/NewsUpdate.jsp</result>
 		</action>
 		<action name="newsUpdateSubmit" class="newsAction" method="newsUpdateSubmit">
-			<result name="success" type="redirect">newsList.action?categoryId=${categoryId}&amp;smallCategoryId=${smallCategoryId}</result>
 		</action>
 		<action name="newsDelete" class="newsAction" method="newsDelete">
 			<result name="success" type="redirect">newsList.action?categoryId=${categoryId}&amp;smallCategoryId=${smallCategoryId}</result>

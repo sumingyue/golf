@@ -48,6 +48,14 @@ public class CourtAction extends ActionSupport {
 
 	private List<CourtRaider> m_all;
 
+	private AdwordsService m_adwordsService;
+
+	public String addComment() {
+		m_courtCommentsService.insertCourtComments(m_comments);
+		m_courtId = m_comments.getCourtId();
+		return SUCCESS;
+	}
+
 	@Override
 	public String execute() throws Exception {
 		m_court = m_courtService.findCourt(m_courtId);
@@ -77,30 +85,51 @@ public class CourtAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public String addComment() {
-		m_courtCommentsService.insertCourtComments(m_comments);
-		m_courtId = m_comments.getCourtId();
-		return SUCCESS;
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
+	}
+
+	public List<CourtRaider> getAll() {
+		return m_all;
+	}
+
+	public CourtComments getComments() {
+		return m_comments;
 	}
 
 	public Court getCourt() {
 		return m_court;
 	}
 
-	public void setId(int courtId) {
-		m_courtId = courtId;
+	public List<CourtComments> getCourtComments() {
+		return m_courtComments;
 	}
 
-	public void setCourtId(int courtId) {
-		m_courtId = courtId;
+	public int getCourtId() {
+		return m_courtId;
 	}
 
-	public void setCourtService(CourtService courtService) {
-		m_courtService = courtService;
+	public List<CourtImage> getCourtImages() {
+		return m_courtImages;
+	}
+
+	public List<RaiderGroup> getGroups() {
+		Collection<RaiderGroup> values = m_groups.values();
+		List<RaiderGroup> result = new ArrayList<RaiderGroup>(values);
+		Collections.sort(result, new RadierGroupCompartor());
+		return result;
+	}
+
+	public void setAdwordsService(AdwordsService adwordsService) {
+		m_adwordsService = adwordsService;
 	}
 
 	public void setCourtCommentsService(CourtCommentsService courtCommentsService) {
 		m_courtCommentsService = courtCommentsService;
+	}
+
+	public void setCourtId(int courtId) {
+		m_courtId = courtId;
 	}
 
 	public void setCourtImageService(CourtImageService courtImageService) {
@@ -111,45 +140,16 @@ public class CourtAction extends ActionSupport {
 		m_courtRaiderService = courtRaiderService;
 	}
 
-	public CourtComments getComments() {
-		return m_comments;
+	public void setCourtService(CourtService courtService) {
+		m_courtService = courtService;
 	}
 
-	public List<CourtComments> getCourtComments() {
-		return m_courtComments;
-	}
-
-	public List<CourtImage> getCourtImages() {
-		return m_courtImages;
+	public void setId(int courtId) {
+		m_courtId = courtId;
 	}
 
 	public void setImageService(ImageService imageService) {
 		m_imageService = imageService;
-	}
-
-	public List<CourtRaider> getAll() {
-		return m_all;
-	}
-
-	public List<RaiderGroup> getGroups() {
-		Collection<RaiderGroup> values = m_groups.values();
-		List<RaiderGroup> result = new ArrayList<RaiderGroup>(values);
-		Collections.sort(result, new RadierGroupCompartor());
-		return result;
-	}
-
-	private AdwordsService m_adwordsService;
-
-	public void setAdwordsService(AdwordsService adwordsService) {
-		m_adwordsService = adwordsService;
-	}
-
-	public AdwordsService getAdwordsService() {
-		return m_adwordsService;
-	}
-
-	public int getCourtId() {
-		return m_courtId;
 	}
 
 	public static class RadierGroupCompartor implements Comparator<RaiderGroup> {
@@ -165,20 +165,20 @@ public class CourtAction extends ActionSupport {
 
 		private List<String> m_index = new ArrayList<String>();
 
-		public String getName() {
-			return m_name;
-		}
-
-		public void setName(String name) {
-			m_name = name;
-		}
-
 		public List<String> getIndex() {
 			return m_index;
 		}
 
+		public String getName() {
+			return m_name;
+		}
+
 		public void setIndex(List<String> index) {
 			m_index = index;
+		}
+
+		public void setName(String name) {
+			m_name = name;
 		}
 	}
 

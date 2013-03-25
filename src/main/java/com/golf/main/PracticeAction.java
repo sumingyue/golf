@@ -33,16 +33,7 @@ public class PracticeAction extends ActionSupport {
 
 	private AdwordsService m_adwordsService;
 
-	private void queryLeftNews() {
-		m_qiuhui = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_QiuHuiZiXun);
-		m_xiehui = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.RenWu_XieHuiXinWen);
-		m_huiji = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_HuiJiZiXun);
-	}
-
-	public String practiceList() {
-		m_pagedTool.setTotalNumber(m_newsService.queryTotalSize(0, Config.ZiXun_LianXiChang));
-		m_news = m_newsService.queryPagedNews(m_pagedTool, 15, Config.ZiXun_LianXiChang);
-		queryLeftNews();
+	public String clubList() {
 		return SUCCESS;
 	}
 
@@ -53,16 +44,24 @@ public class PracticeAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public String clubList() {
-		return SUCCESS;
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
+	}
+
+	public List<Court> getCourts() {
+		return m_courts;
+	}
+
+	public List<News> getHuiji() {
+		return m_huiji;
 	}
 
 	public List<News> getNews() {
 		return m_news;
 	}
 
-	public void setNewsService(NewsService newsService) {
-		m_newsService = newsService;
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
 	}
 
 	public List<News> getQiuhui() {
@@ -73,31 +72,32 @@ public class PracticeAction extends ActionSupport {
 		return m_xiehui;
 	}
 
-	public List<News> getHuiji() {
-		return m_huiji;
+	public String practiceList() {
+		m_pagedTool.setTotalNumber(m_newsService.queryTotalSize(0, Config.ZiXun_LianXiChang));
+		m_news = m_newsService.queryPagedNews(m_pagedTool, 15, Config.ZiXun_LianXiChang);
+		queryLeftNews();
+		return SUCCESS;
+	}
+
+	private void queryLeftNews() {
+		m_qiuhui = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_QiuHuiZiXun);
+		m_xiehui = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.RenWu_XieHuiXinWen);
+		m_huiji = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_HuiJiZiXun);
+	}
+
+	public void setAdwordsService(AdwordsService adwordsService) {
+		m_adwordsService = adwordsService;
 	}
 
 	public void setCourtService(CourtService courtService) {
 		m_courtService = courtService;
 	}
-
-	public List<Court> getCourts() {
-		return m_courts;
-	}
-
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
-	public void setPagedTool(PagedTool pagedTool) {
-		m_pagedTool = pagedTool;
-	}
-	public void setAdwordsService(AdwordsService adwordsService) {
-		m_adwordsService = adwordsService;
+	public void setNewsService(NewsService newsService) {
+		m_newsService = newsService;
 	}
 	
-	public AdwordsService getAdwordsService() {
-		return m_adwordsService;
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
 	}
 
 }

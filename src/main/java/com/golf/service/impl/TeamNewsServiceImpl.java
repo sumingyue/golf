@@ -31,32 +31,6 @@ public class TeamNewsServiceImpl implements InitializingBean, TeamNewsService {
 	}
 
 	@Override
-	public List<TeamNews> queryAllTeamNewss() {
-		ArrayList<TeamNews> arrayList = new ArrayList<TeamNews>(m_teamNewss.values());
-
-		Collections.sort(arrayList, new TeamNewsCompartor());
-		return arrayList;
-	}
-
-	@Override
-	public int insertTeamNews(TeamNews teamNews) {
-		int id = m_teamNewsDao.insert(teamNews);
-		if (id > 0) {
-			m_teamNewss.put(teamNews.getId(), teamNews);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateTeamNews(TeamNews teamNews) {
-		int id = m_teamNewsDao.update(teamNews);
-		if (id > 0) {
-			m_teamNewss.put(teamNews.getId(), teamNews);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteTeamNews(int teamNewsId) {
 		int id = m_teamNewsDao.delete(teamNewsId);
 		if (id > 0) {
@@ -78,8 +52,27 @@ public class TeamNewsServiceImpl implements InitializingBean, TeamNewsService {
 		return teamNews;
 	}
 
-	public void setTeamNewsDao(TeamNewsDao teamNewsDao) {
-		m_teamNewsDao = teamNewsDao;
+	@Override
+	public int insertTeamNews(TeamNews teamNews) {
+		int id = m_teamNewsDao.insert(teamNews);
+		if (id > 0) {
+			m_teamNewss.put(teamNews.getId(), teamNews);
+		}
+		return id;
+	}
+
+	@Override
+	public List<TeamNews> queryAllTeamNewss() {
+		ArrayList<TeamNews> arrayList = new ArrayList<TeamNews>(m_teamNewss.values());
+
+		Collections.sort(arrayList, new TeamNewsCompartor());
+		return arrayList;
+	}
+
+	@Override
+	public List<TeamNews> queryFixedTeamNewss(int size) {
+		List<TeamNews> all = queryAllTeamNewss();
+		return resizeList(all, size);
 	}
 
 	@Override
@@ -116,14 +109,6 @@ public class TeamNewsServiceImpl implements InitializingBean, TeamNewsService {
 		return all;
 	}
 
-	public static class TeamNewsCompartor implements Comparator<TeamNews> {
-
-		@Override
-		public int compare(TeamNews o1, TeamNews o2) {
-			return o2.getId() - o1.getId();
-		}
-	}
-
 	@Override
 	public List<TeamNews> queryPagedNewByTeamAndType(PagedTool pagedTool, int teamId, int type) {
 		List<TeamNews> result = queryNewByTeamAndType(teamId, type);
@@ -144,9 +129,24 @@ public class TeamNewsServiceImpl implements InitializingBean, TeamNewsService {
 		return all;
 	}
 
+	public void setTeamNewsDao(TeamNewsDao teamNewsDao) {
+		m_teamNewsDao = teamNewsDao;
+	}
+
 	@Override
-	public List<TeamNews> queryFixedTeamNewss(int size) {
-		List<TeamNews> all = queryAllTeamNewss();
-		return resizeList(all, size);
+	public int updateTeamNews(TeamNews teamNews) {
+		int id = m_teamNewsDao.update(teamNews);
+		if (id > 0) {
+			m_teamNewss.put(teamNews.getId(), teamNews);
+		}
+		return id;
+	}
+
+	public static class TeamNewsCompartor implements Comparator<TeamNews> {
+
+		@Override
+		public int compare(TeamNews o1, TeamNews o2) {
+			return o2.getId() - o1.getId();
+		}
 	}
 }

@@ -35,31 +35,6 @@ public class CourtServiceImpl implements InitializingBean, CourtService {
 	}
 
 	@Override
-	public List<Court> queryAllCourts() {
-		ArrayList<Court> arrayList = new ArrayList<Court>(m_courts.values());
-		Collections.sort(arrayList, new CourtCompartor());
-		return arrayList;
-	}
-
-	@Override
-	public int insertCourt(Court court) {
-		int id = m_courtDao.insert(court);
-		if (id > 0) {
-			m_courts.put(court.getId(), court);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateCourt(Court court) {
-		int id = m_courtDao.update(court);
-		if (id > 0) {
-			m_courts.put(court.getId(), court);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteCourt(int courtId) {
 		int id = m_courtDao.delete(courtId);
 		if (id > 0) {
@@ -83,21 +58,27 @@ public class CourtServiceImpl implements InitializingBean, CourtService {
 		return court;
 	}
 
-	public void setCourtDao(CourtDao courtDao) {
-		m_courtDao = courtDao;
-	}
-
-	public void setImageService(ImageService imageService) {
-		m_imageService = imageService;
-	}
-
-	public static class CourtCompartor implements Comparator<Court> {
-
-		@Override
-		public int compare(Court o1, Court o2) {
-			return o2.getId() - o1.getId();
+	@Override
+	public int insertCourt(Court court) {
+		int id = m_courtDao.insert(court);
+		if (id > 0) {
+			m_courts.put(court.getId(), court);
 		}
+		return id;
+	}
 
+	@Override
+	public List<Court> queryAllCourts() {
+		ArrayList<Court> arrayList = new ArrayList<Court>(m_courts.values());
+		Collections.sort(arrayList, new CourtCompartor());
+		return arrayList;
+	}
+
+	@Override
+	public List<Court> queryFixedCourts(int size) {
+		List<Court> all = queryAllCourts();
+
+		return resizeList(all, size);
 	}
 
 	@Override
@@ -120,11 +101,30 @@ public class CourtServiceImpl implements InitializingBean, CourtService {
 		return all;
 	}
 
-	@Override
-	public List<Court> queryFixedCourts(int size) {
-		List<Court> all = queryAllCourts();
+	public void setCourtDao(CourtDao courtDao) {
+		m_courtDao = courtDao;
+	}
 
-		return resizeList(all, size);
+	public void setImageService(ImageService imageService) {
+		m_imageService = imageService;
+	}
+
+	@Override
+	public int updateCourt(Court court) {
+		int id = m_courtDao.update(court);
+		if (id > 0) {
+			m_courts.put(court.getId(), court);
+		}
+		return id;
+	}
+
+	public static class CourtCompartor implements Comparator<Court> {
+
+		@Override
+		public int compare(Court o1, Court o2) {
+			return o2.getId() - o1.getId();
+		}
+
 	}
 
 }

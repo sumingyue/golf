@@ -31,38 +31,6 @@ public class CourtImageServiceImpl implements InitializingBean, CourtImageServic
 	}
 
 	@Override
-	public List<CourtImage> queryAllCourtImages(int courtId) {
-		ArrayList<CourtImage> arrayList = new ArrayList<CourtImage>(m_courtImages.values());
-		List<CourtImage> result = new ArrayList<CourtImage>();
-
-		for (CourtImage temp : arrayList) {
-			if (temp.getCourtId() == courtId || courtId == 0) {
-				result.add(temp);
-			}
-		}
-		Collections.sort(result, new CourtImageCompartor());
-		return result;
-	}
-
-	@Override
-	public int insertCourtImage(CourtImage courtImage) {
-		int id = m_courtImageDao.insert(courtImage);
-		if (id > 0) {
-			m_courtImages.put(courtImage.getId(), courtImage);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateCourtImage(CourtImage courtImage) {
-		int id = m_courtImageDao.update(courtImage);
-		if (id > 0) {
-			m_courtImages.put(courtImage.getId(), courtImage);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteCourtImage(int courtImageId) {
 		int id = m_courtImageDao.delete(courtImageId);
 		if (id > 0) {
@@ -84,8 +52,46 @@ public class CourtImageServiceImpl implements InitializingBean, CourtImageServic
 		return courtImage;
 	}
 
+	@Override
+	public int insertCourtImage(CourtImage courtImage) {
+		int id = m_courtImageDao.insert(courtImage);
+		if (id > 0) {
+			m_courtImages.put(courtImage.getId(), courtImage);
+		}
+		return id;
+	}
+
+	@Override
+	public List<CourtImage> queryAllCourtImages(int courtId) {
+		ArrayList<CourtImage> arrayList = new ArrayList<CourtImage>(m_courtImages.values());
+		List<CourtImage> result = new ArrayList<CourtImage>();
+
+		for (CourtImage temp : arrayList) {
+			if (temp.getCourtId() == courtId || courtId == 0) {
+				result.add(temp);
+			}
+		}
+		Collections.sort(result, new CourtImageCompartor());
+		return result;
+	}
+
+	@Override
+   public List<CourtImage> queryPagedCourtImages(PagedTool pagedTool, int courtId) {
+		List<CourtImage> result = queryAllCourtImages(courtId);
+		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
+   }
+
 	public void setCourtImageDao(CourtImageDao courtImageDao) {
 		m_courtImageDao = courtImageDao;
+	}
+
+	@Override
+	public int updateCourtImage(CourtImage courtImage) {
+		int id = m_courtImageDao.update(courtImage);
+		if (id > 0) {
+			m_courtImages.put(courtImage.getId(), courtImage);
+		}
+		return id;
 	}
 
 	public static class CourtImageCompartor implements Comparator<CourtImage> {
@@ -96,11 +102,5 @@ public class CourtImageServiceImpl implements InitializingBean, CourtImageServic
 		}
 
 	}
-
-	@Override
-   public List<CourtImage> queryPagedCourtImages(PagedTool pagedTool, int courtId) {
-		List<CourtImage> result = queryAllCourtImages(courtId);
-		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
-   }
 
 }

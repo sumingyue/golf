@@ -4,130 +4,123 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/court.css">
-<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
-<script type="text/javascript" src="js/base.js"></script>
-
+<title>苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站</title>
+<meta name="Description" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
+<meta name="Keyword" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.override.css" rel="stylesheet">
+<script src="js/jquery-1.7.1.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#court').addClass('active');
+	});
+</script>
+<style>
+	.court-img{
+		height:350px;
+		width:540px;
+	}
+	.map-img{
+		height:250px;
+		width:377px;
+	}
+	.title{
+		color:#6899f7;
+		background-color:#d9edf7;
+		background:#d9edf7;
+	}
+	
+</style>
 </head>
 <body>
-	<div class="wrap container_24">
+	<div class="container">
 		<jsp:include page="./Head.jsp"></jsp:include>
-		<div class="clear"></div>
-		<div class="grid_14">
-			<div id="slide" class="slide-list-container">
-				<ul class="slide-list">
-					<s:iterator value="courtImages" status="vs">
-						<s:if test="#vs.index==0">
-						<li class="slide-list-item active"><img class="img-full" style="height:350px;"
-							src="<s:property value="image.path"/>" /></li>
-							</s:if>
-						<s:else>
-						<li class="slide-list-item"><img class="img-full" style="height:350px;"
-							src="<s:property value="image.path"/>" /></li>
-							</s:else>
-					</s:iterator>
-				</ul>
-				<ul class="slide-nums">
-				<s:iterator value="courtImages" status="vs">
-					<s:if test="#vs.index==0">
-						<li class="active"><a href="#">${vs.index+1}</a></li>
-					</s:if>
-					<s:else>
-						<li><a href="#">${vs.index+1}</a></li>
-					</s:else>
-				</s:iterator>		
-				</ul>
-			</div>
-			
-			
-				<div class="mod-box-horizon" id="xiangxijieshao">
-				<div class="mod-hd">详细介绍</div>
-				<div class="mod-bd">
-					<s:property value="court.customIntro" escape="false" />
-				</div>
-				</div>
-			<div class="mod-box-horizon" id="xincheluxian">
-				<div class="mod-hd">球道路线</div>
-				<div class="mod-bd">
-					<table class="table">
-						<s:iterator value="groups" status="vs">
-							<tr>
-								<td style="width: 10%"><s:property value="name" /></td>
-								<td><s:iterator value="index" status="vs">
-										<a href="#" class="item"><s:property /></a>
-									</s:iterator></td>
-							</tr>
-						</s:iterator>
-					</table>
-					<ul class="maps">
-						<s:iterator value="all" status="vs">
+		<div class="position">
+			<ul class="breadcrumb border">
+				<li>当前位置：</li>
+				<li><a href="index.do">首页</a> <span class="divider">/</span></li>
+				<li><a href="club.do">球场</a><span class="divider">/</span></li>
+				<li class="active">${court.name}</li>
+			</ul>
+		</div>
+		<div class="club-detail">
+			<div class="span7 myhidden border" style="height:350px;">
+				<div id="myCarousel" class="carousel slide">
+					<ol class="carousel-indicators">
+					    <s:iterator value="courtImages" status="vs">
 							<s:if test="#vs.index==0">
-							<li class="active map">
-								<img src="<s:property value="image.path"/>" style="width:350px;height:350px;"/>
-								<p><s:property value="des"/></p>
-							</li></s:if>
+							 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+							</s:if>
 							<s:else>
-							<li class="map">
-								<img src="<s:property value="image.path"/>" style="width:350px;height:350px;"/>
-								<p><s:property value="des"/></p>
-							</li>
+								<li data-target="#myCarousel" data-slide-to="${vs.index}"></li>
 							</s:else>
 						</s:iterator>
-					</ul>
+					  </ol>
+					<!-- Carousel items -->
+					<div class="carousel-inner">
+						<s:iterator value="courtImages" status="vs">
+							<s:if test="#vs.index==0">
+								<div class="active item">
+									<img class="court-img" src="<s:property value="image.path"/>"  />
+									<div class="carousel-caption">
+										<p>${imageDes}</p>
+									</div>
+								</div>
+							</s:if>
+							<s:else>
+								<div class="item">
+									<img class="court-img" src="<s:property value="image.path"/>"  />
+									<div class="carousel-caption">
+										<p>${imageDes}</p>
+									</div>
+								</div>
+							</s:else>
+						</s:iterator>
+					</div>
+					<!-- Carousel nav -->
+					<a class="carousel-control left" href="#myCarousel"
+						data-slide="prev">&lsaquo;</a> <a class="carousel-control right"
+						href="#myCarousel" data-slide="next">&rsaquo;</a>
+				</div>
+			</div>
+			<div class="span5 myhidden border" style="height:350px;">
+				<div>
+					<h4 class="breadcrumb title ">基本资料 &nbsp;&nbsp;<a href="#" target="blank">球道详细信息</a></h4>
+					<table class="table table-striped table-bordered table-hover">
+						<tr>
+							<td>地址</td>
+							<td>${court.address}</td>
+						</tr>
+						<tr>
+							<td>电话</td>
+							<td>${court.phone}</td>
+						</tr>
+					</table>
+					<h4 class="breadcrumb title ">获得评价</h4>
+					<div class="left">${court.awards}</div>
+				</div>
+			</div>
+			<div class="span7 myhidden border top" style="height:400px">
+				<div>
+					<h4 class="breadcrumb title ">球场介绍</h4>
+					<div class="left">${court.customIntro}</div>
+				</div>
+			</div>
+			<div class="span5 myhidden border top" style="height:400px;">
+				<div>
+					<h4 class="breadcrumb title ">球场地图</h4>
+					<div><img class="map-img" src="<s:property value="court.mapImage.path"/>" />
+					</div>
+					<div class="left top">
+						<s:property value="court.mapIntroduction" />
+					</div>
 				</div>
 			</div>
 		</div>
-		
-		
-		<div class="grid_10">
-			<div class="mod-box-horizon" id="qiuchangjieshao">
-				<div class="mod-hd">球场介绍</div>
-				<div class="mod-bd">
-					<s:property value="court.introduction" escape="false" />
-				</div>
-			</div>
-			
-			<div class="mod-box-horizon" id="pinjiajieshao">
-				<div class="mod-hd">评价介绍</div>
-				<div class="mod-bd">
-					<s:property value="court.awards" escape="false" />
-				</div>
-			</div>
-			<div class="mod-box-horizon mod-box-horizon-last" id="qiuchangluxian">
-				<div class="mod-hd">球场路线</div>
-				<div class="mod-bd">
-					<img src="<s:property value="court.mapImage.path"/>" />
-					<s:property value="court.mapIntroduction" />
-				</div>
-			</div>
-		</div>
-			
+		</br>
 		<jsp:include page="./Foot.jsp"></jsp:include>
-
-		<script type="text/javascript">
-		var pannel = new TabPannel({
-			container:$("#slide"),
-			triggerType:"click",
-			headCS:".slide-nums li",
-			itemCS:".slide-list-item",
-			activeCls:"active"
-		});
-		
-		setInterval(function(){
-			var next = pannel.getCurrent()+1;
-			if(next==pannel.getTotal()){next = 0}
-			pannel.select(next);
-		},5000);
-		
-		new TabPannel({
-			container : $("#xincheluxian"),
-			triggerType : "hover",
-			headCS : "table .item",
-			itemCS : ".map",
-			activeCls : "active"
-		});
-	</script>
+	</div>
+	
 </body>
 </html>

@@ -55,12 +55,115 @@ public class TeamAction extends ActionSupport {
 	
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
-	public String teamList() {
-		m_teams = m_teamService.queryAllTeams();
-		for (Team team : m_teams) {
-			team.setLogo(m_imageService.findImage(team.getImageId()));
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
+	}
+
+	public List<TeamMemberImage> getImages() {
+		return m_images;
+	}
+
+	public List<TeamNews> getNews1() {
+		return m_news1;
+	}
+
+	public List<TeamNews> getNews2() {
+		return m_news2;
+	}
+
+	public List<TeamNews> getNews3() {
+		return m_news3;
+	}
+
+	public List<TeamNews> getNews4() {
+		return m_news4;
+	}
+
+	public List<TeamNews> getNews5() {
+		return m_news5;
+	}
+	
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public Team getTeam() {
+		return m_team;
+	}
+
+	public int getTeamId() {
+		return m_teamId;
+	}
+
+	public TeamNews getTeamNews() {
+		return m_teamNews;
+	}
+
+	public List<TeamNews> getTeamNewss() {
+		return m_teamNewss;
+	}
+
+	public List<Team> getTeams() {
+		return m_teams;
+	}
+
+	public int getType() {
+		return m_type;
+	}
+
+	private void match(List<TeamNews> list, int size) {
+		int total = list.size();
+		if (total < size) {
+			int o = size - total;
+			for (int i = 0; i < o; i++) {
+				list.add(m_teamNewsService.findTeamNews(3));
+			}
 		}
-		return SUCCESS;
+	}
+
+	public void setAdwordsService(AdwordsService adwordsService) {
+		m_adwordsService = adwordsService;
+	}
+
+	public void setId(int id) {
+		m_teamId = id;
+		m_teamNewsId =id;
+	}
+
+	public void setImageService(ImageService imageService) {
+		m_imageService = imageService;
+	}
+
+	public void setIndex(int index){
+		m_pagedTool.setPageIndex(index);
+	}
+
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
+	}
+
+	public void setTeamId(int teamId) {
+		m_teamId = teamId;
+	}
+
+	public void setTeamMemberImageService(TeamMemberImageService teamMemberImageService) {
+		m_teamMemberImageService = teamMemberImageService;
+	}
+
+	public void setTeamNewsId(int teamNewsId) {
+		m_teamNewsId = teamNewsId;
+	}
+
+	public void setTeamNewsService(TeamNewsService teamNewsService) {
+		m_teamNewsService = teamNewsService;
+	}
+	
+	public void setTeamService(TeamService teamService) {
+		m_teamService = teamService;
+	}
+
+	public void setType(int type) {
+		m_type = type;
 	}
 
 	public String teamDetail() {
@@ -89,14 +192,18 @@ public class TeamAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	private void match(List<TeamNews> list, int size) {
-		int total = list.size();
-		if (total < size) {
-			int o = size - total;
-			for (int i = 0; i < o; i++) {
-				list.add(m_teamNewsService.findTeamNews(3));
-			}
+	public String teamList() {
+		m_teams = m_teamService.queryAllTeams();
+		for (Team team : m_teams) {
+			team.setLogo(m_imageService.findImage(team.getImageId()));
 		}
+		return SUCCESS;
+	}
+	
+	public String teamNewsDetail() {
+		m_teamNews = m_teamNewsService.findTeamNews(m_teamNewsId);
+		m_teamNews.setTeam(m_teamService.findTeam(m_teamNews.getTeamId()));
+		return SUCCESS;
 	}
 
 	public String teamNewsList() {
@@ -104,113 +211,6 @@ public class TeamAction extends ActionSupport {
 		m_teamNewss = m_teamNewsService.queryPagedNewByTeamAndType(m_pagedTool, m_teamId, m_type);
 		m_team = m_teamService.findTeam(m_teamId);
 		return SUCCESS;
-	}
-
-	public String teamNewsDetail() {
-		m_teamNews = m_teamNewsService.findTeamNews(m_teamNewsId);
-		m_teamNews.setTeam(m_teamService.findTeam(m_teamNews.getTeamId()));
-		return SUCCESS;
-	}
-
-	public int getTeamId() {
-		return m_teamId;
-	}
-
-	public void setTeamId(int teamId) {
-		m_teamId = teamId;
-	}
-	
-	public void setId(int id) {
-		m_teamId = id;
-		m_teamNewsId =id;
-	}
-
-	public List<Team> getTeams() {
-		return m_teams;
-	}
-
-	public Team getTeam() {
-		return m_team;
-	}
-
-	public void setTeamService(TeamService teamService) {
-		m_teamService = teamService;
-	}
-
-	public void setTeamNewsService(TeamNewsService teamNewsService) {
-		m_teamNewsService = teamNewsService;
-	}
-
-	public void setTeamMemberImageService(TeamMemberImageService teamMemberImageService) {
-		m_teamMemberImageService = teamMemberImageService;
-	}
-
-	public void setType(int type) {
-		m_type = type;
-	}
-
-	public List<TeamNews> getTeamNewss() {
-		return m_teamNewss;
-	}
-
-	public List<TeamNews> getNews1() {
-		return m_news1;
-	}
-
-	public List<TeamNews> getNews2() {
-		return m_news2;
-	}
-
-	public List<TeamNews> getNews3() {
-		return m_news3;
-	}
-
-	public List<TeamNews> getNews4() {
-		return m_news4;
-	}
-
-	public void setTeamNewsId(int teamNewsId) {
-		m_teamNewsId = teamNewsId;
-	}
-
-	public TeamNews getTeamNews() {
-		return m_teamNews;
-	}
-
-	public void setImageService(ImageService imageService) {
-		m_imageService = imageService;
-	}
-
-	public List<TeamMemberImage> getImages() {
-		return m_images;
-	}
-
-	public void setAdwordsService(AdwordsService adwordsService) {
-		m_adwordsService = adwordsService;
-	}
-	
-	public AdwordsService getAdwordsService() {
-		return m_adwordsService;
-	}
-
-	public int getType() {
-		return m_type;
-	}
-
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
-	public void setPagedTool(PagedTool pagedTool) {
-		m_pagedTool = pagedTool;
-	}
-	
-	public void setIndex(int index){
-		m_pagedTool.setPageIndex(index);
-	}
-
-	public List<TeamNews> getNews5() {
-		return m_news5;
 	}
 	
 }

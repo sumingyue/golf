@@ -76,29 +76,8 @@ public class UserProductAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public String productDetail() {
-		m_category1 = m_productCategoryService.queryProductCategoryByType(1);
-		m_category2 = m_productCategoryService.queryProductCategoryByType(2);
-		m_category3 = m_productCategoryService.queryProductCategoryByType(3);
-		m_category4 = m_productCategoryService.queryProductCategoryByType(4);
-		m_product = m_productService.findProduct(m_productId);
-
-		List<Image> images = m_productService.findImagesByProductId(m_product.getId());
-		m_product.setImages(images);
-		return SUCCESS;
-	}
-
-	public String userOrderSub() {
-		m_productOrderService.insertProductOrder(m_productOrder);
-		return SUCCESS;
-	}
-
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
-	public void setPagedTool(PagedTool pagedTool) {
-		m_pagedTool = pagedTool;
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
 	}
 
 	public List<ProductCategory> getCategory1() {
@@ -117,16 +96,44 @@ public class UserProductAction extends ActionSupport {
 		return m_category4;
 	}
 
-	public void setProductService(ProductService productService) {
-		m_productService = productService;
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
 	}
 
-	public void setProductCategoryService(ProductCategoryService productCategoryService) {
-		m_productCategoryService = productCategoryService;
+	public Product getProduct() {
+		return m_product;
 	}
 
-	public void setProductCategoryId(int productCategoryId) {
-		m_productCategoryId = productCategoryId;
+	public ProductCategory getProductCategory() {
+		return m_productCategory;
+	}
+
+	public ProductOrder getProductOrder() {
+		return m_productOrder;
+	}
+
+	public List<Product> getProducts() {
+		return m_products;
+	}
+
+	public int getType() {
+		return m_type;
+	}
+
+	public String productDetail() {
+		m_category1 = m_productCategoryService.queryProductCategoryByType(1);
+		m_category2 = m_productCategoryService.queryProductCategoryByType(2);
+		m_category3 = m_productCategoryService.queryProductCategoryByType(3);
+		m_category4 = m_productCategoryService.queryProductCategoryByType(4);
+		m_product = m_productService.findProduct(m_productId);
+
+		List<Image> images = m_productService.findImagesByProductId(m_product.getId());
+		m_product.setImages(images);
+		return SUCCESS;
+	}
+
+	public void setAdwordsService(AdwordsService adwordsService) {
+		m_adwordsService = adwordsService;
 	}
 
 	public void setId(int id) {
@@ -134,39 +141,32 @@ public class UserProductAction extends ActionSupport {
 		m_productId = id;
 	}
 
-	public List<Product> getProducts() {
-		return m_products;
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
 	}
 
-	public ProductCategory getProductCategory() {
-		return m_productCategory;
+	public void setProductCategoryId(int productCategoryId) {
+		m_productCategoryId = productCategoryId;
 	}
 
-	public int getType() {
-		return m_type;
-	}
-
-	public void setType(int type) {
-		m_type = type;
-	}
-
-	public Product getProduct() {
-		return m_product;
-	}
-
-	public ProductOrder getProductOrder() {
-		return m_productOrder;
+	public void setProductCategoryService(ProductCategoryService productCategoryService) {
+		m_productCategoryService = productCategoryService;
 	}
 
 	public void setProductOrderService(ProductOrderService productOrderService) {
 		m_productOrderService = productOrderService;
 	}
-	public void setAdwordsService(AdwordsService adwordsService) {
-		m_adwordsService = adwordsService;
+
+	public void setProductService(ProductService productService) {
+		m_productService = productService;
+	}
+	public void setType(int type) {
+		m_type = type;
 	}
 	
-	public AdwordsService getAdwordsService() {
-		return m_adwordsService;
+	public String userOrderSub() {
+		m_productOrderService.insertProductOrder(m_productOrder);
+		return SUCCESS;
 	}
 
 }

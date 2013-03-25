@@ -31,38 +31,6 @@ public class TeamMemberImageServiceImpl implements InitializingBean, TeamMemberI
 	}
 
 	@Override
-	public List<TeamMemberImage> queryAllTeamMemberImages(int teamId) {
-		ArrayList<TeamMemberImage> arrayList = new ArrayList<TeamMemberImage>(m_teamMemberImages.values());
-		List<TeamMemberImage> result = new ArrayList<TeamMemberImage>();
-
-		for (TeamMemberImage temp : arrayList) {
-			if (temp.getTeamId() == teamId || teamId == 0) {
-				result.add(temp);
-			}
-		}
-		Collections.sort(result, new TeamMemberImageCompartor());
-		return result;
-	}
-
-	@Override
-	public int insertTeamMemberImage(TeamMemberImage teamMemberImage) {
-		int id = m_teamMemberImageDao.insert(teamMemberImage);
-		if (id > 0) {
-			m_teamMemberImages.put(teamMemberImage.getId(), teamMemberImage);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateTeamMemberImage(TeamMemberImage teamMemberImage) {
-		int id = m_teamMemberImageDao.update(teamMemberImage);
-		if (id > 0) {
-			m_teamMemberImages.put(teamMemberImage.getId(), teamMemberImage);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteTeamMemberImage(int teamMemberImageId) {
 		int id = m_teamMemberImageDao.delete(teamMemberImageId);
 		if (id > 0) {
@@ -84,8 +52,47 @@ public class TeamMemberImageServiceImpl implements InitializingBean, TeamMemberI
 		return teamMemberImage;
 	}
 
+	@Override
+	public int insertTeamMemberImage(TeamMemberImage teamMemberImage) {
+		int id = m_teamMemberImageDao.insert(teamMemberImage);
+		if (id > 0) {
+			m_teamMemberImages.put(teamMemberImage.getId(), teamMemberImage);
+		}
+		return id;
+	}
+
+	@Override
+	public List<TeamMemberImage> queryAllTeamMemberImages(int teamId) {
+		ArrayList<TeamMemberImage> arrayList = new ArrayList<TeamMemberImage>(m_teamMemberImages.values());
+		List<TeamMemberImage> result = new ArrayList<TeamMemberImage>();
+
+		for (TeamMemberImage temp : arrayList) {
+			if (temp.getTeamId() == teamId || teamId == 0) {
+				result.add(temp);
+			}
+		}
+		Collections.sort(result, new TeamMemberImageCompartor());
+		return result;
+	}
+
+	@Override
+   public List<TeamMemberImage> queryPagedTeamMemberImages(PagedTool pagedTool, int teamId) {
+		List<TeamMemberImage> result = queryAllTeamMemberImages(teamId);
+		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
+
+   }
+
 	public void setTeamMemberImageDao(TeamMemberImageDao teamMemberImageDao) {
 		m_teamMemberImageDao = teamMemberImageDao;
+	}
+
+	@Override
+	public int updateTeamMemberImage(TeamMemberImage teamMemberImage) {
+		int id = m_teamMemberImageDao.update(teamMemberImage);
+		if (id > 0) {
+			m_teamMemberImages.put(teamMemberImage.getId(), teamMemberImage);
+		}
+		return id;
 	}
 
 	public static class TeamMemberImageCompartor implements Comparator<TeamMemberImage> {
@@ -96,12 +103,5 @@ public class TeamMemberImageServiceImpl implements InitializingBean, TeamMemberI
 		}
 
 	}
-
-	@Override
-   public List<TeamMemberImage> queryPagedTeamMemberImages(PagedTool pagedTool, int teamId) {
-		List<TeamMemberImage> result = queryAllTeamMemberImages(teamId);
-		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
-
-   }
 
 }

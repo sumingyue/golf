@@ -31,38 +31,6 @@ public class ImageSpecialDetailServiceImpl implements InitializingBean, ImageSpe
 	}
 
 	@Override
-	public List<ImageSpecialDetail> queryAllImageSpecialDetails(int specialImageId) {
-		ArrayList<ImageSpecialDetail> arrayList = new ArrayList<ImageSpecialDetail>(m_imageSpecialDetails.values());
-		List<ImageSpecialDetail> result = new ArrayList<ImageSpecialDetail>();
-
-		for (ImageSpecialDetail temp : arrayList) {
-			if (temp.getImageSpecialId() == specialImageId || specialImageId == 0) {
-				result.add(temp);
-			}
-		}
-		Collections.sort(result, new ImageSpecialDetailCompartor());
-		return result;
-	}
-
-	@Override
-	public int insertImageSpecialDetail(ImageSpecialDetail imageSpecialDetail) {
-		int id = m_imageSpecialDetailDao.insert(imageSpecialDetail);
-		if (id > 0) {
-			m_imageSpecialDetails.put(imageSpecialDetail.getId(), imageSpecialDetail);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateImageSpecialDetail(ImageSpecialDetail imageSpecialDetail) {
-		int id = m_imageSpecialDetailDao.update(imageSpecialDetail);
-		if (id > 0) {
-			m_imageSpecialDetails.put(imageSpecialDetail.getId(), imageSpecialDetail);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteImageSpecialDetail(int imageSpecialDetailId) {
 		int id = m_imageSpecialDetailDao.delete(imageSpecialDetailId);
 		if (id > 0) {
@@ -84,8 +52,47 @@ public class ImageSpecialDetailServiceImpl implements InitializingBean, ImageSpe
 		return imageSpecialDetail;
 	}
 
+	@Override
+	public int insertImageSpecialDetail(ImageSpecialDetail imageSpecialDetail) {
+		int id = m_imageSpecialDetailDao.insert(imageSpecialDetail);
+		if (id > 0) {
+			m_imageSpecialDetails.put(imageSpecialDetail.getId(), imageSpecialDetail);
+		}
+		return id;
+	}
+
+	@Override
+	public List<ImageSpecialDetail> queryAllImageSpecialDetails(int specialImageId) {
+		ArrayList<ImageSpecialDetail> arrayList = new ArrayList<ImageSpecialDetail>(m_imageSpecialDetails.values());
+		List<ImageSpecialDetail> result = new ArrayList<ImageSpecialDetail>();
+
+		for (ImageSpecialDetail temp : arrayList) {
+			if (temp.getImageSpecialId() == specialImageId || specialImageId == 0) {
+				result.add(temp);
+			}
+		}
+		Collections.sort(result, new ImageSpecialDetailCompartor());
+		return result;
+	}
+
+	@Override
+   public List<ImageSpecialDetail> queryPagedImageSpecialDetails(PagedTool pagedTool, int imageSpecialId) {
+		List<ImageSpecialDetail> all = queryAllImageSpecialDetails(imageSpecialId);
+
+		return all.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
+   }
+
 	public void setImageSpecialDetailDao(ImageSpecialDetailDao imageSpecialDetailDao) {
 		m_imageSpecialDetailDao = imageSpecialDetailDao;
+	}
+
+	@Override
+	public int updateImageSpecialDetail(ImageSpecialDetail imageSpecialDetail) {
+		int id = m_imageSpecialDetailDao.update(imageSpecialDetail);
+		if (id > 0) {
+			m_imageSpecialDetails.put(imageSpecialDetail.getId(), imageSpecialDetail);
+		}
+		return id;
 	}
 
 	public static class ImageSpecialDetailCompartor implements Comparator<ImageSpecialDetail> {
@@ -96,11 +103,4 @@ public class ImageSpecialDetailServiceImpl implements InitializingBean, ImageSpe
 		}
 
 	}
-
-	@Override
-   public List<ImageSpecialDetail> queryPagedImageSpecialDetails(PagedTool pagedTool, int imageSpecialId) {
-		List<ImageSpecialDetail> all = queryAllImageSpecialDetails(imageSpecialId);
-
-		return all.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
-   }
 }

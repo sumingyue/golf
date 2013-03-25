@@ -40,32 +40,6 @@ public class AdwordsServiceImpl implements InitializingBean, AdwordsService {
 	}
 
 	@Override
-	public List<Adwords> queryAllAdwordss() {
-		return new ArrayList<Adwords>(m_adwordss.values());
-	}
-
-	@Override
-	public int insertAdwords(Adwords adwords) {
-		int id = m_adwordsDao.insert(adwords);
-		if (id > 0) {
-			adwords.setImage(m_imageService.findImage(adwords.getImageId()));
-			m_adwordss.put(adwords.getId(), adwords);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateAdwords(Adwords adwords) {
-		int id = m_adwordsDao.update(adwords);
-		if (id > 0) {
-			m_adwordss.put(adwords.getId(), adwords);
-			m_adwordsArray[adwords.getId()-1] = adwords;
-			adwords.setImage(m_imageService.findImage(adwords.getImageId()));
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteAdwords(int adwordsId) {
 		int id = m_adwordsDao.delete(adwordsId);
 		if (id > 0) {
@@ -87,8 +61,24 @@ public class AdwordsServiceImpl implements InitializingBean, AdwordsService {
 		return adwords;
 	}
 
-	public void setAdwordsDao(AdwordsDao adwordsDao) {
-		m_adwordsDao = adwordsDao;
+	@Override
+	public Adwords[] getAdwords() {
+		return m_adwordsArray;
+	}
+
+	@Override
+	public int insertAdwords(Adwords adwords) {
+		int id = m_adwordsDao.insert(adwords);
+		if (id > 0) {
+			adwords.setImage(m_imageService.findImage(adwords.getImageId()));
+			m_adwordss.put(adwords.getId(), adwords);
+		}
+		return id;
+	}
+
+	@Override
+	public List<Adwords> queryAllAdwordss() {
+		return new ArrayList<Adwords>(m_adwordss.values());
 	}
 
 	@Override
@@ -97,13 +87,23 @@ public class AdwordsServiceImpl implements InitializingBean, AdwordsService {
 		return result.subList(tool.getFromIndex(), tool.getToIndex());
 	}
 
-	@Override
-	public Adwords[] getAdwords() {
-		return m_adwordsArray;
+	public void setAdwordsDao(AdwordsDao adwordsDao) {
+		m_adwordsDao = adwordsDao;
 	}
 
 	public void setImageService(ImageService imageService) {
 		m_imageService = imageService;
+	}
+
+	@Override
+	public int updateAdwords(Adwords adwords) {
+		int id = m_adwordsDao.update(adwords);
+		if (id > 0) {
+			m_adwordss.put(adwords.getId(), adwords);
+			m_adwordsArray[adwords.getId()-1] = adwords;
+			adwords.setImage(m_imageService.findImage(adwords.getImageId()));
+		}
+		return id;
 	}
 
 }

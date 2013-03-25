@@ -31,32 +31,6 @@ public class CourtOrderServiceImpl implements InitializingBean, CourtOrderServic
 	}
 
 	@Override
-	public List<CourtOrder> queryAllCourtOrders() {
-		ArrayList<CourtOrder> arrayList = new ArrayList<CourtOrder>(m_courtOrders.values());
-		
-		Collections.sort(arrayList,new CourtOrderCompartor());
-		return arrayList;
-	}
-
-	@Override
-	public int insertCourtOrder(CourtOrder courtOrder) {
-		int id = m_courtOrderDao.insert(courtOrder);
-		if (id > 0) {
-			m_courtOrders.put(courtOrder.getId(), courtOrder);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateCourtOrder(CourtOrder courtOrder) {
-		int id = m_courtOrderDao.update(courtOrder);
-		if (id > 0) {
-			m_courtOrders.put(courtOrder.getId(), courtOrder);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteCourtOrder(int courtOrderId) {
 		int id = m_courtOrderDao.delete(courtOrderId);
 		if (id > 0) {
@@ -78,8 +52,41 @@ public class CourtOrderServiceImpl implements InitializingBean, CourtOrderServic
 		return courtOrder;
 	}
 
+	@Override
+	public int insertCourtOrder(CourtOrder courtOrder) {
+		int id = m_courtOrderDao.insert(courtOrder);
+		if (id > 0) {
+			m_courtOrders.put(courtOrder.getId(), courtOrder);
+		}
+		return id;
+	}
+
+	@Override
+	public List<CourtOrder> queryAllCourtOrders() {
+		ArrayList<CourtOrder> arrayList = new ArrayList<CourtOrder>(m_courtOrders.values());
+		
+		Collections.sort(arrayList,new CourtOrderCompartor());
+		return arrayList;
+	}
+
+	@Override
+   public List<CourtOrder> queryPagedCourtOrders(PagedTool pagedTool) {
+		List<CourtOrder> result = queryAllCourtOrders();
+		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
+
+   }
+
 	public void setCourtOrderDao(CourtOrderDao courtOrderDao) {
 		m_courtOrderDao = courtOrderDao;
+	}
+
+	@Override
+	public int updateCourtOrder(CourtOrder courtOrder) {
+		int id = m_courtOrderDao.update(courtOrder);
+		if (id > 0) {
+			m_courtOrders.put(courtOrder.getId(), courtOrder);
+		}
+		return id;
 	}
 
 	public static class CourtOrderCompartor implements Comparator<CourtOrder> {
@@ -90,11 +97,4 @@ public class CourtOrderServiceImpl implements InitializingBean, CourtOrderServic
 		}
 
 	}
-
-	@Override
-   public List<CourtOrder> queryPagedCourtOrders(PagedTool pagedTool) {
-		List<CourtOrder> result = queryAllCourtOrders();
-		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
-
-   }
 }

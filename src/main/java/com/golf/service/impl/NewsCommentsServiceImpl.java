@@ -31,31 +31,6 @@ public class NewsCommentsServiceImpl implements InitializingBean, NewsCommentsSe
 	}
 
 	@Override
-	public List<NewsComments> queryAllNewsCommentss() {
-		ArrayList<NewsComments> arrayList = new ArrayList<NewsComments>(m_newsCommentss.values());
-		Collections.sort(arrayList, new NewsCommentsCompartor());
-		return arrayList;
-	}
-
-	@Override
-	public int insertNewsComments(NewsComments newsComments) {
-		int id = m_newsCommentsDao.insert(newsComments);
-		if (id > 0) {
-			m_newsCommentss.put(newsComments.getId(), newsComments);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateNewsComments(NewsComments newsComments) {
-		int id = m_newsCommentsDao.update(newsComments);
-		if (id > 0) {
-			m_newsCommentss.put(newsComments.getId(), newsComments);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteNewsComments(int newsCommentsId) {
 		int id = m_newsCommentsDao.delete(newsCommentsId);
 		if (id > 0) {
@@ -77,17 +52,20 @@ public class NewsCommentsServiceImpl implements InitializingBean, NewsCommentsSe
 		return newsComments;
 	}
 
-	public void setNewsCommentsDao(NewsCommentsDao newsCommentsDao) {
-		m_newsCommentsDao = newsCommentsDao;
+	@Override
+	public int insertNewsComments(NewsComments newsComments) {
+		int id = m_newsCommentsDao.insert(newsComments);
+		if (id > 0) {
+			m_newsCommentss.put(newsComments.getId(), newsComments);
+		}
+		return id;
 	}
 
-	public static class NewsCommentsCompartor implements Comparator<NewsComments> {
-
-		@Override
-		public int compare(NewsComments o1, NewsComments o2) {
-			return o2.getId() - o1.getId();
-		}
-
+	@Override
+	public List<NewsComments> queryAllNewsCommentss() {
+		ArrayList<NewsComments> arrayList = new ArrayList<NewsComments>(m_newsCommentss.values());
+		Collections.sort(arrayList, new NewsCommentsCompartor());
+		return arrayList;
 	}
 
 	@Override
@@ -111,5 +89,27 @@ public class NewsCommentsServiceImpl implements InitializingBean, NewsCommentsSe
 		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
 
    }
+
+	public void setNewsCommentsDao(NewsCommentsDao newsCommentsDao) {
+		m_newsCommentsDao = newsCommentsDao;
+	}
+
+	@Override
+	public int updateNewsComments(NewsComments newsComments) {
+		int id = m_newsCommentsDao.update(newsComments);
+		if (id > 0) {
+			m_newsCommentss.put(newsComments.getId(), newsComments);
+		}
+		return id;
+	}
+
+	public static class NewsCommentsCompartor implements Comparator<NewsComments> {
+
+		@Override
+		public int compare(NewsComments o1, NewsComments o2) {
+			return o2.getId() - o1.getId();
+		}
+
+	}
 
 }

@@ -1,7 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld"%>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>操作成功 | 苏州高尔夫网</title>
+</head>
+<body>
 <STYLE type=text/css>
-.actionMessage {
+.errorMessage {
 	line-height: 0.1em;
 	align: center;
 	width: 100%;
@@ -14,4 +19,8 @@ li{
 	list-style: none;
 }
 </STYLE>
-<s:actionmessage />
+<s:actionerror/>
+	<h2><img src="img/success.jpeg"></h2>
+	<div>
+	</div>
+</body></html>

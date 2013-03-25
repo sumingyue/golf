@@ -31,31 +31,6 @@ public class MatchServiceServiceImpl implements InitializingBean, MatchServiceSe
 	}
 
 	@Override
-	public List<MatchService> queryAllMatchServices() {
-		ArrayList<MatchService> arrayList = new ArrayList<MatchService>(m_matchServices.values());
-		Collections.sort(arrayList, new MatchServiceCompartor());
-		return arrayList;
-	}
-
-	@Override
-	public int insertMatchService(MatchService matchService) {
-		int id = m_matchServiceDao.insert(matchService);
-		if (id > 0) {
-			m_matchServices.put(matchService.getId(), matchService);
-		}
-		return id;
-	}
-
-	@Override
-	public int updateMatchService(MatchService matchService) {
-		int id = m_matchServiceDao.update(matchService);
-		if (id > 0) {
-			m_matchServices.put(matchService.getId(), matchService);
-		}
-		return id;
-	}
-
-	@Override
 	public int deleteMatchService(int matchServiceId) {
 		int id = m_matchServiceDao.delete(matchServiceId);
 		if (id > 0) {
@@ -76,8 +51,40 @@ public class MatchServiceServiceImpl implements InitializingBean, MatchServiceSe
 		return matchService;
 	}
 
+	@Override
+	public int insertMatchService(MatchService matchService) {
+		int id = m_matchServiceDao.insert(matchService);
+		if (id > 0) {
+			m_matchServices.put(matchService.getId(), matchService);
+		}
+		return id;
+	}
+
+	@Override
+	public List<MatchService> queryAllMatchServices() {
+		ArrayList<MatchService> arrayList = new ArrayList<MatchService>(m_matchServices.values());
+		Collections.sort(arrayList, new MatchServiceCompartor());
+		return arrayList;
+	}
+
+	@Override
+   public List<MatchService> queryPagedMatchServices(PagedTool pagedTool) {
+		List<MatchService> result = queryAllMatchServices();
+		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
+
+   }
+
 	public void setMatchServiceDao(MatchServiceDao matchServiceDao) {
 		m_matchServiceDao = matchServiceDao;
+	}
+
+	@Override
+	public int updateMatchService(MatchService matchService) {
+		int id = m_matchServiceDao.update(matchService);
+		if (id > 0) {
+			m_matchServices.put(matchService.getId(), matchService);
+		}
+		return id;
 	}
 
 	public static class MatchServiceCompartor implements Comparator<MatchService> {
@@ -88,12 +95,5 @@ public class MatchServiceServiceImpl implements InitializingBean, MatchServiceSe
 		}
 
 	}
-
-	@Override
-   public List<MatchService> queryPagedMatchServices(PagedTool pagedTool) {
-		List<MatchService> result = queryAllMatchServices();
-		return result.subList(pagedTool.getFromIndex(), pagedTool.getToIndex());
-
-   }
 
 }

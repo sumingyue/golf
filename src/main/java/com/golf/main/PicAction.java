@@ -51,6 +51,57 @@ public class PicAction extends ActionSupport {
 
 	private AdwordsService m_adwordsService;
 
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
+	}
+
+	public int getCategoryId() {
+		return m_categoryId;
+	}
+
+	public List<Category> getCategorys() {
+		return m_categorys;
+	}
+
+	public int getId(){
+		return m_imageSpecialId;
+	}
+
+	public ImageSpecial getImageSpecial() {
+		return m_imageSpecial;
+	}
+
+	public List<ImageSpecialDetail> getImageSpecialDetails() {
+		return m_imageSpecialDetails;
+	}
+
+	public List<ImageSpecial> getImageSpecials() {
+		return m_imageSpecials;
+	}
+
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public int getSmallCategoryId() {
+		return m_smallCategoryId;
+	}
+
+	public List<SmallCategory> getSmallCategorys() {
+		return m_smallCategorys;
+	}
+	
+	public String imageSpecialDetail() {
+		m_imageSpecial = m_imageSpecialService.findImageSpecial(m_imageSpecialId);
+		m_pagedTool.setTotalNumber(m_imageSpecialDetailService.queryAllImageSpecialDetails(m_imageSpecialId).size());
+		m_imageSpecialDetails = m_imageSpecialDetailService.queryPagedImageSpecialDetails(m_pagedTool, m_imageSpecialId);
+
+		for (ImageSpecialDetail detail : m_imageSpecialDetails) {
+			detail.setImage(m_imageService.findImage(detail.getImageId()));
+		}
+		return SUCCESS;
+	}
+
 	public String imageSpecialList() {
 		try {
 			m_imageSpecials = m_imageSpecialService.queryAllImageSpecials(m_categoryId, m_smallCategoryId);
@@ -69,67 +120,8 @@ public class PicAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public String imageSpecialDetail() {
-		m_imageSpecial = m_imageSpecialService.findImageSpecial(m_imageSpecialId);
-		m_pagedTool.setTotalNumber(m_imageSpecialDetailService.queryAllImageSpecialDetails(m_imageSpecialId).size());
-		m_imageSpecialDetails = m_imageSpecialDetailService.queryPagedImageSpecialDetails(m_pagedTool, m_imageSpecialId);
-
-		for (ImageSpecialDetail detail : m_imageSpecialDetails) {
-			detail.setImage(m_imageService.findImage(detail.getImageId()));
-		}
-		return SUCCESS;
-	}
-
-	public ImageSpecial getImageSpecial() {
-		return m_imageSpecial;
-	}
-
-	public void setImageSpecial(ImageSpecial imageSpecial) {
-		m_imageSpecial = imageSpecial;
-	}
-
 	public void setAdwordsService(AdwordsService adwordsService) {
 		m_adwordsService = adwordsService;
-	}
-
-	public AdwordsService getAdwordsService() {
-		return m_adwordsService;
-	}
-
-	public void setImageSpecialService(ImageSpecialService imageSpecialService) {
-		m_imageSpecialService = imageSpecialService;
-	}
-
-	public List<ImageSpecial> getImageSpecials() {
-		return m_imageSpecials;
-	}
-
-	public void setImageSpecialId(int imageSpecialId) {
-		m_imageSpecialId = imageSpecialId;
-	}
-
-	public void setId(int imageSpecialId) {
-		m_imageSpecialId = imageSpecialId;
-	}
-	
-	public int getId(){
-		return m_imageSpecialId;
-	}
-
-	public void setImageService(ImageService imageService) {
-		m_imageService = imageService;
-	}
-
-	public List<ImageSpecialDetail> getImageSpecialDetails() {
-		return m_imageSpecialDetails;
-	}
-
-	public void setImageSpecialDetailService(ImageSpecialDetailService imageSpecialDetailService) {
-		m_imageSpecialDetailService = imageSpecialDetailService;
-	}
-
-	public int getCategoryId() {
-		return m_categoryId;
 	}
 
 	public void setCategoryId(int categoryId) {
@@ -140,28 +132,36 @@ public class PicAction extends ActionSupport {
 		m_categoryService = categoryService;
 	}
 
-	public List<SmallCategory> getSmallCategorys() {
-		return m_smallCategorys;
+	public void setId(int imageSpecialId) {
+		m_imageSpecialId = imageSpecialId;
 	}
 
-	public List<Category> getCategorys() {
-		return m_categorys;
+	public void setImageService(ImageService imageService) {
+		m_imageService = imageService;
 	}
 
-	public int getSmallCategoryId() {
-		return m_smallCategoryId;
+	public void setImageSpecial(ImageSpecial imageSpecial) {
+		m_imageSpecial = imageSpecial;
 	}
 
-	public void setSmallCategoryId(int smallCategoryId) {
-		m_smallCategoryId = smallCategoryId;
+	public void setImageSpecialDetailService(ImageSpecialDetailService imageSpecialDetailService) {
+		m_imageSpecialDetailService = imageSpecialDetailService;
 	}
 
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
+	public void setImageSpecialId(int imageSpecialId) {
+		m_imageSpecialId = imageSpecialId;
+	}
+
+	public void setImageSpecialService(ImageSpecialService imageSpecialService) {
+		m_imageSpecialService = imageSpecialService;
 	}
 
 	public void setPagedTool(PagedTool pagedTool) {
 		m_pagedTool = pagedTool;
+	}
+
+	public void setSmallCategoryId(int smallCategoryId) {
+		m_smallCategoryId = smallCategoryId;
 	}
 
 }

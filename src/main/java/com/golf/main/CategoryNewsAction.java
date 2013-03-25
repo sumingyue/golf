@@ -30,6 +30,10 @@ public class CategoryNewsAction extends ActionSupport {
 
 	private List<News> m_imageNews;
 
+	private List<News> m_hotNews;
+
+	private List<SmallCategory> m_smallCategories;
+	
 	private List<CategoryNews> m_categoryNews = new ArrayList<CategoryNews>();
 
 	private List<NewsGroup> m_newsGroup = new ArrayList<NewsGroup>();
@@ -37,7 +41,7 @@ public class CategoryNewsAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		m_category = m_categoryService.findCategory(m_categoryId);
-		List<News> hotNews = m_newsService.queryHotNewsByCategoryId(15, m_categoryId);
+	   m_hotNews = m_newsService.queryHotNewsByCategoryId(15, m_categoryId);
 		NewsGroup group1 = new NewsGroup();
 		NewsGroup group2 = new NewsGroup();
 		NewsGroup group3 = new NewsGroup();
@@ -45,16 +49,16 @@ public class CategoryNewsAction extends ActionSupport {
 		m_newsGroup.add(group2);
 		m_newsGroup.add(group3);
 
-		group1.setFirst(hotNews.get(0));
-		group2.setFirst(hotNews.get(1));
-		group3.setFirst(hotNews.get(2));
+		group1.setFirst(m_hotNews.get(0));
+		group2.setFirst(m_hotNews.get(1));
+		group3.setFirst(m_hotNews.get(2));
 		for (int i = 3; i < 15; i++) {
 			if (i < 7) {
-				group1.addNews(hotNews.get(i));
+				group1.addNews(m_hotNews.get(i));
 			} else if (i < 11) {
-				group2.addNews(hotNews.get(i));
+				group2.addNews(m_hotNews.get(i));
 			} else {
-				group3.addNews(hotNews.get(i));
+				group3.addNews(m_hotNews.get(i));
 			}
 		}
 		m_imageNews = m_newsService.queryFixedImageNewsByCategoryId(4, m_categoryId);
@@ -71,35 +75,46 @@ public class CategoryNewsAction extends ActionSupport {
 
 			m_categoryNews.add(categoryNews);
 		}
+		
+		m_smallCategories = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS, m_categoryId);
+	   m_hotNews = m_newsService.queryFixedLatestNewsByCategoryId(12, m_categoryId);
 		return SUCCESS;
 	}
 
-	public List<News> getImageNews() {
-		return m_imageNews;
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
+	}
+
+	public Category getCategory() {
+		return m_category;
 	}
 
 	public List<CategoryNews> getCategoryNews() {
 		return m_categoryNews;
 	}
 
-	public void setNewsService(NewsService newsService) {
-		m_newsService = newsService;
+	public List<News> getImageNews() {
+		return m_imageNews;
 	}
 
-	public void setCategoryService(CategoryService categoryService) {
-		m_categoryService = categoryService;
-	}
-
-	public void setCategoryId(int categoryId) {
-		m_categoryId = categoryId;
+	public List<NewsGroup> getNewsGroup() {
+		return m_newsGroup;
 	}
 
 	public void setAdwordsService(AdwordsService adwordsService) {
 		m_adwordsService = adwordsService;
 	}
 
-	public AdwordsService getAdwordsService() {
-		return m_adwordsService;
+	public void setCategory(Category category) {
+		m_category = category;
+	}
+
+	public void setCategoryId(int categoryId) {
+		m_categoryId = categoryId;
+	}
+
+	public void setCategoryService(CategoryService categoryService) {
+		m_categoryService = categoryService;
 	}
 
 	public void setId(int id) {
@@ -110,8 +125,46 @@ public class CategoryNewsAction extends ActionSupport {
 		m_imageService = imageService;
 	}
 
-	public List<NewsGroup> getNewsGroup() {
-		return m_newsGroup;
+	public void setNewsService(NewsService newsService) {
+		m_newsService = newsService;
+	}
+	
+	public List<SmallCategory> getSmallCategories() {
+		return m_smallCategories;
+	}
+
+	public void setSmallCategories(List<SmallCategory> smallCategories) {
+		m_smallCategories = smallCategories;
+	}
+	
+	public List<News> getHotNews() {
+		return m_hotNews;
+	}
+
+	public void setHotNews(List<News> hotNews) {
+		m_hotNews = hotNews;
+	}
+
+	public static class CategoryNews {
+		private SmallCategory m_smallCategory;
+
+		private List<News> m_news;
+
+		public List<News> getNews() {
+			return m_news;
+		}
+
+		public SmallCategory getSmallCategory() {
+			return m_smallCategory;
+		}
+
+		public void setNews(List<News> news) {
+			m_news = news;
+		}
+
+		public void setSmallCategory(SmallCategory smallCategory) {
+			m_smallCategory = smallCategory;
+		}
 	}
 
 	public static class NewsGroup {
@@ -119,12 +172,16 @@ public class CategoryNewsAction extends ActionSupport {
 
 		private List<News> m_news = new ArrayList<News>();
 
-		public List<News> getNews() {
-			return m_news;
+		public void addNews(News temp) {
+			m_news.add(temp);
 		}
 
 		public News getFirst() {
 			return m_first;
+		}
+
+		public List<News> getNews() {
+			return m_news;
 		}
 
 		public void setFirst(News first) {
@@ -134,40 +191,6 @@ public class CategoryNewsAction extends ActionSupport {
 		public void setNews(List<News> news) {
 			m_news = news;
 		}
-
-		public void addNews(News temp) {
-			m_news.add(temp);
-		}
-	}
-
-	public static class CategoryNews {
-		private SmallCategory m_smallCategory;
-
-		private List<News> m_news;
-
-		public SmallCategory getSmallCategory() {
-			return m_smallCategory;
-		}
-
-		public void setSmallCategory(SmallCategory smallCategory) {
-			m_smallCategory = smallCategory;
-		}
-
-		public List<News> getNews() {
-			return m_news;
-		}
-
-		public void setNews(List<News> news) {
-			m_news = news;
-		}
-	}
-
-	public Category getCategory() {
-		return m_category;
-	}
-
-	public void setCategory(Category category) {
-		m_category = category;
 	}
 
 

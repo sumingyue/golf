@@ -59,10 +59,11 @@ var calendar = null;
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-			<h4 style="text-align:center">新增新闻</h4>
+			
 			<form action="newsAddSubmit.do" id="form" id="form" method="post"
 				enctype="multipart/form-data">
-				<table align="center" cellpadding="2" cellspacing="1" width="100%">
+				<table align="center" class="table table-striped table-bordered" width="100%">
+					<tr><th colspan="2"><h4 style="text-align:center">新增新闻</h4></th></tr>
 					<tr>
 						<td width="15%" class="left">一级分类<span style='color: red'>*</span></td>
 						<td class="right"><s:select name="news.categoryId"
