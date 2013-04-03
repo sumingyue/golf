@@ -8,8 +8,8 @@ public class SpecialNewsDao {
 
 	private BaseDao m_baseDao;
 
-	public void setBaseDao(BaseDao baseDao) {
-		m_baseDao = baseDao;
+	public int delete(int id) {
+		return (Integer) m_baseDao.delete("specialNews.delete", id);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -25,11 +25,11 @@ public class SpecialNewsDao {
 		return (Integer) m_baseDao.insert("specialNews.insert", specialNews);
 	}
 
-	public int update(SpecialNews specialNews) {
-		return m_baseDao.update("specialNews.update", specialNews);
+	public void setBaseDao(BaseDao baseDao) {
+		m_baseDao = baseDao;
 	}
 
-	public int delete(int id) {
-		return (Integer) m_baseDao.delete("specialNews.delete", id);
+	public int update(SpecialNews specialNews) {
+		return m_baseDao.update("specialNews.update", specialNews);
 	}
 }

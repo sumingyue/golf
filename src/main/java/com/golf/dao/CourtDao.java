@@ -8,8 +8,8 @@ public class CourtDao {
 
 	private BaseDao m_baseDao;
 
-	public void setBaseDao(BaseDao baseDao) {
-		m_baseDao = baseDao;
+	public int delete(int id) {
+		return (Integer) m_baseDao.delete("court.delete", id);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -25,11 +25,11 @@ public class CourtDao {
 		return (Integer) m_baseDao.insert("court.insert", court);
 	}
 
-	public int update(Court court) {
-		return m_baseDao.update("court.update", court);
+	public void setBaseDao(BaseDao baseDao) {
+		m_baseDao = baseDao;
 	}
 
-	public int delete(int id) {
-		return (Integer) m_baseDao.delete("court.delete", id);
+	public int update(Court court) {
+		return m_baseDao.update("court.update", court);
 	}
 }

@@ -66,7 +66,7 @@
 					<s:iterator value="teamNewss" status="vs">
 					<tr><td><a href="teamNews.do?id=${id}"><s:property
 									value="title" /></a></td>
-									<td></td></tr>
+									<td><s:date name="creationDate" format="yyyy-MM-dd" /></td></tr>
 					</s:iterator>
 				</table>
 			</div>

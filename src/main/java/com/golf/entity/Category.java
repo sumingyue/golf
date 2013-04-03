@@ -28,6 +28,10 @@ public class Category {
 		return m_name;
 	}
 
+	public int getType() {
+		return m_type;
+	}
+
 	public void setCreationDate(Date creationDate) {
 		m_creationDate = creationDate;
 	}
@@ -38,10 +42,6 @@ public class Category {
 
 	public void setName(String name) {
 		m_name = name;
-	}
-
-	public int getType() {
-		return m_type;
 	}
 
 	public void setType(int type) {

@@ -1,25 +1,16 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld"%>
-<!DOCTYPE html PUBLIC "-//W3C//Dtd HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en-US">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="UTF-8">
 <title>苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站</title>
 <meta name="Description" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
 <meta name="Keyword" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
-
-	<link rel="stylesheet" href="css/base.css">
-	<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
-	<script type="text/javascript" src="js/base.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.override.css" rel="stylesheet">
+<script src="js/jquery-1.7.1.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-<style type="text/css">
-	.qalist{border:1px solid #ccc;padding:15px;}
-	.qalist .question{color:#333;}
-	.qalist .awanser{margin:10px;border:1px dashed #ccc;padding:5px;background:#f5f5f5;}
-	.error{color:red;}
-	.message-form{border:1px solid #ccc;margin-bottom:10px;}
-	</style>
-	
+<script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#form").validate({
@@ -38,16 +29,28 @@ $(document).ready(function() {
 });
 </script>
 </head>
-<body youdao="bind">
-	<div class="wrap container_24">
-		<jsp:include page="./Head.jsp"></jsp:include>
-		<div class="clear"></div>
-		<div class="grid_24">
-			<form action="addMessage.do" id="form" method="post" class="message-form form">
-				<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<body>
+	<div class="container">
+	<jsp:include page="./Head.jsp"></jsp:include>
+	<div>
+		<ul class="breadcrumb">
+			<li>当前位置：</li>
+			<li><a href="index.do">首页</a> <span class="divider">/</span></li>
+			<li class="active">用户留言</li>
+		</ul>
+		<table class="table table-striped table-bordered table-hover">
+			<s:iterator value="userMessages" status="vs">
+				<tr><td><strong>提问</strong></td><td><s:property value="content"/></td></tr>
+				<tr><td><strong>回答</strong></td><td class="error"><s:property value="reply"/></td></tr>
+			</s:iterator>
+		</table>
+	</div>
+	</br>
+	<form action="addMessage.do" id="form" method="post" class="message-form form">
+				<table class="table table-striped table-bordered">
 					<tbody>
 						<tr height="30">
-							<td colspan="2" align="center"><font color="#006600"
+							<td colspan="2" style="text-align:center"><font color="#006600"
 								style="font-size: 14px; line-height: 22px"><b>签&nbsp;写&nbsp;留&nbsp;言</b></font>
 							</td>
 						</tr>
@@ -57,38 +60,18 @@ $(document).ready(function() {
 									name="userMessage.content" style="width: 95%; height: 100px;"></textarea></td>
 						</tr>
 						<tr>
-							<td align="center" colspan="2"><button type="submit"
-									class="btn">提&nbsp;&nbsp;交</button></td>
+							<td align="center" colspan="2" style="text-align:center"><button type="submit"
+									class="btn btn-primary">提&nbsp;&nbsp;交</button></td>
 						</tr>
 					</tbody>
 				</table>
 			</form>
-		</div>
-		<div class="clear"></div>
-		<div class="grid_24">
-			<ul class="qalist">
-				<s:iterator value="userMessages" status="vs">
-			<li>
-					<p class="question"><strong>提问：</strong><s:property value="content"/> </p>
-					<p class="awanser"><strong>回答：</strong><s:property value="reply"/> </p>
-				</li>
-			
-			</s:iterator>	
-			</ul>
-			<div class="paginate">
-				共&nbsp;<s:property value="pagedTool.totalNumber"/>&nbsp;条记录
-						<a href="messages.do?index=0">首页</a>&nbsp;&nbsp;
-						<a href="messages.do?index=<s:property value="pagedTool.pageIndex-1"/>">上一页</a>&nbsp;&nbsp;
-						<a href="messages.do?index=<s:property value="pagedTool.pageIndex+1"/>">下一页</a>&nbsp;&nbsp;
-						<a href="messages.do?index=<s:property value="pagedTool.totalPage"/>">末页</a>&nbsp;&nbsp;
-						共&nbsp;<s:property value="pagedTool.totalPage"/>&nbsp;页,当前第&nbsp;<s:property value="pagedTool.pageIndex"/>页&nbsp;
-						<s:property value="pagedTool.pageSize"/>条记录/页&nbsp;
-			</div>
-		</div>	
-		
-		<jsp:include page="./Foot.jsp"></jsp:include>
-	</div>
+	<jsp:include page="./Foot.jsp"></jsp:include>
+    </div>
 </body>
 </html>
+
+
+
 
 

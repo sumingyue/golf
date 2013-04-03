@@ -27,20 +27,20 @@
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-			<table  align="center" cellpadding="2" cellspacing="1"  class="table" id="contents">
+			<table class="table table-striped table-bordered" id="contents">
 				<thead><tr class="title">
 					<th width="5%">序号</th>
 					<th width="15%">球场名称</th>
 					<th width="70%">名称</th>
-					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="courtImageAdd.do" >新增</a></th>
+					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="courtImageAdd.do" class="btn btn-primary  btn-small" >新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="courtImages" status="vs">
 					<tr class="trDetail">
 					<td><s:property value='#vs.index+1'/></td>
 					<td><s:property value="court.name" /></td>
 					<td><s:property value="image.name" /></td>
-					<td><a href="courtImageUpdate.do?courtImageId=<s:property value="id"/>">编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
-					<a class="delete" href="courtImageDelete.do?courtImageId=<s:property value="id"/>">删除</a></td>
+					<td><a href="courtImageUpdate.do?courtImageId=<s:property value="id"/>" class="btn btn-primary  btn-small" >编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="btn btn-danger  btn-small delete" href="courtImageDelete.do?courtImageId=<s:property value="id"/>">删除</a></td>
 					</tr>
 				</s:iterator></tbody>
 			</table>

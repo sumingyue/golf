@@ -7,16 +7,16 @@ import com.golf.tools.PagedTool;
 
 public interface TeamMemberImageService {
 
-	public List<TeamMemberImage> queryAllTeamMemberImages(int teamId);
-
-	public int insertTeamMemberImage(TeamMemberImage teamImage);
-
-	public int updateTeamMemberImage(TeamMemberImage teamImage);
-
 	public int deleteTeamMemberImage(int teamImageId);
 
 	public TeamMemberImage findTeamMemberImage(int teamImageId);
 
+	public int insertTeamMemberImage(TeamMemberImage teamImage);
+
+	public List<TeamMemberImage> queryAllTeamMemberImages(int teamId);
+
 	public List<TeamMemberImage> queryPagedTeamMemberImages(PagedTool pagedTool, int teamId);
+
+	public int updateTeamMemberImage(TeamMemberImage teamImage);
 
 }

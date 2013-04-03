@@ -14,8 +14,10 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		init();
 		$('#teamList').addClass('active');
+		$(".delete").bind("click", function() {
+			return confirm("确定要删除此分类吗(不可恢复)？");
+		});
 	});
 </script>
 </head>
@@ -28,20 +30,20 @@
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
         	<!-- <h4 style="text-align:center">球队管理</h4> -->
-			<table  align="center" cellpadding="2" cellspacing="1"  class="table" id="contents">
+			<table  class="table table-striped table-bordered table-hover">
 				<thead><tr class="title">
 					<th width="5%">序号</th>
-					<th width="80%">球队名称</th>
-					<th width="15%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="teamAdd.do" >新增</a></th>
+					<th width="75%">球队名称</th>
+					<th width="20%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="teamAdd.do" class="btn btn-primary  btn-small" >新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="teams" status="vs">
 					<tr class="trDetail">
 					<td><s:property value='#vs.index+1'/></td>
 					<td><s:property value="name" /></td>
 					<td>
-					<a href="teamNewsAdd.do?teamId=<s:property value="id"/>">新增新闻</a> &nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="teamUpdate.do?teamId=<s:property value="id"/>">编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
-					<a class="delete" href="teamDelete.do?teamId=<s:property value="id"/>">删除</a></td>
+					<a href="teamNewsAdd.do?teamId=<s:property value="id"/>"class="btn btn-primary  btn-small" >新增新闻</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="teamUpdate.do?teamId=<s:property value="id"/>"class="btn btn-primary  btn-small" >编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="btn btn-danger  btn-small delete" href="teamDelete.do?teamId=<s:property value="id"/>">删除</a></td>
 					</tr>
 				</s:iterator></tbody>
 			</table>

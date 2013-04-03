@@ -29,12 +29,12 @@
       <div class="span10">
         	<!-- <h4 style="text-align:center">
 			新闻评论信息管理</h4> -->
-			<table  align="center" cellpadding="2" cellspacing="1"  class="table" id="contents">
+			<table  class="table table-striped table-bordered" id="contents">
 				<thead><tr class="title">
 					<th width="5%">序号</th>
 					<th width="15%">用户名</th>
 					<th width="70%">评论内容</th>
-					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="newsCommentsAdd.do" >新增</a></th>
+					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="newsCommentsAdd.do" class="btn btn-primary  btn-small" >新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="newsCommentss" status="vs">
 					<tr class="trDetail">
@@ -43,8 +43,8 @@
 					<td><s:property value="content" /></td>
 					<td>
 					<a href="newsUpdate.do?newsId=<s:property value="newsId"/>">新闻</a> &nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="newsCommentsUpdate.do?newsCommentsId=<s:property value="id"/>">编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
-					<a class="delete" href="newsCommentsDelete.do?newsCommentsId=<s:property value="id"/>">删除</a></td>
+					<a href="newsCommentsUpdate.do?newsCommentsId=<s:property value="id"/>" class="btn btn-primary  btn-small" >编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="btn btn-danger  btn-small delete" href="newsCommentsDelete.do?newsCommentsId=<s:property value="id"/>">删除</a></td>
 					</tr>
 				</s:iterator></tbody>
 			</table>

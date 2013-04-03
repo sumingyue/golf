@@ -30,7 +30,7 @@
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
        		<!--  <h4 style="text-align:center">球队新闻管理</h4> -->
-			<table  align="center" cellpadding="2" cellspacing="1"  class="table" id="contents">
+			<table  class="table table-striped table-bordered" id="contents">
 			<thead>
 				<tr class="title">
 					<th width="5%">序号</th>
@@ -38,7 +38,7 @@
 					<th width="10%">分类
 					</th>
 					<th width="60%">新闻标题</th>
-					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="teamNewsAdd.do" >新增</a></th>
+					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="teamNewsAdd.do" class="btn btn-primary  btn-small" >新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="teamNewss" status="vs">
 					<tr class="trDetail">
@@ -52,8 +52,8 @@
 					</td>
 					<td><s:property value="title" /></td>
 					<td>
-					<a href="teamNewsUpdate.do?teamNewsId=<s:property value="id"/>">编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
-					<a class="delete" href="teamNewsDelete.do?teamNewsId=<s:property value="id"/>">删除</a></td>
+					<a href="teamNewsUpdate.do?teamNewsId=<s:property value="id"/>" class="btn btn-primary  btn-small" >编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="teamNewsDelete.do?teamNewsId=<s:property value="id"/>" class="btn btn-danger  btn-small delete">删除</a></td>
 					</tr>
 				</s:iterator></tbody>
 			</table>

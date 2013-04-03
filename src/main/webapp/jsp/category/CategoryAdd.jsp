@@ -40,12 +40,14 @@
 			<div class="row-fluid">
 			<%@include file="./../Menu.jsp"%>
 			<div class="span10">
-				<h4 style="text-align:center">新增一级分类</h4>
 				<form action="categoryAddSubmit.do" id="form" method="post">
-					<table align="center"  cellpadding="2" cellspacing="1" width="100%">
+					<table class="table table-striped table-bordered" width="100%">
+						<tr><td colspan='2'>
+							<h4 style="text-align:center">新增一级分类</h4>
+						</td></tr>
 						<tr>
-							<td width="40%" class="left">一级分类类型</td>
-							<td width="60%" class="right">
+							<td width="30%" class="left">一级分类类型</td>
+							<td width="70%" class="right">
 							<select id="category_type" name="category.type">
 								<option value="1">新闻分类</option>
 								<option value="2">图片专题</option>
@@ -60,8 +62,8 @@
 								name="category.name" id="category_name"/>
 							</td>
 						</tr>
-						<td colspan="2" align="center">
-							<button type="submit" class="btn">提交</button>
+						<td colspan="2" style="text-align:center">
+							<button type="submit" class="btn btn-primary  btn-large">提交</button>
 						</tr>
 					</table>
 				</form>

@@ -8,8 +8,8 @@ public class MatchServiceDao {
 
 	private BaseDao m_baseDao;
 
-	public void setBaseDao(BaseDao baseDao) {
-		m_baseDao = baseDao;
+	public int delete(int id) {
+		return (Integer) m_baseDao.delete("matchService.delete", id);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -25,11 +25,11 @@ public class MatchServiceDao {
 		return (Integer) m_baseDao.insert("matchService.insert", matchService);
 	}
 
-	public int update(MatchService matchService) {
-		return m_baseDao.update("matchService.update", matchService);
+	public void setBaseDao(BaseDao baseDao) {
+		m_baseDao = baseDao;
 	}
 
-	public int delete(int id) {
-		return (Integer) m_baseDao.delete("matchService.delete", id);
+	public int update(MatchService matchService) {
+		return m_baseDao.update("matchService.update", matchService);
 	}
 }

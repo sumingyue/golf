@@ -41,17 +41,19 @@ var calendar = null;
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-			<h4 style="text-align:center">新增专题新闻</h4>
 			<form action="specialNewsAddSubmit.do" id="form" id="form" method="post"
 				enctype="multipart/form-data">
-				<table align="center" cellpadding="2" cellspacing="1" width="100%">
+				<table class="table table-striped table-bordered" width="100%">
+					<tr><td colspan='2'>
+						<h4 style="text-align:center">新增专题新闻</h4>
+					</td></tr>
 					<tr>
-						<td width="15%" class="left">专题标题<span style='color: red'>*</span></td>
+						<td width="15%" class="left">专题标题<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="50"
 							name="specialNews.title" /></td>
 					</tr>
 					<tr>
-						<td width="15%" class="left">专题内容<span style='color: red'>*</span></td>
+						<td width="15%" class="left">专题内容<span class='red'>*</span></td>
 						<td class="right"><textarea id="editor1" name="specialNews.content"
 								rows="30"></textarea></td>
 					</tr>
@@ -72,8 +74,8 @@ var calendar = null;
 								</select> </td>
 						</tr>
 						<tr>
-							<td colspan="2" align="center">
-								<button type="submit" class="btn">提交</button>
+							<td colspan="2" style="text-align:center">
+								<button type="submit" class="btn btn-primary  btn-large">提交</button>
 						</tr>
 					</table>
 			</form>

@@ -29,26 +29,26 @@ $(document).ready(function(){
 			<h4 style="text-align:center">修改新闻评论信息</h4>
 			<form action="newsCommentsUpdateSubmit.do" id="form" method="post"  
 				enctype="multipart/form-data">
-				<table align="center" cellpadding="2" cellspacing="1" width="100%">
+				<table class="table table-striped table-bordered" width="100%">
 					<input type="hidden" name="newsComments.id" value="<s:property value="newsComments.id"/>"/>
 					<tr>
-						<td class="left" width="40%">新闻标题<span style='color: red'>*</span></td>
+						<td class="left" width="30%">新闻标题<span class='red'>*</span></td>
 						<td class="right">
 							<input type="text" size="30" name="newsComments.newsId" value="<s:property value="newsComments.newsId"/>"/>
 						</td>
 					</tr>
 					<tr>
-						<td class="left">用户昵称<span style='color: red'>*</span></td>
+						<td class="left">用户昵称<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="30" name="newsComments.userName" value="<s:property value="newsComments.userName"/>"/></td>
 					</tr>
 					<tr>
-						<td class="left">用户评论<span style='color: red'>*</span></td>
+						<td class="left">用户评论<span class='red'>*</span></td>
 						<td class="right"><textarea  name="newsComments.content"  rows="5" cols="60"><s:property value="newsComments.content"/></textarea>
 						</td>
 					</tr>
 						<tr>
-							<td colspan="2" align="center">
-								<button type="submit" class="btn">提交</button>
+							<td colspan="2" style="text-align:center">
+								<button type="submit" class="btn btn-primary  btn-large">提交</button>
 						</tr>
 					</table>
 			</form>

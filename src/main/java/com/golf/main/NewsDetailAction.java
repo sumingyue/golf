@@ -2,7 +2,7 @@ package com.golf.main;
 
 import java.util.List;
 
-import com.golf.Config;
+import com.golf.entity.Category;
 import com.golf.entity.ImageSpecial;
 import com.golf.entity.News;
 import com.golf.entity.NewsComments;
@@ -10,7 +10,6 @@ import com.golf.entity.SmallCategory;
 import com.golf.service.AdwordsService;
 import com.golf.service.CategoryService;
 import com.golf.service.ImageService;
-import com.golf.service.ImageSpecialService;
 import com.golf.service.NewsCommentsService;
 import com.golf.service.NewsService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -31,8 +30,6 @@ public class NewsDetailAction extends ActionSupport {
 
 	private SmallCategory m_smallCategory;
 
-	private ImageSpecialService m_imageSpecialService;
-
 	private List<ImageSpecial> m_imageSpecials;
 
 	private ImageService m_imageService;
@@ -47,10 +44,12 @@ public class NewsDetailAction extends ActionSupport {
 
 	private List<NewsComments> m_newsComments;
 
+	private List<SmallCategory> m_smallCategories;
+
 	public String addComments() {
 		String userName = m_comments.getUserName();
 		if (userName == null || userName.trim().length() == 0) {
-			m_comments.setUserName(Config.Anonymous);
+			m_comments.setUserName("Anonymous");
 		}
 		if (m_comments.getContent() == null) {
 			m_comments.setContent("");
@@ -76,14 +75,11 @@ public class NewsDetailAction extends ActionSupport {
 			m_newsLatest = m_newsService.queryFixedLatestNewsByCategoryId(10, m_smallCategory.getCategoryId());
 		}
 
-		m_imageSpecials = m_imageSpecialService.queryFixedImageSpecials(4);
-
-		for (ImageSpecial temp : m_imageSpecials) {
-			temp.setImage(m_imageService.findImage(temp.getImageId()));
-		}
-
 		m_news.setViewNumber(m_news.getViewNumber() + 1);
 		m_newsService.increaseVisiteNumber(m_news.getId(), News.TYPE_VIEW);
+
+		m_smallCategories = m_categoryService
+		      .queryAllSmallCategoryByTypeCategoryId(Category.NEWS, m_news.getCategoryId());
 		return SUCCESS;
 	}
 
@@ -119,6 +115,10 @@ public class NewsDetailAction extends ActionSupport {
 		return m_newsLatest;
 	}
 
+	public List<SmallCategory> getSmallCategories() {
+		return m_smallCategories;
+	}
+
 	public SmallCategory getSmallCategory() {
 		return m_smallCategory;
 	}
@@ -137,10 +137,6 @@ public class NewsDetailAction extends ActionSupport {
 
 	public void setImageService(ImageService imageService) {
 		m_imageService = imageService;
-	}
-
-	public void setImageSpecialService(ImageSpecialService imageSpecialService) {
-		m_imageSpecialService = imageSpecialService;
 	}
 
 	public void setNewsCommentsService(NewsCommentsService newsCommentsService) {

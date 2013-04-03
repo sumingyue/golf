@@ -7,16 +7,16 @@ import com.golf.tools.PagedTool;
 
 public interface MatchServiceService {
 
-	public List<MatchService> queryAllMatchServices();
-
-	public int insertMatchService(MatchService matchService);
-
-	public int updateMatchService(MatchService matchService);
-
 	public int deleteMatchService(int matchServiceId);
 
 	public MatchService findMatchService(int matchServiceId);
 
+	public int insertMatchService(MatchService matchService);
+
+	public List<MatchService> queryAllMatchServices();
+
 	public List<MatchService> queryPagedMatchServices(PagedTool pagedTool);
+
+	public int updateMatchService(MatchService matchService);
 
 }

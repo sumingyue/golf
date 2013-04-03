@@ -34,6 +34,40 @@ public class CourtCommentsAction extends ActionSupport {
 	
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
+	public String courtCommentsAdd(){
+		m_courts =m_courtService.queryAllCourts();
+		return SUCCESS;
+	}
+	
+	public String courtCommentsAddSubmit() {
+		try {
+			int id = m_courtCommentsService.insertCourtComments(m_courtComments);
+			if (id > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String courtCommentsDelete() {
+		try {
+			int count = m_courtCommentsService.deleteCourtComments(m_courtCommentsId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
 	public String courtCommentsList() {
 		try {
 			//m_courts =m_courtService.queryAllCourts();
@@ -48,26 +82,6 @@ public class CourtCommentsAction extends ActionSupport {
 			return ERROR;
 		}
 		return SUCCESS;
-	}
-	
-	public String courtCommentsAdd(){
-		m_courts =m_courtService.queryAllCourts();
-		return SUCCESS;
-	}
-
-	public String courtCommentsAddSubmit() {
-		try {
-			int id = m_courtCommentsService.insertCourtComments(m_courtComments);
-			if (id > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
 	}
 
 	public String courtCommentsUpdate() {
@@ -95,64 +109,50 @@ public class CourtCommentsAction extends ActionSupport {
 		}
 	}
 
-	public String courtCommentsDelete() {
-		try {
-			int count = m_courtCommentsService.deleteCourtComments(m_courtCommentsId);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-	}
-
 	public CourtComments getCourtComments() {
 		return m_courtComments;
-	}
-
-	public void setCourtComments(CourtComments courtComments) {
-		m_courtComments = courtComments;
-	}
-
-	public void setCourtCommentsService(CourtCommentsService courtCommentsService) {
-		m_courtCommentsService = courtCommentsService;
 	}
 
 	public List<CourtComments> getCourtCommentss() {
 		return m_courtCommentss;
 	}
 
-	public void setCourtCommentsId(int courtCommentsId) {
-		m_courtCommentsId = courtCommentsId;
+	public int getCourtId() {
+		return m_courtId;
 	}
 
 	public List<Court> getCourts() {
 		return m_courts;
 	}
 
-	public void setCourtService(CourtService courtService) {
-		m_courtService = courtService;
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
 	}
 
-	public int getCourtId() {
-		return m_courtId;
+	public void setCourtComments(CourtComments courtComments) {
+		m_courtComments = courtComments;
+	}
+
+	public void setCourtCommentsId(int courtCommentsId) {
+		m_courtCommentsId = courtCommentsId;
+	}
+
+	public void setCourtCommentsService(CourtCommentsService courtCommentsService) {
+		m_courtCommentsService = courtCommentsService;
 	}
 
 	public void setCourtId(int courtId) {
 		m_courtId = courtId;
 	}
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
-	public void setPagedTool(PagedTool pagedTool) {
-		m_pagedTool = pagedTool;
+	public void setCourtService(CourtService courtService) {
+		m_courtService = courtService;
 	}
 
 	public void setIndex(int index){
 		m_pagedTool.setPageIndex(index);
+	}
+
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
 	}
 }

@@ -66,36 +66,38 @@ $(document).ready(function() {
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-				<h4 style="text-align:center">新增球队信息</h4>
 				<form action="teamAddSubmit.do" id="form" method="post">
-				<table align="center" cellpadding="2" cellspacing="1" width="100%">
+				<table class="table table-striped table-bordered" width="100%">
+					<tr><td colspan='2'>
+						<h4 style="text-align:center">新增球队信息</h4>
+					</td></tr>
 					<tr>
-						<td class="left" width="30%">球队名称<span style='color: red'>*</span></td>
+						<td class="left" width="30%">球队名称<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="team.name" /></td>
 					</tr>
 					<tr>
-						<td class="left" width="30%">建队时间<span style='color: red'>*</span></td>
+						<td class="left" width="30%">建队时间<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="team.setUpTime" /></td>
 					</tr>
 					<tr>
-						<td class="left" width="30%">首任会长<span style='color: red'>*</span></td>
+						<td class="left" width="30%">首任会长<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="team.founder" /></td>
 					</tr>
 					<tr>
-						<td class="left" width="30%">现任会长<span style='color: red'>*</span></td>
+						<td class="left" width="30%">现任会长<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="team.captain" /></td>
 					</tr>
 					<tr>
-						<td class="left" width="30%">球队口号<span style='color: red'>*</span></td>
+						<td class="left" width="30%">球队口号<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="78" name="team.slogan" /></td>
 					</tr>
 					<tr>
-						<td class="left" width="30%">球队公告<span style='color: red'>*</span></td>
+						<td class="left" width="30%">球队公告<span class='red'>*</span></td>
 						<td class="right"><textarea  name="team.announcement"  rows="3" cols="80"></textarea>
 						</td>
 					</tr>
 					<tr>
-						<td class="left" width="30%">球队介绍<span style='color: red'>*</span></td>
+						<td class="left" width="30%">球队介绍<span class='red'>*</span></td>
 						<td class="right"><textarea  name="team.introduction"  rows="3" cols="80"></textarea>
 						</td>
 					</tr>
@@ -108,7 +110,8 @@ $(document).ready(function() {
 						<td class="left" width="30%">球队成绩</td>
 						<td class="right"><textarea  name="team.achievement"  rows="4" cols="80"></textarea>
 						</td>
-					</tr><tr><td colspan="2" align="center"><button type="submit" class="btn">提交</button></tr>
+					</tr><tr><td colspan="2" style="text-align:center">
+						<button type="submit" class="btn btn-primary  btn-large">提交</button></tr>
 				</table>
 			</form>
       </div>

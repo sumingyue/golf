@@ -7,17 +7,17 @@ import com.golf.tools.PagedTool;
 
 public interface AdwordsService {
 
-	public List<Adwords> queryAllAdwordss();
+	public int deleteAdwords(int adwordsId);
 	
-	public List<Adwords> queryPagedAdwordss(PagedTool tool);
+	public Adwords findAdwords(int adwordsId);
 	
+	public Adwords[] getAdwords();
+
 	public int insertAdwords(Adwords adwords);
 
+	public List<Adwords> queryAllAdwordss();
+
+	public List<Adwords> queryPagedAdwordss(PagedTool tool);
+
 	public int updateAdwords(Adwords adwords);
-
-	public int deleteAdwords(int adwordsId);
-
-	public Adwords findAdwords(int adwordsId);
-
-	public Adwords[] getAdwords();
 }

@@ -7,16 +7,16 @@ import com.golf.tools.PagedTool;
 
 public interface ProductOrderService {
 
-	public List<ProductOrder> queryAllProductOrders();
-
-	public int insertProductOrder(ProductOrder productOrder);
-
-	public int updateProductOrder(ProductOrder productOrder);
-
 	public int deleteProductOrder(int productOrderId);
 
 	public ProductOrder findProductOrder(int productOrderId);
 
+	public int insertProductOrder(ProductOrder productOrder);
+
+	public List<ProductOrder> queryAllProductOrders();
+
 	public List<ProductOrder> queryPagedProductOrders(PagedTool pagedTool);
+
+	public int updateProductOrder(ProductOrder productOrder);
 
 }

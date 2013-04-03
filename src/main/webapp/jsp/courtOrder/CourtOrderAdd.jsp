@@ -60,10 +60,12 @@ $(document).ready(function() {
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<%@include file="./../Menu.jsp"%>
-			<h4 style="text-align:center">新增球场预定信息</h4>
 			<div class="span10">
 				<form action="courtOrderAddSubmit.do" id="form" method="post">
-					<table align="center" cellpadding="2" cellspacing="1" width="100%">
+					<table class="table table-striped table-bordered">
+						<tr><td colspan='2'>
+							<h4 style="text-align:center">新增球场预定信息</h4>
+						</td></tr>
 						<tr>
 							<td class="left" width="40%">分类</td>
 							<td class="right"><select name="courtOrder.type">
@@ -72,29 +74,29 @@ $(document).ready(function() {
 							</select></td>
 						</tr>
 						<tr>
-							<td class="left" width="40%">球场名称<span style='color: red'>*</span></td>
+							<td class="left" width="40%">球场名称<span class='red'>*</span></td>
 							<td class="right"><input type="text" size="40"
 								name="courtOrder.courtName" /></td>
 						</tr>
 						<tr>
-							<td class="left" width="40%">订场时间<span style='color: red'>*</span></td>
+							<td class="left" width="40%">订场时间<span class='red'>*</span></td>
 							<td class="right"><input type="text" size="30"
 								name="courtOrder.date" id="courtOrder.date" /> <img
 								src="img/calendar.gif"
 								onclick="showCalendar('courtOrder.date');"></td>
 						</tr>
 						<tr>
-							<td class="left" width="40%">顾客姓名<span style='color: red'>*</span></td>
+							<td class="left" width="40%">顾客姓名<span class='red'>*</span></td>
 							<td class="right"><input type="text" size="40"
 								name="courtOrder.userName" /></td>
 						</tr>
 						<tr>
-							<td class="left" width="40%">订场人数<span style='color: red'>*</span></td>
+							<td class="left" width="40%">订场人数<span class='red'>*</span></td>
 							<td class="right"><input type="text" size="40"
 								name="courtOrder.number" /></td>
 						</tr>
 						<tr>
-							<td class="left" width="40%">顾客电话<span style='color: red'>*</span></td>
+							<td class="left" width="40%">顾客电话<span class='red'>*</span></td>
 							<td class="right"><input type="text" size="40"
 								name="courtOrder.userPhone" /></td>
 						</tr>
@@ -104,8 +106,8 @@ $(document).ready(function() {
 									cols="60"></textarea></td>
 						</tr>
 						<tr>
-							<td colspan="2" align="center">
-								<button type="submit" class="btn">提交</button>
+							<td colspan="2" style="text-align:center">
+								<button type="submit" class="btn btn-primary  btn-small" >提交</button>
 						</tr>
 					</table>
 				</form>

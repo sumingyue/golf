@@ -70,6 +70,10 @@ public class SmallCategoryNewsAction extends ActionSupport {
 		return m_pagedTool;
 	}
 
+	public List<SmallCategory> getSmallCategories() {
+		return m_smallCategories;
+	}
+
 	public SmallCategory getSmallCategory() {
 		return m_smallCategory;
 	}
@@ -116,10 +120,6 @@ public class SmallCategoryNewsAction extends ActionSupport {
 
 	public void setSmallCategoryId(int smallCategoryId) {
 		m_smallCategoryId = smallCategoryId;
-	}
-
-	public List<SmallCategory> getSmallCategories() {
-		return m_smallCategories;
 	}
 
 }

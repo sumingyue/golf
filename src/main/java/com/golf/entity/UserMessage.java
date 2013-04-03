@@ -13,42 +13,12 @@ public class UserMessage {
 
 	private Date m_creationDate;
 
-	public int getId() {
-		return m_id;
-	}
-
-	public void setId(int id) {
-		m_id = id;
-	}
-
-	public String getShortContent() {
-		if (m_content != null && m_content.length() > 20) {
-			return m_content.substring(0, 15) + "...";
-		}
-		return m_content;
-	}
-
 	public String getContent() {
 		return m_content;
 	}
 
-	public void setContent(String content) {
-		m_content = content;
-	}
-
-	public String getShortReply() {
-		if (m_reply != null && m_reply.length() > 20) {
-			return m_reply.substring(0, 15) + "...";
-		}
-		return m_reply;
-	}
-
-	public String getReply() {
-		return m_reply;
-	}
-
-	public void setReply(String reply) {
-		m_reply = reply;
+	public Date getCreationDate() {
+		return m_creationDate;
 	}
 
 	public String getCreationDateStr() {
@@ -59,12 +29,26 @@ public class UserMessage {
 		return "";
 	}
 
-	public Date getCreationDate() {
-		return m_creationDate;
+	public int getId() {
+		return m_id;
 	}
 
-	public void setCreationDate(Date creationDate) {
-		m_creationDate = creationDate;
+	public String getReply() {
+		return m_reply;
+	}
+
+	public String getShortContent() {
+		if (m_content != null && m_content.length() > 20) {
+			return m_content.substring(0, 15) + "...";
+		}
+		return m_content;
+	}
+
+	public String getShortReply() {
+		if (m_reply != null && m_reply.length() > 20) {
+			return m_reply.substring(0, 15) + "...";
+		}
+		return m_reply;
 	}
 
 	public int getStatus() {
@@ -72,5 +56,21 @@ public class UserMessage {
 			return 1;
 		}
 		return 0;
+	}
+
+	public void setContent(String content) {
+		m_content = content;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		m_creationDate = creationDate;
+	}
+
+	public void setId(int id) {
+		m_id = id;
+	}
+
+	public void setReply(String reply) {
+		m_reply = reply;
 	}
 }

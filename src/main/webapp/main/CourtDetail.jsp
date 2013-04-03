@@ -25,12 +25,6 @@
 		height:250px;
 		width:377px;
 	}
-	.title{
-		color:#6899f7;
-		background-color:#d9edf7;
-		background:#d9edf7;
-	}
-	
 </style>
 </head>
 <body>
@@ -64,7 +58,7 @@
 								<div class="active item">
 									<img class="court-img" src="<s:property value="image.path"/>"  />
 									<div class="carousel-caption">
-										<p>${imageDes}</p>
+										<p class='text-center'>${imageDes}</p>
 									</div>
 								</div>
 							</s:if>
@@ -72,7 +66,7 @@
 								<div class="item">
 									<img class="court-img" src="<s:property value="image.path"/>"  />
 									<div class="carousel-caption">
-										<p>${imageDes}</p>
+										<p class='text-center'>${imageDes}</p>
 									</div>
 								</div>
 							</s:else>
@@ -101,7 +95,7 @@
 					<div class="left">${court.awards}</div>
 				</div>
 			</div>
-			<div class="span7 myhidden border top" style="height:400px">
+			<div class="span7 myhidden border top" style="height:400px;">
 				<div>
 					<h4 class="breadcrumb title ">球场介绍</h4>
 					<div class="left">${court.customIntro}</div>

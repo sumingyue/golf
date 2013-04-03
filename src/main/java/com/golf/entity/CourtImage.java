@@ -17,60 +17,60 @@ public class CourtImage {
 
 	private Date m_creationDate;
 
-	public int getId() {
-		return m_id;
-	}
-
-	public void setId(int id) {
-		m_id = id;
-	}
-
-	public int getImageId() {
-		return m_imageId;
-	}
-
-	public void setImageId(int imageId) {
-		m_imageId = imageId;
+	public Court getCourt() {
+		return m_court;
 	}
 
 	public int getCourtId() {
 		return m_courtId;
 	}
 
-	public void setCourtId(int courtId) {
-		m_courtId = courtId;
-	}
-
-	public String getImageDes() {
-		return m_imageDes;
-	}
-
-	public void setImageDes(String imageDes) {
-		m_imageDes = imageDes;
-	}
-
 	public Date getCreationDate() {
 		return m_creationDate;
 	}
 
-	public void setCreationDate(Date creationDate) {
-		m_creationDate = creationDate;
+	public int getId() {
+		return m_id;
 	}
 
 	public Image getImage() {
 		return m_image;
 	}
 
-	public void setImage(Image image) {
-		m_image = image;
+	public String getImageDes() {
+		return m_imageDes;
 	}
 
-	public Court getCourt() {
-		return m_court;
+	public int getImageId() {
+		return m_imageId;
 	}
 
 	public void setCourt(Court court) {
 		m_court = court;
+	}
+
+	public void setCourtId(int courtId) {
+		m_courtId = courtId;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		m_creationDate = creationDate;
+	}
+
+	public void setId(int id) {
+		m_id = id;
+	}
+
+	public void setImage(Image image) {
+		m_image = image;
+	}
+
+	public void setImageDes(String imageDes) {
+		m_imageDes = imageDes;
+	}
+
+	public void setImageId(int imageId) {
+		m_imageId = imageId;
 	}
 	
 }

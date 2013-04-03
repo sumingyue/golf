@@ -8,13 +8,8 @@ public class NewsCategoryDao {
 
 	private BaseDao m_baseDao;
 
-	public void setBaseDao(BaseDao baseDao) {
-		m_baseDao = baseDao;
-	}
-
-	@SuppressWarnings("rawtypes")
-	public List findAllNewsCategory() {
-		return m_baseDao.queryForList("newsCategory.findAll");
+	public int delete(NewsCategory newsCategory) {
+		return (Integer) m_baseDao.delete("newsCategory.delete", newsCategory);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -27,15 +22,20 @@ public class NewsCategoryDao {
 		return m_baseDao.queryForList("newsCategory.findBySmallCategoryIdId", smallCategoryId);
 	}
 
+	@SuppressWarnings("rawtypes")
+	public List findAllNewsCategory() {
+		return m_baseDao.queryForList("newsCategory.findAll");
+	}
+
 	public int insert(NewsCategory newsCategory) {
 		return (Integer) m_baseDao.insert("newsCategory.insert", newsCategory);
 	}
 
-	public int update(NewsCategory newsCategory) {
-		return m_baseDao.update("newsCategory.update", newsCategory);
+	public void setBaseDao(BaseDao baseDao) {
+		m_baseDao = baseDao;
 	}
 
-	public int delete(NewsCategory newsCategory) {
-		return (Integer) m_baseDao.delete("newsCategory.delete", newsCategory);
+	public int update(NewsCategory newsCategory) {
+		return m_baseDao.update("newsCategory.update", newsCategory);
 	}
 }

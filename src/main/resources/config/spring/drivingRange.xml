@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-lazy-init="false" default-autowire="byName">
+	<bean id="drivingRangeDao" class="com.golf.dao.DrivingRangeDao">
+		<property name="baseDao">
+			<ref bean="baseDao" />
+		</property>
+	</bean>
+	<bean id="drivingRangeService" class="com.golf.service.impl.DrivingRangeServiceImpl">
+		<property name="drivingRangeDao">
+			<ref bean="drivingRangeDao" />
+		</property>
+	</bean>
+	<bean id="drivingRangeAction" class="com.golf.action.DrivingRangeAction"
+		scope="prototype">
+		<property name="drivingRangeService">
+			<ref bean="drivingRangeService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+</beans>  

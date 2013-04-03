@@ -10,28 +10,28 @@ public class User {
 
 	private Date m_creationDate;
 
-	public String getUserName() {
-		return m_userName;
-	}
-
-	public void setUserName(String userName) {
-		m_userName = userName;
+	public Date getCreationDate() {
+		return m_creationDate;
 	}
 
 	public String getPassword() {
 		return m_password;
 	}
 
-	public void setPassword(String password) {
-		m_password = password;
-	}
-
-	public Date getCreationDate() {
-		return m_creationDate;
+	public String getUserName() {
+		return m_userName;
 	}
 
 	public void setCreationDate(Date creationDate) {
 		m_creationDate = creationDate;
+	}
+
+	public void setPassword(String password) {
+		m_password = password;
+	}
+
+	public void setUserName(String userName) {
+		m_userName = userName;
 	}
 
 }

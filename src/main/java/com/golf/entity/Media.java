@@ -14,44 +14,44 @@ public class Media {
 
 	private Date m_date;
 
+	public Date getDate() {
+		return m_date;
+	}
+
 	public int getId() {
 		return m_id;
-	}
-
-	public void setId(int id) {
-		m_id = id;
-	}
-
-	public String getType() {
-		return m_type;
-	}
-
-	public void setType(String type) {
-		m_type = type;
 	}
 
 	public String getName() {
 		return m_name;
 	}
 
-	public void setName(String name) {
-		m_name = name;
+	public String getType() {
+		return m_type;
 	}
 
 	public String getUrl() {
 		return m_url;
 	}
 
-	public void setUrl(String url) {
-		m_url = url;
-	}
-
-	public Date getDate() {
-		return m_date;
-	}
-
 	public void setDate(Date date) {
 		m_date = date;
+	}
+
+	public void setId(int id) {
+		m_id = id;
+	}
+
+	public void setName(String name) {
+		m_name = name;
+	}
+
+	public void setType(String type) {
+		m_type = type;
+	}
+
+	public void setUrl(String url) {
+		m_url = url;
 	}
 
 }

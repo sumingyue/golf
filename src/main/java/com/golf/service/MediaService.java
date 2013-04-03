@@ -7,16 +7,16 @@ import com.golf.tools.PagedTool;
 
 public interface MediaService {
 
-	public List<Media> queryAllMedias();
-
-	public int insertMedia(Media media);
-
-	public int updateMedia(Media media);
-
 	public int deleteMedia(int mediaId);
 
 	public Media findMedia(int mediaId);
 
+	public int insertMedia(Media media);
+
+	public List<Media> queryAllMedias();
+
 	public List<Media> queryPagedMedias(PagedTool pagedTool);
+
+	public int updateMedia(Media media);
 
 }

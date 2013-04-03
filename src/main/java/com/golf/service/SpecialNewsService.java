@@ -7,18 +7,18 @@ import com.golf.tools.PagedTool;
 
 public interface SpecialNewsService {
 
-	public List<SpecialNews> queryAllSpecialNewss();
-
-	public int insertSpecialNews(SpecialNews specialNews);
-
-	public int updateSpecialNews(SpecialNews specialNews);
-
 	public int deleteSpecialNews(int specialNewsId);
 
 	public SpecialNews findSpecialNews(int specialNewsId);
 
-	public List<SpecialNews> queryPagedSpecialNewss(PagedTool pagedTool);
+	public int insertSpecialNews(SpecialNews specialNews);
+
+	public List<SpecialNews> queryAllSpecialNewss();
 
 	public List<SpecialNews> queryLastestSpecialNews(int size);
+
+	public List<SpecialNews> queryPagedSpecialNewss(PagedTool pagedTool);
+
+	public int updateSpecialNews(SpecialNews specialNews);
 
 }

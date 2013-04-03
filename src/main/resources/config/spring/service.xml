@@ -13,6 +13,10 @@
 		<property name="categoryService">
 			<ref bean="categoryService" />
 		</property>
+		<property name="newsDao">
+			<ref bean="newsDao" />
+		</property>
+		
 	</bean>
 	<bean id="imageService" class="com.golf.service.impl.ImageServiceImpl">
 		<property name="imageDao">

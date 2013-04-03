@@ -43,11 +43,11 @@
      			<form action="loginSub.do" id="form" method="post">
 				<table align="center" cellpadding="2" cellspacing="1" width="100%">
 					<tr>
-						<td  width="30%" class="left">用户名<span style='color: red'>*</span></td>
+						<td  width="30%" class="left">用户名<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="60" name="user.userName" /></td>
 					</tr>
 					<tr>
-						<td class="left">密码<span style='color: red'>*</span></td>
+						<td class="left">密码<span class='red'>*</span></td>
 						<td class="right"><input type="password" size="60" name="user.password" /></td>
 					</tr>
 					<tr>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-lazy-init="false" default-autowire="byName">
+	<bean id="learnClubDao" class="com.golf.dao.LearnClubDao">
+		<property name="baseDao">
+			<ref bean="baseDao" />
+		</property>
+	</bean>
+	<bean id="learnClubService" class="com.golf.service.impl.LearnClubServiceImpl">
+		<property name="learnClubDao">
+			<ref bean="learnClubDao" />
+		</property>
+	</bean>
+	<bean id="learnClubAction" class="com.golf.action.LearnClubAction"
+		scope="prototype">
+		<property name="learnClubService">
+			<ref bean="learnClubService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+</beans>  

@@ -7,16 +7,16 @@ import com.golf.tools.PagedTool;
 
 public interface CourtOrderService {
 
-	public List<CourtOrder> queryAllCourtOrders();
-
-	public int insertCourtOrder(CourtOrder courtOrder);
-
-	public int updateCourtOrder(CourtOrder courtOrder);
-
 	public int deleteCourtOrder(int courtOrderId);
 
 	public CourtOrder findCourtOrder(int courtOrderId);
 
+	public int insertCourtOrder(CourtOrder courtOrder);
+
+	public List<CourtOrder> queryAllCourtOrders();
+
 	public List<CourtOrder> queryPagedCourtOrders(PagedTool pagedTool);
+
+	public int updateCourtOrder(CourtOrder courtOrder);
 
 }

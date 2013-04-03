@@ -26,6 +26,8 @@ public class NewsAction extends ActionSupport {
 	private static final long serialVersionUID = 2801256599554299998L;
 
 	private Logger m_logger = Logger.getLogger(NewsAction.class);
+	
+	private static final String LIST="newsList.do";
 
 	private List<News> m_newsList;
 
@@ -58,6 +60,54 @@ public class NewsAction extends ActionSupport {
 	public String baseFile = Config.IMAGE_PATH;
 
 	private File m_upload;
+	
+	public String getActionList() {
+		return LIST;
+	}
+
+	public List<News> getCategories() {
+		return m_newsList;
+	}
+
+	public int getCategoryId() {
+		return m_categoryId;
+	}
+
+	public List<Category> getCategoryList() {
+		return m_categoryList;
+	}
+
+	public News getNews() {
+		return m_news;
+	}
+
+	public int getNewsId() {
+		return m_newsId;
+	}
+
+	public List<News> getNewsList() {
+		return m_newsList;
+	}
+
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public int getRecommand() {
+		return m_recommand;
+	}
+
+	public int getSmallCategoryId() {
+		return m_smallCategoryId;
+	}
+
+	public List<SmallCategory> getSmallCategoryList() {
+		return m_smallCategoryList;
+	}
+
+	public int getStatus() {
+		return m_status;
+	}
 
 	private int insertImage() {
 		String fileName = m_uploadFile.getFilename();
@@ -79,25 +129,6 @@ public class NewsAction extends ActionSupport {
 		return m_imageService.insert(m_upload, m_uploadFile, Image.NEWS, Image.NEWS_WIDTH, Image.NEWS_HEIGHT, true,
 		      Image.NEWS_SMALL_WIDTH, Image.NEWS_SMALL_HEIGHT);
 
-	}
-
-	public String newsList() {
-		try {
-			// m_categoryList = m_categoryService.queryAllCategories(Category.NEWS);
-			// m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS, m_categoryId);
-			// int totalSize = m_newsService.queryTotalSize(m_categoryId, m_smallCategoryId);
-			// int totalSize = m_newsService.queryTotalSize(m_categoryId, m_smallCategoryId,m_status,m_recommand);
-			// m_pagedTool.setTotalNumber(totalSize);
-
-			// m_newsList = m_newsService.queryPagedNews(m_pagedTool, m_categoryId, m_smallCategoryId);
-			// m_newsList = m_newsService.queryPagedNews(m_pagedTool, m_categoryId,
-			// m_smallCategoryId,m_status,m_recommand);
-			m_newsList = m_newsService.queryAllNews();
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
 	}
 
 	public String newsAdd() {
@@ -152,6 +183,42 @@ public class NewsAction extends ActionSupport {
 		}
 	}
 
+	public String newsDelete() {
+		try {
+			m_news = m_newsService.findNews(m_newsId);
+			m_smallCategoryId = m_news.getSmallCategoryId();
+			m_categoryId = m_news.getCategoryId();
+			int count = m_newsService.deleteNews(m_newsId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String newsList() {
+		try {
+			// m_categoryList = m_categoryService.queryAllCategories(Category.NEWS);
+			// m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS, m_categoryId);
+			// int totalSize = m_newsService.queryTotalSize(m_categoryId, m_smallCategoryId);
+			// int totalSize = m_newsService.queryTotalSize(m_categoryId, m_smallCategoryId,m_status,m_recommand);
+			// m_pagedTool.setTotalNumber(totalSize);
+
+			// m_newsList = m_newsService.queryPagedNews(m_pagedTool, m_categoryId, m_smallCategoryId);
+			// m_newsList = m_newsService.queryPagedNews(m_pagedTool, m_categoryId,
+			// m_smallCategoryId,m_status,m_recommand);
+			m_newsList = m_newsService.queryAllNews();
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+
 	public String newsUpdate() {
 		try {
 			m_news = m_newsService.findNews(m_newsId);
@@ -198,121 +265,60 @@ public class NewsAction extends ActionSupport {
 		}
 	}
 
-	public String newsDelete() {
-		try {
-			m_news = m_newsService.findNews(m_newsId);
-			m_smallCategoryId = m_news.getSmallCategoryId();
-			m_categoryId = m_news.getCategoryId();
-			int count = m_newsService.deleteNews(m_newsId);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-	}
-
-	public News getNews() {
-		return m_news;
-	}
-
-	public void setNews(News news) {
-		m_news = news;
-	}
-
-	public void setNewsService(NewsService newsService) {
-		m_newsService = newsService;
-	}
-
-	public List<News> getCategories() {
-		return m_newsList;
-	}
-
-	public void setNewsId(int newsId) {
-		m_newsId = newsId;
-	}
-
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
-	public void setPagedTool(PagedTool pagedTool) {
-		m_pagedTool = pagedTool;
-	}
-
-	public List<News> getNewsList() {
-		return m_newsList;
-	}
-
-	public int getNewsId() {
-		return m_newsId;
-	}
-
-	public int getCategoryId() {
-		return m_categoryId;
-	}
-
 	public void setCategoryId(int categoryId) {
 		m_categoryId = categoryId;
-	}
-
-	public List<Category> getCategoryList() {
-		return m_categoryList;
 	}
 
 	public void setCategoryService(CategoryService categoryService) {
 		m_categoryService = categoryService;
 	}
 
-	public List<SmallCategory> getSmallCategoryList() {
-		return m_smallCategoryList;
-	}
-
-	public void setSmallCategoryList(List<SmallCategory> smallCategoryList) {
-		m_smallCategoryList = smallCategoryList;
-	}
-
-	public void setUpload(File file) {
-		m_upload = file;
-	}
-
-	public void setUploadFileName(String filename) {
-		m_uploadFile.setFilename(filename);
-	}
-
-	public void setUploadContentType(String contentType) {
-		m_uploadFile.setContentType(contentType);
-	}
-
 	public void setImageService(ImageService imageService) {
 		m_imageService = imageService;
+	}
+
+	public void setNews(News news) {
+		m_news = news;
+	}
+
+	public void setNewsId(int newsId) {
+		m_newsId = newsId;
+	}
+
+	public void setNewsService(NewsService newsService) {
+		m_newsService = newsService;
+	}
+
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
+	}
+
+	public void setRecommand(int recommand) {
+		m_recommand = recommand;
 	}
 
 	public void setSmallCategoryId(int smallCategoryId) {
 		m_smallCategoryId = smallCategoryId;
 	}
 
-	public int getSmallCategoryId() {
-		return m_smallCategoryId;
-	}
-
-	public int getStatus() {
-		return m_status;
+	public void setSmallCategoryList(List<SmallCategory> smallCategoryList) {
+		m_smallCategoryList = smallCategoryList;
 	}
 
 	public void setStatus(int status) {
 		m_status = status;
 	}
 
-	public int getRecommand() {
-		return m_recommand;
+	public void setUpload(File file) {
+		m_upload = file;
 	}
 
-	public void setRecommand(int recommand) {
-		m_recommand = recommand;
+	public void setUploadContentType(String contentType) {
+		m_uploadFile.setContentType(contentType);
+	}
+
+	public void setUploadFileName(String filename) {
+		m_uploadFile.setFilename(filename);
 	}
 
 }

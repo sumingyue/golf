@@ -51,47 +51,32 @@ public class ImageSpecialAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
-	private int insertImage() {
-		String fileName = m_uploadFile.getFilename();
-		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.PIC);
-		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.PIC);
-		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
-
-		String originalPath = ImageTools.getOriginalPath(fileName, Image.PIC);
-		m_uploadFile.setOriginalPath(originalPath);
-
-		m_uploadFile.setPath(relativePath);
-		m_uploadFile.setStorePath(storePath);
-
-		m_uploadFile.setCompressedPath(compressRelativePath);
-		m_uploadFile.setCompressedStorePath(compressStorePath);
-
-		return m_imageService.insert(m_upload, m_uploadFile, Image.PIC, Image.PIC_MAIN_WIDTH, Image.PIC_MAIN_HEIGHT,
-		      true, Image.PIC_MAIN_SMALL_WIDTH, Image.PIC_MAIN_SMALL_HEIGHT);
-
+	public int getCategoryId() {
+		return m_categoryId;
 	}
 
-	public String imageSpecialList() {
-		try {
-			//m_categoryList = m_categoryService.queryAllCategories(Category.IMAGE);
-			//m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.IMAGE, m_categoryId);
+	public List<Category> getCategoryList() {
+		return m_categoryList;
+	}
 
-			//m_pagedTool
-			//      .setTotalNumber(m_imageSpecialService.queryAllImageSpecials(m_categoryId, m_smallCategoryId).size());
-			//m_imageSpecials = m_imageSpecialService.queryPagedImageSpecials(m_pagedTool, m_categoryId, m_smallCategoryId);
-			m_imageSpecials = m_imageSpecialService.queryAllImageSpecials();
+	public ImageSpecial getImageSpecial() {
+		return m_imageSpecial;
+	}
 
-			for (ImageSpecial temp : m_imageSpecials) {
-				temp.setCategory(m_categoryService.findCategory(temp.getCategoryId()));
-				temp.setSmallCategory(m_categoryService.findSmallCategory(temp.getSmallCategoryId()));
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
+	public List<ImageSpecial> getImageSpecials() {
+		return m_imageSpecials;
+	}
+
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public int getSmallCategoryId() {
+		return m_smallCategoryId;
+	}
+
+	public List<SmallCategory> getSmallCategoryList() {
+		return m_smallCategoryList;
 	}
 
 	public String imageSpecialAdd() {
@@ -135,6 +120,44 @@ public class ImageSpecialAction extends ActionSupport {
 		}
 	}
 
+	public String imageSpecialDelete() {
+		try {
+			m_imageSpecial = m_imageSpecialService.findImageSpecial(m_imageSpecialId);
+			m_smallCategoryId = m_imageSpecial.getSmallCategoryId();
+			m_categoryId = m_imageSpecial.getCategoryId();
+			int count = m_imageSpecialService.deleteImageSpecial(m_imageSpecialId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String imageSpecialList() {
+		try {
+			//m_categoryList = m_categoryService.queryAllCategories(Category.IMAGE);
+			//m_smallCategoryList = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.IMAGE, m_categoryId);
+
+			//m_pagedTool
+			//      .setTotalNumber(m_imageSpecialService.queryAllImageSpecials(m_categoryId, m_smallCategoryId).size());
+			//m_imageSpecials = m_imageSpecialService.queryPagedImageSpecials(m_pagedTool, m_categoryId, m_smallCategoryId);
+			m_imageSpecials = m_imageSpecialService.queryAllImageSpecials();
+
+			for (ImageSpecial temp : m_imageSpecials) {
+				temp.setCategory(m_categoryService.findCategory(temp.getCategoryId()));
+				temp.setSmallCategory(m_categoryService.findSmallCategory(temp.getSmallCategoryId()));
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+
 	public String imageSpecialUpdate() {
 		try {
 			m_imageSpecial = m_imageSpecialService.findImageSpecial(m_imageSpecialId);
@@ -173,97 +196,74 @@ public class ImageSpecialAction extends ActionSupport {
 		}
 	}
 
-	public String imageSpecialDelete() {
-		try {
-			m_imageSpecial = m_imageSpecialService.findImageSpecial(m_imageSpecialId);
-			m_smallCategoryId = m_imageSpecial.getSmallCategoryId();
-			m_categoryId = m_imageSpecial.getCategoryId();
-			int count = m_imageSpecialService.deleteImageSpecial(m_imageSpecialId);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-	}
+	private int insertImage() {
+		String fileName = m_uploadFile.getFilename();
+		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.PIC);
+		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
 
-	public ImageSpecial getImageSpecial() {
-		return m_imageSpecial;
-	}
+		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.PIC);
+		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
 
-	public void setImageSpecial(ImageSpecial imageSpecial) {
-		m_imageSpecial = imageSpecial;
-	}
+		String originalPath = ImageTools.getOriginalPath(fileName, Image.PIC);
+		m_uploadFile.setOriginalPath(originalPath);
 
-	public void setImageSpecialService(ImageSpecialService imageSpecialService) {
-		m_imageSpecialService = imageSpecialService;
-	}
+		m_uploadFile.setPath(relativePath);
+		m_uploadFile.setStorePath(storePath);
 
-	public List<ImageSpecial> getImageSpecials() {
-		return m_imageSpecials;
-	}
+		m_uploadFile.setCompressedPath(compressRelativePath);
+		m_uploadFile.setCompressedStorePath(compressStorePath);
 
-	public void setImageSpecialId(int imageSpecialId) {
-		m_imageSpecialId = imageSpecialId;
-	}
+		return m_imageService.insert(m_upload, m_uploadFile, Image.PIC, Image.PIC_MAIN_WIDTH, Image.PIC_MAIN_HEIGHT,
+		      true, Image.PIC_MAIN_SMALL_WIDTH, Image.PIC_MAIN_SMALL_HEIGHT);
 
-	public void setUpload(File file) {
-		m_upload = file;
-	}
-
-	public void setUploadFileName(String filename) {
-		m_uploadFile.setFilename(filename);
-	}
-
-	public void setUploadContentType(String contentType) {
-		m_uploadFile.setContentType(contentType);
-	}
-
-	public void setImageService(ImageService imageService) {
-		m_imageService = imageService;
-	}
-
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
-	public void setPagedTool(PagedTool pagedTool) {
-		m_pagedTool = pagedTool;
-	}
-
-	public void setIndex(int index) {
-		m_pagedTool.setPageIndex(index);
-	}
-
-	public void setCategoryService(CategoryService categoryService) {
-		m_categoryService = categoryService;
-	}
-
-	public List<Category> getCategoryList() {
-		return m_categoryList;
-	}
-
-	public List<SmallCategory> getSmallCategoryList() {
-		return m_smallCategoryList;
-	}
-
-	public int getCategoryId() {
-		return m_categoryId;
 	}
 
 	public void setCategoryId(int categoryId) {
 		m_categoryId = categoryId;
 	}
 
-	public int getSmallCategoryId() {
-		return m_smallCategoryId;
+	public void setCategoryService(CategoryService categoryService) {
+		m_categoryService = categoryService;
+	}
+
+	public void setImageService(ImageService imageService) {
+		m_imageService = imageService;
+	}
+
+	public void setImageSpecial(ImageSpecial imageSpecial) {
+		m_imageSpecial = imageSpecial;
+	}
+
+	public void setImageSpecialId(int imageSpecialId) {
+		m_imageSpecialId = imageSpecialId;
+	}
+
+	public void setImageSpecialService(ImageSpecialService imageSpecialService) {
+		m_imageSpecialService = imageSpecialService;
+	}
+
+	public void setIndex(int index) {
+		m_pagedTool.setPageIndex(index);
+	}
+
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
 	}
 
 	public void setSmallCategoryId(int smallCategoryId) {
 		m_smallCategoryId = smallCategoryId;
+	}
+
+	public void setUpload(File file) {
+		m_upload = file;
+	}
+
+	public void setUploadContentType(String contentType) {
+		m_uploadFile.setContentType(contentType);
+	}
+
+	public void setUploadFileName(String filename) {
+		m_uploadFile.setFilename(filename);
 	}
 
 }

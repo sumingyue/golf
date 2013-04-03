@@ -26,15 +26,16 @@ public class MediaAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 	
-	public String mediaList() {
-		try {
-			m_pagedTool.setTotalNumber(m_mediaService.queryAllMedias().size());
-			m_medias = m_mediaService.queryPagedMedias(m_pagedTool);
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
+	public Media getMedia() {
+		return m_media;
+	}
+
+	public List<Media> getMedias() {
+		return m_medias;
+	}
+
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
 	}
 
 	public String mediaAddSubmit() {
@@ -50,6 +51,31 @@ public class MediaAction extends ActionSupport {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
 		}
+	}
+
+	public String mediaDelete() {
+		try {
+			int count = m_mediaService.deleteMedia(m_mediaId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String mediaList() {
+		try {
+			m_pagedTool.setTotalNumber(m_mediaService.queryAllMedias().size());
+			m_medias = m_mediaService.queryPagedMedias(m_pagedTool);
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
 	}
 
 	public String mediaUpdate() {
@@ -76,48 +102,22 @@ public class MediaAction extends ActionSupport {
 		}
 	}
 
-	public String mediaDelete() {
-		try {
-			int count = m_mediaService.deleteMedia(m_mediaId);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-	}
-
-	public Media getMedia() {
-		return m_media;
+	public void setIndex(int index){
+		m_pagedTool.setPageIndex(index);
 	}
 
 	public void setMedia(Media media) {
 		m_media = media;
+	}
+	public void setMediaId(int mediaId) {
+		m_mediaId = mediaId;
 	}
 
 	public void setMediaService(MediaService mediaService) {
 		m_mediaService = mediaService;
 	}
 
-	public List<Media> getMedias() {
-		return m_medias;
-	}
-
-	public void setMediaId(int mediaId) {
-		m_mediaId = mediaId;
-	}
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
 	public void setPagedTool(PagedTool pagedTool) {
 		m_pagedTool = pagedTool;
-	}
-
-	public void setIndex(int index){
-		m_pagedTool.setPageIndex(index);
 	}
 }

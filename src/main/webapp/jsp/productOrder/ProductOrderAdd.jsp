@@ -62,19 +62,19 @@ $(document).ready(function() {
 						</td>
 					</tr>
 					<tr>
-						<td class="left" width="40%">订单数量<span style='color: red'>*</span></td>
+						<td class="left" width="40%">订单数量<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="productOrder.orderNumber" /></td>
 					</tr>
 					<tr>
-						<td class="left" width="40%">顾客姓名<span style='color: red'>*</span></td>
+						<td class="left" width="40%">顾客姓名<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="productOrder.userName" /></td>
 					</tr>
 					<tr>
-						<td class="left" width="40%">顾客电话<span style='color: red'>*</span></td>
+						<td class="left" width="40%">顾客电话<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="productOrder.userPhone" /></td>
 					</tr>
 					<tr>
-						<td class="left" width="40%">顾客地址<span style='color: red'>*</span></td>
+						<td class="left" width="40%">顾客地址<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="productOrder.userAddress" /></td>
 					</tr>
 					<tr>

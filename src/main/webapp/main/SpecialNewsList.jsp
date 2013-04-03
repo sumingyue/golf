@@ -20,11 +20,11 @@
 	<div class="container">
 	<jsp:include page="./Head.jsp"></jsp:include>
 	<div>
-			<ul class="breadcrumb">
-				<li>当前位置：</li>
-				<li><a href="index.do">首页</a> <span class="divider">/</span></li>
-				<li class="active">专题</li>
-			</ul>
+		<ul class="breadcrumb">
+			<li>当前位置：</li>
+			<li><a href="index.do">首页</a> <span class="divider">/</span></li>
+			<li class="active">专题</li>
+		</ul>
 	</div>
 			<table class="table table-striped table-bordered table-hover">
 				<thead>

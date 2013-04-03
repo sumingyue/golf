@@ -3,497 +3,209 @@ package com.golf.main;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.golf.Config;
 import com.golf.entity.Category;
 import com.golf.entity.Court;
-import com.golf.entity.CourtImage;
-import com.golf.entity.ImageSpecial;
-import com.golf.entity.Media;
+import com.golf.entity.DrivingRange;
+import com.golf.entity.LearnClub;
 import com.golf.entity.News;
-import com.golf.entity.Player;
 import com.golf.entity.SmallCategory;
-import com.golf.entity.SpecialNews;
-import com.golf.entity.TeamNews;
-import com.golf.service.AdwordsService;
+import com.golf.entity.Team;
 import com.golf.service.CategoryService;
-import com.golf.service.CourtImageService;
 import com.golf.service.CourtService;
+import com.golf.service.DrivingRangeService;
 import com.golf.service.ImageService;
-import com.golf.service.ImageSpecialService;
-import com.golf.service.MediaService;
+import com.golf.service.LearnClubService;
 import com.golf.service.NewsService;
-import com.golf.service.PlayerService;
-import com.golf.service.SpecialNewsService;
-import com.golf.service.TeamNewsService;
+import com.golf.service.TeamService;
+import com.golf.tools.CollectionTool;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class IndexAction extends ActionSupport {
 
 	private static final long serialVersionUID = 2801256589554299998L;
 
-	private PlayerService m_playerService;
-
 	private NewsService m_newsService;
-
-	private MediaService m_mediaService;
 
 	private ImageService m_imageService;
 
-	private ImageSpecialService m_imageSpecialService;
-
 	private CategoryService m_categoryService;
-
-	private List<ImageSpecial> m_imageSpecials;
-
-	private List<Media> m_youQingMedias = new ArrayList<Media>();
-
-	private List<Media> m_heZuoMedias = new ArrayList<Media>();
 
 	private CourtService m_courtService;
 
-	private CourtImage m_courtImage;
+	private LearnClubService m_learnClubService;
 
-	private CourtImageService m_courtImageService;
+	private DrivingRangeService m_drivingRangeService;
 
-	private Court m_court;
+	private TeamService m_teamService;
+
+	private List<Team> m_teams;
 
 	private List<Court> m_courts;
 
-	private SpecialNewsService m_specialNewsService;
+	private List<LearnClub> m_learnClubs;
 
-	private AdwordsService m_adwordsService;
+	private List<DrivingRange> m_drivingRanges;
 
-	private TeamNewsService m_teamNewsService;
+	private List<News> m_latestImageNews;
 
-	private List<TeamNews> m_teamNews;
+	private List<NewsGroup> m_newsGroups = new ArrayList<NewsGroup>();
 
-	private List<Player> m_jiangJinPlayers;
+	private List<NewsGroup> m_localNewsGroups = new ArrayList<NewsGroup>();
 
-	private List<Player> m_jiFenPlayers;
+	private List<SmallCategory> m_smallCategories;
 
-	private List<TeamNews> m_qiuDuiHuoDongs;
+	private static final int TEN = 9;
 
-	private News m_lianXiChang;
+	private void buildNews() {
+		m_latestImageNews = m_newsService.queryFixedImageNews(5, 0);
 
-	private List<SpecialNews> m_specialNews;
+		for (News temp : m_latestImageNews) {
+			temp.setImage(m_imageService.findImage(temp.getImageId()));
+		}
+		List<News> latestNews1 = m_newsService.queryFixedLatestNewsByCategoryId(6, 1);
+		List<News> latestNews2 = m_newsService.queryFixedLatestNewsByCategoryId(6, 2);
+		List<News> latestNews3 = m_newsService.queryFixedLatestNewsByCategoryId(6, 3);
 
-	private NewsGroup m_newsZongHe;
+		m_newsGroups.add(convert(latestNews1));
+		m_newsGroups.add(convert(latestNews2));
+		m_newsGroups.add(convert(latestNews3));
+	}
 
-	private NewsGroup m_newsSaiShi;
+	private NewsGroup convert(List<News> list) {
+		NewsGroup group = new NewsGroup();
 
-	private NewsGroup m_newsLvYou;
+		group.setFirsts(list.subList(0, 2));
+		group.setSeconds(list.subList(2, 6));
+		return group;
+	}
 
-	private NewsGroup m_newsPingLun;
+	private void buildTeamInfo() {
+		m_teams = m_teamService.queryAllTeams();
+		for(Team team:m_teams){
+			team.setLogo(m_imageService.findImage(team.getImageId()));
+		}
+		m_teams = CollectionTool.fixList(m_teams, 6, true);
+	}
 
-	private NewsGroup m_newsXueYuan;
+	private void buildLocalInfo() {
+		m_courts = m_courtService.queryAllCourts();
+		m_learnClubs = m_learnClubService.queryAllLearnClubs();
+		m_drivingRanges = m_drivingRangeService.queryAllDrivingRanges();
 
-	private NewsGroup m_newsZiXun;
+		m_courts = CollectionTool.fixList(m_courts, TEN, true);
+		m_learnClubs = CollectionTool.fixList(m_learnClubs, TEN, true);
+		m_drivingRanges = CollectionTool.fixList(m_drivingRanges, TEN, true);
+	}
 
-	private NewsGroup buildNewsByCategoryId(int categoryId, int imageNewSize) {
-		NewsGroup temp = new NewsGroup();
-		List<News> hotNews = m_newsService.queryFixedNewsByCategoryId(10, categoryId);
-		List<News> imageNews = m_newsService.queryFixedImageNewsByCategoryId(imageNewSize, categoryId);
+	private void buildLocalNews() {
+		int localNewId = 4;
+		m_smallCategories = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS, localNewId);
 
-		if (imageNews != null) {
-			for (News n : imageNews) {
-				n.setImage(m_imageService.findImage(n.getImageId()));
+		for (SmallCategory temp : m_smallCategories) {
+			NewsGroup group = new NewsGroup();
+			List<News> imageNews = m_newsService.queryFixedImageNews(3, localNewId, temp.getId());
+			List<News> detailNews = m_newsService.queryFixedNewsBySmallCategoryId(8, temp.getId());
+
+			for (News news : imageNews) {
+				news.setImage(m_imageService.findImage(news.getImageId()));
 			}
+
+			group.setFirsts(imageNews);
+			group.setSeconds(detailNews);
+			m_localNewsGroups.add(group);
 		}
-		temp.setFirstNews(hotNews.get(0));
-		temp.setSecondNews(hotNews.subList(1, 5));
-		temp.setThirdNews(hotNews.subList(5, 10));
-		temp.setImageNews(imageNews);
-
-		List<SmallCategory> categorys = m_categoryService
-		      .queryAllSmallCategoryByTypeCategoryId(Category.NEWS, categoryId);
-
-		for (int i = 0; i < categorys.size(); i++) {
-			SmallCategory smallCategory = categorys.get(i);
-			List<News> lastestNews = m_newsService.queryFixedNewsBySmallCategoryId(9, smallCategory.getId());
-
-			temp.setSmallCategoryNews(i + 1, smallCategory, lastestNews);
-		}
-		return temp;
 	}
 
 	@Override
 	public String execute() throws Exception {
-		m_newsZongHe = buildNewsByCategoryId(Config.CATE_ZongHe, 3);
-		m_newsSaiShi = buildNewsByCategoryId(Config.CATE_SaiShi, 3);
-		m_newsLvYou = buildNewsByCategoryId(Config.CATE_LvYou, 3);
-		m_newsPingLun = buildNewsByCategoryId(Config.CATE_PingLun, 3);
-		m_newsXueYuan = buildNewsByCategoryId(Config.CATE_XueYuan, 3);
-		m_newsZiXun = buildNewsByCategoryId(Config.CATE_ZiXun, 3);
-
-		queryOther();
-		queryMedia();
-		queryPlayer();
+		buildNews();
+		buildLocalInfo();
+		buildLocalNews();
+		buildTeamInfo();
 		return SUCCESS;
-	}
-
-	public AdwordsService getAdwordsService() {
-		return m_adwordsService;
-	}
-
-	public Court getCourt() {
-		return m_court;
-	}
-
-	public CourtImage getCourtImage() {
-		return m_courtImage;
 	}
 
 	public List<Court> getCourts() {
 		return m_courts;
 	}
 
-	public List<Media> getHeZuoMedias() {
-		return m_heZuoMedias;
+	public List<LearnClub> getLearnClubs() {
+		return m_learnClubs;
 	}
 
-	public List<ImageSpecial> getImageSpecials() {
-		return m_imageSpecials;
-	}
-
-	public List<Player> getJiangJinPlayers() {
-		return m_jiangJinPlayers;
-	}
-
-	public List<Player> getJiFenPlayers() {
-		return m_jiFenPlayers;
-	}
-
-	public News getLianXiChang() {
-		return m_lianXiChang;
-	}
-
-	public NewsGroup getNewsLvYou() {
-		return m_newsLvYou;
-	}
-
-	public NewsGroup getNewsPingLun() {
-		return m_newsPingLun;
-	}
-
-	public NewsGroup getNewsSaiShi() {
-		return m_newsSaiShi;
-	}
-
-	public NewsGroup getNewsXueYuan() {
-		return m_newsXueYuan;
-	}
-
-	public NewsGroup getNewsZiXun() {
-		return m_newsZiXun;
-	}
-
-	public NewsGroup getNewsZongHe() {
-		return m_newsZongHe;
-	}
-
-	public List<TeamNews> getQiuDuiHuoDongs() {
-		return m_qiuDuiHuoDongs;
-	}
-
-	public List<SpecialNews> getSpecialNews() {
-		return m_specialNews;
-	}
-
-	public List<TeamNews> getTeamNews() {
-		return m_teamNews;
-	}
-
-	public List<Media> getYouQingMedias() {
-		return m_youQingMedias;
-	}
-
-	private void queryMedia() {
-		List<Media> all = m_mediaService.queryAllMedias();
-
-		for (Media temp : all) {
-			if (temp.getType().equalsIgnoreCase(Config.YouQingLianJie)) {
-				m_youQingMedias.add(temp);
-			} else {
-				m_heZuoMedias.add(temp);
-			}
-		}
-	}
-
-	private void queryOther() {
-		m_imageSpecials = m_imageSpecialService.queryFixedImageSpecials(2);
-		if (m_imageSpecials != null) {
-			for (ImageSpecial temp : m_imageSpecials) {
-				temp.setImage(m_imageService.findImage(temp.getImageId()));
-			}
-		}
-
-		m_specialNews = m_specialNewsService.queryLastestSpecialNews(6);
-		m_teamNews = m_teamNewsService.queryFixedTeamNewss(12);
-
-		List<Court> all = m_courtService.queryFixedCourts(6);
-		m_court = all.get(0);
-		m_courts = all.subList(1, 6);
-
-		List<CourtImage> images = m_courtImageService.queryAllCourtImages(m_court.getId());
-		if (images != null && images.size() > 0) {
-			m_courtImage = images.get(0);
-			m_courtImage.setImage(m_imageService.findImage(m_courtImage.getImageId()));
-		}
-	}
-
-	private void queryPlayer() {
-		m_jiangJinPlayers = m_playerService.queryPlayers("bonus", 6);
-		m_jiFenPlayers = m_playerService.queryPlayers("score", 6);
-	}
-
-	public void setAdwordsService(AdwordsService adwordsService) {
-		m_adwordsService = adwordsService;
-	}
-
-	public void setCategoryService(CategoryService cateogryService) {
-		m_categoryService = cateogryService;
-	}
-
-	public void setCourtImageService(CourtImageService courtImageService) {
-		m_courtImageService = courtImageService;
-	}
-
-	public void setCourtService(CourtService courtService) {
-		m_courtService = courtService;
-	}
-
-	public void setImageService(ImageService imageService) {
-		m_imageService = imageService;
-	}
-
-	public void setImageSpecialService(ImageSpecialService imageSpecialService) {
-		m_imageSpecialService = imageSpecialService;
-	}
-
-	public void setMediaService(MediaService mediaService) {
-		m_mediaService = mediaService;
+	public List<DrivingRange> getDrivingRanges() {
+		return m_drivingRanges;
 	}
 
 	public void setNewsService(NewsService newsService) {
 		m_newsService = newsService;
 	}
 
-	public void setPlayerService(PlayerService playerService) {
-		m_playerService = playerService;
+	public void setImageService(ImageService imageService) {
+		m_imageService = imageService;
 	}
 
-	public void setSpecialNewsService(SpecialNewsService specialNewsService) {
-		m_specialNewsService = specialNewsService;
+	public void setCategoryService(CategoryService categoryService) {
+		m_categoryService = categoryService;
 	}
 
-	public void setTeamNewsService(TeamNewsService teamNewsService) {
-		m_teamNewsService = teamNewsService;
+	public void setCourtService(CourtService courtService) {
+		m_courtService = courtService;
+	}
+
+	public void setLearnClubService(LearnClubService learnClubService) {
+		m_learnClubService = learnClubService;
+	}
+
+	public void setDrivingRangeService(DrivingRangeService drivingRangeService) {
+		m_drivingRangeService = drivingRangeService;
+	}
+
+	public List<News> getLatestImageNews() {
+		return m_latestImageNews;
+	}
+
+	public List<NewsGroup> getNewsGroups() {
+		return m_newsGroups;
+	}
+
+	public List<NewsGroup> getLocalNewsGroups() {
+		return m_localNewsGroups;
+	}
+
+	public List<SmallCategory> getSmallCategories() {
+		return m_smallCategories;
+	}
+
+	public List<Team> getTeams() {
+		return m_teams;
+	}
+
+	public void setTeamService(TeamService teamService) {
+		m_teamService = teamService;
 	}
 
 	public static class NewsGroup {
-		private News m_firstNews;
 
-		private List<News> m_secondNews;
+		private List<News> m_firsts;
 
-		private List<News> m_thirdNews;
+		private List<News> m_seconds;
 
-		private List<News> m_imageNews;
-
-		private SmallCategory m_smallCategory1;
-
-		private SmallCategory m_smallCategory2;
-
-		private SmallCategory m_smallCategory3;
-
-		private SmallCategory m_smallCategory4;
-
-		private SmallCategory m_smallCategory5;
-
-		private SmallCategory m_smallCategory6;
-		
-		private SmallCategory m_smallCategory7;
-
-		private SmallCategory m_smallCategory8;
-
-		private SmallCategory m_smallCategory9;
-
-		private List<News> m_smallCategoryNews1;
-
-		private List<News> m_smallCategoryNews2;
-
-		private List<News> m_smallCategoryNews3;
-
-		private List<News> m_smallCategoryNews4;
-
-		private List<News> m_smallCategoryNews5;
-
-		private List<News> m_smallCategoryNews6;
-		
-		private List<News> m_smallCategoryNews7;
-
-		private List<News> m_smallCategoryNews8;
-
-		private List<News> m_smallCategoryNews9;
-
-		public News getFirstNews() {
-			return m_firstNews;
+		public List<News> getFirsts() {
+			return m_firsts;
 		}
 
-		public List<News> getImageNews() {
-			return m_imageNews;
+		public void setFirsts(List<News> firsts) {
+			m_firsts = firsts;
 		}
 
-		public List<News> getSecondNews() {
-			return m_secondNews;
+		public List<News> getSeconds() {
+			return m_seconds;
 		}
 
-		public SmallCategory getSmallCategory1() {
-			return m_smallCategory1;
+		public void setSeconds(List<News> seconds) {
+			m_seconds = seconds;
 		}
-
-		public SmallCategory getSmallCategory2() {
-			return m_smallCategory2;
-		}
-
-		public SmallCategory getSmallCategory3() {
-			return m_smallCategory3;
-		}
-
-		public SmallCategory getSmallCategory4() {
-			return m_smallCategory4;
-		}
-
-		public SmallCategory getSmallCategory5() {
-			return m_smallCategory5;
-		}
-
-		public SmallCategory getSmallCategory6() {
-			return m_smallCategory6;
-		}
-
-		public SmallCategory getSmallCategory7() {
-			return m_smallCategory7;
-		}
-
-		public SmallCategory getSmallCategory8() {
-			return m_smallCategory8;
-		}
-
-		public SmallCategory getSmallCategory9() {
-			return m_smallCategory9;
-		}
-
-		public List<News> getSmallCategoryNews1() {
-			return m_smallCategoryNews1;
-		}
-
-		public List<News> getSmallCategoryNews2() {
-			return m_smallCategoryNews2;
-		}
-
-		public List<News> getSmallCategoryNews3() {
-			return m_smallCategoryNews3;
-		}
-
-		public List<News> getSmallCategoryNews4() {
-			return m_smallCategoryNews4;
-		}
-
-		public List<News> getSmallCategoryNews5() {
-			return m_smallCategoryNews5;
-		}
-
-		public List<News> getSmallCategoryNews6() {
-			return m_smallCategoryNews6;
-		}
-
-		public List<News> getSmallCategoryNews7() {
-			return m_smallCategoryNews7;
-		}
-
-		public List<News> getSmallCategoryNews8() {
-			return m_smallCategoryNews8;
-		}
-
-		public List<News> getSmallCategoryNews9() {
-			return m_smallCategoryNews9;
-		}
-
-		public List<News> getThirdNews() {
-			return m_thirdNews;
-		}
-
-		public void setFirstNews(News firstNews) {
-			m_firstNews = firstNews;
-		}
-
-		public void setImageNews(List<News> imageNews) {
-			m_imageNews = imageNews;
-		}
-
-		public void setSecondNews(List<News> secondNews) {
-			m_secondNews = secondNews;
-		}
-
-		public void setSmallCategoryNews(int index, SmallCategory smallCategory, List<News> news) {
-			if (index == 1) {
-				m_smallCategoryNews1 = news;
-				m_smallCategory1 = smallCategory;
-			} else if (index == 2) {
-				m_smallCategoryNews2 = news;
-				m_smallCategory2 = smallCategory;
-			} else if (index == 3) {
-				m_smallCategoryNews3 = news;
-				m_smallCategory3 = smallCategory;
-			} else if (index == 4) {
-				m_smallCategoryNews4 = news;
-				m_smallCategory4 = smallCategory;
-			} else if (index == 5) {
-				m_smallCategoryNews5 = news;
-				m_smallCategory5 = smallCategory;
-			} else if (index == 6) {
-				m_smallCategoryNews6 = news;
-				m_smallCategory6 = smallCategory;
-			}else if (index == 7) {
-				m_smallCategoryNews7 = news;
-				m_smallCategory7 = smallCategory;
-			}else if (index == 8) {
-				m_smallCategoryNews8 = news;
-				m_smallCategory8 = smallCategory;
-			}else if (index == 9) {
-				m_smallCategoryNews9 = news;
-				m_smallCategory9 = smallCategory;
-			}
-		}
-
-		public void setSmallCategoryNews1(List<News> smallCategoryNews1) {
-			m_smallCategoryNews1 = smallCategoryNews1;
-		}
-
-		public void setSmallCategoryNews2(List<News> smallCategoryNews2) {
-			m_smallCategoryNews2 = smallCategoryNews2;
-		}
-
-		public void setSmallCategoryNews3(List<News> smallCategoryNews3) {
-			m_smallCategoryNews3 = smallCategoryNews3;
-		}
-
-		public void setSmallCategoryNews4(List<News> smallCategoryNews4) {
-			m_smallCategoryNews4 = smallCategoryNews4;
-		}
-
-		public void setSmallCategoryNews5(List<News> smallCategoryNews5) {
-			m_smallCategoryNews5 = smallCategoryNews5;
-		}
-
-		public void setSmallCategoryNews6(List<News> smallCategoryNews6) {
-			m_smallCategoryNews6 = smallCategoryNews6;
-		}
-
-		public void setThirdNews(List<News> thirdNews) {
-			m_thirdNews = thirdNews;
-		}
-
 	}
 
 }

@@ -26,16 +26,16 @@ public class MatchServiceAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
-	public String matchServiceList() {
-		try {
-			//m_pagedTool.setTotalNumber(m_matchServiceService.queryAllMatchServices().size());
-			//m_matchServices = m_matchServiceService.queryPagedMatchServices(m_pagedTool);
-			m_matchServices = m_matchServiceService.queryAllMatchServices();
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
+	public MatchService getMatchService() {
+		return m_matchService;
+	}
+
+	public List<MatchService> getMatchServices() {
+		return m_matchServices;
+	}
+
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
 	}
 
 	public String matchServiceAddSubmit() {
@@ -51,6 +51,32 @@ public class MatchServiceAction extends ActionSupport {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
 		}
+	}
+
+	public String matchServiceDelete() {
+		try {
+			int count = m_matchServiceService.deleteMatchService(m_matchServiceId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String matchServiceList() {
+		try {
+			//m_pagedTool.setTotalNumber(m_matchServiceService.queryAllMatchServices().size());
+			//m_matchServices = m_matchServiceService.queryPagedMatchServices(m_pagedTool);
+			m_matchServices = m_matchServiceService.queryAllMatchServices();
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
 	}
 
 	public String matchServiceUpdate() {
@@ -77,48 +103,22 @@ public class MatchServiceAction extends ActionSupport {
 		}
 	}
 
-	public String matchServiceDelete() {
-		try {
-			int count = m_matchServiceService.deleteMatchService(m_matchServiceId);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-	}
-
-	public MatchService getMatchService() {
-		return m_matchService;
+	public void setIndex(int index){
+		m_pagedTool.setPageIndex(index);
 	}
 
 	public void setMatchService(MatchService matchService) {
 		m_matchService = matchService;
+	}
+	public void setMatchServiceId(int matchServiceId) {
+		m_matchServiceId = matchServiceId;
 	}
 
 	public void setMatchServiceService(MatchServiceService matchServiceService) {
 		m_matchServiceService = matchServiceService;
 	}
 
-	public List<MatchService> getMatchServices() {
-		return m_matchServices;
-	}
-
-	public void setMatchServiceId(int matchServiceId) {
-		m_matchServiceId = matchServiceId;
-	}
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
 	public void setPagedTool(PagedTool pagedTool) {
 		m_pagedTool = pagedTool;
-	}
-
-	public void setIndex(int index){
-		m_pagedTool.setPageIndex(index);
 	}
 }

@@ -65,23 +65,23 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="left" width="40%">订单数量<span style='color: red'>*</span></td>
+						<td class="left" width="40%">订单数量<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="productOrder.orderNumber"  value="<s:property value="productOrder.orderNumber"/>"/></td>
 					</tr>
 					<tr>
-						<td class="left" width="40%">顾客姓名<span style='color: red'>*</span></td>
+						<td class="left" width="40%">顾客姓名<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="productOrder.userName"  value="<s:property value="productOrder.userName"/>"/></td>
 					</tr>
 					<tr>
-						<td class="left" width="40%">顾客电话<span style='color: red'>*</span></td>
+						<td class="left" width="40%">顾客电话<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="productOrder.userPhone"  value="<s:property value="productOrder.userPhone"/>"/></td>
 					</tr>
 					<tr>
-						<td class="left" width="40%">顾客地址<span style='color: red'>*</span></td>
+						<td class="left" width="40%">顾客地址<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="productOrder.userAddress"  value="<s:property value="productOrder.userAddress"/>"/></td>
 					</tr>
 					<tr>
-						<td class="left" width="40%">订单状态<span style='color: red'>*</span></td>
+						<td class="left" width="40%">订单状态<span class='red'>*</span></td>
 						<td class="right">
 						<select name="productOrder.status" id="productOrder_status">
 							<option value="0">未处理</option>
@@ -91,7 +91,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="left" width="40%">备注信息<span style='color: red'>*</span></td>
+						<td class="left" width="40%">备注信息<span class='red'>*</span></td>
 						<td class="right"><textarea  name="productOrder.note"  rows="4" cols="60"><s:property value="productOrder.note"/></textarea></td>
 					</tr><tr><td colspan="2" align="center"><button type="submit" class="btn">提交</button></tr>
 				</table>

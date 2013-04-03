@@ -33,116 +33,116 @@ public class Team {
 
 	private List<Image> m_memberImages;
 
-	public int getId() {
-		return m_id;
-	}
-
-	public void setId(int id) {
-		m_id = id;
-	}
-
-	public int getImageId() {
-		return m_imageId;
-	}
-
-	public void setImageId(int imageId) {
-		m_imageId = imageId;
+	public String getAchievement() {
+		return m_achievement;
 	}
 
 	public String getAnnouncement() {
 		return m_announcement;
 	}
 
-	public void setAnnouncement(String announcement) {
-		m_announcement = announcement;
-	}
-
-	public String getIntroduction() {
-		return m_introduction;
-	}
-
-	public void setIntroduction(String introduction) {
-		m_introduction = introduction;
-	}
-
-	public String getSetUpTime() {
-		return m_setUpTime;
-	}
-
-	public void setSetUpTime(String setUpTime) {
-		m_setUpTime = setUpTime;
-	}
-
-	public String getFounder() {
-		return m_founder;
-	}
-
-	public void setFounder(String founder) {
-		m_founder = founder;
-	}
-
 	public String getCaptain() {
 		return m_captain;
-	}
-
-	public void setCaptain(String captain) {
-		m_captain = captain;
-	}
-
-	public String getMembers() {
-		return m_members;
-	}
-
-	public void setMembers(String members) {
-		m_members = members;
-	}
-
-	public String getSlogan() {
-		return m_slogan;
-	}
-
-	public void setSlogan(String slogan) {
-		m_slogan = slogan;
-	}
-
-	public String getAchievement() {
-		return m_achievement;
-	}
-
-	public void setAchievement(String achievement) {
-		m_achievement = achievement;
 	}
 
 	public Date getDate() {
 		return m_date;
 	}
 
-	public void setDate(Date date) {
-		m_date = date;
+	public String getFounder() {
+		return m_founder;
 	}
 
-	public String getName() {
-		return m_name;
+	public int getId() {
+		return m_id;
 	}
 
-	public void setName(String name) {
-		m_name = name;
+	public int getImageId() {
+		return m_imageId;
+	}
+
+	public String getIntroduction() {
+		return m_introduction;
 	}
 
 	public Image getLogo() {
 		return m_logo;
 	}
 
-	public void setLogo(Image logo) {
-		m_logo = logo;
-	}
-
 	public List<Image> getMemberImages() {
 		return m_memberImages;
 	}
 
+	public String getMembers() {
+		return m_members;
+	}
+
+	public String getName() {
+		return m_name;
+	}
+
+	public String getSetUpTime() {
+		return m_setUpTime;
+	}
+
+	public String getSlogan() {
+		return m_slogan;
+	}
+
+	public void setAchievement(String achievement) {
+		m_achievement = achievement;
+	}
+
+	public void setAnnouncement(String announcement) {
+		m_announcement = announcement;
+	}
+
+	public void setCaptain(String captain) {
+		m_captain = captain;
+	}
+
+	public void setDate(Date date) {
+		m_date = date;
+	}
+
+	public void setFounder(String founder) {
+		m_founder = founder;
+	}
+
+	public void setId(int id) {
+		m_id = id;
+	}
+
+	public void setImageId(int imageId) {
+		m_imageId = imageId;
+	}
+
+	public void setIntroduction(String introduction) {
+		m_introduction = introduction;
+	}
+
+	public void setLogo(Image logo) {
+		m_logo = logo;
+	}
+
 	public void setMemberImages(List<Image> memberImages) {
 		m_memberImages = memberImages;
+	}
+
+	public void setMembers(String members) {
+		m_members = members;
+	}
+
+	public void setName(String name) {
+		m_name = name;
+	}
+
+	public void setSetUpTime(String setUpTime) {
+		m_setUpTime = setUpTime;
+	}
+
+	public void setSlogan(String slogan) {
+		m_slogan = slogan;
 	}
 
 }

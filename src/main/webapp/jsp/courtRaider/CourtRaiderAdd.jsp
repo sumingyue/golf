@@ -51,146 +51,40 @@ $(document).ready(function() {
 			<h4 style="text-align:center">新增高尔夫俱乐部球道信息</h4>
 			<form action="courtRaiderAddSubmit.do" id="form" method="post"  
 				enctype="multipart/form-data">
-				<table align="center" cellpadding="5" cellspacing="1" width="100%" rules="all" border="1">
+				<table class="table table-striped table-bordered">
 					<tr>
-						<td class="left" colspan="3" width="40%">球场<span style='color: red'>*</span></td>
-						<td class="right" colspan="2">
+						<td class="left"  width="10%">球场<span class='red'>*</span></td>
+						<td class="right" colspan="3">
 							<s:select name="courtRaider.courtId" id="courtId"
 								list="courts" listKey="id" listValue="name"  theme="simple" >
 							</s:select>
 						</td>
 					</tr>
 					<tr>
-						<td class="left" colspan="3">球道分类<span style='color: red'>*</span></td>
-						<td class="right"  colspan="2"><input type="text" size="30" name="courtRaider.name" /></td>
+						<td class="left">球道分类<span class='red'>*</span></td>
+						<td class="right" colspan="3"><input type="text" size="30" name="courtRaider.type" /></td>
+					</tr>
+					<s:iterator value="flags" status="vs">
+					<tr>
+						<td class="left" rowspan="2">球道${1+vs.index}</td>
+						<td class="right">顺序<span class='red'>*</span><input type="text" size="10" name="typeIndex" />
+						名称<span class='red'>*</span><input type="text" size="20" name="name" />
+						图片<span class='red'>*</span><input type="file" name="uploads" id="fileUpload_upload">
+						<td></td>
+						<td rowspan="2">球道简介<textarea  name="des"  rows="3" cols="30"></textarea></td>
 					</tr>
 					<tr>
-						<td class="left" width="5%" rowspan="2">球道01</td>
-						<td class="left" width="15%">球道顺序<span style='color: red'>*</span></td>
-						<td class="right" width="25%"><input type="text" size="10" name="index" /></td>
-						<td class="left" rowspan="2">球道简介<span style='color: red'>*</span></td>
-						<td class="right"rowspan="2"><textarea  name="des"  rows="3" cols="80"></textarea>
-						</td>
+						<td class="right">
+						红(码)<span class='red'>*</span><input type="text" size="10" name="indicator1" />
+						白(码)<span class='red'>*</span><input type="text" size="10" name="indicator2" />
+						蓝(码)<span class='red'>*</span><input type="text" size="10" name="indicator3" />
+						金(码)<span class='red'>*</span><input type="text" size="10" name="indicator4" />
+						黑(码)<span class='red'>*</span><input type="text" size="10" name="indicator5" /></td>					
 					</tr>
+					</s:iterator>
 					<tr>
-					<td class="left">球道图片<span style='color: red'>*</span></td>
-						<td class="right"><input type="file" name="uploads"
-							id="fileUpload_upload"></td>
-					</tr>
-					<tr>
-						<td class="left" width="5%" rowspan="2">球道02</td>
-						<td class="left" width="15%">球道顺序<span style='color: red'>*</span></td>
-						<td class="right" width="25%"><input type="text" size="10" name="index" /></td>
-						<td class="left" rowspan="2">球道简介<span style='color: red'>*</span></td>
-						<td class="right"rowspan="2"><textarea  name="des"  rows="3" cols="80"></textarea>
-						</td>
-					</tr>
-					<tr>
-					<td class="left">球道图片<span style='color: red'>*</span></td>
-						<td class="right"><input type="file" name="uploads"
-							id="fileUpload_upload"></td>
-					</tr><tr>
-						<td class="left" width="5%" rowspan="2">球道03</td>
-						<td class="left" width="15%">球道顺序<span style='color: red'>*</span></td>
-						<td class="right" width="25%"><input type="text" size="10" name="index" /></td>
-						<td class="left" rowspan="2">球道简介<span style='color: red'>*</span></td>
-						<td class="right"rowspan="2"><textarea  name="des"  rows="3" cols="80"></textarea>
-						</td>
-					</tr>
-					<tr>
-					<td class="left">球道图片<span style='color: red'>*</span></td>
-						<td class="right"><input type="file" name="uploads"
-							id="fileUpload_upload"></td>
-					</tr><tr>
-						<td class="left" width="5%" rowspan="2">球道04</td>
-						<td class="left" width="15%">球道顺序<span style='color: red'>*</span></td>
-						<td class="right" width="25%"><input type="text" size="10" name="index" /></td>
-						<td class="left" rowspan="2">球道简介<span style='color: red'>*</span></td>
-						<td class="right"rowspan="2"><textarea  name="des"  rows="3" cols="80"></textarea>
-						</td>
-					</tr>
-					<tr>
-					<td class="left">球道图片<span style='color: red'>*</span></td>
-						<td class="right"><input type="file" name="uploads"
-							id="fileUpload_upload"></td>
-					</tr><tr>
-						<td class="left" width="5%" rowspan="2">球道05</td>
-						<td class="left" width="15%">球道顺序<span style='color: red'>*</span></td>
-						<td class="right" width="25%"><input type="text" size="10" name="index" /></td>
-						<td class="left" rowspan="2">球道简介<span style='color: red'>*</span></td>
-						<td class="right"rowspan="2"><textarea  name="des"  rows="3" cols="80"></textarea>
-						</td>
-					</tr>
-					<tr>
-					<td class="left">球道图片<span style='color: red'>*</span></td>
-						<td class="right"><input type="file" name="uploads"
-							id="fileUpload_upload"></td>
-					</tr><tr>
-						<td class="left" width="5%" rowspan="2">球道06</td>
-						<td class="left" width="15%">球道顺序<span style='color: red'>*</span></td>
-						<td class="right" width="25%"><input type="text" size="10" name="index" /></td>
-						<td class="left" rowspan="2">球道简介<span style='color: red'>*</span></td>
-						<td class="right"rowspan="2"><textarea  name="des"  rows="3" cols="80"></textarea>
-						</td>
-					</tr>
-					<tr>
-					<td class="left">球道图片<span style='color: red'>*</span></td>
-						<td class="right"><input type="file" name="uploads"
-							id="fileUpload_upload"></td>
-					</tr><tr>
-						<td class="left" width="5%" rowspan="2">球道07</td>
-						<td class="left" width="15%">球道顺序<span style='color: red'>*</span></td>
-						<td class="right" width="25%"><input type="text" size="10" name="index" /></td>
-						<td class="left" rowspan="2">球道简介<span style='color: red'>*</span></td>
-						<td class="right"rowspan="2"><textarea  name="des"  rows="3" cols="80"></textarea>
-						</td>
-					</tr>
-					<tr>
-					<td class="left">球道图片<span style='color: red'>*</span></td>
-						<td class="right"><input type="file" name="uploads"
-							id="fileUpload_upload"></td>
-					</tr><tr>
-						<td class="left" width="5%" rowspan="2">球道08</td>
-						<td class="left" width="15%">球道顺序<span style='color: red'>*</span></td>
-						<td class="right" width="25%"><input type="text" size="10" name="index" /></td>
-						<td class="left" rowspan="2">球道简介<span style='color: red'>*</span></td>
-						<td class="right"rowspan="2"><textarea  name="des"  rows="3" cols="80"></textarea>
-						</td>
-					</tr>
-					<tr>
-					<td class="left">球道图片<span style='color: red'>*</span></td>
-						<td class="right"><input type="file" name="uploads"
-							id="fileUpload_upload"></td>
-					</tr><tr>
-						<td class="left" width="5%" rowspan="2">球道09</td>
-						<td class="left" width="15%">球道顺序<span style='color: red'>*</span></td>
-						<td class="right" width="25%"><input type="text" size="10" name="index" /></td>
-						<td class="left" rowspan="2">球道简介<span style='color: red'>*</span></td>
-						<td class="right"rowspan="2"><textarea  name="des"  rows="3" cols="80"></textarea>
-						</td>
-					</tr>
-					<tr>
-					<td class="left">球道图片<span style='color: red'>*</span></td>
-						<td class="right"><input type="file" name="uploads"
-							id="fileUpload_upload"></td>
-					</tr><tr>
-						<td class="left" width="5%" rowspan="2">球道10</td>
-						<td class="left" width="15%">球道顺序<span style='color: red'>*</span></td>
-						<td class="right" width="25%"><input type="text" size="10" name="index" /></td>
-						<td class="left" rowspan="2">球道简介<span style='color: red'>*</span></td>
-						<td class="right"rowspan="2"><textarea  name="des"  rows="3" cols="80"></textarea>
-						</td>
-					</tr>
-					<tr>
-					<td class="left">球道图片<span style='color: red'>*</span></td>
-						<td class="right"><input type="file" name="uploads"
-							id="fileUpload_upload"></td>
-					</tr>
-					
-					
-					<tr>
-						<td colspan="5" align="center">
-							<button type="submit" class="btn">提交</button>
+						<td colspan="5" style="text-align:center">
+							<button type="submit" class="btn btn-primary  btn-normal">提交</button>
 					</tr>
 					</table>
 			</form>

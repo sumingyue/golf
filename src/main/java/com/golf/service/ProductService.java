@@ -9,23 +9,23 @@ import com.golf.tools.PagedTool;
 
 public interface ProductService {
 
-	public List<Product> queryAllProducts();	
+	public int deleteProduct(int productId);	
 	
-	public List<Product> queryPagedProducts(PagedTool tool,int categoryId,int smallCategoryId);
+	public Object deleteProductImage(ProductImage productImage);
 
-	public int queryTotalSize(int categoryId,int smallCategoryId);
-
-	public int insertProduct(Product product);
-
-	public int updateProduct(Product product);
-
-	public int deleteProduct(int productId);
+	public List<Image> findImagesByProductId(int productId);
 
 	public Product findProduct(int productId);
 
-	public List<Image> findImagesByProductId(int productId);
-	
+	public int insertProduct(Product product);
+
 	public int insertProductImage(ProductImage productImage);
+
+	public List<Product> queryAllProducts();
+
+	public List<Product> queryPagedProducts(PagedTool tool,int categoryId,int smallCategoryId);
 	
-	public Object deleteProductImage(ProductImage productImage);
+	public int queryTotalSize(int categoryId,int smallCategoryId);
+	
+	public int updateProduct(Product product);
 }

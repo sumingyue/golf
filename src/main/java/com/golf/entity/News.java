@@ -92,6 +92,10 @@ public class News {
 		return m_content;
 	}
 
+	public Date getCreationDate() {
+		return m_creationDate;
+	}
+
 	public String getCreationDateStr() {
 		if (m_creationDate != null) {
 			return m_sdf.format(m_creationDate);
@@ -99,8 +103,14 @@ public class News {
 		return "";
 	}
 
-	public Date getCreationDate() {
-		return m_creationDate;
+	public String getDateStr() {
+		try {
+			if (m_validate != null) {
+				return m_validate.format(m_validateDate);
+			}
+		} catch (Exception e) {
+		}
+		return "";
 	}
 
 	public int getGood() {
@@ -111,6 +121,14 @@ public class News {
 		return m_id;
 	}
 
+	public Image getImage() {
+		return m_image;
+	}
+
+	public int getImageId() {
+		return m_imageId;
+	}
+
 	public String getKeyword() {
 		if (m_keyword != null) {
 			return m_keyword;
@@ -118,8 +136,28 @@ public class News {
 		return "";
 	}
 
+	public String getMaxTitle() {
+		if (m_title != null) {
+			int length = m_title.length();
+			if (length > Config.DEFAULT_MAX_TITLE_LENGTH) {
+				return m_title.substring(0, Config.DEFAULT_MAX_TITLE_LENGTH);
+			}
+		}
+		return m_title;
+	}
+
 	public Date getModifyDate() {
 		return m_modifyDate;
+	}
+
+	public String getNormalTitle() {
+		if (m_title != null) {
+			int length = m_title.length();
+			if (length > Config.DEFAULT_NORMAL_TITLE_LENGTH) {
+				return m_title.substring(0, Config.DEFAULT_NORMAL_TITLE_LENGTH);
+			}
+		}
+		return m_title;
 	}
 
 	public int getPriority() {
@@ -138,6 +176,16 @@ public class News {
 		return m_smallCategoryId;
 	}
 
+	public String getSmallTitle() {
+		if (m_title != null) {
+			int length = m_title.length();
+			if (length > Config.DEFAULT_SMALL_TITLE_LENGTH) {
+				return m_title.substring(0, Config.DEFAULT_SMALL_TITLE_LENGTH);
+			}
+		}
+		return m_title;
+	}
+
 	public String getSource() {
 		return m_source;
 	}
@@ -150,15 +198,15 @@ public class News {
 		return m_title;
 	}
 
+	public Date getValidateDate() {
+		return m_validateDate;
+	}
+
 	public String getValidateDateStr() {
 		if (m_validateDate != null) {
 			return m_sdf.format(m_validateDate);
 		}
 		return "";
-	}
-
-	public Date getValidateDate() {
-		return m_validateDate;
 	}
 
 	public int getViewNumber() {
@@ -197,6 +245,14 @@ public class News {
 		m_id = id;
 	}
 
+	public void setImage(Image image) {
+		m_image = image;
+	}
+
+	public void setImageId(int imageId) {
+		m_imageId = imageId;
+	}
+
 	public void setKeyword(String keyword) {
 		m_keyword = keyword;
 	}
@@ -233,46 +289,6 @@ public class News {
 		m_title = title;
 	}
 
-	public String getDateStr() {
-		try {
-			if (m_validate != null) {
-				return m_validate.format(m_validateDate);
-			}
-		} catch (Exception e) {
-		}
-		return "";
-	}
-
-	public String getMaxTitle() {
-		if (m_title != null) {
-			int length = m_title.length();
-			if (length > Config.DEFAULT_MAX_TITLE_LENGTH) {
-				return m_title.substring(0, Config.DEFAULT_MAX_TITLE_LENGTH);
-			}
-		}
-		return m_title;
-	}
-
-	public String getNormalTitle() {
-		if (m_title != null) {
-			int length = m_title.length();
-			if (length > Config.DEFAULT_NORMAL_TITLE_LENGTH) {
-				return m_title.substring(0, Config.DEFAULT_NORMAL_TITLE_LENGTH);
-			}
-		}
-		return m_title;
-	}
-
-	public String getSmallTitle() {
-		if (m_title != null) {
-			int length = m_title.length();
-			if (length > Config.DEFAULT_SMALL_TITLE_LENGTH) {
-				return m_title.substring(0, Config.DEFAULT_SMALL_TITLE_LENGTH);
-			}
-		}
-		return m_title;
-	}
-
 	public void setValidateDate(String validateDate) {
 		try {
 			m_validateDate = m_sdf.parse(validateDate);
@@ -283,22 +299,6 @@ public class News {
 
 	public void setViewNumber(int viewNumber) {
 		m_viewNumber = viewNumber;
-	}
-
-	public int getImageId() {
-		return m_imageId;
-	}
-
-	public void setImageId(int imageId) {
-		m_imageId = imageId;
-	}
-
-	public Image getImage() {
-		return m_image;
-	}
-
-	public void setImage(Image image) {
-		m_image = image;
 	}
 
 }

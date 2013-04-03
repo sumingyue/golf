@@ -14,8 +14,10 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		init();
 		$('#courtOrderList').addClass('active');
+		$(".delete").bind("click", function() {
+			return confirm("确定要删除此分类吗(不可恢复)？");
+		});
 	});
 </script>
 </head>
@@ -29,7 +31,7 @@
       <div class="span10">
 <!--         <h4 style="text-align:center">顾客球场预定管理</h4>
  -->			
-			<table  align="center" cellpadding="2" cellspacing="1"  class="table" id="contents">
+			<table  class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr class="title">
 					<th width="5%">序号</th>
@@ -38,8 +40,8 @@
 					<th width="10%">状态</th>
 					<th width="10%">时间</th>
 					<th width="10%">用户</th>
-					<th width="20%">电话</th>
-					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="courtOrderAdd.do" >新增</a></th>
+					<th width="16%">电话</th>
+					<th width="14%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="courtOrderAdd.do" class="btn btn-primary  btn-small" >新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="courtOrders" status="vs">
 					<tr class="trDetail">
@@ -52,8 +54,8 @@
 					<td><s:property value="date" /></td>
 					<td><s:property value="userName" /></td>
 					<td><s:property value="userPhone" /></td>
-					<td><a href="courtOrderUpdate.do?courtOrderId=<s:property value="id"/>">编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
-					<a class="delete" href="courtOrderDelete.do?courtOrderId=<s:property value="id"/>">删除</a></td>
+					<td><a href="courtOrderUpdate.do?courtOrderId=<s:property value="id"/>" class="btn btn-primary  btn-small" >编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="btn btn-danger  btn-small delete" href="courtOrderDelete.do?courtOrderId=<s:property value="id"/>">删除</a></td>
 					</tr>
 				</s:iterator></tbody>
 			</table>

@@ -8,8 +8,8 @@ public class CategoryDao {
 
 	private BaseDao m_baseDao;
 
-	public void setBaseDao(BaseDao baseDao) {
-		m_baseDao = baseDao;
+	public int delete(int id) {
+		return (Integer) m_baseDao.delete("category.delete", id);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -25,11 +25,11 @@ public class CategoryDao {
 		return (Integer) m_baseDao.insert("category.insert", category);
 	}
 
-	public int update(Category category) {
-		return m_baseDao.update("category.update", category);
+	public void setBaseDao(BaseDao baseDao) {
+		m_baseDao = baseDao;
 	}
 
-	public int delete(int id) {
-		return (Integer) m_baseDao.delete("category.delete", id);
+	public int update(Category category) {
+		return m_baseDao.update("category.update", category);
 	}
 }

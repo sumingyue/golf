@@ -15,12 +15,6 @@
 		$('#team').addClass('active');
 	});
 </script>
-	<style>
-		#main-img{
-			width:780px;
-			height:350px;
-		}	
-	</style>
 </head>
 <body>
 	<div class="container">
@@ -50,7 +44,7 @@
 			<div class="span10">
 				<img id="main-img" src="<s:property value="team.logo.path"/>" />
 				<div class="row top">
-					<div class="span5 myhidden top" style="height: 400px">
+					<div class="span5 myhidden top" style="height: 300px">
 						<table class="table table-striped table-bordered table-hover">
 							<tbody>
 								<tr>
@@ -80,7 +74,7 @@
 							</tbody>
 						</table>
 					</div>
-					<div class="span5 myhidden top" style="height: 400px">
+					<div class="span5 myhidden top" style="height: 300px">
 						<div>
 							<h4 class="breadcrumb title ">球队公告</h4>
 							<div class="left">${team.introduction}</div>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="learnClub" type="com.golf.entity.LearnClub" />
+	
+	<sql id="learnClub.columns">
+		id,imageId,name,address,phone,introduction,creationDate
+	</sql>
+	<select id="learnClub.findAll" resultClass="learnClub">
+		select
+		<include refid="learnClub.columns" />
+		from learnClub order by id desc
+	</select>
+	<select id="learnClub.findById" resultClass="learnClub"
+		parameterClass="int">
+		select
+		<include refid="learnClub.columns" />
+		from learnClub where id=#id#
+	</select>
+	<insert id="learnClub.insert" parameterClass="learnClub">
+		insert into learnClub (
+		<include refid="learnClub.columns" />
+		) values
+		(#id#,#imageId#,#name#,#address#,#phone#,#introduction#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="learnClub.update" parameterClass="learnClub">
+		update learnClub set imageId=#imageId#,name=#name#,address=#address#,
+		phone=#phone#,introduction=#introduction# where id=#id#
+	</update>
+	<delete id="learnClub.delete" parameterClass="int">
+		delete from learnClub
+		where id=#id#
+	</delete>
+</sqlMap>

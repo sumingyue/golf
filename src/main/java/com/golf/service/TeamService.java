@@ -8,20 +8,20 @@ import com.golf.tools.PagedTool;
 
 public interface TeamService {
 
-	public List<Team> queryAllTeams();
+	public int deleteTeam(int teamId);
+
+	public Image findLogo(int teamId);
+
+	public Team findTeam(int teamId);
 
 	public int insertTeam(Team team);
 
+	public List<Team> queryAllTeams();
+	
+	public List<Team> queryPagedTeams(PagedTool tool);
+	
 	public int updateTeam(Team team);
 
-	public int deleteTeam(int teamId);
-
-	public Team findTeam(int teamId);
-	
-	public Image findLogo(int teamId);
-	
 	public int updateTeamLogo(int id,int imageId);
-
-	public List<Team> queryPagedTeams(PagedTool tool);
 
 }

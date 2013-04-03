@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="travelCourt" type="com.golf.entity.TravelCourt" />
+	
+	<sql id="travelCourt.columns">
+		id,travelId,courtId,creationDate
+	</sql>
+	<select id="travelCourt.findAll" resultClass="travelCourt">
+		select
+		<include refid="travelCourt.columns" />
+		from travelCourt order by id desc
+	</select>
+	<select id="travelCourt.queryAllByTravelId" resultClass="travelCourt">
+		select
+		<include refid="travelCourt.columns" />
+		from travelCourt where travelId =#id# order by id desc
+	</select>
+	<select id="travelCourt.findById" resultClass="travelCourt"
+		parameterClass="int">
+		select
+		<include refid="travelCourt.columns" />
+		from travelCourt where id=#id#
+	</select>
+	<insert id="travelCourt.insert" parameterClass="travelCourt">
+		insert into travelCourt (
+		<include refid="travelCourt.columns" />
+		) values
+		(#id#,#travelId#,#courtId#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="travelCourt.update" parameterClass="travelCourt">
+		update travelCourt set travelId=#travelId#,courtId=#courtId# where id=#id#
+	</update>
+	<delete id="travelCourt.delete" parameterClass="int">
+		delete from travelCourt
+		where id=#id#
+	</delete>
+	<delete id="travelCourt.deleteByTravelId" parameterClass="int">
+		delete from travelCourt
+		where travelId=#id#
+	</delete>
+</sqlMap>

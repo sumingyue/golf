@@ -26,17 +26,16 @@ public class ProductOrderAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
-	public String productOrderList() {
-		try {
-//			m_pagedTool.setTotalNumber(m_productOrderService.queryAllProductOrders().size());
-//			m_productOrders = m_productOrderService.queryPagedProductOrders(m_pagedTool);
-//			
-			m_productOrders = m_productOrderService.queryAllProductOrders();
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public ProductOrder getProductOrder() {
+		return m_productOrder;
+	}
+
+	public List<ProductOrder> getProductOrders() {
+		return m_productOrders;
 	}
 
 	public String productOrderAddSubmit() {
@@ -52,6 +51,33 @@ public class ProductOrderAction extends ActionSupport {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
 		}
+	}
+
+	public String productOrderDelete() {
+		try {
+			int count = m_productOrderService.deleteProductOrder(m_productOrderId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String productOrderList() {
+		try {
+//			m_pagedTool.setTotalNumber(m_productOrderService.queryAllProductOrders().size());
+//			m_productOrders = m_productOrderService.queryPagedProductOrders(m_pagedTool);
+//			
+			m_productOrders = m_productOrderService.queryAllProductOrders();
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
 	}
 
 	public String productOrderUpdate() {
@@ -78,48 +104,22 @@ public class ProductOrderAction extends ActionSupport {
 		}
 	}
 
-	public String productOrderDelete() {
-		try {
-			int count = m_productOrderService.deleteProductOrder(m_productOrderId);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-	}
-
-	public ProductOrder getProductOrder() {
-		return m_productOrder;
-	}
-
-	public void setProductOrder(ProductOrder productOrder) {
-		m_productOrder = productOrder;
-	}
-
-	public void setProductOrderService(ProductOrderService productOrderService) {
-		m_productOrderService = productOrderService;
-	}
-
-	public List<ProductOrder> getProductOrders() {
-		return m_productOrders;
-	}
-
-	public void setProductOrderId(int productOrderId) {
-		m_productOrderId = productOrderId;
-	}
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
+	public void setIndex(int index){
+		m_pagedTool.setPageIndex(index);
 	}
 
 	public void setPagedTool(PagedTool pagedTool) {
 		m_pagedTool = pagedTool;
 	}
+	public void setProductOrder(ProductOrder productOrder) {
+		m_productOrder = productOrder;
+	}
 
-	public void setIndex(int index){
-		m_pagedTool.setPageIndex(index);
+	public void setProductOrderId(int productOrderId) {
+		m_productOrderId = productOrderId;
+	}
+
+	public void setProductOrderService(ProductOrderService productOrderService) {
+		m_productOrderService = productOrderService;
 	}
 }

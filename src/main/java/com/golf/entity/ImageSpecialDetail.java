@@ -19,60 +19,60 @@ public class ImageSpecialDetail {
 
 	private Date m_creationDate;
 
-	public int getId() {
-		return m_id;
-	}
-
-	public void setId(int id) {
-		m_id = id;
-	}
-
-	public int getImageSpecialId() {
-		return m_imageSpecialId;
-	}
-
-	public void setImageSpecialId(int imageSpecialId) {
-		m_imageSpecialId = imageSpecialId;
-	}
-
-	public ImageSpecial getImageSpecial() {
-		return m_imageSpecial;
-	}
-
-	public void setImageSpecial(ImageSpecial imageSpecial) {
-		m_imageSpecial = imageSpecial;
-	}
-
-	public int getImageId() {
-		return m_imageId;
-	}
-
-	public void setImageId(int imageId) {
-		m_imageId = imageId;
-	}
-
-	public String getImageDes() {
-		return m_imageDes;
-	}
-
-	public void setImageDes(String imageDes) {
-		m_imageDes = imageDes;
-	}
-
 	public Date getCreationDate() {
 		return m_creationDate;
 	}
 
-	public void setCreationDate(Date creationDate) {
-		m_creationDate = creationDate;
+	public int getId() {
+		return m_id;
 	}
 
 	public Image getImage() {
 		return m_image;
 	}
 
+	public String getImageDes() {
+		return m_imageDes;
+	}
+
+	public int getImageId() {
+		return m_imageId;
+	}
+
+	public ImageSpecial getImageSpecial() {
+		return m_imageSpecial;
+	}
+
+	public int getImageSpecialId() {
+		return m_imageSpecialId;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		m_creationDate = creationDate;
+	}
+
+	public void setId(int id) {
+		m_id = id;
+	}
+
 	public void setImage(Image image) {
 		m_image = image;
+	}
+
+	public void setImageDes(String imageDes) {
+		m_imageDes = imageDes;
+	}
+
+	public void setImageId(int imageId) {
+		m_imageId = imageId;
+	}
+
+	public void setImageSpecial(ImageSpecial imageSpecial) {
+		m_imageSpecial = imageSpecial;
+	}
+
+	public void setImageSpecialId(int imageSpecialId) {
+		m_imageSpecialId = imageSpecialId;
 	}
 
 }

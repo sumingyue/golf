@@ -27,13 +27,15 @@ $(document).ready(function(){
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-			<h4 style="text-align:center">修改高尔夫图片专题信息</h4>
 				<form action="imageSpecialUpdateSubmit.do" id="form" method="post" 
 				enctype="multipart/form-data">
-				<table align="center" cellpadding="2" cellspacing="1" width="100%">
+				<table class="table table-striped table-bordered" width="100%">
+					<tr><td colspan='2'>
+						<h4 style="text-align:center">修改高尔夫图片专题信息</h4>
+					</td></tr>
 					<input type="hidden" name="imageSpecial.id" value="<s:property value="imageSpecial.id"/>"/>
 					<tr>
-						<td width="15%" class="left">一级分类<span style='color: red'>*</span></td>
+						<td width="15%" class="left">一级分类<span class='red'>*</span></td>
 						<td class="right"><s:select name="imageSpecial.categoryId"
 								onchange="imageCategoryChanged()" 
 								list="categoryList" listKey="id" listValue="name"
@@ -41,7 +43,7 @@ $(document).ready(function(){
 							</s:select></td>
 					</tr>
 					<tr>
-						<td width="15%" class="left">二级分类<span style='color: red'>*</span></td>
+						<td width="15%" class="left">二级分类<span class='red'>*</span></td>
 						<td class="right"><s:select name="imageSpecial.smallCategoryId" 
 								list="smallCategoryList" listKey="id" listValue="name"
 								value="imageSpecial.smallCategoryId" theme="simple" cssClass="select">
@@ -49,16 +51,16 @@ $(document).ready(function(){
 						</td>
 					</tr>
 					<tr>
-						<td class="left" width="30%">专题名称<span style='color: red'>*</span></td>
+						<td class="left" width="30%">专题名称<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="imageSpecial.name" value="<s:property value="imageSpecial.name"/>"/></td>
 					</tr>
 					<tr>
-						<td class="left">专题说明<span style='color: red'>*</span></td>
+						<td class="left">专题说明<span class='red'>*</span></td>
 						<td class="right"><textarea  name="imageSpecial.content"  rows="5" cols="80"><s:property value="imageSpecial.content"/></textarea>
 						</td>
 					</tr>
 					<tr>
-						<td class="left">专题封面<span style='color: red'>*</span></td>
+						<td class="left">专题封面<span class='red'>*</span></td>
 						<td class="right"><input type="file" name="upload"
 							id="fileUpload_upload">
 							<s:if test="imageSpecial.imageId>0">图片名称:&nbsp;&nbsp; <s:property value='imageSpecial.image.name'/></s:if>
@@ -71,8 +73,8 @@ $(document).ready(function(){
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2" align="center">
-							<button type="submit" class="btn">提交</button>
+						<td colspan="2" style="text-align:center">
+							<button type="submit" class="btn btn-primary  btn-large">提交</button>
 					</tr>
 					</table>
 			</form>

@@ -52,44 +52,6 @@ public class CourtImageAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
-	private int insertImage(File upload,UploadFile uploadFile) {
-		String fileName = uploadFile.getFilename();
-		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.COURT);
-		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.COURT);
-		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
-
-		String originalPath = ImageTools.getOriginalPath(fileName, Image.COURT);
-		uploadFile.setOriginalPath(originalPath);
-
-		uploadFile.setPath(relativePath);
-		uploadFile.setStorePath(storePath);
-
-		uploadFile.setCompressedPath(compressRelativePath);
-		uploadFile.setCompressedStorePath(compressStorePath);
-
-		return m_imageService.insert(upload, uploadFile, Image.COURT, Image.COURT_WIDTH, Image.COURT_HEIGHT, true,
-		      Image.COURT_SMALL_WIDTH, Image.COURT_SMALL_HEIGHT);
-	}
-
-	public String courtImageList() {
-		try {
-			// m_courts = m_courtService.queryAllCourts();
-			// m_pagedTool.setTotalNumber(m_courtImageService.queryAllCourtImages(m_courtId).size());
-			// m_courtImages = m_courtImageService.queryPagedCourtImages(m_pagedTool, m_courtId);
-			m_courtImages = m_courtImageService.queryAllCourtImages(0);
-			for (CourtImage temp : m_courtImages) {
-				temp.setImage(m_imageService.findImage(temp.getImageId()));
-				temp.setCourt(m_courtService.findCourt(temp.getCourtId()));
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
-	}
-
 	public String courtImageAdd() {
 		m_courts = m_courtService.queryAllCourts();
 		return SUCCESS;
@@ -132,6 +94,37 @@ public class CourtImageAction extends ActionSupport {
 		return result;
 	}
 
+	public String courtImageDelete() {
+		try {
+			int count = m_courtImageService.deleteCourtImage(m_courtImageId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String courtImageList() {
+		try {
+			// m_courts = m_courtService.queryAllCourts();
+			// m_pagedTool.setTotalNumber(m_courtImageService.queryAllCourtImages(m_courtId).size());
+			// m_courtImages = m_courtImageService.queryPagedCourtImages(m_pagedTool, m_courtId);
+			m_courtImages = m_courtImageService.queryAllCourtImages(0);
+			for (CourtImage temp : m_courtImages) {
+				temp.setImage(m_imageService.findImage(temp.getImageId()));
+				temp.setCourt(m_courtService.findCourt(temp.getCourtId()));
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+
 	public String courtImageUpdate() {
 		m_courts = m_courtService.queryAllCourts();
 		try {
@@ -164,78 +157,97 @@ public class CourtImageAction extends ActionSupport {
 		}
 	}
 
-	public String courtImageDelete() {
-		try {
-			int count = m_courtImageService.deleteCourtImage(m_courtImageId);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
+	public int getCourtId() {
+		return m_courtId;
 	}
 
 	public CourtImage getCourtImage() {
 		return m_courtImage;
 	}
 
-	public void setCourtImage(CourtImage courtImage) {
-		m_courtImage = courtImage;
-	}
-
-	public void setCourtImageService(CourtImageService courtImageService) {
-		m_courtImageService = courtImageService;
-	}
-
 	public List<CourtImage> getCourtImages() {
 		return m_courtImages;
-	}
-
-	public void setCourtImageId(int courtImageId) {
-		m_courtImageId = courtImageId;
 	}
 
 	public List<Court> getCourts() {
 		return m_courts;
 	}
 
-	public void setCourtService(CourtService courtService) {
-		m_courtService = courtService;
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
 	}
 
-	public int getCourtId() {
-		return m_courtId;
+	private int insertImage(File upload,UploadFile uploadFile) {
+		String fileName = uploadFile.getFilename();
+		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.COURT);
+		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
+
+		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.COURT);
+		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
+
+		String originalPath = ImageTools.getOriginalPath(fileName, Image.COURT);
+		uploadFile.setOriginalPath(originalPath);
+
+		uploadFile.setPath(relativePath);
+		uploadFile.setStorePath(storePath);
+
+		uploadFile.setCompressedPath(compressRelativePath);
+		uploadFile.setCompressedStorePath(compressStorePath);
+
+		return m_imageService.insert(upload, uploadFile, Image.COURT, Image.COURT_WIDTH, Image.COURT_HEIGHT, true,
+		      Image.COURT_SMALL_WIDTH, Image.COURT_SMALL_HEIGHT);
 	}
 
 	public void setCourtId(int courtId) {
 		m_courtId = courtId;
 	}
 
-	public void setUpload(File file) {
-		m_upload = file;
+	public void setCourtImage(CourtImage courtImage) {
+		m_courtImage = courtImage;
 	}
 
-	public void setUploadFileName(String filename) {
-		m_uploadFile.setFilename(filename);
+	public void setCourtImageId(int courtImageId) {
+		m_courtImageId = courtImageId;
+	}
+
+	public void setCourtImageService(CourtImageService courtImageService) {
+		m_courtImageService = courtImageService;
+	}
+
+	public void setCourtService(CourtService courtService) {
+		m_courtService = courtService;
+	}
+
+	public void setDes(String[] des) {
+		m_des = des;
+	}
+
+	public void setImageService(ImageService imageService) {
+		m_imageService = imageService;
+	}
+
+	public void setIndex(int index) {
+		m_pagedTool.setPageIndex(index);
+	}
+
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
+	}
+
+	public void setUpload(File file) {
+		m_upload = file;
 	}
 
 	public void setUploadContentType(String contentType) {
 		m_uploadFile.setContentType(contentType);
 	}
 
-	public void setUploadsFileName(String filename) {
-		String[] fileNames = filename.split(",");
-		for(int i=0;i<fileNames.length;i++){
-			UploadFile upload = m_uploadFiles[i];
-			if(upload==null){
-				upload =new UploadFile();
-				m_uploadFiles[i]= upload;
-			}
-			m_uploadFiles[i].setFilename(fileNames[i]);
-		}
+	public void setUploadFileName(String filename) {
+		m_uploadFile.setFilename(filename);
+	}
+
+	public void setUploads(File[] uploads) {
+		m_uploads = uploads;
 	}
 
 	public void setUploadsContentType(String contentType) {
@@ -250,28 +262,16 @@ public class CourtImageAction extends ActionSupport {
 		}
 	}
 
-	public void setImageService(ImageService imageService) {
-		m_imageService = imageService;
-	}
-
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
-	public void setPagedTool(PagedTool pagedTool) {
-		m_pagedTool = pagedTool;
-	}
-
-	public void setIndex(int index) {
-		m_pagedTool.setPageIndex(index);
-	}
-
-	public void setUploads(File[] uploads) {
-		m_uploads = uploads;
-	}
-
-	public void setDes(String[] des) {
-		m_des = des;
+	public void setUploadsFileName(String filename) {
+		String[] fileNames = filename.split(",");
+		for(int i=0;i<fileNames.length;i++){
+			UploadFile upload = m_uploadFiles[i];
+			if(upload==null){
+				upload =new UploadFile();
+				m_uploadFiles[i]= upload;
+			}
+			m_uploadFiles[i].setFilename(fileNames[i]);
+		}
 	}
 
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="drivingRange" extends="golf">
+		<action name="drivingRangeList" class="drivingRangeAction" method="drivingRangeList">
+			<result name="success">jsp/drivingRange/DrivingRangeList.jsp</result>
+		</action>
+		<action name="drivingRangeAdd" >
+			<result name="success">jsp/drivingRange/DrivingRangeAdd.jsp</result>
+		</action>
+		<action name="drivingRangeAddSubmit" class="drivingRangeAction" method="drivingRangeAddSubmit">
+		</action>
+		<action name="drivingRangeUpdate" class="drivingRangeAction" method="drivingRangeUpdate" >
+			<result name="success">jsp/drivingRange/DrivingRangeUpdate.jsp</result>
+		</action>
+		<action name="drivingRangeUpdateSubmit" class="drivingRangeAction" method="drivingRangeUpdateSubmit">
+		</action>
+		<action name="drivingRangeDelete" class="drivingRangeAction" method="drivingRangeDelete">
+			<result name="success" type="redirect">drivingRangeList.action</result>
+		</action>
+	</package>	
+</struts>

@@ -29,16 +29,16 @@ public class PlayerAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
-	public String playerList() {
-		try {
-			//m_pagedTool.setTotalNumber(m_playerService.queryAllPlayers(m_sort).size());
-			//m_players = m_playerService.queryPagedPlayers(m_pagedTool,m_sort);
-			m_players = m_playerService.queryAllPlayers(m_sort);
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public Player getPlayer() {
+		return m_player;
+	}
+
+	public List<Player> getPlayers() {
+		return m_players;
 	}
 
 	public String playerAddSubmit() {
@@ -55,6 +55,32 @@ public class PlayerAction extends ActionSupport {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
 		}
+	}
+
+	public String playerDelete() {
+		try {
+			int count = m_playerService.deletePlayer(m_playerId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String playerList() {
+		try {
+			//m_pagedTool.setTotalNumber(m_playerService.queryAllPlayers(m_sort).size());
+			//m_players = m_playerService.queryPagedPlayers(m_pagedTool,m_sort);
+			m_players = m_playerService.queryAllPlayers(m_sort);
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
 	}
 
 	public String playerUpdate() {
@@ -82,53 +108,27 @@ public class PlayerAction extends ActionSupport {
 		}
 	}
 
-	public String playerDelete() {
-		try {
-			int count = m_playerService.deletePlayer(m_playerId);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-	}
-
-	public Player getPlayer() {
-		return m_player;
-	}
-
-	public void setPlayer(Player player) {
-		m_player = player;
-	}
-
-	public void setPlayerService(PlayerService playerService) {
-		m_playerService = playerService;
-	}
-
-	public List<Player> getPlayers() {
-		return m_players;
-	}
-
-	public void setPlayerId(int playerId) {
-		m_playerId = playerId;
-	}
-
-	public void setSort(String sort) {
-		m_sort = sort;
-	}
-
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
+	public void setIndex(int index) {
+		m_pagedTool.setPageIndex(index);
 	}
 
 	public void setPagedTool(PagedTool pagedTool) {
 		m_pagedTool = pagedTool;
 	}
 
-	public void setIndex(int index) {
-		m_pagedTool.setPageIndex(index);
+	public void setPlayer(Player player) {
+		m_player = player;
+	}
+
+	public void setPlayerId(int playerId) {
+		m_playerId = playerId;
+	}
+
+	public void setPlayerService(PlayerService playerService) {
+		m_playerService = playerService;
+	}
+
+	public void setSort(String sort) {
+		m_sort = sort;
 	}
 }

@@ -14,8 +14,10 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		init();
 		$('#imageSpecialList').addClass('active');
+		$(".delete").bind("click", function() {
+			return confirm("确定要删除此分类吗(不可恢复)？");
+		});
 	});
 </script>
 </head>
@@ -28,7 +30,7 @@
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
 <!--         	<h4 style="text-align:center">高尔夫俱乐部信息管理</h4>
- -->			<table  align="center" cellpadding="2" cellspacing="1"  class="table" id="contents">
+ -->			<table  class="table table-striped table-bordered table-hover">
  				<thead>
 				<tr class="title">
 					<th width="5%">序号</th>
@@ -50,8 +52,8 @@
 								value="smallCategoryId" theme="simple" >
 							</s:select> --%>
 						</th>
-					<th width="65%">名称</th>
-					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="imageSpecialAdd.do?categoryId=${categoryId}&smallCategoryId=${smallCategoryId}" >新增</a></th>
+					<th width="61%">名称</th>
+					<th width="14%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="imageSpecialAdd.do?categoryId=${categoryId}&smallCategoryId=${smallCategoryId}" class="btn btn-primary  btn-small" >新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="imageSpecials" status="vs">
 					<tr class="trDetail">
@@ -59,8 +61,8 @@
 					<td><s:property value="category.name" /></td>
 					<td><s:property value="smallCategory.name" /></td>
 					<td><s:property value="name" /></td>
-					<td><a href="imageSpecialUpdate.do?imageSpecialId=<s:property value="id"/>">编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
-					<a class="delete" href="imageSpecialDelete.do?imageSpecialId=<s:property value="id"/>">删除</a></td>
+					<td><a href="imageSpecialUpdate.do?imageSpecialId=<s:property value="id"/>" class="btn btn-primary  btn-small" >编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="btn btn-danger  btn-small delete" href="imageSpecialDelete.do?imageSpecialId=<s:property value="id"/>">删除</a></td>
 					</tr>
 				</s:iterator></tbody>
 			</table>

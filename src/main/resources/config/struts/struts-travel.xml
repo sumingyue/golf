@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="travel" extends="golf">
+		<action name="travelList" class="travelAction" method="travelList">
+			<result name="success">jsp/travel/TravelList.jsp</result>
+		</action>
+		<action name="travelAdd"  class="travelAction" method="travelAdd">
+			<result name="success">jsp/travel/TravelAdd.jsp</result>
+		</action>
+		<action name="travelAddSubmit" class="travelAction" method="travelAddSubmit">
+		</action>
+		<action name="travelUpdate" class="travelAction" method="travelUpdate" >
+			<result name="success">jsp/travel/TravelUpdate.jsp</result>
+		</action>
+		<action name="travelUpdateSubmit" class="travelAction" method="travelUpdateSubmit">
+		</action>
+		<action name="travelDelete" class="travelAction" method="travelDelete">
+			<result name="success" type="redirect">travelList.action</result>
+		</action>
+	</package>	
+</struts>

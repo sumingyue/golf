@@ -28,22 +28,10 @@ public class CategoryAction extends ActionSupport {
 	
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
-	public String categoryList() {
-		try {
-			//m_pagedTool.setTotalNumber(m_categoryService.queryAllCategories(m_type).size());
-			//m_categories = m_categoryService.queryPagedCategories(m_pagedTool,m_type);
-			m_categories = m_categoryService.queryAllCategories();
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
-	}
-
 	public String categoryAdd(){
 		return SUCCESS;
 	}
-	
+
 	public String categoryAddSubmit() {
 		try {
 			int id = m_categoryService.insertCategory(m_category);
@@ -58,6 +46,32 @@ public class CategoryAction extends ActionSupport {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
 		}
+	}
+	
+	public String categoryDelete() {
+		try {
+			int count = m_categoryService.deleteCategory(m_categoryId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String categoryList() {
+		try {
+			//m_pagedTool.setTotalNumber(m_categoryService.queryAllCategories(m_type).size());
+			//m_categories = m_categoryService.queryPagedCategories(m_pagedTool,m_type);
+			m_categories = m_categoryService.queryAllCategories();
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
 	}
 
 	public String categoryUpdate() {
@@ -85,53 +99,39 @@ public class CategoryAction extends ActionSupport {
 		}
 	}
 
-	public String categoryDelete() {
-		try {
-			int count = m_categoryService.deleteCategory(m_categoryId);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
+	public List<Category> getCategories() {
+		return m_categories;
 	}
 
 	public Category getCategory() {
 		return m_category;
 	}
 
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public int getType() {
+		return m_type;
+	}
+
 	public void setCategory(Category category) {
 		m_category = category;
+	}
+	public void setCategoryId(int categoryId) {
+		m_categoryId = categoryId;
 	}
 
 	public void setCategoryService(CategoryService categoryService) {
 		m_categoryService = categoryService;
 	}
 
-	public List<Category> getCategories() {
-		return m_categories;
-	}
-
-	public void setCategoryId(int categoryId) {
-		m_categoryId = categoryId;
-	}
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
-	public void setPagedTool(PagedTool pagedTool) {
-		m_pagedTool = pagedTool;
-	}
-
 	public void setIndex(int index){
 		m_pagedTool.setPageIndex(index);
 	}
 
-	public int getType() {
-		return m_type;
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
 	}
 
 	public void setType(int type) {

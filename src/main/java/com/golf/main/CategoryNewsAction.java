@@ -61,7 +61,7 @@ public class CategoryNewsAction extends ActionSupport {
 				group3.addNews(m_hotNews.get(i));
 			}
 		}
-		m_imageNews = m_newsService.queryFixedImageNewsByCategoryId(4, m_categoryId);
+		m_imageNews = m_newsService.queryFixedImageNews(4, m_categoryId);
 
 		for (News temp : m_imageNews) {
 			temp.setImage(m_imageService.findImage(temp.getImageId()));
@@ -93,12 +93,20 @@ public class CategoryNewsAction extends ActionSupport {
 		return m_categoryNews;
 	}
 
+	public List<News> getHotNews() {
+		return m_hotNews;
+	}
+
 	public List<News> getImageNews() {
 		return m_imageNews;
 	}
 
 	public List<NewsGroup> getNewsGroup() {
 		return m_newsGroup;
+	}
+
+	public List<SmallCategory> getSmallCategories() {
+		return m_smallCategories;
 	}
 
 	public void setAdwordsService(AdwordsService adwordsService) {
@@ -117,6 +125,10 @@ public class CategoryNewsAction extends ActionSupport {
 		m_categoryService = categoryService;
 	}
 
+	public void setHotNews(List<News> hotNews) {
+		m_hotNews = hotNews;
+	}
+	
 	public void setId(int id) {
 		m_categoryId = id;
 	}
@@ -124,25 +136,13 @@ public class CategoryNewsAction extends ActionSupport {
 	public void setImageService(ImageService imageService) {
 		m_imageService = imageService;
 	}
-
+	
 	public void setNewsService(NewsService newsService) {
 		m_newsService = newsService;
-	}
-	
-	public List<SmallCategory> getSmallCategories() {
-		return m_smallCategories;
 	}
 
 	public void setSmallCategories(List<SmallCategory> smallCategories) {
 		m_smallCategories = smallCategories;
-	}
-	
-	public List<News> getHotNews() {
-		return m_hotNews;
-	}
-
-	public void setHotNews(List<News> hotNews) {
-		m_hotNews = hotNews;
 	}
 
 	public static class CategoryNews {

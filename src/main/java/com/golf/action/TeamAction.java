@@ -41,6 +41,26 @@ public class TeamAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public Team getTeam() {
+		return m_team;
+	}
+
+	public int getTeamId() {
+		return m_teamId;
+	}
+
+	public TeamMemberImage getTeamMemberImage() {
+		return m_teamMemberImage;
+	}
+
+	public List<Team> getTeams() {
+		return m_teams;
+	}
+
 	private int insertImage() {
 		String fileName = m_uploadFile.getFilename();
 		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.TEAM);
@@ -62,16 +82,44 @@ public class TeamAction extends ActionSupport {
 		      Image.TEAM_SMALL_WIDTH, Image.TEAM_SMALL_HEIGHT);
 	}
 
-	public String teamList() {
-		try {
-			//m_pagedTool.setTotalNumber(m_teamService.queryAllTeams().size());
-			//m_teams = m_teamService.queryPagedTeams(m_pagedTool);
-			m_teams = m_teamService.queryAllTeams();
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
+	public void setImageService(ImageService imageService) {
+		m_imageService = imageService;
+	}
+
+	public void setIndex(int index) {
+		m_pagedTool.setPageIndex(index);
+	}
+
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
+	}
+
+	public void setTeam(Team team) {
+		m_team = team;
+	}
+
+	public void setTeamId(int teamId) {
+		m_teamId = teamId;
+	}
+
+	public void setTeamMemberImage(TeamMemberImage teamMemberImage) {
+		m_teamMemberImage = teamMemberImage;
+	}
+
+	public void setTeamService(TeamService teamService) {
+		m_teamService = teamService;
+	}
+
+	public void setUpload(File file) {
+		m_upload = file;
+	}
+
+	public void setUploadContentType(String contentType) {
+		m_uploadFile.setContentType(contentType);
+	}
+
+	public void setUploadFileName(String filename) {
+		m_uploadFile.setFilename(filename);
 	}
 
 	public String teamAddSubmit() {
@@ -89,6 +137,32 @@ public class TeamAction extends ActionSupport {
 		}
 	}
 
+	public String teamDelete() {
+		try {
+			int count = m_teamService.deleteTeam(m_teamId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String teamList() {
+		try {
+			//m_pagedTool.setTotalNumber(m_teamService.queryAllTeams().size());
+			//m_teams = m_teamService.queryPagedTeams(m_pagedTool);
+			m_teams = m_teamService.queryAllTeams();
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+
 	public String teamUpdate() {
 		try {
 			m_team = m_teamService.findTeam(m_teamId);
@@ -103,20 +177,6 @@ public class TeamAction extends ActionSupport {
 	public String teamUpdateSubmit() {
 		try {
 			int count = m_teamService.updateTeam(m_team);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-	}
-
-	public String teamDelete() {
-		try {
-			int count = m_teamService.deleteTeam(m_teamId);
 			if (count > 0) {
 				return SUCCESS;
 			} else {
@@ -146,65 +206,5 @@ public class TeamAction extends ActionSupport {
 			addActionError(e.getMessage());
 			return ERROR;
 		}
-	}
-
-	public Team getTeam() {
-		return m_team;
-	}
-
-	public void setTeam(Team team) {
-		m_team = team;
-	}
-
-	public void setTeamService(TeamService teamService) {
-		m_teamService = teamService;
-	}
-
-	public List<Team> getTeams() {
-		return m_teams;
-	}
-
-	public void setTeamId(int teamId) {
-		m_teamId = teamId;
-	}
-
-	public void setUpload(File file) {
-		m_upload = file;
-	}
-
-	public void setUploadFileName(String filename) {
-		m_uploadFile.setFilename(filename);
-	}
-
-	public void setUploadContentType(String contentType) {
-		m_uploadFile.setContentType(contentType);
-	}
-
-	public void setImageService(ImageService imageService) {
-		m_imageService = imageService;
-	}
-
-	public void setTeamMemberImage(TeamMemberImage teamMemberImage) {
-		m_teamMemberImage = teamMemberImage;
-	}
-
-	public TeamMemberImage getTeamMemberImage() {
-		return m_teamMemberImage;
-	}
-
-	public int getTeamId() {
-		return m_teamId;
-	}
-
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
-	public void setPagedTool(PagedTool pagedTool) {
-		m_pagedTool = pagedTool;
-	}
-
-	public void setIndex(int index) {
-		m_pagedTool.setPageIndex(index);
 	}
 }

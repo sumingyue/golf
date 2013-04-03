@@ -43,6 +43,13 @@
 	<include file="config/struts/struts-matchService.xml"></include>
 	<include file="config/struts/struts-specialNews.xml"></include>
 	<include file="config/struts/struts-login.xml"></include>
+	<include file="config/struts/struts-learnClub.xml"></include>
+	<include file="config/struts/struts-drivingRange.xml"></include>
+	<include file="config/struts/struts-travelHotel.xml"></include>
+	<include file="config/struts/struts-travelHotelImage.xml"></include>
+	<include file="config/struts/struts-travel.xml"></include>
+	<include file="config/struts/struts-travelPlan.xml"></include>
+	<include file="config/struts/struts-travelLog.xml"></include>
 	<include file="config/struts/main.xml"></include>
 	
 	<package name="golf" extends="struts-default">

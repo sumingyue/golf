@@ -47,7 +47,7 @@
 				<table class="table table-striped table-bordered table-hover">
 							<tr><th width="80%">最新新闻</th><th width="20%">时间</th></tr>
 							<s:iterator value='news'>
-								<tr><td><a href="news.do?id=${id}" target="_blank">${maxTitle}</a></td>
+								<tr><td><a href="news.do?id=${id}" >${maxTitle}</a></td>
 									<td>${dateStr}</td>
 								</tr>			
 							</s:iterator>

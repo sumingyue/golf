@@ -57,25 +57,27 @@ $(document).ready(function() {
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-			<h4 style="text-align:center">新增赛事服务信息</h4>
 			<form action="matchServiceAddSubmit.do" id="form" method="post">
-				<table align="center" cellpadding="2" cellspacing="1" width="100%">
+				<table class="table table-striped table-bordered" width="100%">
+					<tr><td colspan='2'>
+						<h4 style="text-align:center">新增赛事服务信息</h4>
+					</td></tr>
 					<tr>
-						<td class="left" width="40%">比赛人数<span style='color: red'>*</span></td>
+						<td class="left" width="40%">比赛人数<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="matchService.number" /></td>
 					</tr>
 					<tr>
-						<td class="left">比赛时间<span style='color: red'>*</span></td>
+						<td class="left">比赛时间<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" id="matchService.date" name="matchService.date" />
 						  &nbsp;&nbsp;&nbsp;&nbsp;<img src="img/calendar.gif"
 								onclick="showCalendar('matchService.date');"></td>
 					</tr>
 					<tr>
-						<td class="left">客户姓名<span style='color: red'>*</span></td>
+						<td class="left">客户姓名<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="matchService.userName" /></td>
 					</tr>
 					<tr>
-						<td class="left">联系方式<span style='color: red'>*</span></td>
+						<td class="left">联系方式<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="matchService.userPhone" /></td>
 					</tr>
 					<tr>
@@ -84,8 +86,8 @@ $(document).ready(function() {
 									cols="60"></textarea></td>
 					</tr>
 					<tr>
-							<td colspan="2" align="center">
-								<button type="submit" class="btn">提交</button>
+							<td colspan="2" style="text-align:center">
+								<button type="submit" class="btn btn-primary  btn-large">提交</button>
 					</tr>
 					</table>
 			</form>

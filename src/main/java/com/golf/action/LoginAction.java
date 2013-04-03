@@ -27,6 +27,10 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		return ERROR;
 	}
 
+	public User getUser() {
+		return m_user;
+	}
+
 	public String logout() throws Exception {
 		m_session.remove("user");
 		return SUCCESS;
@@ -39,10 +43,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 	public void setUser(User user) {
 		m_user = user;
-	}
-
-	public User getUser() {
-		return m_user;
 	}
 
 }

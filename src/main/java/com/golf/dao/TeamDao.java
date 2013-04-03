@@ -8,8 +8,8 @@ public class TeamDao {
 
 	private BaseDao m_baseDao;
 
-	public void setBaseDao(BaseDao baseDao) {
-		m_baseDao = baseDao;
+	public int delete(int id) {
+		return (Integer) m_baseDao.delete("team.delete", id);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -25,12 +25,12 @@ public class TeamDao {
 		return (Integer) m_baseDao.insert("team.insert", team);
 	}
 
-	public int update(Team team) {
-		return m_baseDao.update("team.update", team);
+	public void setBaseDao(BaseDao baseDao) {
+		m_baseDao = baseDao;
 	}
 
-	public int delete(int id) {
-		return (Integer) m_baseDao.delete("team.delete", id);
+	public int update(Team team) {
+		return m_baseDao.update("team.update", team);
 	}
 
 	public int updateLogo(int id, int imageId) {

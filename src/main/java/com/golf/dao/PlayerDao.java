@@ -8,8 +8,8 @@ public class PlayerDao {
 
 	private BaseDao m_baseDao;
 
-	public void setBaseDao(BaseDao baseDao) {
-		m_baseDao = baseDao;
+	public int delete(int id) {
+		return (Integer) m_baseDao.delete("player.delete", id);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -25,11 +25,11 @@ public class PlayerDao {
 		return (Integer) m_baseDao.insert("player.insert", player);
 	}
 
-	public int update(Player player) {
-		return m_baseDao.update("player.update", player);
+	public void setBaseDao(BaseDao baseDao) {
+		m_baseDao = baseDao;
 	}
 
-	public int delete(int id) {
-		return (Integer) m_baseDao.delete("player.delete", id);
+	public int update(Player player) {
+		return m_baseDao.update("player.update", player);
 	}
 }

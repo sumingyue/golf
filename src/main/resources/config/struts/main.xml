@@ -35,9 +35,6 @@
 		<action name="comment" class="newsDetailAction" method="addComments">
 			<result name="success" type="redirect">news.action?id=${newsId}</result>
 		</action>
-		<action name="practice" class="practiceAction"  method="practiceList">
-			<result name="success">main/Practices.jsp</result>
-		</action>
 		<action name="club" class="practiceAction"  method="courtList">
 			<result name="success">main/Courts.jsp</result>
 		</action>
@@ -103,6 +100,27 @@
 		</action>
 		<action name="matchServiceSub" class="matchServiceAction" method="matchServiceAddSubmit">
 			<result name="success">main/Success.jsp</result>
+		</action>
+		<action name="learnClubs" class="learnClubAction" method="learnClubList">
+			<result name="success">main/learnClubs.jsp</result>
+		</action>
+		<action name="learnClub" class="learnClubAction" method="learnClubUpdate" >
+			<result name="success">main/LearnClub.jsp</result>
+		</action>
+		<action name="drivingRanges" class="drivingRangeAction" method="drivingRangeList">
+			<result name="success">main/drivingRanges.jsp</result>
+		</action>
+		<action name="drivingRange" class="drivingRangeAction" method="drivingRangeUpdate" >
+			<result name="success">main/DrivingRange.jsp</result>
+		</action>
+		<action name="travels" class="indexTravelAction" method="travelList" >
+			<result name="success">main/Travels.jsp</result>
+		</action>
+		<action name="travel" class="indexTravelAction" method="travelDetail" >
+			<result name="success">main/Travel.jsp</result>
+		</action>
+		<action name="travelLog" class="indexTravelAction" method="travelLog" >
+			<result name="success">main/TravelLog.jsp</result>
 		</action>
 	</package>	
 </struts>

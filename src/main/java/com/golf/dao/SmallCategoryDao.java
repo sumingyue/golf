@@ -8,18 +8,18 @@ public class SmallCategoryDao {
 
 	private BaseDao m_baseDao;
 
-	public void setBaseDao(BaseDao baseDao) {
-		m_baseDao = baseDao;
-	}
-
-	@SuppressWarnings("rawtypes")
-	public List findAllSmallCategory() {
-		return m_baseDao.queryForList("smallCategory.findAll");
+	public int delete(int id) {
+		return (Integer) m_baseDao.delete("smallCategory.delete", id);
 	}
 
 	@SuppressWarnings("rawtypes")
 	public List findAllByCategoryId(int categoryId) {
 		return m_baseDao.queryForList("smallCategory.findByCategoryId", categoryId);
+	}
+
+	@SuppressWarnings("rawtypes")
+	public List findAllSmallCategory() {
+		return m_baseDao.queryForList("smallCategory.findAll");
 	}
 
 	public SmallCategory findById(int id) {
@@ -30,11 +30,11 @@ public class SmallCategoryDao {
 		return (Integer) m_baseDao.insert("smallCategory.insert", smallCategory);
 	}
 
-	public int update(SmallCategory smallCategory) {
-		return m_baseDao.update("smallCategory.update", smallCategory);
+	public void setBaseDao(BaseDao baseDao) {
+		m_baseDao = baseDao;
 	}
 
-	public int delete(int id) {
-		return (Integer) m_baseDao.delete("smallCategory.delete", id);
+	public int update(SmallCategory smallCategory) {
+		return m_baseDao.update("smallCategory.update", smallCategory);
 	}
 }

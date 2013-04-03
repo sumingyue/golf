@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="travelLog" type="com.golf.entity.TravelLog" />
+	
+	<sql id="travelLog.columns">
+		id,travelId,title,content,creationDate
+	</sql>
+	<select id="travelLog.findAll" resultClass="travelLog">
+		select
+		<include refid="travelLog.columns" />
+		from travelLog order by id desc
+	</select>
+	<select id="travelLog.findById" resultClass="travelLog"
+		parameterClass="int">
+		select
+		<include refid="travelLog.columns" />
+		from travelLog where id=#id#
+	</select>
+	<insert id="travelLog.insert" parameterClass="travelLog">
+		insert into travelLog (
+		<include refid="travelLog.columns" />
+		) values
+		(#id#,#travelId#,#title#,#content#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="travelLog.update" parameterClass="travelLog">
+		update travelLog set travelId=#travelId#,title=#title#,content=#content# where id=#id#
+	</update>
+	<delete id="travelLog.delete" parameterClass="int">
+		delete from travelLog
+		where id=#id#
+	</delete>
+</sqlMap>

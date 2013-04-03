@@ -38,12 +38,14 @@ $(document).ready(function() {
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-			<h4 style="text-align:center">新增二级分类：
-			<s:if test="type==1">新闻</s:if>
-			<s:elseif test="type==2">图片专题</s:elseif>
-			</h4>
 			<form action="smallCategoryAddSubmit.do" id="form" method="post">
-				<table align="center" cellpadding="2" cellspacing="1" width="100%">
+				<table class="table table-striped table-bordered" width="100%">
+					<tr><td colspan='2'>
+						<h4 style="text-align:center">新增二级分类：
+						<s:if test="type==1">新闻</s:if>
+						<s:elseif test="type==2">图片专题</s:elseif>
+						</h4>
+					</td></tr>	
 					<tr>
 						<td width="40%" class="left">一级分类名称</td>
 						<td  class="right">
@@ -55,7 +57,7 @@ $(document).ready(function() {
 					<tr>
 						<td  class="left">二级分类名称</td>
 						<td  class="right"><input type="text" size="40" name="smallCategory.name" /></td>
-					</tr><tr><td colspan="2" align="center"><button type="submit" class="btn">提交</button></tr>
+					</tr><tr><td colspan="2" style="text-align:center"><button type="submit" class="btn btn-primary  btn-large">提交</button></tr>
 				</table>
 			</form>
       </div>

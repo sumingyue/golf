@@ -44,13 +44,15 @@ $(document).ready(function(){
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-			<h4 style="text-align:center">修改高尔夫俱乐部评论信息</h4>
 			<form action="courtCommentsUpdateSubmit.do" id="form" method="post"  
 				enctype="multipart/form-data">
-				<table align="center" cellpadding="2" cellspacing="1" width="100%">
+				<table class="table table-striped table-bordered" width="100%">
+					<tr><td colspan='2'>
+						<h4 style="text-align:center">修改高尔夫俱乐部评论信息</h4>
+					</td></tr>
 					<input type="hidden" name="courtComments.id" value="<s:property value="courtComments.id"/>"/>
 					<tr>
-						<td class="left" width="40%">俱乐部<span style='color: red'>*</span></td>
+						<td class="left" width="30%">俱乐部<span class='red'>*</span></td>
 						<td class="right">
 							<s:select name="courtComments.courtId" id="courtId"
 								list="courts" listKey="id" listValue="name"  theme="simple" >
@@ -58,17 +60,17 @@ $(document).ready(function(){
 						</td>
 					</tr>
 					<tr>
-						<td class="left">用户昵称<span style='color: red'>*</span></td>
+						<td class="left">用户昵称<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="30" name="courtComments.userName" value="<s:property value="courtComments.userName"/>"/></td>
 					</tr>
 					<tr>
-						<td class="left">用户评论<span style='color: red'>*</span></td>
+						<td class="left">用户评论<span class='red'>*</span></td>
 						<td class="right"><textarea  name="courtComments.content"  rows="5" cols="60"><s:property value="courtComments.content"/></textarea>
 						</td>
 					</tr>
 						<tr>
-							<td colspan="2" align="center">
-								<button type="submit" class="btn">提交</button>
+							<td colspan="2" style="text-align:center">
+								<button type="submit" class="btn btn-primary  btn-large">提交</button>
 						</tr>
 					</table>
 			</form>

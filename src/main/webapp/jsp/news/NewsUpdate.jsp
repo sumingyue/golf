@@ -60,13 +60,13 @@
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-			<h4 style="text-align:center">编辑新闻</h4>
 			<form action="newsUpdateSubmit.do" id="form" method="post"
 				enctype="multipart/form-data">
-				<table align="center" cellpadding="2" cellspacing="1" width="100%">
+				<table class="table table-striped table-bordered" width="100%">
+					<tr><td colspan="2"><h4 style="text-align:center">编辑新闻</h4></td></tr>
 					<input type="hidden" name="news.id" value="<s:property value="news.id"/>"/>
 					<tr>
-						<td width="15%" class="left">一级分类<span style='color: red'>*</span></td>
+						<td width="15%" class="left">一级分类<span class='red'>*</span></td>
 						<td class="right"><s:select name="news.categoryId"
 								onchange="categoryChanged()" 
 								list="categoryList" listKey="id" listValue="name"
@@ -74,7 +74,7 @@
 							</s:select></td>
 					</tr>
 					<tr>
-						<td width="15%" class="left">二级分类<span style='color: red'>*</span></td>
+						<td width="15%" class="left">二级分类<span class='red'>*</span></td>
 						<td class="right"><s:select name="news.smallCategoryId" 
 								list="smallCategoryList" listKey="id" listValue="name"
 								value="news.smallCategoryId" theme="simple" cssClass="select">
@@ -82,7 +82,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td width="15%" class="left">新闻标题<span style='color: red'>*</span></td>
+						<td width="15%" class="left">新闻标题<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="50"
 							name="news.title"  value="<s:property value='news.title'/>"></td>
 					</tr>
@@ -95,7 +95,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td width="15%" class="left">新闻内容<span style='color: red'>*</span></td>
+						<td width="15%" class="left">新闻内容<span class='red'>*</span></td>
 						<td class="right"><textarea id="editor1" name="news.content" rows="30"><s:property value="news.content"/></textarea></td>
 					</tr>
 					<tr>
@@ -146,8 +146,8 @@
 						踩 ${news.bad} &nbsp;&nbsp;&nbsp;</td>
 					</tr>
 						<tr>
-							<td colspan="2" align="center">
-								<button type="submit" class="btn">提交</button>
+							<td colspan="2" style="text-align:center">
+								<button type="submit" class="btn btn-primary  btn-large">提交</button>
 						</tr>
 				</table>
 			</form><ckeditor:replace replace="editor1" basePath="ckeditor/" />

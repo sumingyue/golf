@@ -36,6 +36,95 @@ public class TeamNewsAction extends ActionSupport {
 	
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public int getTeamId() {
+		return m_teamId;
+	}
+	
+	public TeamNews getTeamNews() {
+		return m_teamNews;
+	}
+
+	public List<TeamNews> getTeamNewss() {
+		return m_teamNewss;
+	}
+
+	public List<Team> getTeams() {
+		return m_teams;
+	}
+
+	public int getType() {
+		return m_type;
+	}
+
+	public void setIndex(int index){
+		m_pagedTool.setPageIndex(index);
+	}
+
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
+	}
+
+	public void setTeamId(int teamId) {
+		m_teamId = teamId;
+	}
+
+	public void setTeamNews(TeamNews teamNews) {
+		m_teamNews = teamNews;
+	}
+
+	public void setTeamNewsId(int teamNewsId) {
+		m_teamNewsId = teamNewsId;
+	}
+
+	public void setTeamNewsService(TeamNewsService teamNewsService) {
+		m_teamNewsService = teamNewsService;
+	}
+
+	public void setTeamService(TeamService teamService) {
+		m_teamService = teamService;
+	}
+
+	public void setType(int type) {
+		m_type = type;
+	}
+
+	public String teamNewsAdd(){
+		m_teams = m_teamService.queryAllTeams();
+		return SUCCESS;
+	}
+
+	public String teamNewsAddSubmit() {
+		try {
+			int id = m_teamNewsService.insertTeamNews(m_teamNews);
+			if (id > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String teamNewsDelete() {
+		try {
+			int count = m_teamNewsService.deleteTeamNews(m_teamNewsId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
 	public String teamNewsList() {
 		try {
 //			m_teams = m_teamService.queryAllTeams();
@@ -50,26 +139,6 @@ public class TeamNewsAction extends ActionSupport {
 			return ERROR;
 		}
 		return SUCCESS;
-	}
-
-	public String teamNewsAdd(){
-		m_teams = m_teamService.queryAllTeams();
-		return SUCCESS;
-	}
-	
-	public String teamNewsAddSubmit() {
-		try {
-			int id = m_teamNewsService.insertTeamNews(m_teamNews);
-			if (id > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
 	}
 
 	public String teamNewsUpdate() {
@@ -95,74 +164,5 @@ public class TeamNewsAction extends ActionSupport {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
 		}
-	}
-
-	public String teamNewsDelete() {
-		try {
-			int count = m_teamNewsService.deleteTeamNews(m_teamNewsId);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-	}
-
-	public TeamNews getTeamNews() {
-		return m_teamNews;
-	}
-
-	public void setTeamNews(TeamNews teamNews) {
-		m_teamNews = teamNews;
-	}
-
-	public void setTeamNewsService(TeamNewsService teamNewsService) {
-		m_teamNewsService = teamNewsService;
-	}
-
-	public List<TeamNews> getTeamNewss() {
-		return m_teamNewss;
-	}
-
-	public void setTeamNewsId(int teamNewsId) {
-		m_teamNewsId = teamNewsId;
-	}
-
-	public void setTeamService(TeamService teamService) {
-		m_teamService = teamService;
-	}
-
-	public List<Team> getTeams() {
-		return m_teams;
-	}
-
-	public int getTeamId() {
-		return m_teamId;
-	}
-
-	public void setTeamId(int teamId) {
-		m_teamId = teamId;
-	}
-
-	public int getType() {
-		return m_type;
-	}
-
-	public void setType(int type) {
-		m_type = type;
-	}
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
-	public void setPagedTool(PagedTool pagedTool) {
-		m_pagedTool = pagedTool;
-	}
-
-	public void setIndex(int index){
-		m_pagedTool.setPageIndex(index);
 	}
 }

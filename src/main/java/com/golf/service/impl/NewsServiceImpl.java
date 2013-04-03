@@ -142,8 +142,8 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 	}
 
 	@Override
-	public List<News> queryFixedImageNewsByCategoryId(int size, int categoryId) {
-		List<News> all = queryAllShowNews(categoryId, 0);
+	public List<News> queryFixedImageNews(int size, int categoryId,int smallCategoryId) {
+		List<News> all = queryAllShowNews(categoryId, smallCategoryId);
 		List<News> result = new ArrayList<News>();
 
 		for (News temp : all) {
@@ -154,6 +154,11 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 		Collections.sort(result, new IndexNewsCompartor());
 
 		return resizeList(result, size);
+	}
+	
+	@Override
+	public List<News> queryFixedImageNews(int size, int categoryId) {
+		return queryFixedImageNews(size,categoryId,0);
 	}
 
 	@Override

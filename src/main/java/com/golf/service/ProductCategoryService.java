@@ -7,18 +7,18 @@ import com.golf.tools.PagedTool;
 
 public interface ProductCategoryService {
 
-	public List<ProductCategory> queryProductCategoryByType(int type);
+	public int deleteProductCategory(int productCategoryId);
 	
-	public List<ProductCategory> queryAllProductCategorys();
+	public ProductCategory findProductCategory(int productCategoryId);
 
 	public int insertProductCategory(ProductCategory productCategory);
 
-	public int updateProductCategory(ProductCategory productCategory);
-
-	public int deleteProductCategory(int productCategoryId);
-
-	public ProductCategory findProductCategory(int productCategoryId);
+	public List<ProductCategory> queryAllProductCategorys();
 
 	public List<ProductCategory> queryPagedProductCategorys(PagedTool pagedTool);
+
+	public List<ProductCategory> queryProductCategoryByType(int type);
+
+	public int updateProductCategory(ProductCategory productCategory);
 
 }

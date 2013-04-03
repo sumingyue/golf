@@ -8,8 +8,8 @@ public class MediaDao {
 
 	private BaseDao m_baseDao;
 
-	public void setBaseDao(BaseDao baseDao) {
-		m_baseDao = baseDao;
+	public int delete(int id) {
+		return (Integer) m_baseDao.delete("media.delete", id);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -25,11 +25,11 @@ public class MediaDao {
 		return (Integer) m_baseDao.insert("media.insert", media);
 	}
 
-	public int update(Media media) {
-		return m_baseDao.update("media.update", media);
+	public void setBaseDao(BaseDao baseDao) {
+		m_baseDao = baseDao;
 	}
 
-	public int delete(int id) {
-		return (Integer) m_baseDao.delete("media.delete", id);
+	public int update(Media media) {
+		return m_baseDao.update("media.update", media);
 	}
 }

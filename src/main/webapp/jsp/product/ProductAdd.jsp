@@ -72,35 +72,35 @@ $(document).ready(function() {
 				<form action="productAddSubmit.do" id="form" method="post">
 				<table align="center" cellpadding="2" cellspacing="1" width="100%">
 					<tr>
-						<td class="left" width="10%" >产品分类<span style='color: red'>*</span></td>
+						<td class="left" width="10%" >产品分类<span class='red'>*</span></td>
 						<td class="right" width="40%"  >
 							<s:select name="product.productCategoryId"
 								list="productCategorys" listKey="id" listValue="showName"
 								value="categoryId" theme="simple" cssClass="select">
 							</s:select>
-						</td><td class="left" width="10%" >产品名称<span style='color: red'>*</span></td>
+						</td><td class="left" width="10%" >产品名称<span class='red'>*</span></td>
 						<td class="right" width="40%" ><input type="text" size="40" name="product.name" /></td>
 					</tr>
 					<tr>
-						<td class="left">产品单位<span style='color: red'>*</span></td>
+						<td class="left">产品单位<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="product.unit" /></td>
-						<td class="left">产品品牌<span style='color: red'>*</span></td>
+						<td class="left">产品品牌<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="product.brand" /></td>
 					</tr>
 					<tr>
-						<td class="left">适合人群<span style='color: red'>*</span></td>
+						<td class="left">适合人群<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="product.crowd" /></td>
-						<td class="left">产品材质<span style='color: red'>*</span></td>
+						<td class="left">产品材质<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="product.material" /></td>
 					</tr>
 					<tr>
-						<td class="left">产品价格<span style='color: red'>*</span></td>
+						<td class="left">产品价格<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="product.price" /></td>
-						<td class="left">会员价格<span style='color: red'>*</span></td>
+						<td class="left">会员价格<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="product.memberPrice" /></td>
 					</tr>
 					<tr>
-						<td class="left">产品介绍<span style='color: red'>*</span></td>
+						<td class="left">产品介绍<span class='red'>*</span></td>
 						<td class="right" colspan='3'><textarea  name="product.introduction"  rows="4" cols="60"></textarea></td>
 					</tr>
 					<tr><td colspan="4" align="center"><button type="submit" class="btn">提交</button></tr>

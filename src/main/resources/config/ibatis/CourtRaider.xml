@@ -4,12 +4,12 @@
 	<typeAlias alias="courtRaider" type="com.golf.entity.CourtRaider" />
 	
 	<sql id="courtRaider.columns">
-		id,name,courtId,imageId,indexName,des,creationDate
+		id,name,courtId,imageId,type,typeIndex,indicator1,indicator2,indicator3,indicator4,indicator5,des,creationDate
 	</sql>
 	<select id="courtRaider.findAll" resultClass="courtRaider">
 		select
 		<include refid="courtRaider.columns" />
-		from courtRaider order by id desc
+		 from courtRaider
 	</select>
 	<select id="courtRaider.findById" resultClass="courtRaider"
 		parameterClass="int">
@@ -21,13 +21,16 @@
 		insert into courtRaider (
 		<include refid="courtRaider.columns" />
 		) values
-		(#id#,#name#,#courtId#,#imageId#,#indexName#,#des#,now())
+		(#id#,#name#,#courtId#,#imageId#,#type#,#typeIndex#,#indicator1#,#indicator2#,
+		#indicator3#,#indicator4#,#indicator5#,#des#,now())
 		<selectKey resultClass="int" keyProperty="id">
              <![CDATA[   select last_insert_id() as id  ]]>
 		</selectKey>
 	</insert>
 	<update id="courtRaider.update" parameterClass="courtRaider">
-		update courtRaider set name=#name#,courtId=#courtId#,imageId=#imageId#,indexName=#indexName# where id=#id#
+		update courtRaider set name=#name#,courtId=#courtId#,imageId=#imageId#,type=#type#,
+		typeIndex=#typeIndex#,indicator1=#indicator1#,indicator2=#indicator2#,
+		indicator3=#indicator3#,indicator4=#indicator4#,indicator5=#indicator5# where id=#id#
 	</update>
 	<delete id="courtRaider.delete" parameterClass="int">
 		delete from courtRaider

@@ -17,7 +17,7 @@
 </script>
 <style type="text/css">
 	.news-img{
-		width:460px;
+		width:380px;
 		height:480px;
 	}
 
@@ -50,7 +50,7 @@
 			</div>
 			<div class="span10">
 				<div class="row">
-					<div class="span6">
+					<div class="span5">
 						<div id="myCarousel" class="carousel slide">
 							<ol class="carousel-indicators">
 								<s:iterator value="imageNews" status="vs">
@@ -70,7 +70,7 @@
 											<img class="news-img" src="<s:property value="image.path"/>" />
 											<div class="carousel-caption">
 												<p>
-													<a href="news.do?id=${id}">${maxTitle}</a>
+													<a href="news.do?id=${id}">${title}</a>
 												</p>
 											</div>
 										</div>
@@ -79,8 +79,8 @@
 										<div class="item">
 											<img class="news-img" src="<s:property value="image.path"/>" />
 											<div class="carousel-caption">
-												<p>
-													<a href="news.do?id=${id}">${maxTitle}</a>
+												<p class="text-center">
+													<a href="news.do?id=${id}">${title}</a>
 												</p>
 											</div>
 										</div>
@@ -93,11 +93,11 @@
 								href="#myCarousel" data-slide="next">&rsaquo;</a>
 						</div>
 					</div>
-					<div class="span4">
+					<div class="span5">
 						<table class="table table-striped table-bordered table-hover">
 							<tr><th>最新新闻</th></tr>
 							<s:iterator value='hotNews'>
-								<tr><td><a href="news.do?id=${id}" target="_blank">${maxTitle}</a></td></tr>			
+								<tr><td ><a href="news.do?id=${id}">${title}</a></td></tr>			
 							</s:iterator>
 						</table>
 					</div>

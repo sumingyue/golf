@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="travelHotelImage" type="com.golf.entity.TravelHotelImage" />
+	
+	<sql id="travelHotelImage.columns">
+		id,travelHotelId,imageId,imageDes,creationDate
+	</sql>
+	<select id="travelHotelImage.findAll" resultClass="travelHotelImage">
+		select
+		<include refid="travelHotelImage.columns" />
+		from travelHotelImage order by id desc
+	</select>
+	<select id="travelHotelImage.findByTeamId" resultClass="travelHotelImage"
+		parameterClass="int">
+		select
+		<include refid="travelHotelImage.columns" />
+		from travelHotelImage where teamId=#teamId#
+	</select>
+	<insert id="travelHotelImage.insert" parameterClass="travelHotelImage">
+		insert into travelHotelImage (
+		<include refid="travelHotelImage.columns" />
+		) values
+		(#id#,#travelHotelId#,#imageId#,#imageDes#,now())
+		<selectKey resultClass="int" keyProperty="id">
+             <![CDATA[   select last_insert_id() as id  ]]>
+		</selectKey>
+	</insert>
+	<update id="travelHotelImage.update" parameterClass="travelHotelImage">
+		update travelHotelImage set travelHotelId=#travelHotelId#,imageId=#imageId#,imageDes=#imageDes# where id=#id#
+	</update>
+	<delete id="travelHotelImage.delete" parameterClass="int">
+		delete from travelHotelImage
+		where id=#id#
+	</delete>
+</sqlMap>

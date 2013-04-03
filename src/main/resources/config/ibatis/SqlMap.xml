@@ -35,4 +35,13 @@
 	<sqlMap resource="config/ibatis/ImageSpecialDetail.xml"/>
 	<sqlMap resource="config/ibatis/MatchService.xml"/>
 	<sqlMap resource="config/ibatis/SpecialNews.xml"/>
+	<sqlMap resource="config/ibatis/LearnClub.xml"/>
+	<sqlMap resource="config/ibatis/DrivingRange.xml"/>
+	
+	<sqlMap resource="config/ibatis/TravelHotel.xml"/>
+	<sqlMap resource="config/ibatis/TravelHotelImage.xml"/>
+	<sqlMap resource="config/ibatis/Travel.xml"/>
+	<sqlMap resource="config/ibatis/TravelPlan.xml"/>
+	<sqlMap resource="config/ibatis/TravelLog.xml"/>
+	<sqlMap resource="config/ibatis/TravelCourt.xml"/>
 </sqlMapConfig>

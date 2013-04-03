@@ -26,16 +26,16 @@ public class NewsCommentsAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
-	public String newsCommentsList() {
-		try {
-			//m_pagedTool.setTotalNumber(m_newsCommentsService.queryAllNewsCommentss().size());
-			//m_newsCommentss = m_newsCommentsService.queryPagedNewsCommentss(m_pagedTool);
-			m_newsCommentss = m_newsCommentsService.queryAllNewsCommentss();
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
+	public NewsComments getNewsComments() {
+		return m_newsComments;
+	}
+
+	public List<NewsComments> getNewsCommentss() {
+		return m_newsCommentss;
+	}
+
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
 	}
 
 	public String newsCommentsAddSubmit() {
@@ -51,6 +51,32 @@ public class NewsCommentsAction extends ActionSupport {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
 		}
+	}
+
+	public String newsCommentsDelete() {
+		try {
+			int count = m_newsCommentsService.deleteNewsComments(m_newsCommentsId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String newsCommentsList() {
+		try {
+			//m_pagedTool.setTotalNumber(m_newsCommentsService.queryAllNewsCommentss().size());
+			//m_newsCommentss = m_newsCommentsService.queryPagedNewsCommentss(m_pagedTool);
+			m_newsCommentss = m_newsCommentsService.queryAllNewsCommentss();
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
 	}
 
 	public String newsCommentsUpdate() {
@@ -77,48 +103,22 @@ public class NewsCommentsAction extends ActionSupport {
 		}
 	}
 
-	public String newsCommentsDelete() {
-		try {
-			int count = m_newsCommentsService.deleteNewsComments(m_newsCommentsId);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-	}
-
-	public NewsComments getNewsComments() {
-		return m_newsComments;
+	public void setIndex(int index){
+		m_pagedTool.setPageIndex(index);
 	}
 
 	public void setNewsComments(NewsComments newsComments) {
 		m_newsComments = newsComments;
+	}
+	public void setNewsCommentsId(int newsCommentsId) {
+		m_newsCommentsId = newsCommentsId;
 	}
 
 	public void setNewsCommentsService(NewsCommentsService newsCommentsService) {
 		m_newsCommentsService = newsCommentsService;
 	}
 
-	public List<NewsComments> getNewsCommentss() {
-		return m_newsCommentss;
-	}
-
-	public void setNewsCommentsId(int newsCommentsId) {
-		m_newsCommentsId = newsCommentsId;
-	}
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
 	public void setPagedTool(PagedTool pagedTool) {
 		m_pagedTool = pagedTool;
-	}
-
-	public void setIndex(int index){
-		m_pagedTool.setPageIndex(index);
 	}
 }

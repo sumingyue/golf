@@ -8,8 +8,8 @@ public class ProductImageDao {
 
 	private BaseDao m_baseDao;
 
-	public void setBaseDao(BaseDao baseDao) {
-		m_baseDao = baseDao;
+	public int delete(ProductImage productImage) {
+		return (Integer)m_baseDao.delete("productImage.delete", productImage);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -21,7 +21,7 @@ public class ProductImageDao {
 		return (Integer) m_baseDao.insert("productImage.insert", productImage);
 	}
 
-	public int delete(ProductImage productImage) {
-		return (Integer)m_baseDao.delete("productImage.delete", productImage);
+	public void setBaseDao(BaseDao baseDao) {
+		m_baseDao = baseDao;
 	}
 }

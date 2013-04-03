@@ -29,18 +29,49 @@ public class SpecialNewsAction extends ActionSupport {
 
 	private AdwordsService m_adwordsService;
 	
-	public String specialNewsList() {
-		try {
-			//m_pagedTool.setTotalNumber(m_specialNewsService.queryAllSpecialNewss().size());
-			//m_specialNewss = m_specialNewsService.queryPagedSpecialNewss(m_pagedTool);
-			m_specialNewss = m_specialNewsService.queryAllSpecialNewss();
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
+	public AdwordsService getAdwordsService() {
+		return m_adwordsService;
 	}
 
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public SpecialNews getSpecialNews() {
+		return m_specialNews;
+	}
+
+	public List<SpecialNews> getSpecialNewss() {
+		return m_specialNewss;
+	}
+
+	public void setAdwordsService(AdwordsService adwordsService) {
+		m_adwordsService = adwordsService;
+	}
+
+	public void setId(int specialNewsId) {
+		m_specialNewsId = specialNewsId;
+	}
+
+	public void setIndex(int index){
+		m_pagedTool.setPageIndex(index);
+	}
+
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
+	}
+
+	public void setSpecialNews(SpecialNews specialNews) {
+		m_specialNews = specialNews;
+	}
+
+	public void setSpecialNewsId(int specialNewsId) {
+		m_specialNewsId = specialNewsId;
+	}
+	
+	public void setSpecialNewsService(SpecialNewsService specialNewsService) {
+		m_specialNewsService = specialNewsService;
+	}
 	public String specialNewsAddSubmit() {
 		try {
 			int id = m_specialNewsService.insertSpecialNews(m_specialNews);
@@ -56,6 +87,32 @@ public class SpecialNewsAction extends ActionSupport {
 		}
 	}
 
+	public String specialNewsDelete() {
+		try {
+			int count = m_specialNewsService.deleteSpecialNews(m_specialNewsId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String specialNewsList() {
+		try {
+			//m_pagedTool.setTotalNumber(m_specialNewsService.queryAllSpecialNewss().size());
+			//m_specialNewss = m_specialNewsService.queryPagedSpecialNewss(m_pagedTool);
+			m_specialNewss = m_specialNewsService.queryAllSpecialNewss();
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+	
 	public String specialNewsUpdate() {
 		try {
 			m_specialNews = m_specialNewsService.findSpecialNews(m_specialNewsId);
@@ -78,62 +135,5 @@ public class SpecialNewsAction extends ActionSupport {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
 		}
-	}
-
-	public String specialNewsDelete() {
-		try {
-			int count = m_specialNewsService.deleteSpecialNews(m_specialNewsId);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-	}
-
-	public SpecialNews getSpecialNews() {
-		return m_specialNews;
-	}
-
-	public void setSpecialNews(SpecialNews specialNews) {
-		m_specialNews = specialNews;
-	}
-
-	public void setSpecialNewsService(SpecialNewsService specialNewsService) {
-		m_specialNewsService = specialNewsService;
-	}
-
-	public List<SpecialNews> getSpecialNewss() {
-		return m_specialNewss;
-	}
-
-	public void setId(int specialNewsId) {
-		m_specialNewsId = specialNewsId;
-	}
-	
-	public void setSpecialNewsId(int specialNewsId) {
-		m_specialNewsId = specialNewsId;
-	}
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
-	public void setPagedTool(PagedTool pagedTool) {
-		m_pagedTool = pagedTool;
-	}
-
-	public void setIndex(int index){
-		m_pagedTool.setPageIndex(index);
-	}
-	
-	public void setAdwordsService(AdwordsService adwordsService) {
-		m_adwordsService = adwordsService;
-	}
-
-	public AdwordsService getAdwordsService() {
-		return m_adwordsService;
 	}
 }

@@ -18,60 +18,60 @@ public class SpecialNews {
 
 	private Date m_modifyDate;
 
-	public int getId() {
-		return m_id;
-	}
-
-	public void setId(int id) {
-		m_id = id;
-	}
-
-	public String getTitle() {
-		return m_title;
-	}
-
-	public void setTitle(String title) {
-		m_title = title;
-	}
-
 	public String getContent() {
 		return m_content;
-	}
-
-	public void setContent(String content) {
-		m_content = content;
-	}
-
-	public int getViewNumber() {
-		return m_viewNumber;
-	}
-
-	public void setViewNumber(int viewNumber) {
-		m_viewNumber = viewNumber;
-	}
-
-	public int getPriority() {
-		return m_priority;
-	}
-
-	public void setPriority(int priority) {
-		m_priority = priority;
 	}
 
 	public Date getCreationDate() {
 		return m_creationDate;
 	}
 
-	public void setCreationDate(Date creationDate) {
-		m_creationDate = creationDate;
+	public int getId() {
+		return m_id;
 	}
 
 	public Date getModifyDate() {
 		return m_modifyDate;
 	}
 
+	public int getPriority() {
+		return m_priority;
+	}
+
+	public String getTitle() {
+		return m_title;
+	}
+
+	public int getViewNumber() {
+		return m_viewNumber;
+	}
+
+	public void setContent(String content) {
+		m_content = content;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		m_creationDate = creationDate;
+	}
+
+	public void setId(int id) {
+		m_id = id;
+	}
+
 	public void setModifyDate(Date modifyDate) {
 		m_modifyDate = modifyDate;
+	}
+
+	public void setPriority(int priority) {
+		m_priority = priority;
+	}
+
+	public void setTitle(String title) {
+		m_title = title;
+	}
+
+	public void setViewNumber(int viewNumber) {
+		m_viewNumber = viewNumber;
 	}
 
 }

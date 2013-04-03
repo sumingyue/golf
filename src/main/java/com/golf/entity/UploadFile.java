@@ -34,68 +34,68 @@ public class UploadFile implements Serializable {
 	 */
 	private String m_contentType;
 
-	public Integer getId() {
-		return m_id;
-	}
-
-	public void setId(Integer id) {
-		this.m_id = id;
-	}
-
-	public String getFilename() {
-		return m_filename;
-	}
-
-	public void setFilename(String filename) {
-		this.m_filename = filename;
-	}
-
-	public String getStorePath() {
-		return m_storePath;
-	}
-
-	public void setStorePath(String storePath) {
-		this.m_storePath = storePath;
+	public String getCompressedPath() {
+		return m_compressedPath;
 	}
 
 	public String getCompressedStorePath() {
 		return m_compressedStorePath;
 	}
 
-	public void setCompressedStorePath(String compressedStorPath) {
-		m_compressedStorePath = compressedStorPath;
-	}
-
 	public String getContentType() {
 		return m_contentType;
 	}
 
-	public void setContentType(String contentType) {
-		this.m_contentType = contentType;
+	public String getFilename() {
+		return m_filename;
 	}
 
-	public String getPath() {
-		return m_path;
-	}
-
-	public void setPath(String path) {
-		m_path = path;
-	}
-
-	public String getCompressedPath() {
-		return m_compressedPath;
-	}
-
-	public void setCompressedPath(String compressedPath) {
-		m_compressedPath = compressedPath;
+	public Integer getId() {
+		return m_id;
 	}
 
 	public String getOriginalPath() {
 		return m_originalPath;
 	}
 
+	public String getPath() {
+		return m_path;
+	}
+
+	public String getStorePath() {
+		return m_storePath;
+	}
+
+	public void setCompressedPath(String compressedPath) {
+		m_compressedPath = compressedPath;
+	}
+
+	public void setCompressedStorePath(String compressedStorPath) {
+		m_compressedStorePath = compressedStorPath;
+	}
+
+	public void setContentType(String contentType) {
+		this.m_contentType = contentType;
+	}
+
+	public void setFilename(String filename) {
+		this.m_filename = filename;
+	}
+
+	public void setId(Integer id) {
+		this.m_id = id;
+	}
+
 	public void setOriginalPath(String originalStore) {
 		m_originalPath = originalStore;
+	}
+
+	public void setPath(String path) {
+		m_path = path;
+	}
+
+	public void setStorePath(String storePath) {
+		this.m_storePath = storePath;
 	}
 	
 

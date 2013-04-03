@@ -7,16 +7,16 @@ import com.golf.tools.PagedTool;
 
 public interface CourtRaiderService {
 
-	public List<CourtRaider> queryAllCourtRaiders(int courtId);
-
-	public int insertCourtRaider(CourtRaider courtRaider);
-
-	public int updateCourtRaider(CourtRaider courtRaider);
-
 	public int deleteCourtRaider(int courtRaiderId);
 
 	public CourtRaider findCourtRaider(int courtRaiderId);
 
+	public int insertCourtRaider(CourtRaider courtRaider);
+
+	public List<CourtRaider> queryAllCourtRaiders(int courtId);
+
 	public List<CourtRaider> queryPagedCourtRaiders(PagedTool pagedTool, int courtId);
+
+	public int updateCourtRaider(CourtRaider courtRaider);
 
 }

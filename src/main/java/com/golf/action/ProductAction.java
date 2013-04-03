@@ -53,6 +53,34 @@ public class ProductAction extends ActionSupport {
 
 	private File[] m_uploads = new File[5];
 	
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public Product getProduct() {
+		return m_product;
+	}
+
+	public int getProductCategoryId() {
+		return m_productCategoryId;
+	}
+
+	public List<ProductCategory> getProductCategorys() {
+		return m_productCategorys;
+	}
+
+	public int getProductId() {
+		return m_productId;
+	}
+
+	public List<Product> getProducts() {
+		return m_products;
+	}
+
+	public int getType() {
+		return m_type;
+	}
+
 	private int insertImage(File file,UploadFile uploadFile) {
 		String fileName = uploadFile.getFilename();
 		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.PRODUCT);
@@ -75,41 +103,9 @@ public class ProductAction extends ActionSupport {
 
 	}
 
-	public String productList() {
-		try {
-//			m_productCategorys = m_productCategoryService.queryProductCategoryByType(m_type);
-//			int totalSize = m_productService.queryTotalSize(m_type, m_productCategoryId);
-//
-//			m_pagedTool.setTotalNumber(totalSize);
-//
-//			m_products = m_productService.queryPagedProducts(m_pagedTool, m_type, m_productCategoryId);
-			m_products = m_productService.queryAllProducts();
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
-	}
-
 	public String productAdd() {
 		m_productCategorys = m_productCategoryService.queryAllProductCategorys();
 		return SUCCESS;
-	}
-
-	public String productAddSubmit() {
-		try {
-			int id = m_productService.insertProduct(m_product);
-			m_productId = id;
-			if (id > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
 	}
 
 	public String productAddImageSubmit() {
@@ -142,28 +138,16 @@ public class ProductAction extends ActionSupport {
 		return result;
 	}
 
-	public String productUpdate() {
+	public String productAddSubmit() {
 		try {
-			m_productCategorys = m_productCategoryService.queryAllProductCategorys();
-			m_product = m_productService.findProduct(m_productId);
-
-			List<Image> images = m_productService.findImagesByProductId(m_productId);
-			m_product.setImages(images);
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
-	}
-
-	public String productUpdateSubmit() {
-		try {
-			int count = m_productService.updateProduct(m_product);
-			if (count > 0) {
+			int id = m_productService.insertProduct(m_product);
+			m_productId = id;
+			if (id > 0) {
 				return SUCCESS;
 			} else {
 				return ERROR;
 			}
+
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
@@ -200,95 +184,99 @@ public class ProductAction extends ActionSupport {
 		}
 	}
 
-	public Product getProduct() {
-		return m_product;
+	public String productList() {
+		try {
+//			m_productCategorys = m_productCategoryService.queryProductCategoryByType(m_type);
+//			int totalSize = m_productService.queryTotalSize(m_type, m_productCategoryId);
+//
+//			m_pagedTool.setTotalNumber(totalSize);
+//
+//			m_products = m_productService.queryPagedProducts(m_pagedTool, m_type, m_productCategoryId);
+			m_products = m_productService.queryAllProducts();
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
 	}
 
-	public void setProduct(Product product) {
-		m_product = product;
+	public String productUpdate() {
+		try {
+			m_productCategorys = m_productCategoryService.queryAllProductCategorys();
+			m_product = m_productService.findProduct(m_productId);
+
+			List<Image> images = m_productService.findImagesByProductId(m_productId);
+			m_product.setImages(images);
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
 	}
 
-	public void setProductService(ProductService productService) {
-		m_productService = productService;
-	}
-
-	public List<Product> getProducts() {
-		return m_products;
-	}
-
-	public void setProductId(int productId) {
-		m_productId = productId;
-	}
-
-	public void setProductCategoryService(ProductCategoryService productCategoryService) {
-		m_productCategoryService = productCategoryService;
-	}
-
-	public List<ProductCategory> getProductCategorys() {
-		return m_productCategorys;
-	}
-
-	public int getProductId() {
-		return m_productId;
-	}
-
-	public void setUploadFileName(String filename) {
-		m_uploadFile.setFilename(filename);
-	}
-
-	public void setUploadContentType(String contentType) {
-		m_uploadFile.setContentType(contentType);
-	}
-
-	public void setImageService(ImageService imageService) {
-		m_imageService = imageService;
+	public String productUpdateSubmit() {
+		try {
+			int count = m_productService.updateProduct(m_product);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
 	}
 
 	public void setImageId(int imageId) {
 		m_imageId = imageId;
 	}
 
-	public int getType() {
-		return m_type;
-	}
-
-	public void setType(int type) {
-		m_type = type;
-	}
-
-	public int getProductCategoryId() {
-		return m_productCategoryId;
-	}
-
-	public void setProductCategoryId(int productCategoryId) {
-		m_productCategoryId = productCategoryId;
+	public void setImageService(ImageService imageService) {
+		m_imageService = imageService;
 	}
 
 	public void setIndex(int index) {
 		m_pagedTool.setPageIndex(index);
 	}
 
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
 	public void setPagedTool(PagedTool pagedTool) {
 		m_pagedTool = pagedTool;
 	}
-	public void setUploads(File[] uploads) {
-		m_uploads = uploads;
+
+	public void setProduct(Product product) {
+		m_product = product;
 	}
 
-	public void setUploadsFileName(String filename) {
-		String[] fileNames = filename.split(",");
-		for(int i=0;i<fileNames.length;i++){
-			UploadFile upload = m_uploadFiles[i];
-			if(upload==null){
-				upload =new UploadFile();
-				m_uploadFiles[i]= upload;
-			}
-			m_uploadFiles[i].setFilename(fileNames[i]);
-		}
+	public void setProductCategoryId(int productCategoryId) {
+		m_productCategoryId = productCategoryId;
+	}
+
+	public void setProductCategoryService(ProductCategoryService productCategoryService) {
+		m_productCategoryService = productCategoryService;
+	}
+
+	public void setProductId(int productId) {
+		m_productId = productId;
+	}
+
+	public void setProductService(ProductService productService) {
+		m_productService = productService;
+	}
+
+	public void setType(int type) {
+		m_type = type;
+	}
+
+	public void setUploadContentType(String contentType) {
+		m_uploadFile.setContentType(contentType);
+	}
+
+	public void setUploadFileName(String filename) {
+		m_uploadFile.setFilename(filename);
+	}
+	public void setUploads(File[] uploads) {
+		m_uploads = uploads;
 	}
 
 	public void setUploadsContentType(String contentType) {
@@ -300,6 +288,18 @@ public class ProductAction extends ActionSupport {
 				m_uploadFiles[i]= upload;
 			}
 			m_uploadFiles[i].setContentType(contentTypes[i]);
+		}
+	}
+
+	public void setUploadsFileName(String filename) {
+		String[] fileNames = filename.split(",");
+		for(int i=0;i<fileNames.length;i++){
+			UploadFile upload = m_uploadFiles[i];
+			if(upload==null){
+				upload =new UploadFile();
+				m_uploadFiles[i]= upload;
+			}
+			m_uploadFiles[i].setFilename(fileNames[i]);
 		}
 	}
 }

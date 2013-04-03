@@ -3,13 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站</title>
 <meta name="Description" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
 <meta name="Keyword" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/admin.css">
-<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.override.css" rel="stylesheet">
+<link rel='stylesheet' type='text/css' href='css/calendar.css' />
+<script src="js/calendar.js" type="text/javascript"></script>
+<script src="js/jquery-1.7.1.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <style type="text/css">
 .left{
@@ -19,7 +21,7 @@
 <script type="text/javascript">
 	var calendar =null;
 $(document).ready(function() {
-	$('#courtOrderList').addClass("active");
+	$('#service').addClass("active");
 	$("#form").validate({
 		rules : {
 			"courtOrder.courtName" : {
@@ -55,63 +57,64 @@ $(document).ready(function() {
 });
 </script>
 </head>
-<body youdao="bind">
-	<div class="wrap container_24">
-		<jsp:include page="./Head.jsp"></jsp:include>
-
-		<div class="grid_24">
-			<div class="span10">
-				<h2 align="center" style="color:#666;font-size:16px">订球场</h2>
+<body>
+	<div class="container">
+	<jsp:include page="./Head.jsp"></jsp:include>
+	<div>
+		<ul class="breadcrumb">
+			<li>当前位置：</li>
+			<li><a href="index.do">首页</a> <span class="divider">/</span></li>
+			<li class="active">球场预定</li>
+		</ul>
+	</div>
+	<div class="row">
+			<div class="span12">
 				<form action="orderCourtSub.do" id="form" method="post">
-					<table align="center" cellpadding="2" cellspacing="1" width="100%">
+					<table class="table table-striped table-bordered" width="100%">
 						<tr>
-							<td class="left" width="40%">分类</td>
+							<td class="left" width="20%">分类</td>
 							<td ><select name="courtOrder.type">
 									<option value="0">球场</option>
 									<option value="1">练习场</option>
 							</select></td>
-						</tr>
-						<tr>
-							<td class="left" width="40%">球场名称<span style='color: red'>*</span></td>
+							<td class="left" width="20%">球场名称<span class='red'>*</span></td>
 							<td ><input type="text" size="40"
 								name="courtOrder.courtName" /></td>
 						</tr>
 						<tr>
-							<td class="left" width="40%">订场时间<span style='color: red'>*</span></td>
+							<td class="left" width="20%">订场时间<span class='red'>*</span></td>
 							<td ><input type="text" size="30"
-								name="courtOrder.date" id="courtOrder.date" /></td>
-						</tr>
-						<tr>
-							<td class="left" width="40%">顾客姓名<span style='color: red'>*</span></td>
-							<td ><input type="text" size="40"
-								name="courtOrder.userName" /></td>
-						</tr>
-						<tr>
-							<td class="left" width="40%">订场人数<span style='color: red'>*</span></td>
+								name="courtOrder.date" id="courtOrder.date" />
+								&nbsp;
+								<img src="img/calendar.gif"
+								onclick="showCalendar('courtOrder.date');"></td>
+							<td class="left" width="20%">订场人数<span class='red'>*</span></td>
 							<td ><input type="text" size="40"
 								name="courtOrder.number" /></td>
 						</tr>
 						<tr>
-							<td class="left" width="40%">顾客电话<span style='color: red'>*</span></td>
+							<td class="left" width="20%">顾客姓名<span class='red'>*</span></td>
+							<td ><input type="text" size="40"
+								name="courtOrder.userName" /></td>
+							<td class="left" width="20%">顾客电话<span class='red'>*</span></td>
 							<td ><input type="text" size="40"
 								name="courtOrder.userPhone" /></td>
 						</tr>
 						<tr>
-							<td class="left" width="40%">备注信息</td>
+							<td class="left" width="20%">备注信息</td>
 							<td ><textarea name="courtOrder.note" rows="4"
 									cols="60"></textarea></td>
-						</tr>
-						<tr>
-							<td colspan="2" align="center">
-								<button type="submit" class="btn">提交</button>
+							<td colspan="2" style="text-align:center;vertical-align:middle">
+								<button type="submit" class="btn btn-primary">提交</button>
 						</tr>
 					</table>
 				</form>
-			</div>
-		</div>
-		<jsp:include page="./Foot.jsp"></jsp:include>
-	</div>
+		</div></div>
+	<jsp:include page="./Foot.jsp"></jsp:include>
+    </div>
 </body>
 </html>
+
+
 
 

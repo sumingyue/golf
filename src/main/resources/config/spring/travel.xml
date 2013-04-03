@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-lazy-init="false" default-autowire="byName">
+	<bean id="travelHotelDao" class="com.golf.dao.TravelHotelDao">
+		<property name="baseDao">
+			<ref bean="baseDao" />
+		</property>
+	</bean>
+	<bean id="travelHotelService" class="com.golf.service.impl.TravelHotelServiceImpl">
+		<property name="travelHotelDao">
+			<ref bean="travelHotelDao" />
+		</property>
+	</bean>
+	<bean id="travelHotelAction" class="com.golf.action.TravelHotelAction"
+		scope="prototype">
+		<property name="travelHotelService">
+			<ref bean="travelHotelService" />
+		</property>
+	</bean>
+	
+	<bean id="travelHotelImageDao" class="com.golf.dao.TravelHotelImageDao">
+		<property name="baseDao">
+			<ref bean="baseDao" />
+		</property>
+	</bean>
+	<bean id="travelHotelImageService" class="com.golf.service.impl.TravelHotelImageServiceImpl">
+		<property name="travelHotelImageDao">
+			<ref bean="travelHotelImageDao" />
+		</property>
+	</bean>
+	<bean id="travelHotelImageAction" class="com.golf.action.TravelHotelImageAction"
+		scope="prototype">
+		<property name="travelHotelImageService">
+			<ref bean="travelHotelImageService" />
+		</property>
+		<property name="travelHotelService">
+			<ref bean="travelHotelService" />
+		</property>
+		<property name="imageService">
+			<ref bean="imageService" />
+		</property>
+	</bean>
+	
+	<bean id="travelDao" class="com.golf.dao.TravelDao">
+		<property name="baseDao">
+			<ref bean="baseDao" />
+		</property>
+	</bean>
+	<bean id="travelService" class="com.golf.service.impl.TravelServiceImpl">
+		<property name="travelDao">
+			<ref bean="travelDao" />
+		</property>
+	</bean>
+	<bean id="travelAction" class="com.golf.action.TravelAction"
+		scope="prototype">
+		<property name="travelService">
+			<ref bean="travelService" />
+		</property>
+		<property name="travelHotelService">
+			<ref bean="travelHotelService" />
+		</property>
+		<property name="courtService">
+			<ref bean="courtService" />
+		</property>
+		<property name="travelCourtService">
+			<ref bean="travelCourtService" />
+		</property>
+		<property name="travelPlanService">
+			<ref bean="travelPlanService" />
+		</property>
+	</bean>
+	
+	<bean id="travelPlanDao" class="com.golf.dao.TravelPlanDao">
+		<property name="baseDao">
+			<ref bean="baseDao" />
+		</property>
+	</bean>
+	<bean id="travelPlanService" class="com.golf.service.impl.TravelPlanServiceImpl">
+		<property name="travelPlanDao">
+			<ref bean="travelPlanDao" />
+		</property>
+	</bean>
+	<bean id="travelPlanAction" class="com.golf.action.TravelPlanAction"
+		scope="prototype">
+		<property name="travelPlanService">
+			<ref bean="travelPlanService" />
+		</property>
+		<property name="travelService">
+			<ref bean="travelService" />
+		</property>
+	</bean>
+	
+	<bean id="travelLogDao" class="com.golf.dao.TravelLogDao">
+		<property name="baseDao">
+			<ref bean="baseDao" />
+		</property>
+	</bean>
+	<bean id="travelLogService" class="com.golf.service.impl.TravelLogServiceImpl">
+		<property name="travelLogDao">
+			<ref bean="travelLogDao" />
+		</property>
+	</bean>
+	<bean id="travelLogAction" class="com.golf.action.TravelLogAction"
+		scope="prototype">
+		<property name="travelLogService">
+			<ref bean="travelLogService" />
+		</property>
+		<property name="travelService">
+			<ref bean="travelService" />
+		</property>
+	</bean>
+	
+	<bean id="travelCourtDao" class="com.golf.dao.TravelCourtDao">
+		<property name="baseDao">
+			<ref bean="baseDao" />
+		</property>
+	</bean>
+	<bean id="travelCourtService" class="com.golf.service.impl.TravelCourtServiceImpl">
+		<property name="travelCourtDao">
+			<ref bean="travelCourtDao" />
+		</property>
+	</bean>
+</beans>  

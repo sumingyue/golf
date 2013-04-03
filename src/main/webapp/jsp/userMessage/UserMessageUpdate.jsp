@@ -37,28 +37,25 @@ $(document).ready(function() {
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-      		<h4 style="text-align:center">回复用户留言信息</h4>
 				<form action="userMessageUpdateSubmit.do" id="form" method="post">
-					<table align="center" cellpadding="2" cellspacing="1" width="100%">
+					<table class="table table-striped table-bordered" width="100%">
 						<input type="hidden" name="userMessage.id"
 							value="<s:property value="userMessage.id"/>" />
-						<tr>
+						<tr><td colspan='2'>
+					      		<h4 style="text-align:center">回复用户留言信息</h4>
+						</td></tr><tr>
 							<td class="left" width="40%">用户留言</td>
 							<td class="right"><textarea name="userMessage.content"
-									rows="5" cols="80">
-									<s:property value="userMessage.content" />
-								</textarea></td>
+									rows="5" cols="80"><s:property value="userMessage.content" /></textarea></td>
 						</tr>
 						<tr>
 							<td class="left" width="40%">管理回复</td>
 							<td class="right"><textarea name="userMessage.reply"
-									rows="5" cols="80">
-									<s:property value="userMessage.reply" />
-								</textarea></td>
+									rows="5" cols="80"><s:property value="userMessage.reply" /></textarea></td>
 						</tr>
 						<tr>
-							<td colspan="2" align="center"><button type="submit"
-									class="btn">提交</button>
+							<td colspan="2" style="text-align:center"><button type="submit"
+									class="btn btn-primary  btn-large" >提交</button>
 						</tr>
 					</table>
 				</form>

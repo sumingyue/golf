@@ -12,36 +12,36 @@ public class ProductImage {
 
 	private Date m_creationDate;
 
-	public int getProductId() {
-		return m_productId;
-	}
-
-	public void setProductId(int productId) {
-		m_productId = productId;
-	}
-
-	public int getImageId() {
-		return m_imageId;
-	}
-
-	public void setImageId(int imageId) {
-		m_imageId = imageId;
-	}
-
 	public Date getCreationDate() {
 		return m_creationDate;
-	}
-
-	public void setCreationDate(Date creationDate) {
-		m_creationDate = creationDate;
 	}
 
 	public int getId() {
 		return m_id;
 	}
 
+	public int getImageId() {
+		return m_imageId;
+	}
+
+	public int getProductId() {
+		return m_productId;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		m_creationDate = creationDate;
+	}
+
 	public void setId(int id) {
 		m_id = id;
+	}
+
+	public void setImageId(int imageId) {
+		m_imageId = imageId;
+	}
+
+	public void setProductId(int productId) {
+		m_productId = productId;
 	}
 
 }

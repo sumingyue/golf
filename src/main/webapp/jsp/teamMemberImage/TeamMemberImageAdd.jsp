@@ -48,7 +48,7 @@ $(document).ready(function() {
 				enctype="multipart/form-data">
 				<table align="center" cellpadding="2" cellspacing="1" width="100%">
 					<tr>
-						<td class="left" width="40%">球队<span style='color: red'>*</span></td>
+						<td class="left" width="40%">球队<span class='red'>*</span></td>
 						<td class="right">
 							<s:select name="teamMemberImage.teamId" id="teamId"
 								list="teams" listKey="id" listValue="name"  theme="simple" >
@@ -56,12 +56,12 @@ $(document).ready(function() {
 						</td>
 					</tr>
 					<tr>
-						<td class="left">球队图片<span style='color: red'>*</span></td>
+						<td class="left">球队图片<span class='red'>*</span></td>
 						<td class="right"><input type="file" name="upload"
 							id="fileUpload_upload"></td>
 					</tr>
 					<tr>
-						<td class="left">球员名称<span style='color: red'>*</span></td>
+						<td class="left">球员名称<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="teamMemberImage.memberName" /></td>
 					</tr>
 					<tr>

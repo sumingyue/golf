@@ -2,7 +2,6 @@ package com.golf.main;
 
 import java.util.List;
 
-import com.golf.Config;
 import com.golf.entity.Court;
 import com.golf.entity.News;
 import com.golf.service.AdwordsService;
@@ -15,7 +14,8 @@ public class PracticeAction extends ActionSupport {
 
 	private static final long serialVersionUID = 2801256589554291998L;
 
-	private NewsService m_newsService;
+	@SuppressWarnings("unused")
+   private NewsService m_newsService;
 
 	private CourtService m_courtService;
 
@@ -23,24 +23,13 @@ public class PracticeAction extends ActionSupport {
 
 	private List<Court> m_courts;
 
-	private List<News> m_qiuhui;
-
-	private List<News> m_xiehui;
-
-	private List<News> m_huiji;
-
 	private PagedTool m_pagedTool = new PagedTool(15);
 
 	private AdwordsService m_adwordsService;
 
-	public String clubList() {
-		return SUCCESS;
-	}
-
 	public String courtList() {
 		m_pagedTool.setTotalNumber(m_courtService.queryAllCourts().size());
 		m_courts = m_courtService.queryPagedCourts(m_pagedTool);
-		queryLeftNews();
 		return SUCCESS;
 	}
 
@@ -52,37 +41,12 @@ public class PracticeAction extends ActionSupport {
 		return m_courts;
 	}
 
-	public List<News> getHuiji() {
-		return m_huiji;
-	}
-
 	public List<News> getNews() {
 		return m_news;
 	}
 
 	public PagedTool getPagedTool() {
 		return m_pagedTool;
-	}
-
-	public List<News> getQiuhui() {
-		return m_qiuhui;
-	}
-
-	public List<News> getXiehui() {
-		return m_xiehui;
-	}
-
-	public String practiceList() {
-		m_pagedTool.setTotalNumber(m_newsService.queryTotalSize(0, Config.ZiXun_LianXiChang));
-		m_news = m_newsService.queryPagedNews(m_pagedTool, 15, Config.ZiXun_LianXiChang);
-		queryLeftNews();
-		return SUCCESS;
-	}
-
-	private void queryLeftNews() {
-		m_qiuhui = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_QiuHuiZiXun);
-		m_xiehui = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.RenWu_XieHuiXinWen);
-		m_huiji = m_newsService.queryFixedNewsBySmallCategoryId(8, Config.ZiXun_HuiJiZiXun);
 	}
 
 	public void setAdwordsService(AdwordsService adwordsService) {
@@ -92,10 +56,11 @@ public class PracticeAction extends ActionSupport {
 	public void setCourtService(CourtService courtService) {
 		m_courtService = courtService;
 	}
+
 	public void setNewsService(NewsService newsService) {
 		m_newsService = newsService;
 	}
-	
+
 	public void setPagedTool(PagedTool pagedTool) {
 		m_pagedTool = pagedTool;
 	}

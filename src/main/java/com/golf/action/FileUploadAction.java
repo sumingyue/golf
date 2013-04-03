@@ -52,20 +52,20 @@ public class FileUploadAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public void setUpload(File file) {
-		m_upload = file;
+	public void setImageService(ImageService imageService) {
+		m_imageService = imageService;
 	}
 
-	public void setUploadFileName(String filename) {
-		m_uploadFile.setFilename(filename);
+	public void setUpload(File file) {
+		m_upload = file;
 	}
 
 	public void setUploadContentType(String contentType) {
 		m_uploadFile.setContentType(contentType);
 	}
 
-	public void setImageService(ImageService imageService) {
-		m_imageService = imageService;
+	public void setUploadFileName(String filename) {
+		m_uploadFile.setFilename(filename);
 	}
 
 }

@@ -17,17 +17,6 @@
 		$('#team').addClass('active');
 	});
 </script>
-<style>
-.image-item {
-	width: 220px;
-	height: 115px;
-}
-.center{
-	text-align:center;
-	align:center;
-	background-color:#d9edf7;
-}
-</style>
 </head>
 <body>
 	<div class="container">

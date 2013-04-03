@@ -70,7 +70,7 @@ public class CourtAction extends ActionSupport {
 
 		for (CourtRaider temp : m_all) {
 			String group = temp.getName();
-			String index = temp.getIndexName();
+			String index = temp.getTypeIndex();
 			int imageId = temp.getImageId();
 			temp.setImage(m_imageService.findImage(imageId));
 

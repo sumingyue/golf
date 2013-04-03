@@ -27,13 +27,13 @@
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-			<table  align="center" cellpadding="2" cellspacing="1"  class="table" id="contents">
+			<table  class="table table-striped table-bordered" id="contents">
 				<thead><tr class="title">
 					<th width="5%">序号</th>
 					<th width="15%">球场名称</th>
 					<th width="15%">用户名</th>
-					<th width="55%">评论内容</th>
-					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="courtCommentsAdd.do" >新增</a></th>
+					<th width="51%">评论内容</th>
+					<th width="14%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="courtCommentsAdd.do" class="btn btn-primary  btn-small" >新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="courtCommentss" status="vs">
 					<tr class="trDetail">
@@ -41,8 +41,8 @@
 					<td><s:property value="court.name" /></td>
 					<td><s:property value="userName" /></td>
 					<td><s:property value="content" /></td>
-					<td><a href="courtCommentsUpdate.do?courtCommentsId=<s:property value="id"/>">编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
-					<a class="delete" href="courtCommentsDelete.do?courtCommentsId=<s:property value="id"/>">删除</a></td>
+					<td><a href="courtCommentsUpdate.do?courtCommentsId=<s:property value="id"/>" class="btn btn-primary  btn-small" >编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="btn btn-danger  btn-small delete" href="courtCommentsDelete.do?courtCommentsId=<s:property value="id"/>">删除</a></td>
 					</tr>
 				</s:iterator></tbody>
 			</table>

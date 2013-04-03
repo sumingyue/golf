@@ -39,11 +39,13 @@ $(document).ready(function() {
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-				<h4 style="text-align:center">新增球队新闻信息</h4>
 				<form action="teamNewsAddSubmit.do" id="form" method="post">
-				<table align="center" cellpadding="2" cellspacing="1" width="100%">
+				<table class="table table-striped table-bordered" width="100%">
+					<tr><td colspan='2'>
+					<h4 style="text-align:center">新增球队新闻信息</h4>
+					</td></tr>
 					<tr>
-						<td class="left" width="15%">球队<span style='color: red'>*</span></td>
+						<td class="left" width="15%">球队<span class='red'>*</span></td>
 						<td class="right">
 						<s:select name="teamNews.teamId"
 							list="teams" listKey="id" listValue="name" 
@@ -51,7 +53,7 @@ $(document).ready(function() {
 						</s:select>
 					</tr>
 					<tr>
-						<td class="left" >分类<span style='color: red'>*</span></td>
+						<td class="left" >分类<span class='red'>*</span></td>
 						<td class="right">
 							<select name="teamNews.type">
 								<option value="1">球队新闻</option>
@@ -63,15 +65,15 @@ $(document).ready(function() {
 						</td>
 					</tr>
 					<tr>
-						<td  class="left">标题<span style='color: red'>*</span></td>
+						<td  class="left">标题<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="50"
 							name="teamNews.title" /></td>
 					</tr>
 					<tr>
-						<td  class="left">内容<span style='color: red'>*</span></td>
+						<td  class="left">内容<span class='red'>*</span></td>
 						<td class="right"><textarea id="editor1" name="teamNews.content"
 								rows="10" cols="80"></textarea></td>
-					</tr><tr><td colspan="2" align="center"><button type="submit" class="btn">提交</button></tr>
+					</tr><tr><td colspan="2" style="text-align:center"><button type="submit" class="btn btn-primary  btn-large">提交</button></tr>
 				</table>
 			</form>
 			<ckeditor:replace replace="editor1" basePath="ckeditor/" />

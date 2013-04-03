@@ -66,6 +66,8 @@ public class ImageTools {
 			typeName = "/court/";
 		} else if (type == 6) {
 			typeName = "/pic/";
+		} else if (type == 7) {
+			typeName = "/learn/";
 		} else {
 			typeName = "/other/";
 		}

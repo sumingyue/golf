@@ -8,8 +8,8 @@ public class AdwordsDao {
 
 	private BaseDao m_baseDao;
 
-	public void setBaseDao(BaseDao baseDao) {
-		m_baseDao = baseDao;
+	public int delete(int id) {
+		return (Integer) m_baseDao.delete("adwords.delete", id);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -25,11 +25,11 @@ public class AdwordsDao {
 		return (Integer) m_baseDao.insert("adwords.insert", adwords);
 	}
 
-	public int update(Adwords adwords) {
-		return m_baseDao.update("adwords.update", adwords);
+	public void setBaseDao(BaseDao baseDao) {
+		m_baseDao = baseDao;
 	}
 
-	public int delete(int id) {
-		return (Integer) m_baseDao.delete("adwords.delete", id);
+	public int update(Adwords adwords) {
+		return m_baseDao.update("adwords.update", adwords);
 	}
 }

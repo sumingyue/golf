@@ -27,16 +27,36 @@ public class UserMessageAction extends ActionSupport {
 	
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
-	public String userMessageList() {
-		try {
-			//	m_pagedTool.setTotalNumber(m_userMessageService.queryAllUserMessages().size());
-			//m_userMessages = m_userMessageService.queryPagedUserMessages(m_pagedTool.getPageIndex(), Config.DEFAULT_PAGE_NUMBER);
-			m_userMessages = m_userMessageService.queryAllUserMessages();
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public UserMessage getUserMessage() {
+		return m_userMessage;
+	}
+
+	public List<UserMessage> getUserMessages() {
+		return m_userMessages;
+	}
+
+	public void setIndex(int index){
+		m_pagedTool.setPageIndex(index);
+	}
+
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
+	}
+
+	public void setUserMessage(UserMessage userMessage) {
+		m_userMessage = userMessage;
+	}
+
+	public void setUserMessageId(int userMessageId) {
+		m_userMessageId = userMessageId;
+	}
+
+	public void setUserMessageService(UserMessageService userMessageService) {
+		m_userMessageService = userMessageService;
 	}
 
 	public String userMessageAddSubmit() {
@@ -54,6 +74,32 @@ public class UserMessageAction extends ActionSupport {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
 		}
+	}
+
+	public String userMessageDelete() {
+		try {
+			int count = m_userMessageService.deleteUserMessage(m_userMessageId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String userMessageList() {
+		try {
+			//	m_pagedTool.setTotalNumber(m_userMessageService.queryAllUserMessages().size());
+			//m_userMessages = m_userMessageService.queryPagedUserMessages(m_pagedTool.getPageIndex(), Config.DEFAULT_PAGE_NUMBER);
+			m_userMessages = m_userMessageService.queryAllUserMessages();
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
 	}
 
 	public String userMessageUpdate() {
@@ -79,52 +125,6 @@ public class UserMessageAction extends ActionSupport {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
 		}
-	}
-
-	public String userMessageDelete() {
-		try {
-			int count = m_userMessageService.deleteUserMessage(m_userMessageId);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-	}
-
-	public UserMessage getUserMessage() {
-		return m_userMessage;
-	}
-
-	public void setUserMessage(UserMessage userMessage) {
-		m_userMessage = userMessage;
-	}
-
-	public void setUserMessageService(UserMessageService userMessageService) {
-		m_userMessageService = userMessageService;
-	}
-
-	public List<UserMessage> getUserMessages() {
-		return m_userMessages;
-	}
-
-	public void setUserMessageId(int userMessageId) {
-		m_userMessageId = userMessageId;
-	}
-
-	public void setIndex(int index){
-		m_pagedTool.setPageIndex(index);
-	}
-
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
-	public void setPagedTool(PagedTool pagedTool) {
-		m_pagedTool = pagedTool;
 	}
 	
 }

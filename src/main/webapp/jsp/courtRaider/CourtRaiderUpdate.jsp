@@ -17,9 +17,7 @@ $(document).ready(function(){
 		rules : {
 			"courtRaider.name" : {
 				required : true
-			},"courtRaider.indexName" : {
-				required : true
-			},"upload" : {
+			},"courtRaider.typeIndex" : {
 				required : true
 			},"courtRaider.des" : {
 				required : true
@@ -27,11 +25,9 @@ $(document).ready(function(){
 		},
 		messages : {
 			"courtRaider.name" : {
-				required : "请输入球道分类"
-			},"courtRaider.indexName" : {
+				required : "请输入球道名称"
+			},"courtRaider.typeIndex" : {
 				required : "请输入球道顺序"
-			},"upload" : {
-				required : "请上传球道图片"
 			},"courtRaider.des" : {
 				required : "请输入球道介绍"
 			}
@@ -54,7 +50,7 @@ $(document).ready(function(){
 				<table align="center" cellpadding="2" cellspacing="1" width="100%" rules="all" border="1">
 					<tr>
 						<input type="hidden" name="courtRaider.id" value="<s:property value="courtRaider.id"/>"/>
-						<td class="left" width="40%">俱乐部<span style='color: red'>*</span></td>
+						<td class="left" width="40%">俱乐部<span class='red'>*</span></td>
 						<td class="right">
 							<s:select name="courtRaider.courtId" id="courtId"
 								list="courts" listKey="id" value="courtRaider.courtId" listValue="name"  theme="simple" >
@@ -62,21 +58,45 @@ $(document).ready(function(){
 						</td>
 					</tr>
 					<tr>
-						<td class="left">球道分类<span style='color: red'>*</span></td>
+						<td class="left">球道分类<span class='red'>*</span></td>
+						<td class="right"><input type="text" size="30" name="courtRaider.type" value="<s:property value="courtRaider.type"/>"/></td>
+					</tr>
+					<tr>
+						<td class="left">球道顺序<span class='red'>*</span></td>
+						<td class="right"><input type="text" size="30" name="courtRaider.typeIndex" value="<s:property value="courtRaider.typeIndex"/>"/></td>
+					</tr>
+					<tr>
+						<td class="left">球道名称<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="30" name="courtRaider.name" value="<s:property value="courtRaider.name"/>"/></td>
 					</tr>
 					<tr>
-						<td class="left">球道顺序<span style='color: red'>*</span></td>
-						<td class="right"><input type="text" size="30" name="courtRaider.indexName" value="<s:property value="courtRaider.indexName"/>"/></td>
+						<td class="left">球道红tee<span class='red'>*</span></td>
+						<td class="right"><input type="text" size="30" name="courtRaider.indicator1" value="<s:property value="courtRaider.indicator1"/>"/></td>
 					</tr>
 					<tr>
-						<td class="left">更换图片<span style='color: red'>*</span></td>
+						<td class="left">球道红tee<span class='red'>*</span></td>
+						<td class="right"><input type="text" size="30" name="courtRaider.indicator2" value="<s:property value="courtRaider.indicator2"/>"/></td>
+					</tr>
+					<tr>
+						<td class="left">球道红tee<span class='red'>*</span></td>
+						<td class="right"><input type="text" size="30" name="courtRaider.indicator3" value="<s:property value="courtRaider.indicator3"/>"/></td>
+					</tr>
+					<tr>
+						<td class="left">球道红tee<span class='red'>*</span></td>
+						<td class="right"><input type="text" size="30" name="courtRaider.indicator4" value="<s:property value="courtRaider.indicator4"/>"/></td>
+					</tr>
+					<tr>
+						<td class="left">球道红tee<span class='red'>*</span></td>
+						<td class="right"><input type="text" size="30" name="courtRaider.indicator5" value="<s:property value="courtRaider.indicator5"/>"/></td>
+					</tr>
+					<tr>
+						<td class="left">更换图片<span class='red'>*</span></td>
 						<td class="right"><input type="file" name="upload"
 							id="fileUpload_upload">
 						</td>
 					</tr>
 					<tr>
-						<td class="left">图片样例<span style='color: red'>*</span></td>
+						<td class="left">图片样例<span class='red'>*</span></td>
 						<td class="right">
 							<img src="<s:property value="courtRaider.image.path"/>">
 							<s:if test="courtImage.imageId>0">名称:&nbsp;&nbsp; <s:property value='courtRaider.image.name'/></s:if>
@@ -84,7 +104,7 @@ $(document).ready(function(){
 						</td>
 					</tr>
 					<tr>
-						<td class="left">球道简介<span style='color: red'>*</span></td>
+						<td class="left">球道简介<span class='red'>*</span></td>
 						<td class="right"><textarea  name="courtRaider.des"  rows="5" cols="60"><s:property value="courtRaider.des"/></textarea>
 						</td>
 					</tr>

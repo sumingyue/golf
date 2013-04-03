@@ -14,8 +14,10 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		init();
 		$('#matchServiceList').addClass('active');
+		$(".delete").bind("click", function() {
+			return confirm("确定要删除此分类吗(不可恢复)？");
+		});
 	});
 </script>
 </head>
@@ -28,14 +30,14 @@
       <%@include file="./../Menu.jsp"%>
       <div class="span10"><!-- 
         	<h4 style="text-align:center">赛事服务信息管理</h4> -->
-			<table  align="center" cellpadding="2" cellspacing="1"  class="table" id="contents">
+			<table  class="table table-striped table-bordered table-hover">
 				<thead><tr class="title">
 					<th width="5%">序号</th>
 					<th width="25%">时间</th>
 					<th width="20%">客户姓名</th>
-					<th width="20%">客户电话</th>
-					<th width="20%">订单状态</th>
-					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="matchServiceAdd.do" >新增</a></th>
+					<th width="18%">客户电话</th>
+					<th width="18%">订单状态</th>
+					<th width="14%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="matchServiceAdd.do" class="btn btn-primary  btn-small" >新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="matchServices" status="vs">
 					<tr class="trDetail">
@@ -44,8 +46,8 @@
 					<td><s:property value="userName" /></td>
 					<td><s:property value="userPhone" /></td><td><s:if test="status==0"><span style="color:red;">未处理</span></s:if>
 					<s:elseif test="status==1"><span style="color:red;">待处理</span></s:elseif></td>
-					<td><a href="matchServiceUpdate.do?matchServiceId=<s:property value="id"/>">编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
-					<a class="delete" href="matchServiceDelete.do?matchServiceId=<s:property value="id"/>">删除</a></td>
+					<td><a href="matchServiceUpdate.do?matchServiceId=<s:property value="id"/>" class="btn btn-primary  btn-small" >编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="btn btn-danger  btn-small delete" href="matchServiceDelete.do?matchServiceId=<s:property value="id"/>">删除</a></td>
 					</tr>
 				</s:iterator></tbody>
 			</table>

@@ -26,18 +26,6 @@ public class CourtOrderAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
-	public String courtOrderList() {
-		try {
-			//m_pagedTool.setTotalNumber(m_courtOrderService.queryAllCourtOrders().size());
-			//m_courtOrders = m_courtOrderService.queryPagedCourtOrders(m_pagedTool);
-			m_courtOrders = m_courtOrderService.queryAllCourtOrders();
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
-	}
-
 	public String courtOrderAddSubmit() {
 		try {
 			int id = m_courtOrderService.insertCourtOrder(m_courtOrder);
@@ -51,6 +39,32 @@ public class CourtOrderAction extends ActionSupport {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
 		}
+	}
+
+	public String courtOrderDelete() {
+		try {
+			int count = m_courtOrderService.deleteCourtOrder(m_courtOrderId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String courtOrderList() {
+		try {
+			//m_pagedTool.setTotalNumber(m_courtOrderService.queryAllCourtOrders().size());
+			//m_courtOrders = m_courtOrderService.queryPagedCourtOrders(m_pagedTool);
+			m_courtOrders = m_courtOrderService.queryAllCourtOrders();
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
 	}
 
 	public String courtOrderUpdate() {
@@ -77,48 +91,34 @@ public class CourtOrderAction extends ActionSupport {
 		}
 	}
 
-	public String courtOrderDelete() {
-		try {
-			int count = m_courtOrderService.deleteCourtOrder(m_courtOrderId);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-	}
-
 	public CourtOrder getCourtOrder() {
 		return m_courtOrder;
-	}
-
-	public void setCourtOrder(CourtOrder courtOrder) {
-		m_courtOrder = courtOrder;
-	}
-
-	public void setCourtOrderService(CourtOrderService courtOrderService) {
-		m_courtOrderService = courtOrderService;
 	}
 
 	public List<CourtOrder> getCourtOrders() {
 		return m_courtOrders;
 	}
 
-	public void setCourtOrderId(int courtOrderId) {
-		m_courtOrderId = courtOrderId;
-	}
 	public PagedTool getPagedTool() {
 		return m_pagedTool;
 	}
 
-	public void setPagedTool(PagedTool pagedTool) {
-		m_pagedTool = pagedTool;
+	public void setCourtOrder(CourtOrder courtOrder) {
+		m_courtOrder = courtOrder;
+	}
+
+	public void setCourtOrderId(int courtOrderId) {
+		m_courtOrderId = courtOrderId;
+	}
+	public void setCourtOrderService(CourtOrderService courtOrderService) {
+		m_courtOrderService = courtOrderService;
 	}
 
 	public void setIndex(int index){
 		m_pagedTool.setPageIndex(index);
+	}
+
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
 	}
 }

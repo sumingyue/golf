@@ -32,116 +32,116 @@ public class Product {
 
 	private List<Image> m_images;
 	
-	public int getId() {
-		return m_id;
-	}
-
-	public void setId(int id) {
-		m_id = id;
-	}
-
-	public int getProductCategoryId() {
-		return m_productCategoryId;
-	}
-
-	public void setProductCategoryId(int productCategoryId) {
-		m_productCategoryId = productCategoryId;
-	}
-
-	public ProductCategory getProductCategory() {
-		return m_productCategory;
-	}
-
-	public void setProductCategory(ProductCategory productCategory) {
-		m_productCategory = productCategory;
-	}
-
-	public String getName() {
-		return m_name;
-	}
-
-	public void setName(String name) {
-		m_name = name;
-	}
-
-	public String getUnit() {
-		return m_unit;
-	}
-
-	public void setUnit(String unit) {
-		m_unit = unit;
-	}
-
 	public String getBrand() {
 		return m_brand;
-	}
-
-	public void setBrand(String brand) {
-		m_brand = brand;
 	}
 
 	public String getCrowd() {
 		return m_crowd;
 	}
 
-	public void setCrowd(String crowd) {
-		m_crowd = crowd;
-	}
-
-	public String getMaterial() {
-		return m_material;
-	}
-
-	public void setMaterial(String material) {
-		m_material = material;
-	}
-
-	public String getIntroduction() {
-		return m_introduction;
-	}
-
-	public void setIntroduction(String introduction) {
-		m_introduction = introduction;
-	}
-
-	public double getPrice() {
-		return m_price;
-	}
-
-	public void setPrice(double price) {
-		m_price = price;
-	}
-
-	public double getMemberPrice() {
-		return m_memberPrice;
-	}
-
-	public void setMemberPrice(double memberPrice) {
-		m_memberPrice = memberPrice;
-	}
-
 	public Date getDate() {
 		return m_date;
 	}
 
-	public void setDate(Date date) {
-		m_date = date;
-	}
-
-	public List<Image> getImages() {
-		return m_images;
-	}
-
-	public void setImages(List<Image> images) {
-		m_images = images;
+	public int getId() {
+		return m_id;
 	}
 
 	public Image getImage() {
 		return m_image;
 	}
 
+	public List<Image> getImages() {
+		return m_images;
+	}
+
+	public String getIntroduction() {
+		return m_introduction;
+	}
+
+	public String getMaterial() {
+		return m_material;
+	}
+
+	public double getMemberPrice() {
+		return m_memberPrice;
+	}
+
+	public String getName() {
+		return m_name;
+	}
+
+	public double getPrice() {
+		return m_price;
+	}
+
+	public ProductCategory getProductCategory() {
+		return m_productCategory;
+	}
+
+	public int getProductCategoryId() {
+		return m_productCategoryId;
+	}
+
+	public String getUnit() {
+		return m_unit;
+	}
+
+	public void setBrand(String brand) {
+		m_brand = brand;
+	}
+
+	public void setCrowd(String crowd) {
+		m_crowd = crowd;
+	}
+
+	public void setDate(Date date) {
+		m_date = date;
+	}
+
+	public void setId(int id) {
+		m_id = id;
+	}
+
 	public void setImage(Image image) {
 		m_image = image;
+	}
+
+	public void setImages(List<Image> images) {
+		m_images = images;
+	}
+
+	public void setIntroduction(String introduction) {
+		m_introduction = introduction;
+	}
+
+	public void setMaterial(String material) {
+		m_material = material;
+	}
+
+	public void setMemberPrice(double memberPrice) {
+		m_memberPrice = memberPrice;
+	}
+
+	public void setName(String name) {
+		m_name = name;
+	}
+
+	public void setPrice(double price) {
+		m_price = price;
+	}
+
+	public void setProductCategory(ProductCategory productCategory) {
+		m_productCategory = productCategory;
+	}
+
+	public void setProductCategoryId(int productCategoryId) {
+		m_productCategoryId = productCategoryId;
+	}
+
+	public void setUnit(String unit) {
+		m_unit = unit;
 	}
 	
 }

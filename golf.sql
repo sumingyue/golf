@@ -231,9 +231,15 @@ CREATE TABLE  `courtImage` (
 CREATE TABLE  `courtRaider` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `courtId` int(11) NOT NULL  COMMENT '球场ID',
-  `name` varchar(200) NOT NULL COMMENT '球道名称',
+  `type` varchar(200) NOT NULL COMMENT '球道分类',
+  `typeIndex` varchar(200) NOT NULL COMMENT '球道顺序',
   `imageId` int(11) NOT NULL  COMMENT '球道图片ID',
-  `indexName` varchar(200) NOT NULL COMMENT '球洞名称',
+  `name` varchar(200) NOT NULL COMMENT '球道名称',
+  `indicator1` int(11) NOT NULL COMMENT '指标1',
+  `indicator2` int(11) NOT NULL COMMENT '指标2',
+  `indicator3` int(11) NOT NULL COMMENT '指标3',
+  `indicator4` int(11) NOT NULL COMMENT '指标4',
+  `indicator5` int(11) NOT NULL COMMENT '指标5',
   `des` varchar(500)  COMMENT '图片介绍',
   `creationDate` datetime NOT NULL COMMENT '创建时间',
    PRIMARY KEY (`id`)
@@ -290,62 +296,122 @@ CREATE TABLE  `matchService` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='赛事服务基本信息';
 
+CREATE TABLE  `learnClub` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `imageId` int(11) NOT NULL  COMMENT '图片ID',
+  `name` varchar(100) NOT NULL COMMENT '学球机构名称',
+  `address` varchar(100) NOT NULL COMMENT '学球机构地址',
+  `phone` varchar(100) NOT NULL COMMENT '联系方式',
+  `introduction` text  COMMENT '学球机构介绍',
+  `creationDate` datetime NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学球机构基本信息';
 
-INSERT INTO category values (1,1,'高球新闻',now());
+CREATE TABLE  `drivingRange` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `imageId` int(11) NOT NULL  COMMENT '图片ID',
+  `name` varchar(100) NOT NULL COMMENT '练习场名称',
+  `address` varchar(100) NOT NULL COMMENT '练习场地址',
+  `phone` varchar(100) NOT NULL COMMENT '练习场联系方式',
+  `introduction` text  COMMENT '练习场基本介绍',
+  `creationDate` datetime NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='练习场基本信息';
+
+CREATE TABLE  `travel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL  COMMENT '旅游项目名称',
+  `type` int(100) NOT NULL COMMENT '旅游项目类型',
+  `price` int(11) NOT NULL COMMENT '总价',
+  `prePrice` int(11) NOT NULL COMMENT '预付',
+  `cashPrice` int(11) NOT NULL COMMENT '现金付账',
+  `travelHotelId` int(11) NOT NULL COMMENT '酒店ID信息',
+  `introduction` varchar(1000)  COMMENT '旅游基本介绍',
+  `des` varchar(1000)  COMMENT '旅游备注信息',
+  `creationDate` datetime NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='旅游套餐基本信息';
+
+
+CREATE TABLE  `travelHotel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `province` varchar(20) NOT NULL  COMMENT '酒店所在省',
+  `city` varchar(20) NOT NULL  COMMENT '酒店所在市',
+  `name` varchar(100) NOT NULL  COMMENT '酒店项目名称',
+  `des` text NOT NULL COMMENT '酒店介绍',
+  `creationDate` datetime NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='旅游酒店基本信息';
+  
+CREATE TABLE  `travelHotelImage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `travelHotelId` int(11) NOT NULL  COMMENT '酒店ID',
+  `imageId` int(11) NOT NULL  COMMENT '酒店图片ID',
+  `imageDes` varchar(200)  COMMENT '图片介绍',
+  `creationDate` datetime NOT NULL COMMENT '创建时间',
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='旅游酒店图片基本信息';
+
+CREATE TABLE  `travelPlan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `travelId` int(11) NOT NULL COMMENT '旅游项目ID',
+  `name` varchar(100) NOT NULL  COMMENT '行程名称',
+  `content` varchar(1000) NOT NULL COMMENT '行程基本内容',
+  `des` varchar(1000) NOT NULL COMMENT '行程备注事项',
+  `creationDate` datetime NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='旅游行程基本信息';
+
+CREATE TABLE  `travelCourt` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `travelId` int(11) NOT NULL COMMENT '旅游项目ID',
+  `courtId` int(11) NOT NULL COMMENT '球场信息ID',
+  `creationDate` datetime NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='旅游和球场关系';
+
+CREATE TABLE `travelLog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `travelId` int(11) NOT NULL COMMENT '旅游ID',
+  `title` varchar(50) NOT NULL COMMENT '新闻标题',
+  `content` mediumtext NOT NULL COMMENT '新闻内容',
+  `creationDate` datetime NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='关于旅游套餐的游记记录';
+
+
+INSERT INTO category values (1,1,'综合新闻',now());
 INSERT INTO category values (2,1,'高球赛事',now());
-INSERT INTO category values (3,1,'人物评论',now());
-INSERT INTO category values (4,1,'高球旅游',now());
-INSERT INTO category values (5,1,'高球学院',now());
-INSERT INTO category values (6,1,'综合资讯',now());
-
+INSERT INTO category values (3,1,'高球学院',now());
+INSERT INTO category values (4,1,'本地资讯',now());
 
 INSERT INTO smallCategory values (1,1,'国际新闻',now());
 INSERT INTO smallCategory values (2,1,'国内新闻',now());
 INSERT INTO smallCategory values (3,1,'产业新闻',now());
 INSERT INTO smallCategory values (4,1,'品牌资讯',now());
-INSERT INTO smallCategory values (5,1,'国外球声',now());
+INSERT INTO smallCategory values (5,1,'人物评论',now());
 INSERT INTO smallCategory values (6,1,'综合关注',now());
 
-INSERT INTO smallCategory values (7,2,'国际赛事',now());
-INSERT INTO smallCategory values (8,2,'国内赛事',now());
-INSERT INTO smallCategory values (9,2,'品牌赛事',now());
-INSERT INTO smallCategory values (10,2,'赛事告之',now());
-INSERT INTO smallCategory values (11,2,'赛事介绍',now());
-INSERT INTO smallCategory values (12,2,'球员关注',now());
+INSERT INTO smallCategory values (7,2,'美巡赛',now());
+INSERT INTO smallCategory values (8,2,'欧巡赛',now());
+INSERT INTO smallCategory values (9,2,'亚巡赛',now());
+INSERT INTO smallCategory values (10,2,'LPGA',now());
+INSERT INTO smallCategory values (11,2,'同一亚洲',now());
+INSERT INTO smallCategory values (12,2,'国内赛',now());
 
-INSERT INTO smallCategory values (13,3,'高球动态',now());
-INSERT INTO smallCategory values (14,3,'球界故事',now());
-INSERT INTO smallCategory values (15,3,'观点评论',now());
-INSERT INTO smallCategory values (16,3,'高球人物',now());
-INSERT INTO smallCategory values (17,3,'协会新闻',now());
-INSERT INTO smallCategory values (18,3,'名人高球',now());
+INSERT INTO smallCategory values (13,3,'礼仪知识',now());
+INSERT INTO smallCategory values (14,3,'违规判罚',now());
+INSERT INTO smallCategory values (15,3,'技术讲解',now());
+INSERT INTO smallCategory values (16,3,'稳定挥杆',now());
+INSERT INTO smallCategory values (17,3,'救球技巧',now());
+INSERT INTO smallCategory values (18,3,'果岭推杆',now());
 
-
-INSERT INTO smallCategory values (19,4,'江浙沪',now());
-INSERT INTO smallCategory values (20,4,'省市游',now());
-INSERT INTO smallCategory values (21,4,'经典线路',now());
-INSERT INTO smallCategory values (22,4,'旅行游记',now());
-INSERT INTO smallCategory values (23,4,'优惠球场',now());
-INSERT INTO smallCategory values (24,4,'风格球场',now());
-
-
-INSERT INTO smallCategory values (25,5,'礼仪知识',now());
-INSERT INTO smallCategory values (26,5,'违规判罚',now());
-INSERT INTO smallCategory values (27,5,'技术讲解',now());
-INSERT INTO smallCategory values (28,5,'稳定挥杆',now());
-INSERT INTO smallCategory values (29,5,'救球技巧',now());
-INSERT INTO smallCategory values (30,5,'果岭推杆',now());
-
-
-INSERT INTO smallCategory values (32,6,'活动资讯',now());
-INSERT INTO smallCategory values (33,6,'优惠信息',now());
-INSERT INTO smallCategory values (34,6,'人才供求',now());
-INSERT INTO smallCategory values (38,6,'球会资讯',now());
-INSERT INTO smallCategory values (39,6,'会籍资讯',now());
-INSERT INTO smallCategory values (40,6,'供求信息',now());
-INSERT INTO smallCategory values (41,6,'练习场',now());
-INSERT INTO smallCategory values (42,6,'学球资讯',now());
-INSERT INTO smallCategory values (43,6,'练习场新闻',now());
+INSERT INTO smallCategory values (19,4,'高球动态',now());
+INSERT INTO smallCategory values (20,4,'球场赛事',now());
+INSERT INTO smallCategory values (21,4,'练习场活动',now());
+INSERT INTO smallCategory values (22,4,'优惠信息',now());
+INSERT INTO smallCategory values (23,4,'招聘信息',now());
+INSERT INTO smallCategory values (24,4,'二手供求',now());
 
 insert into adwords values(1,'首页','首页横幅广告',950,90,'http://szgolfer.com',0,now());
 insert into adwords values(2,'首页','首页菜单下广告01',150,150,'http://szgolfer.com',0,now());

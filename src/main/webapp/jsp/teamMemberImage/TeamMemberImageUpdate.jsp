@@ -43,7 +43,7 @@ $(document).ready(function(){
 				<table align="center" cellpadding="2" cellspacing="1" width="100%">
 					<tr>
 						<input type="hidden" name="teamMemberImage.id" value="<s:property value="teamMemberImage.id"/>"/>
-						<td class="left" width="40%">球队<span style='color: red'>*</span></td>
+						<td class="left" width="40%">球队<span class='red'>*</span></td>
 						<td class="right">
 							<s:select name="teamMemberImage.teamId" id="teamId"
 								list="teams" listKey="id" value="teamMemberImage.teamId" listValue="name"  theme="simple" >
@@ -51,14 +51,14 @@ $(document).ready(function(){
 						</td>
 					</tr>
 					<tr>
-						<td class="left">球队图片<span style='color: red'>*</span></td>
+						<td class="left">球队图片<span class='red'>*</span></td>
 						<td class="right"><input type="file" name="upload"
 							id="fileUpload_upload">
 							</td>	
 						</td>
 					</tr>
 					<tr>
-						<td width="15%" class="left">图片样例<span style='color: red'>*</span></td>
+						<td width="15%" class="left">图片样例<span class='red'>*</span></td>
 						<td class="right">
 							<img src="<s:property value="teamMemberImage.image.path"/>" onclick="" width="200"
 								height="200">
@@ -68,7 +68,7 @@ $(document).ready(function(){
 						</td>
 					</tr>
 					<tr>
-						<td class="left">照片名称<span style='color: red'>*</span></td>
+						<td class="left">照片名称<span class='red'>*</span></td>
 						<td class="right"><input type="text" size="40" name="teamMemberImage.memberName" value="<s:property value='teamMemberImage.memberName'/>"/></td>
 					</tr>
 					<tr>

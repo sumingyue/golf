@@ -46,6 +46,26 @@ public class TeamMemberImageAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
+	public PagedTool getPagedTool() {
+		return m_pagedTool;
+	}
+
+	public int getTeamId() {
+		return m_teamId;
+	}
+
+	public TeamMemberImage getTeamMemberImage() {
+		return m_teamMemberImage;
+	}
+
+	public List<TeamMemberImage> getTeamMemberImages() {
+		return m_teamMemberImages;
+	}
+
+	public List<Team> getTeams() {
+		return m_teams;
+	}
+
 	private int insertImage() {
 		String fileName = m_uploadFile.getFilename();
 		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.TEAM);
@@ -67,22 +87,48 @@ public class TeamMemberImageAction extends ActionSupport {
 		      Image.TEAM_SMALL_WIDTH, Image.TEAM_SMALL_HEIGHT);
 	}
 
-	public String teamMemberImageList() {
-		try {
-//			m_teams = m_teamService.queryAllTeams();
-//			m_pagedTool.setTotalNumber(m_teamMemberImageService.queryAllTeamMemberImages(m_teamId).size());
-//
-//			m_teamMemberImages = m_teamMemberImageService.queryPagedTeamMemberImages(m_pagedTool, m_teamId);
-			m_teamMemberImages = m_teamMemberImageService.queryAllTeamMemberImages(0);
+	public void setImageService(ImageService imageService) {
+		m_imageService = imageService;
+	}
 
-			for (TeamMemberImage temp : m_teamMemberImages) {
-				temp.setImage(m_imageService.findImage(temp.getImageId()));
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-		return SUCCESS;
+	public void setIndex(int index) {
+		m_pagedTool.setPageIndex(index);
+	}
+
+	public void setPagedTool(PagedTool pagedTool) {
+		m_pagedTool = pagedTool;
+	}
+
+	public void setTeamId(int teamId) {
+		m_teamId = teamId;
+	}
+
+	public void setTeamMemberImage(TeamMemberImage teamMemberImage) {
+		m_teamMemberImage = teamMemberImage;
+	}
+
+	public void setTeamMemberImageId(int teamMemberImageId) {
+		m_teamMemberImageId = teamMemberImageId;
+	}
+
+	public void setTeamMemberImageService(TeamMemberImageService teamMemberImageService) {
+		m_teamMemberImageService = teamMemberImageService;
+	}
+
+	public void setTeamService(TeamService teamService) {
+		m_teamService = teamService;
+	}
+
+	public void setUpload(File file) {
+		m_upload = file;
+	}
+
+	public void setUploadContentType(String contentType) {
+		m_uploadFile.setContentType(contentType);
+	}
+
+	public void setUploadFileName(String filename) {
+		m_uploadFile.setFilename(filename);
 	}
 
 	public String teamMemberImageAdd() {
@@ -107,6 +153,38 @@ public class TeamMemberImageAction extends ActionSupport {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
 		}
+	}
+
+	public String teamMemberImageDelete() {
+		try {
+			int count = m_teamMemberImageService.deleteTeamMemberImage(m_teamMemberImageId);
+			if (count > 0) {
+				return SUCCESS;
+			} else {
+				return ERROR;
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+	}
+
+	public String teamMemberImageList() {
+		try {
+//			m_teams = m_teamService.queryAllTeams();
+//			m_pagedTool.setTotalNumber(m_teamMemberImageService.queryAllTeamMemberImages(m_teamId).size());
+//
+//			m_teamMemberImages = m_teamMemberImageService.queryPagedTeamMemberImages(m_pagedTool, m_teamId);
+			m_teamMemberImages = m_teamMemberImageService.queryAllTeamMemberImages(0);
+
+			for (TeamMemberImage temp : m_teamMemberImages) {
+				temp.setImage(m_imageService.findImage(temp.getImageId()));
+			}
+		} catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+		}
+		return SUCCESS;
 	}
 
 	public String teamMemberImageUpdate() {
@@ -140,83 +218,5 @@ public class TeamMemberImageAction extends ActionSupport {
 			m_logger.error(e.getMessage(), e);
 			return ERROR;
 		}
-	}
-
-	public String teamMemberImageDelete() {
-		try {
-			int count = m_teamMemberImageService.deleteTeamMemberImage(m_teamMemberImageId);
-			if (count > 0) {
-				return SUCCESS;
-			} else {
-				return ERROR;
-			}
-		} catch (Exception e) {
-			m_logger.error(e.getMessage(), e);
-			return ERROR;
-		}
-	}
-
-	public TeamMemberImage getTeamMemberImage() {
-		return m_teamMemberImage;
-	}
-
-	public void setTeamMemberImage(TeamMemberImage teamMemberImage) {
-		m_teamMemberImage = teamMemberImage;
-	}
-
-	public void setTeamMemberImageService(TeamMemberImageService teamMemberImageService) {
-		m_teamMemberImageService = teamMemberImageService;
-	}
-
-	public List<TeamMemberImage> getTeamMemberImages() {
-		return m_teamMemberImages;
-	}
-
-	public void setTeamMemberImageId(int teamMemberImageId) {
-		m_teamMemberImageId = teamMemberImageId;
-	}
-
-	public List<Team> getTeams() {
-		return m_teams;
-	}
-
-	public void setTeamService(TeamService teamService) {
-		m_teamService = teamService;
-	}
-
-	public int getTeamId() {
-		return m_teamId;
-	}
-
-	public void setTeamId(int teamId) {
-		m_teamId = teamId;
-	}
-
-	public void setUpload(File file) {
-		m_upload = file;
-	}
-
-	public void setUploadFileName(String filename) {
-		m_uploadFile.setFilename(filename);
-	}
-
-	public void setUploadContentType(String contentType) {
-		m_uploadFile.setContentType(contentType);
-	}
-
-	public void setImageService(ImageService imageService) {
-		m_imageService = imageService;
-	}
-
-	public PagedTool getPagedTool() {
-		return m_pagedTool;
-	}
-
-	public void setPagedTool(PagedTool pagedTool) {
-		m_pagedTool = pagedTool;
-	}
-
-	public void setIndex(int index) {
-		m_pagedTool.setPageIndex(index);
 	}
 }

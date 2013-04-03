@@ -50,20 +50,20 @@ public class FileManagerAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public List<String> getPics() {
-		return m_pics;
+	public List<String> getDirs() {
+		return m_dirs;
 	}
 
 	public String getParent() {
 		return m_parent;
 	}
 
-	public void setParent(String parent) {
-		m_parent = parent;
+	public List<String> getPics() {
+		return m_pics;
 	}
 
-	public List<String> getDirs() {
-		return m_dirs;
+	public void setParent(String parent) {
+		m_parent = parent;
 	}
 
 }

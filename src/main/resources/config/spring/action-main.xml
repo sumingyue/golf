@@ -2,38 +2,26 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 <beans default-lazy-init="false" default-autowire="byName">
 	<bean id="indexAction" class="com.golf.main.IndexAction" scope="prototype">
-		<property name="playerService">
-			<ref bean="playerService" />
-		</property>
-		<property name="mediaService">
-			<ref bean="mediaService" />
-		</property>
-		<property name="adwordsService">
-			<ref bean="adwordsService" />
-		</property>
 		<property name="newsService">
 			<ref bean="newsService" />
-		</property>
-		<property name="specialNewsService">
-			<ref bean="specialNewsService" />
 		</property>
 		<property name="imageService">
 			<ref bean="imageService" />
 		</property>
-		<property name="imageSpecialService">
-			<ref bean="imageSpecialService" />
-		</property>
-		<property name="teamNewsService">
-			<ref bean="teamNewsService" />
+		<property name="categoryService">
+			<ref bean="categoryService" />
 		</property>
 		<property name="courtService">
 			<ref bean="courtService" />
 		</property>
-		<property name="courtImageService">
-			<ref bean="courtImageService" />
+		<property name="learnClubService">
+			<ref bean="learnClubService" />
 		</property>
-		<property name="categoryService">
-			<ref bean="categoryService" />
+		<property name="drivingRangeService">
+			<ref bean="drivingRangeService" />
+		</property>
+		<property name="teamService">
+			<ref bean="teamService" />
 		</property>
 	</bean>
 	<bean id="categoryNewsAction" class="com.golf.main.CategoryNewsAction"
@@ -79,9 +67,6 @@
 		</property>
 		<property name="imageService">
 			<ref bean="imageService" />
-		</property>
-		<property name="imageSpecialService">
-			<ref bean="imageSpecialService" />
 		</property>
 	</bean>
 	<bean id="practiceAction" class="com.golf.main.PracticeAction"
@@ -183,6 +168,27 @@
 		</property>
 		<property name="adwordsService">
 			<ref bean="adwordsService" />
+		</property>
+	</bean>
+	<bean id="indexTravelAction" class="com.golf.main.TravelAction"
+		scope="prototype">
+		<property name="travelService">
+			<ref bean="travelService" />
+		</property>
+		<property name="travelHotelService">
+			<ref bean="travelHotelService" />
+		</property>
+		<property name="courtService">
+			<ref bean="courtService" />
+		</property>
+		<property name="travelCourtService">
+			<ref bean="travelCourtService" />
+		</property>
+		<property name="travelPlanService">
+			<ref bean="travelPlanService" />
+		</property>
+		<property name="travelLogService">
+			<ref bean="travelLogService" />
 		</property>
 	</bean>
 </beans>  

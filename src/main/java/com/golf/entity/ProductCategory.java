@@ -12,22 +12,18 @@ public class ProductCategory {
 
 	private Date m_date;
 
+	public Date getDate() {
+		return m_date;
+	}
+
 	public int getId() {
 		return m_id;
 	}
 
-	public void setId(int id) {
-		m_id = id;
+	public String getName() {
+		return m_name;
 	}
 
-	public int getType() {
-		return m_type;
-	}
-
-	public void setType(int type) {
-		m_type = type;
-	}
-	
 	public String getShowName(){
 		StringBuilder sb = new StringBuilder();
 		if(m_type==1){
@@ -42,21 +38,25 @@ public class ProductCategory {
 		sb.append(m_name);
 		return sb.toString();
 	}
+	
+	public int getType() {
+		return m_type;
+	}
 
-	public String getName() {
-		return m_name;
+	public void setDate(Date date) {
+		m_date = date;
+	}
+
+	public void setId(int id) {
+		m_id = id;
 	}
 
 	public void setName(String name) {
 		m_name = name;
 	}
 
-	public Date getDate() {
-		return m_date;
-	}
-
-	public void setDate(Date date) {
-		m_date = date;
+	public void setType(int type) {
+		m_type = type;
 	}
 
 }

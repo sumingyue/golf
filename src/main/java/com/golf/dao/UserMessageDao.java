@@ -8,8 +8,8 @@ public class UserMessageDao {
 
 	private BaseDao m_baseDao;
 
-	public void setBaseDao(BaseDao baseDao) {
-		m_baseDao = baseDao;
+	public int delete(int id) {
+		return (Integer) m_baseDao.delete("userMessage.delete", id);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -25,11 +25,11 @@ public class UserMessageDao {
 		return (Integer) m_baseDao.insert("userMessage.insert", userMessage);
 	}
 
-	public int update(UserMessage userMessage) {
-		return m_baseDao.update("userMessage.update", userMessage);
+	public void setBaseDao(BaseDao baseDao) {
+		m_baseDao = baseDao;
 	}
 
-	public int delete(int id) {
-		return (Integer) m_baseDao.delete("userMessage.delete", id);
+	public int update(UserMessage userMessage) {
+		return m_baseDao.update("userMessage.update", userMessage);
 	}
 }

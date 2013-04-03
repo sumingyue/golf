@@ -14,8 +14,10 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		init();
 		$('#categoryList').addClass('active');
+		$(".delete").bind("click", function() {
+			return confirm("确定要删除此分类吗(不可恢复)？");
+		});
 	});
 
 </script>
@@ -28,14 +30,14 @@
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-			<table  align="center" cellpadding="2" cellspacing="1"  class="table" id="contents">
+			<table  class="table table-striped table-bordered table-hover">
 				<thead>
 				<tr class="title">
 					<th width="5%">序号</th>
 					<th width="10%">分类类型</th>
-					<th width="75%">名称</th>
+					<th width="61%">名称</th>
 					<th width="10%">管理</th>
-					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="categoryAdd.do?type=<s:property value="type"/>">新增</a></th>
+					<th width="14%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="categoryAdd.do?type=<s:property value="type"/>" class="btn btn-primary  btn-small" >新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="categories" status="vs">
 					<tr class="trDetail">
@@ -43,9 +45,9 @@
 					<td><s:if test="type==1">新闻分类</s:if>
 					<s:elseif test="type==2">图片专题</s:elseif></td>
 					<td><s:property value="name" /></td>
-					<td><a href="smallCategoryList.do?categoryId=<s:property value="id"/>&type=<s:property value="type"/>">管理子类</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					<td><a href="categoryUpdate.do?type=<s:property value="type"/>&categoryId=<s:property value="id"/>">编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="categoryDelete.do?type=<s:property value="type"/>&categoryId=<s:property value="id"/>" class="delete">删除</a></td>
+					<td><a href="smallCategoryList.do?categoryId=<s:property value="id"/>&type=<s:property value="type"/>" class="btn btn-primary  btn-small" >管理子类</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td><a href="categoryUpdate.do?type=<s:property value="type"/>&categoryId=<s:property value="id"/>" class="btn btn-primary  btn-small" >编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="categoryDelete.do?type=<s:property value="type"/>&categoryId=<s:property value="id"/>" class="btn btn-danger  btn-small delete">删除</a></td>
 					</tr>
 				</s:iterator></tbody>
 			</table>

@@ -14,8 +14,10 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		init();
 		$('#specialNewsList').addClass('active');
+		$(".delete").bind("click", function() {
+			return confirm("确定要删除此分类吗(不可恢复)？");
+		});
 	});
 </script>
 </head>
@@ -27,13 +29,13 @@
     <div class="row-fluid">
       <%@include file="./../Menu.jsp"%>
       <div class="span10">
-			<table  align="center" cellpadding="2" cellspacing="1"  class="table" id="contents">
+			<table class="table table-striped table-bordered table-hover">
 				<thead>
 				<tr class="title">
 					<th width="5%">序号</th>
-					<th width="82%">标题</th>
+					<th width="78%">标题</th>
 					<th width="5%">级别</th>
-					<th width="8%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="specialNewsAdd.do" >新增</a></th>
+					<th width="12%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="specialNewsAdd.do" class="btn btn-primary  btn-small" >新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="specialNewss" status="vs">
 					<tr class="trDetail">
@@ -41,8 +43,8 @@
 					<td><s:property value="title" /></td>
 					<td><s:property value="priority" /></td>
 					<td>
-					<a href="specialNewsUpdate.do?specialNewsId=<s:property value="id"/>">编辑</a> &nbsp;
-					<a href="specialNewsDelete.do?specialNewsId=<s:property value="id"/>" class="delete">删除</a></td>
+					<a href="specialNewsUpdate.do?specialNewsId=<s:property value="id"/>" class="btn btn-primary  btn-small" >编辑</a> &nbsp;
+					<a href="specialNewsDelete.do?specialNewsId=<s:property value="id"/>" class="btn btn-danger  btn-small delete">删除</a></td>
 					</tr>
 				</s:iterator></tbody>
 			</table>

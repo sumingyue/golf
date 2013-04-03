@@ -8,8 +8,8 @@ public class ImageDao {
 
 	private BaseDao m_baseDao;
 
-	public void setBaseDao(BaseDao baseDao) {
-		m_baseDao = baseDao;
+	public int delete(int id) {
+		return (Integer) m_baseDao.delete("image.delete", id);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -25,11 +25,11 @@ public class ImageDao {
 		return (Integer) m_baseDao.insert("image.insert", image);
 	}
 
-	public int update(Image image) {
-		return m_baseDao.update("image.update", image);
+	public void setBaseDao(BaseDao baseDao) {
+		m_baseDao = baseDao;
 	}
 
-	public int delete(int id) {
-		return (Integer) m_baseDao.delete("image.delete", id);
+	public int update(Image image) {
+		return m_baseDao.update("image.update", image);
 	}
 }
