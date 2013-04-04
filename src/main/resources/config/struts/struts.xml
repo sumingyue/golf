@@ -76,13 +76,19 @@
 	</package>
 	<package name="userAction" extends="struts-default">
 		<global-results>
-			<result name="success">jsp/system/SystemSuccess.jsp</result>
-			<result name="sql">jsp/system/SystemError.jsp</result>
-			<result name="root">jsp/system/SystemError.jsp</result>
+			<result name="success">main/SystemSuccess.jsp</result>
+			<result name="sql">main/SystemError.jsp</result>
+			<result name="root">main/SystemError.jsp</result>
 			<result name="relogin">jsp/system/Login.jsp</result>
 			<result name="login">jsp/system/Login.jsp</result>
-			<result name="input">jsp/system/SystemError.jsp</result>
-			<result name="error">jsp/system/SystemError.jsp</result>
-		</global-results>
+			<result name="input">main/SystemError.jsp</result>
+			<result name="error">main/SystemError.jsp</result>
+        	<result name="exception">main/SystemError.jsp</result>  
+    </global-results>  
+    <global-exception-mappings>  
+        <exception-mapping result="exception"  
+            exception="java.lang.Exception">  
+        </exception-mapping>  
+    </global-exception-mappings>  
 	</package>
 </struts>

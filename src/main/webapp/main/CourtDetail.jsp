@@ -95,13 +95,13 @@
 					<div class="left">${court.awards}</div>
 				</div>
 			</div>
-			<div class="span7 myhidden border top" style="height:400px;">
+			<div class="span7 myhidden border top" >
 				<div>
 					<h4 class="breadcrumb title ">球场介绍</h4>
 					<div class="left">${court.customIntro}</div>
 				</div>
 			</div>
-			<div class="span5 myhidden border top" style="height:400px;">
+			<div class="span5 myhidden border top">
 				<div>
 					<h4 class="breadcrumb title ">球场地图</h4>
 					<div><img class="map-img" src="<s:property value="court.mapImage.path"/>" />

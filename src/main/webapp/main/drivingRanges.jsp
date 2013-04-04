@@ -40,7 +40,7 @@
 					<s:iterator value="drivingRanges" status="vs">
 						<s:if test="#vs.odd"><tr></s:if>
 							<td><a href="drivingRange.do?id=${id}">
-								<img src="${image.path}" class="image-item">
+								<img src="${image.smallPath}" class="image-item">
 							</a>
 							</td>
 						<td><h4><a href="drivingRange.do?id=${id}"><s:property value="name" /></a></h4>

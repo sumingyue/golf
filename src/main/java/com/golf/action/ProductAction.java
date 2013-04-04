@@ -4,10 +4,10 @@ import java.io.File;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 
 import com.golf.Config;
 import com.golf.entity.Image;
+import com.golf.entity.ImageType;
 import com.golf.entity.Product;
 import com.golf.entity.ProductCategory;
 import com.golf.entity.ProductImage;
@@ -15,7 +15,6 @@ import com.golf.entity.UploadFile;
 import com.golf.service.ImageService;
 import com.golf.service.ProductCategoryService;
 import com.golf.service.ProductService;
-import com.golf.tools.ImageTools;
 import com.golf.tools.PagedTool;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -48,11 +47,11 @@ public class ProductAction extends ActionSupport {
 	private ImageService m_imageService;
 
 	private UploadFile m_uploadFile = new UploadFile();
-	
+
 	private UploadFile[] m_uploadFiles = new UploadFile[5];
 
 	private File[] m_uploads = new File[5];
-	
+
 	public PagedTool getPagedTool() {
 		return m_pagedTool;
 	}
@@ -81,26 +80,8 @@ public class ProductAction extends ActionSupport {
 		return m_type;
 	}
 
-	private int insertImage(File file,UploadFile uploadFile) {
-		String fileName = uploadFile.getFilename();
-		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.PRODUCT);
-		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.PRODUCT);
-		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
-
-		String originalPath = ImageTools.getOriginalPath(fileName, Image.PRODUCT);
-		uploadFile.setOriginalPath(originalPath);
-
-		uploadFile.setPath(relativePath);
-		uploadFile.setStorePath(storePath);
-
-		uploadFile.setCompressedPath(compressRelativePath);
-		uploadFile.setCompressedStorePath(compressStorePath);
-
-		return m_imageService.insert(file, uploadFile, Image.PRODUCT, Image.PRODUCT_WIDTH, Image.PRODUCT_HEIGHT,
-		      true, Image.PRODUCT_SMALL_WIDTH, Image.PRODUCT_SMALL_HEIGHT);
-
+	private int insertImage(File file, UploadFile uploadFile) {
+		return m_imageService.insert(file, m_uploadFile, ImageType.PRODUCT);
 	}
 
 	public String productAdd() {
@@ -119,12 +100,12 @@ public class ProductAction extends ActionSupport {
 				File file = m_uploads[i];
 
 				if (file != null) {
-					int imageId = insertImage(file,m_uploadFiles[i]);
+					int imageId = insertImage(file, m_uploadFiles[i]);
 
 					temp.setImageId(imageId);
 					temp.setProductId(m_product.getId());
 					int id = m_productService.insertProductImage(temp);
-					
+
 					if (id <= 0) {
 						result = ERROR;
 					}
@@ -186,12 +167,12 @@ public class ProductAction extends ActionSupport {
 
 	public String productList() {
 		try {
-//			m_productCategorys = m_productCategoryService.queryProductCategoryByType(m_type);
-//			int totalSize = m_productService.queryTotalSize(m_type, m_productCategoryId);
-//
-//			m_pagedTool.setTotalNumber(totalSize);
-//
-//			m_products = m_productService.queryPagedProducts(m_pagedTool, m_type, m_productCategoryId);
+			// m_productCategorys = m_productCategoryService.queryProductCategoryByType(m_type);
+			// int totalSize = m_productService.queryTotalSize(m_type, m_productCategoryId);
+			//
+			// m_pagedTool.setTotalNumber(totalSize);
+			//
+			// m_products = m_productService.queryPagedProducts(m_pagedTool, m_type, m_productCategoryId);
 			m_products = m_productService.queryAllProducts();
 		} catch (Exception e) {
 			m_logger.error(e.getMessage(), e);
@@ -275,17 +256,18 @@ public class ProductAction extends ActionSupport {
 	public void setUploadFileName(String filename) {
 		m_uploadFile.setFilename(filename);
 	}
+
 	public void setUploads(File[] uploads) {
 		m_uploads = uploads;
 	}
 
 	public void setUploadsContentType(String contentType) {
 		String[] contentTypes = contentType.split(",");
-		for(int i=0;i<contentTypes.length;i++){
+		for (int i = 0; i < contentTypes.length; i++) {
 			UploadFile upload = m_uploadFiles[i];
-			if(upload==null){
-				upload =new UploadFile();
-				m_uploadFiles[i]= upload;
+			if (upload == null) {
+				upload = new UploadFile();
+				m_uploadFiles[i] = upload;
 			}
 			m_uploadFiles[i].setContentType(contentTypes[i]);
 		}
@@ -293,11 +275,11 @@ public class ProductAction extends ActionSupport {
 
 	public void setUploadsFileName(String filename) {
 		String[] fileNames = filename.split(",");
-		for(int i=0;i<fileNames.length;i++){
+		for (int i = 0; i < fileNames.length; i++) {
 			UploadFile upload = m_uploadFiles[i];
-			if(upload==null){
-				upload =new UploadFile();
-				m_uploadFiles[i]= upload;
+			if (upload == null) {
+				upload = new UploadFile();
+				m_uploadFiles[i] = upload;
 			}
 			m_uploadFiles[i].setFilename(fileNames[i]);
 		}

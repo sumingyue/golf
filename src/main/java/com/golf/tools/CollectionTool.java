@@ -27,7 +27,7 @@ public class CollectionTool {
 		if (len < size) {
 			int t = size - len;
 
-			if (len > 1) {
+			if (len >= 1) {
 				for (int i = 0; i < t; i++) {
 					lists.add(lists.get(0));
 				}

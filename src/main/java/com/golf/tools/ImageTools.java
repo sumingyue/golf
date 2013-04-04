@@ -8,8 +8,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.imageio.ImageIO;
 
@@ -22,57 +20,6 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
 public class ImageTools {
 
 	private static Logger s_logger = Logger.getLogger(ImageTools.class);
-
-	private static String getImagePattern(String fileName) {
-		int index = fileName.lastIndexOf('.');
-
-		if (index > 0) {
-			return fileName.substring(index);
-		}
-		return ".png";
-	}
-
-	public static String getOriginalPath(String fileName, int type) {
-		String path = new SimpleDateFormat("yyyyMMdd/").format(new Date()) + fileName;
-		String base = "/data/appdatas/golf/image" + getImageType(type);
-		return base + path;
-	}
-
-	public static String getImageStorePath(String fileName, int type) {
-		String typeName = getImageType(type);
-		String day = new SimpleDateFormat("yyyyMMdd/").format(new Date());
-		String path = typeName + day + System.currentTimeMillis() + getImagePattern(fileName);
-		return path;
-	}
-
-	public static String getImageStorePath(String fileName, String flag, int type) {
-		String typeName = getImageType(type);
-		String day = new SimpleDateFormat("yyyyMMdd/").format(new Date());
-		String path = typeName + day + System.currentTimeMillis() + flag + getImagePattern(fileName);
-		return path;
-	}
-
-	private static String getImageType(int type) {
-		String typeName = "/news/";
-		if (type == 1) {
-			typeName = "/news/";
-		} else if (type == 2) {
-			typeName = "/adwords/";
-		} else if (type == 3) {
-			typeName = "/product/";
-		} else if (type == 4) {
-			typeName = "/team/";
-		} else if (type == 5) {
-			typeName = "/court/";
-		} else if (type == 6) {
-			typeName = "/pic/";
-		} else if (type == 7) {
-			typeName = "/learn/";
-		} else {
-			typeName = "/other/";
-		}
-		return typeName;
-	}
 
 	/**
 	 * 压缩图片文件<br>

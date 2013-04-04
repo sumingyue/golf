@@ -7,16 +7,21 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.InitializingBean;
 
+import com.golf.Config;
 import com.golf.dao.ImageDao;
 import com.golf.entity.Image;
+import com.golf.entity.ImageType;
 import com.golf.entity.UploadFile;
 import com.golf.service.ImageService;
 import com.golf.tools.Files;
@@ -53,7 +58,7 @@ public class ImageServiceImpl implements ImageService, InitializingBean {
 				image.setPath(path);
 
 				updateImage(image);
-				m_logger.info("Update image id " + image.getId()+ image.getSmallPath()+image.getPath());
+				m_logger.info("Update image id " + image.getId() + image.getSmallPath() + image.getPath());
 			}
 		}
 		// reload image file
@@ -111,8 +116,36 @@ public class ImageServiceImpl implements ImageService, InitializingBean {
 		}
 	}
 
-	public int insert(File upload, UploadFile uploadFile, int type, int width, int heigth, boolean compressed,
-	      int compressedWidth, int compressedHeight) {
+	private void buildFilePath(UploadFile uploadFile, ImageType imageType) {
+		int type = imageType.getType();
+
+		String fileName = uploadFile.getFilename();
+		String relativePath = Config.IMAGE_PATH + getImageStorePath(fileName, "_normal", type);
+		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
+
+		String compressRelativePath = Config.IMAGE_PATH + getImageStorePath(fileName, "_small", type);
+		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
+
+		String originalPath = getOriginalPath(fileName, type);
+		uploadFile.setOriginalPath(originalPath);
+
+		uploadFile.setPath(relativePath);
+		uploadFile.setStorePath(storePath);
+
+		uploadFile.setCompressedPath(compressRelativePath);
+		uploadFile.setCompressedStorePath(compressStorePath);
+	}
+
+	public int insert(File upload, UploadFile uploadFile, ImageType imageType) {
+		buildFilePath(uploadFile, imageType);
+
+		int type = imageType.getType();
+		int width = imageType.getWidth();
+		int heigth = imageType.getHeight();
+		boolean compressed = imageType.isCompress();
+		int compressedWidth = imageType.getSmallWidth();
+		int compressedHeight = imageType.getSmallHeight();
+
 		try {
 			double size = upload.length() * 1.0 / 1024;
 			m_logger.info("upload file name:" + uploadFile.getFilename() + " size:" + size + "KB");
@@ -198,4 +231,41 @@ public class ImageServiceImpl implements ImageService, InitializingBean {
 		return id;
 	}
 
+	private static String getImagePattern(String fileName) {
+		int index = fileName.lastIndexOf('.');
+
+		if (index > 0) {
+			return fileName.substring(index);
+		}
+		return ".png";
+	}
+
+	public String getOriginalPath(String fileName, int type) {
+		String path = new SimpleDateFormat("yyyyMMdd/").format(new Date()) + fileName;
+		String base = "/data/appdatas/golf/image" + getImageType(type);
+		return base + path;
+	}
+
+	public String getImageStorePath(String fileName, int type) {
+		String typeName = getImageType(type);
+		String day = new SimpleDateFormat("yyyyMMdd/").format(new Date());
+		String path = typeName + day + System.currentTimeMillis() + getImagePattern(fileName);
+		return path;
+	}
+
+	public String getImageStorePath(String fileName, String flag, int type) {
+		String typeName = getImageType(type);
+		String day = new SimpleDateFormat("yyyyMMdd/").format(new Date());
+		String path = typeName + day + System.currentTimeMillis() + flag + getImagePattern(fileName);
+		return path;
+	}
+
+	private static String getImageType(int type) {
+		for (ImageType temp : ImageType.values()) {
+			if (temp.getType() == type) {
+				return '/' + temp.getFloder() + '/';
+			}
+		}
+		return "/other/";
+	}
 }

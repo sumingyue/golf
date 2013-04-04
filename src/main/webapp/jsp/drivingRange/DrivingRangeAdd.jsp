@@ -10,6 +10,7 @@
 <link rel='stylesheet' type='text/css' href='css/admin.css' />
 <script src="js/jquery-1.7.1.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<script src="ckeditor/ckeditor.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -74,7 +75,7 @@
 					</tr>
 					<tr>
 						<td class="left">练习场说明<span class='red'>*</span></td>
-						<td class="right"><textarea  name="drivingRange.introduction"  rows="10" cols="120"></textarea>
+						<td class="right"><textarea id="editor1" name="drivingRange.introduction"  rows="10" cols="120"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -90,6 +91,7 @@
 			</form>
       </div>
     </div>
+			<ckeditor:replace replace="editor1" basePath="ckeditor/" />
     <%@include file="./../Foot.jsp"%>
   </div>
 </body>

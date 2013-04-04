@@ -3,7 +3,7 @@
 <s:iterator value="teams">
 	<div class="span2">
 		<a href="team.do?id=${id}">
-		<img class="team-img" src="${logo.path}"/>
+		<img class="team-img" src="${logo.smallPath}"/>
 		<p class="text-center">${name}</p>
 		</a>
 	</div>

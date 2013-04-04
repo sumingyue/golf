@@ -48,10 +48,10 @@
 		<div>
 			<s:iterator value="newsGroups">
 				<table class="table table-striped table-bordered right-news">
-					<th colspan="2" style="text-align: center"><s:iterator
+					<td colspan="2" style="text-align: center"><s:iterator
 							value="firsts">
-							<a href="news.do?id=${id}">${maxTitle}</a>&nbsp;&nbsp;
-					</s:iterator></th>
+							<a class="text-success" href="news.do?id=${id}"><strong>${maxTitle}</strong></a>&nbsp;&nbsp;
+					</s:iterator></td>
 					</tr>
 					<s:iterator value="seconds" status="vs">
 						<s:if test="#vs.odd">

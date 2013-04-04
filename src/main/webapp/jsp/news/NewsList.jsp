@@ -64,7 +64,7 @@
 					</th>
 					<th width="5%">级别</th>
 					<th width="5%">图片</th>
-					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-small btn-primary" href="newsAdd.do?categoryId=${categoryId}&smallCategoryId=${smallCategoryId}"  target='_blank'>新增</a></th>
+					<th width="10%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-small btn-primary" href="newsAdd.do?categoryId=${categoryId}&smallCategoryId=${smallCategoryId}" >新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="newsList" status="vs">
 					<tr class="trDetail">

@@ -4,17 +4,15 @@ import java.io.File;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 
 import com.golf.Config;
 import com.golf.entity.Court;
 import com.golf.entity.CourtImage;
-import com.golf.entity.Image;
+import com.golf.entity.ImageType;
 import com.golf.entity.UploadFile;
 import com.golf.service.CourtImageService;
 import com.golf.service.CourtService;
 import com.golf.service.ImageService;
-import com.golf.tools.ImageTools;
 import com.golf.tools.PagedTool;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -178,24 +176,7 @@ public class CourtImageAction extends ActionSupport {
 	}
 
 	private int insertImage(File upload,UploadFile uploadFile) {
-		String fileName = uploadFile.getFilename();
-		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.COURT);
-		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.COURT);
-		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
-
-		String originalPath = ImageTools.getOriginalPath(fileName, Image.COURT);
-		uploadFile.setOriginalPath(originalPath);
-
-		uploadFile.setPath(relativePath);
-		uploadFile.setStorePath(storePath);
-
-		uploadFile.setCompressedPath(compressRelativePath);
-		uploadFile.setCompressedStorePath(compressStorePath);
-
-		return m_imageService.insert(upload, uploadFile, Image.COURT, Image.COURT_WIDTH, Image.COURT_HEIGHT, true,
-		      Image.COURT_SMALL_WIDTH, Image.COURT_SMALL_HEIGHT);
+		return m_imageService.insert(upload, uploadFile, ImageType.COURT);
 	}
 
 	public void setCourtId(int courtId) {

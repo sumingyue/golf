@@ -32,12 +32,12 @@
 				<s:property value="news.title" />
 			</h3>
 			<h5 class="text-center">
-				来源：
+				<p class="muted">来源：
 				<s:property value="news.source" />
 				发布时间：
 				<s:property value="news.dateStr" />
 				编辑：
-				<s:property value="news.author" />
+				<s:property value="news.author" /></p>
 			</h5>
 			<div class="text-center">
 				<img src="<s:property value="news.image.path"/>" />
@@ -50,8 +50,8 @@
 			<div class="tabbable">
 				<!-- Only required for left/right tabs -->
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab1" data-toggle="tab">最新新闻</a></li>
-					<li><a href="#tab2" data-toggle="tab">热门新闻</a></li>
+					<li class="active"><a class="text-success" href="#tab1" data-toggle="tab">最新新闻</a></li>
+					<li ><a class="text-success" href="#tab2" data-toggle="tab">热门新闻</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab1">

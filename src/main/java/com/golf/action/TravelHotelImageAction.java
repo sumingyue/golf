@@ -4,26 +4,24 @@ import java.io.File;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 
 import com.golf.Config;
+import com.golf.entity.ImageType;
 import com.golf.entity.TravelHotel;
 import com.golf.entity.TravelHotelImage;
-import com.golf.entity.Image;
 import com.golf.entity.UploadFile;
+import com.golf.service.ImageService;
 import com.golf.service.TravelHotelImageService;
 import com.golf.service.TravelHotelService;
-import com.golf.service.ImageService;
-import com.golf.tools.ImageTools;
 import com.golf.tools.PagedTool;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class TravelHotelImageAction extends ActionSupport {
 
 	private static final long serialVersionUID = 2801256599554299998L;
-	
-	private static final String LIST="travelHotelImageList.do";
-	
+
+	private static final String LIST = "travelHotelImageList.do";
+
 	private Logger m_logger = Logger.getLogger(TravelHotelImageAction.class);
 
 	private List<TravelHotelImage> m_travelHotelImages;
@@ -54,7 +52,7 @@ public class TravelHotelImageAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
-	public String getActionList(){
+	public String getActionList() {
 		return LIST;
 	}
 
@@ -78,25 +76,8 @@ public class TravelHotelImageAction extends ActionSupport {
 		return m_travelHotels;
 	}
 
-	private int insertImage(File upload,UploadFile uploadFile) {
-		String fileName = uploadFile.getFilename();
-		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.COURT);
-		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.COURT);
-		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
-
-		String originalPath = ImageTools.getOriginalPath(fileName, Image.COURT);
-		uploadFile.setOriginalPath(originalPath);
-
-		uploadFile.setPath(relativePath);
-		uploadFile.setStorePath(storePath);
-
-		uploadFile.setCompressedPath(compressRelativePath);
-		uploadFile.setCompressedStorePath(compressStorePath);
-
-		return m_imageService.insert(upload, uploadFile, Image.COURT, Image.COURT_WIDTH, Image.COURT_HEIGHT, true,
-		      Image.COURT_SMALL_WIDTH, Image.COURT_SMALL_HEIGHT);
+	private int insertImage(File upload, UploadFile uploadFile) {
+		return m_imageService.insert(upload, uploadFile, ImageType.HOTEL);
 	}
 
 	public void setDes(String[] des) {
@@ -153,11 +134,11 @@ public class TravelHotelImageAction extends ActionSupport {
 
 	public void setUploadsContentType(String contentType) {
 		String[] contentTypes = contentType.split(",");
-		for(int i=0;i<contentTypes.length;i++){
+		for (int i = 0; i < contentTypes.length; i++) {
 			UploadFile upload = m_uploadFiles[i];
-			if(upload==null){
-				upload =new UploadFile();
-				m_uploadFiles[i]= upload;
+			if (upload == null) {
+				upload = new UploadFile();
+				m_uploadFiles[i] = upload;
 			}
 			m_uploadFiles[i].setContentType(contentTypes[i]);
 		}
@@ -165,11 +146,11 @@ public class TravelHotelImageAction extends ActionSupport {
 
 	public void setUploadsFileName(String filename) {
 		String[] fileNames = filename.split(",");
-		for(int i=0;i<fileNames.length;i++){
+		for (int i = 0; i < fileNames.length; i++) {
 			UploadFile upload = m_uploadFiles[i];
-			if(upload==null){
-				upload =new UploadFile();
-				m_uploadFiles[i]= upload;
+			if (upload == null) {
+				upload = new UploadFile();
+				m_uploadFiles[i] = upload;
 			}
 			m_uploadFiles[i].setFilename(fileNames[i]);
 		}
@@ -197,14 +178,14 @@ public class TravelHotelImageAction extends ActionSupport {
 					} else {
 						des = m_des[i];
 					}
-					int imageId = insertImage(file,m_uploadFiles[i]);
+					int imageId = insertImage(file, m_uploadFiles[i]);
 
 					temp.setTravelHotelId(m_travelHotelImage.getTravelHotelId());
 					temp.setImageDes(des);
 					temp.setImageId(imageId);
-					
+
 					int id = m_travelHotelImageService.insertTravelHotelImage(temp);
-					
+
 					if (id <= 0) {
 						result = ERROR;
 					}
@@ -256,14 +237,15 @@ public class TravelHotelImageAction extends ActionSupport {
 		}
 		return SUCCESS;
 	}
-	
+
 	public String travelHotelImageUpdateSubmit() {
 		try {
 			if (m_upload != null) {
-				int imageId = insertImage(m_upload,m_uploadFile);
+				int imageId = insertImage(m_upload, m_uploadFile);
 				m_travelHotelImage.setImageId(imageId);
 			} else {
-				m_travelHotelImage.setImageId(m_travelHotelImageService.findTravelHotelImage(m_travelHotelImage.getId()).getImageId());
+				m_travelHotelImage.setImageId(m_travelHotelImageService.findTravelHotelImage(m_travelHotelImage.getId())
+				      .getImageId());
 			}
 			int count = m_travelHotelImageService.updateTravelHotelImage(m_travelHotelImage);
 			if (count > 0) {

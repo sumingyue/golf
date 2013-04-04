@@ -25,8 +25,6 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 
 	private Map<Integer, News> m_news = new LinkedHashMap<Integer, News>();
 
-	private static int DEFAULT_NEWS = 1;
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -142,7 +140,7 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 	}
 
 	@Override
-	public List<News> queryFixedImageNews(int size, int categoryId,int smallCategoryId) {
+	public List<News> queryFixedImageNews(int size, int categoryId, int smallCategoryId) {
 		List<News> all = queryAllShowNews(categoryId, smallCategoryId);
 		List<News> result = new ArrayList<News>();
 
@@ -155,10 +153,10 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 
 		return resizeList(result, size);
 	}
-	
+
 	@Override
 	public List<News> queryFixedImageNews(int size, int categoryId) {
-		return queryFixedImageNews(size,categoryId,0);
+		return queryFixedImageNews(size, categoryId, 0);
 	}
 
 	@Override
@@ -266,7 +264,7 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 		if (size > totalSize) {
 			int duration = size - totalSize;
 			for (int i = 0; i < duration; i++) {
-				all.add(findNews(DEFAULT_NEWS));
+				all.add(buildFaultNews());
 			}
 		} else {
 			all = all.subList(0, size);
@@ -320,6 +318,10 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 				}
 			}
 		}
+	}
+
+	private News buildFaultNews() {
+		return findNews(16);
 	}
 
 }

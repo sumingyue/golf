@@ -3,9 +3,9 @@
 <div class="tabbable">
 	<!-- Only required for left/right tabs -->
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="#tab1" data-toggle="tab">苏州球场</a></li>
-		<li><a href="#tab2" data-toggle="tab">苏州练习场</a></li>
-		<li><a href="#tab2" data-toggle="tab">苏州学球机构</a></li>
+		<li class="active"><a class='text-success' href="#tab1" data-toggle="tab"><strong>苏州球场</strong></a></li>
+		<li ><a class='text-success' href="#tab2" data-toggle="tab"><strong>苏州练习场</strong></a></li>
+		<li><a class='text-success' href="#tab2" data-toggle="tab"><strong>学球机构</strong></a></li>
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane active" id="tab1">
@@ -24,6 +24,7 @@
 				<s:iterator value="drivingRanges">
 					<tr>
 						<td><a href="court.do?id=${id}">${name}</a></td>
+						<td><a href="court.do?id=${id}">${phone}</a></td>
 					</tr>
 				</s:iterator>
 			</table>
@@ -33,7 +34,8 @@
 				class="table  .table-striped table-bordered table-hover .table-condensed">
 				<s:iterator value="learnClubs">
 					<tr>
-						<td><a href="court.do?id=${id}">${name}</a></td>
+						<td><a href="learnClub.do?id=${id}">${name}</a></td>
+						<td><a href="learnClub.do?id=${id}">${phone}</a></td>
 					</tr>
 				</s:iterator>
 			</table>

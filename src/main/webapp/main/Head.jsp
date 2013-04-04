@@ -18,7 +18,7 @@
 				<li id="news" class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">新闻 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="c.do?categoryId=4">本地咨询</a></li>
+						<li><a href="c.do?categoryId=4">本地资讯</a></li>
 						<li><a href="c.do?categoryId=1">综合新闻</a></li>
 						<li><a href="c.do?categoryId=2">赛事新闻</a></li>
 						<li><a href="c.do?categoryId=3">高球学院</a></li>

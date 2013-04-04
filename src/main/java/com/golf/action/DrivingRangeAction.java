@@ -4,15 +4,13 @@ import java.io.File;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 
 import com.golf.Config;
 import com.golf.entity.DrivingRange;
-import com.golf.entity.Image;
+import com.golf.entity.ImageType;
 import com.golf.entity.UploadFile;
 import com.golf.service.DrivingRangeService;
 import com.golf.service.ImageService;
-import com.golf.tools.ImageTools;
 import com.golf.tools.PagedTool;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -141,23 +139,7 @@ public class DrivingRangeAction extends ActionSupport {
 	}
 
 	private int insertDrivingRangeImage() {
-		String fileName = m_uploadFile.getFilename();
-		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.COURT);
-		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.COURT);
-		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
-
-		String originalPath = ImageTools.getOriginalPath(fileName, Image.LEARN);
-		m_uploadFile.setOriginalPath(originalPath);
-
-		m_uploadFile.setPath(relativePath);
-		m_uploadFile.setStorePath(storePath);
-
-		m_uploadFile.setCompressedPath(compressRelativePath);
-		m_uploadFile.setCompressedStorePath(compressStorePath);
-
-		return m_imageService.insert(m_upload, m_uploadFile, Image.LEARN, 500, 350, false, 0, 0);
+		return m_imageService.insert(m_upload, m_uploadFile, ImageType.DRIVINGRANGE);
 	}
 
 	public void setDrivingRange(DrivingRange drivingRange) {

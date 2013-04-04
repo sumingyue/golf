@@ -4,18 +4,16 @@ import java.io.File;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 
 import com.golf.Config;
 import com.golf.entity.Category;
-import com.golf.entity.Image;
 import com.golf.entity.ImageSpecial;
+import com.golf.entity.ImageType;
 import com.golf.entity.SmallCategory;
 import com.golf.entity.UploadFile;
 import com.golf.service.CategoryService;
 import com.golf.service.ImageService;
 import com.golf.service.ImageSpecialService;
-import com.golf.tools.ImageTools;
 import com.golf.tools.PagedTool;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -197,25 +195,7 @@ public class ImageSpecialAction extends ActionSupport {
 	}
 
 	private int insertImage() {
-		String fileName = m_uploadFile.getFilename();
-		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.PIC);
-		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.PIC);
-		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
-
-		String originalPath = ImageTools.getOriginalPath(fileName, Image.PIC);
-		m_uploadFile.setOriginalPath(originalPath);
-
-		m_uploadFile.setPath(relativePath);
-		m_uploadFile.setStorePath(storePath);
-
-		m_uploadFile.setCompressedPath(compressRelativePath);
-		m_uploadFile.setCompressedStorePath(compressStorePath);
-
-		return m_imageService.insert(m_upload, m_uploadFile, Image.PIC, Image.PIC_MAIN_WIDTH, Image.PIC_MAIN_HEIGHT,
-		      true, Image.PIC_MAIN_SMALL_WIDTH, Image.PIC_MAIN_SMALL_HEIGHT);
-
+		return m_imageService.insert(m_upload, m_uploadFile, ImageType.PIC);
 	}
 
 	public void setCategoryId(int categoryId) {

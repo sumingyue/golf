@@ -6,18 +6,16 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 
 import com.golf.Config;
 import com.golf.entity.Category;
-import com.golf.entity.Image;
+import com.golf.entity.ImageType;
 import com.golf.entity.News;
 import com.golf.entity.SmallCategory;
 import com.golf.entity.UploadFile;
 import com.golf.service.CategoryService;
 import com.golf.service.ImageService;
 import com.golf.service.NewsService;
-import com.golf.tools.ImageTools;
 import com.golf.tools.PagedTool;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -26,8 +24,8 @@ public class NewsAction extends ActionSupport {
 	private static final long serialVersionUID = 2801256599554299998L;
 
 	private Logger m_logger = Logger.getLogger(NewsAction.class);
-	
-	private static final String LIST="newsList.do";
+
+	private static final String LIST = "newsList.do";
 
 	private List<News> m_newsList;
 
@@ -60,7 +58,7 @@ public class NewsAction extends ActionSupport {
 	public String baseFile = Config.IMAGE_PATH;
 
 	private File m_upload;
-	
+
 	public String getActionList() {
 		return LIST;
 	}
@@ -110,25 +108,7 @@ public class NewsAction extends ActionSupport {
 	}
 
 	private int insertImage() {
-		String fileName = m_uploadFile.getFilename();
-		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.NEWS);
-		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.NEWS);
-		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
-
-		String originalPath = ImageTools.getOriginalPath(fileName, Image.NEWS);
-		m_uploadFile.setOriginalPath(originalPath);
-
-		m_uploadFile.setPath(relativePath);
-		m_uploadFile.setStorePath(storePath);
-
-		m_uploadFile.setCompressedPath(compressRelativePath);
-		m_uploadFile.setCompressedStorePath(compressStorePath);
-
-		return m_imageService.insert(m_upload, m_uploadFile, Image.NEWS, Image.NEWS_WIDTH, Image.NEWS_HEIGHT, true,
-		      Image.NEWS_SMALL_WIDTH, Image.NEWS_SMALL_HEIGHT);
-
+		return m_imageService.insert(m_upload, m_uploadFile, ImageType.NEWS);
 	}
 
 	public String newsAdd() {

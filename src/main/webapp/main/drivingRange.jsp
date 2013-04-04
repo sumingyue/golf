@@ -36,7 +36,7 @@
 			<ul class="breadcrumb border">
 				<li>当前位置：</li>
 				<li><a href="index.do">首页</a> <span class="divider">/</span></li>
-				<li><a href="drivingRange.do">学球机构</a><span class="divider">/</span></li>
+				<li><a href="drivingRanges.do">练习场</a><span class="divider">/</span></li>
 				<li class="active">${drivingRange.name}</li>
 			</ul>
 		</div>
@@ -66,10 +66,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="span12 border top" style="width:938px;height:400px;margin-left:0px;">
+		<div class="span12 border top" style="width:938px;margin-left:0px;">
 				<div>
 					<h4 class="breadcrumb title ">学球机构介绍</h4>
-					<div class="left">${drivingRange.introduction}</div>
+					<div class="left">
+						<s:property value="drivingRange.introduction" escape="false"/>
+					</div>
 				</div>
 			</div>
 		</br>

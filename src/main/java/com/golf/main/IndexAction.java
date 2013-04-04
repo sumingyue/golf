@@ -103,7 +103,7 @@ public class IndexAction extends ActionSupport {
 
 		for (SmallCategory temp : m_smallCategories) {
 			NewsGroup group = new NewsGroup();
-			List<News> imageNews = m_newsService.queryFixedImageNews(3, localNewId, temp.getId());
+			List<News> imageNews = m_newsService.queryFixedImageNews(2, localNewId, temp.getId());
 			List<News> detailNews = m_newsService.queryFixedNewsBySmallCategoryId(8, temp.getId());
 
 			for (News news : imageNews) {

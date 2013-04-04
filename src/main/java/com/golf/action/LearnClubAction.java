@@ -4,15 +4,13 @@ import java.io.File;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 
 import com.golf.Config;
+import com.golf.entity.ImageType;
 import com.golf.entity.LearnClub;
-import com.golf.entity.Image;
 import com.golf.entity.UploadFile;
-import com.golf.service.LearnClubService;
 import com.golf.service.ImageService;
-import com.golf.tools.ImageTools;
+import com.golf.service.LearnClubService;
 import com.golf.tools.PagedTool;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -21,8 +19,8 @@ public class LearnClubAction extends ActionSupport {
 	private static final long serialVersionUID = 2801256599554299998L;
 
 	private Logger m_logger = Logger.getLogger(LearnClubAction.class);
-	
-	private static final String LIST="learnClubList.do";
+
+	private static final String LIST = "learnClubList.do";
 
 	private List<LearnClub> m_learnClubs;
 
@@ -40,7 +38,7 @@ public class LearnClubAction extends ActionSupport {
 
 	private PagedTool m_pagedTool = new PagedTool(Config.DEFAULT_PAGE_NUMBER);
 
-	public String getActionList(){
+	public String getActionList() {
 		return LIST;
 	}
 
@@ -57,23 +55,7 @@ public class LearnClubAction extends ActionSupport {
 	}
 
 	private int insertLearnClubImage() {
-		String fileName = m_uploadFile.getFilename();
-		String relativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_normal", Image.COURT);
-		String storePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + relativePath;
-
-		String compressRelativePath = Config.IMAGE_PATH + ImageTools.getImageStorePath(fileName, "_small", Image.COURT);
-		String compressStorePath = ServletActionContext.getServletContext().getRealPath("/") + "/" + compressRelativePath;
-
-		String originalPath = ImageTools.getOriginalPath(fileName, Image.LEARN);
-		m_uploadFile.setOriginalPath(originalPath);
-
-		m_uploadFile.setPath(relativePath);
-		m_uploadFile.setStorePath(storePath);
-
-		m_uploadFile.setCompressedPath(compressRelativePath);
-		m_uploadFile.setCompressedStorePath(compressStorePath);
-
-		return m_imageService.insert(m_upload, m_uploadFile, Image.LEARN, 500, 350, false, 0, 0);
+		return m_imageService.insert(m_upload, m_uploadFile, ImageType.LEARN);
 	}
 
 	public String learnClubAddSubmit() {
@@ -124,7 +106,7 @@ public class LearnClubAction extends ActionSupport {
 	public String learnClubUpdate() {
 		try {
 			m_learnClub = m_learnClubService.findLearnClub(m_learnClubId);
-			if(m_learnClub.getImageId()>0){
+			if (m_learnClub.getImageId() > 0) {
 				m_learnClub.setImage(m_imageService.findImage(m_learnClub.getImageId()));
 			}
 		} catch (Exception e) {
@@ -154,7 +136,7 @@ public class LearnClubAction extends ActionSupport {
 		}
 	}
 
-	public void setId(int id){
+	public void setId(int id) {
 		m_learnClubId = id;
 	}
 
@@ -185,7 +167,7 @@ public class LearnClubAction extends ActionSupport {
 	public void setUploadContentType(String contentType) {
 		m_uploadFile.setContentType(contentType);
 	}
-	
+
 	public void setUploadFileName(String filename) {
 		m_uploadFile.setFilename(filename);
 	}
