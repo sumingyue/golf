@@ -57,13 +57,12 @@
             <interceptor name="loginInterceptor"
                 class="com.golf.tools.UserInterceptor">
             </interceptor>
-            默认的必须放在最下面！
             <interceptor-stack name="myDefaultStack">
                 <interceptor-ref name="loginInterceptor"></interceptor-ref>
                 <interceptor-ref name="defaultStack"></interceptor-ref>
             </interceptor-stack>
-        </interceptors>
-        <default-interceptor-ref name="myDefaultStack"></default-interceptor-ref> -->
+        </interceptors> 
+        <default-interceptor-ref name="myDefaultStack"></default-interceptor-ref>-->
 		<global-results>
 			<result name="success">jsp/system/SystemSuccess.jsp</result>
 			<result name="sql">jsp/system/SystemError.jsp</result>

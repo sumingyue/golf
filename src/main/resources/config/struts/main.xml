@@ -116,5 +116,8 @@
 		<action name="travelLog" class="indexTravelAction" method="travelLog" >
 			<result name="success">main/TravelLog.jsp</result>
 		</action>
+		<action name="contact">
+			<result name="success">main/ContactUs.jsp</result>
+		</action>
 	</package>	
 </struts>

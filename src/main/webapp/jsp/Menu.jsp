@@ -8,7 +8,9 @@
 			<!--  --><li id="specialNewsList"><a href="specialNewsList.do">新闻专题</a></li>
 			<li class="nav-header">广告管理</li>
 			<li id="adwordsList"><a href="adwordsList.do">广告管理</a></li>
-			<li class="nav-header">球队管理</li>
+			<li class="nav-header">本地资讯</li>
+			<li id="drivingRangeList"><a href="drivingRangeList.do">练习场</a></li>
+			<li id="learnClubList"><a href="learnClubList.do">学球机构</a></li>
 			<li id="teamList"><a href="teamList.do">球队信息</a></li>
 			<li id="teamNewsList"><a href="teamNewsList.do">球队新闻</a></li>
 			<!-- <li id="teamMemberImageList"><a href="teamMemberImageList.do">精彩图片</a></li> -->
@@ -23,9 +25,10 @@
 			<li id="travelLogList"><a href="travelLogList.do">旅游游记</a></li>
 			<li id="travelHotelList"><a href="travelHotelList.do">旅游酒店</a></li>
 			<li id="travelHotelImageList"><a href="travelHotelImageList.do">酒店图片</a></li>
-			<li class="nav-header">本地资讯</li>
-			<li id="drivingRangeList"><a href="drivingRangeList.do">练习场</a></li>
-			<li id="learnClubList"><a href="learnClubList.do">学球机构</a></li>
+			<li class="nav-header">图片专题</li>
+			<li id="imageSpecialList"><a href="imageSpecialList.do">专题信息</a></li>
+			<li id="imageSpecialDetailList"><a href="imageSpecialDetailList.do">专题图片</a></li>
+			<li class="nav-header">用户相关</li>
 			<li id="courtOrderList"><a href="courtOrderList.do">球场预定</a></li>
 			<!-- <li id="productOrderList"><a href="productOrderList.do">商品预定</a></li> -->
 			<li id="userMessageList"><a href="userMessageList.do">用户留言</a></li>
@@ -35,10 +38,7 @@
 <!-- 			<li class="nav-header">高球商城</li>
 			<li id="productCategoryList"><a href="productCategoryList.do">商品分类</a></li>
 			<li id="productList"><a href="productList.do">商品管理</a></li>
- -->		<li class="nav-header">图片专题</li>
-			<li id="imageSpecialList"><a href="imageSpecialList.do">专题信息</a></li>
-			<li id="imageSpecialDetailList"><a href="imageSpecialDetailList.do">专题图片</a></li>
-			<!-- <li class="nav-header">用户相关</li>
+ -->		<!-- <li class="nav-header">用户相关</li>
 			
 			<li class="nav-header">媒体球员</li>
 			<li id="mediaList"><a href="mediaList.do">媒体合作</a></li>

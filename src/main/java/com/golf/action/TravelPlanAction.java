@@ -118,10 +118,10 @@ public class TravelPlanAction extends ActionSupport {
 
 		for (int i = 0; i < size; i++) {
 			try {
-
 				String name = m_names[i];
-				if (name != null) {
+				if (name != null && name.length() > 0) {
 					TravelPlan temp = new TravelPlan();
+					
 					temp.setContent(m_contents[i]);
 					temp.setName(m_names[i]);
 					temp.setDes(m_des[i]);

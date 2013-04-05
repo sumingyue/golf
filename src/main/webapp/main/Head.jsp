@@ -38,6 +38,7 @@
 						<li><a href="messages.do">用户留言</a></li>
 						<li><a href="matchService.do">赛事服务</a></li>
 					</ul></li>
+				<li id="contact"><a href="contact.do">关于我们</a></li>
 			</ul>
 		</div>
 	</div>
