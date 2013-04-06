@@ -13,4 +13,7 @@
 		</td>
 	</tr>
 </table>
+<p class='text-center'>
+<script src="http://s15.cnzz.com/stat.php?id=5184270&web_id=5184270&online=2" language="JavaScript"></script>
+<script src="http://s15.cnzz.com/stat.php?id=5184270&web_id=5184270" language="JavaScript"></script></p>
 

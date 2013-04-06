@@ -25,7 +25,7 @@
 	<jsp:include page="./Head.jsp"></jsp:include>
 		<div>
 			<ul class="breadcrumb">
-				<li>当前位置</li>
+				<li>当前位置：</li>
 				<li><a href="index.do">首页</a> <span class="divider">/</span></li>
 				<li class="active">关于我们</li>
 			</ul>
@@ -77,7 +77,7 @@
 						<table class="table table-striped table-bordered table-hover">
 							<tr><td><span class="text-warning">每个人都是自己命运的建筑师！</span></td>
 							</tr>		
-							<tr><td><span class="text-warning">每天叫醒的不是闹钟，而是梦想！</span></td><tr>
+							<tr><td><span class="text-warning">每天叫醒你的不是闹钟，而是梦想！</span></td><tr>
 							<tr><td><span class="text-warning">无限的潜能源于痛苦的历练！</span></td>
 							<tr><td><span class="text-warning">学习是人生最重要的投资！</span></td></tr>
 							<tr><td><span class="text-warning">一杆已上果岭，抓鸟还会远吗？</span></td></tr>
