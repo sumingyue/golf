@@ -10,8 +10,6 @@
 <meta name="baidu-site-verification" content="OYcFb2jSwyjNyEuL" />
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap.override.css" rel="stylesheet">
-<script src="js/jquery-1.7.1.js" type="text/javascript"></script>
-<script src="js/bootstrap.min.js"></script>
 <style type="text/css">
 	.news-img{
 		width:300px;
@@ -31,10 +29,21 @@
 		text-align:center
 	}
 </style>
+<script src="js/jquery-1.7.1.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#news-tab0').addClass('active');
 		$('#smallCatogory0').addClass('active');
+		
+		$('#court a').mouseenter(function (e) {
+		  e.preventDefault();
+		  $(this).tab('show');
+		});
+		$('#localNews a').mouseenter(function (e) {
+			  e.preventDefault();
+			  $(this).tab('show');
+		})
 	});
 </script>
 </head>

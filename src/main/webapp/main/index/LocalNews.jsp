@@ -11,7 +11,7 @@
 				
 <div class="tabbable tabs-left">
 	<!-- Only required for left/right tabs -->
-	<ul class="nav nav-tabs alert-info ">
+	<ul class="nav nav-tabs alert-info" id="localNews">
 		<s:iterator value="smallCategories" status="vs">
 			<li id="smallCatogory${vs.index}" ><a class="text-success" href="#news-tab${vs.index}" data-toggle="tab"><strong>${name}</strong></a></li>
 		</s:iterator>
