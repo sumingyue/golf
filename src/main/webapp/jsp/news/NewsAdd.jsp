@@ -33,8 +33,7 @@ var calendar = null;
 					required : true
 				},
 				"news.validateDate" :{
-					required : true,
-					date: true
+					required : true
 				}
 			},
 			messages : {
@@ -42,8 +41,7 @@ var calendar = null;
 					required : "请输入新闻标题"
 				},
 				"news.validateDate" :{
-					required : "请点击选择新闻发布日期",
-					date : "请输入正确的日期格式"
+					required : "请点击选择新闻发布日期"
 				}
 			}
 

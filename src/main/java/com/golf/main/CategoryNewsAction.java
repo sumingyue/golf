@@ -3,6 +3,8 @@ package com.golf.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.golf.entity.Category;
 import com.golf.entity.News;
 import com.golf.entity.SmallCategory;
@@ -16,6 +18,8 @@ public class CategoryNewsAction extends ActionSupport {
 
 	private static final long serialVersionUID = 2801256589554291998L;
 
+	private Logger m_logger = Logger.getLogger(CategoryNewsAction.class);
+
 	private NewsService m_newsService;
 
 	private CategoryService m_categoryService;
@@ -23,7 +27,7 @@ public class CategoryNewsAction extends ActionSupport {
 	private AdwordsService m_adwordsService;
 
 	private ImageService m_imageService;
-	
+
 	private Category m_category;
 
 	private int m_categoryId;
@@ -33,51 +37,58 @@ public class CategoryNewsAction extends ActionSupport {
 	private List<News> m_hotNews;
 
 	private List<SmallCategory> m_smallCategories;
-	
+
 	private List<CategoryNews> m_categoryNews = new ArrayList<CategoryNews>();
 
 	private List<NewsGroup> m_newsGroup = new ArrayList<NewsGroup>();
 
 	@Override
 	public String execute() throws Exception {
-		m_category = m_categoryService.findCategory(m_categoryId);
-	   m_hotNews = m_newsService.queryHotNewsByCategoryId(15, m_categoryId);
-		NewsGroup group1 = new NewsGroup();
-		NewsGroup group2 = new NewsGroup();
-		NewsGroup group3 = new NewsGroup();
-		m_newsGroup.add(group1);
-		m_newsGroup.add(group2);
-		m_newsGroup.add(group3);
+		try {
+			m_category = m_categoryService.findCategory(m_categoryId);
+			m_hotNews = m_newsService.queryHotNewsByCategoryId(15, m_categoryId);
+			
+			NewsGroup group1 = new NewsGroup();
+			NewsGroup group2 = new NewsGroup();
+			NewsGroup group3 = new NewsGroup();
+			
+			m_newsGroup.add(group1);
+			m_newsGroup.add(group2);
+			m_newsGroup.add(group3);
 
-		group1.setFirst(m_hotNews.get(0));
-		group2.setFirst(m_hotNews.get(1));
-		group3.setFirst(m_hotNews.get(2));
-		for (int i = 3; i < 15; i++) {
-			if (i < 7) {
-				group1.addNews(m_hotNews.get(i));
-			} else if (i < 11) {
-				group2.addNews(m_hotNews.get(i));
-			} else {
-				group3.addNews(m_hotNews.get(i));
+			group1.setFirst(m_hotNews.get(0));
+			group2.setFirst(m_hotNews.get(1));
+			group3.setFirst(m_hotNews.get(2));
+			for (int i = 3; i < 15; i++) {
+				if (i < 7) {
+					group1.addNews(m_hotNews.get(i));
+				} else if (i < 11) {
+					group2.addNews(m_hotNews.get(i));
+				} else {
+					group3.addNews(m_hotNews.get(i));
+				}
 			}
-		}
-		m_imageNews = m_newsService.queryFixedImageNews(4, m_categoryId);
+			m_imageNews = m_newsService.queryFixedImageNews(4, m_categoryId);
 
-		for (News temp : m_imageNews) {
-			temp.setImage(m_imageService.findImage(temp.getImageId()));
-		}
-		List<SmallCategory> all = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS, m_categoryId);
+			for (News temp : m_imageNews) {
+				temp.setImage(m_imageService.findImage(temp.getImageId()));
+			}
+			List<SmallCategory> all = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS, m_categoryId);
 
-		for (SmallCategory temp : all) {
-			CategoryNews categoryNews = new CategoryNews();
-			categoryNews.setSmallCategory(temp);
-			categoryNews.setNews(m_newsService.queryFixedNewsBySmallCategoryId(8, temp.getId()));
+			for (SmallCategory temp : all) {
+				CategoryNews categoryNews = new CategoryNews();
+				categoryNews.setSmallCategory(temp);
+				categoryNews.setNews(m_newsService.queryFixedNewsBySmallCategoryId(8, temp.getId()));
 
-			m_categoryNews.add(categoryNews);
+				m_categoryNews.add(categoryNews);
+			}
+
+			m_smallCategories = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS, m_categoryId);
+			m_hotNews = m_newsService.queryFixedLatestNewsByCategoryId(12, m_categoryId);
+		} catch (Exception e) {
+			m_logger.error(e);
+			return ERROR;
 		}
-		
-		m_smallCategories = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.NEWS, m_categoryId);
-	   m_hotNews = m_newsService.queryFixedLatestNewsByCategoryId(12, m_categoryId);
 		return SUCCESS;
 	}
 
@@ -128,7 +139,7 @@ public class CategoryNewsAction extends ActionSupport {
 	public void setHotNews(List<News> hotNews) {
 		m_hotNews = hotNews;
 	}
-	
+
 	public void setId(int id) {
 		m_categoryId = id;
 	}
@@ -136,7 +147,7 @@ public class CategoryNewsAction extends ActionSupport {
 	public void setImageService(ImageService imageService) {
 		m_imageService = imageService;
 	}
-	
+
 	public void setNewsService(NewsService newsService) {
 		m_newsService = newsService;
 	}
@@ -192,6 +203,5 @@ public class CategoryNewsAction extends ActionSupport {
 			m_news = news;
 		}
 	}
-
 
 }

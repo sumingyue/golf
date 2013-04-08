@@ -15,13 +15,6 @@
 		$('#news').addClass('active');
 	});
 </script>
-<style type="text/css">
-	.news-img{
-		width:380px;
-		height:480px;
-	}
-
-</style>
 </head>
 <body>
 	<div class="container">
@@ -67,7 +60,7 @@
 								<s:iterator value="imageNews" status="vs">
 									<s:if test="#vs.index==0">
 										<div class="active item">
-											<img class="news-img" src="<s:property value="image.path"/>" />
+											<img class="category-news-img" src="<s:property value="image.path"/>" />
 											<div class="carousel-caption">
 												<p>
 													<a href="news.do?id=${id}">${title}</a>
@@ -77,7 +70,7 @@
 									</s:if>
 									<s:else>
 										<div class="item">
-											<img class="news-img" src="<s:property value="image.path"/>" />
+											<img class="category-news-img" src="<s:property value="image.path"/>" />
 											<div class="carousel-caption">
 												<p class="text-center">
 													<a href="news.do?id=${id}">${title}</a>

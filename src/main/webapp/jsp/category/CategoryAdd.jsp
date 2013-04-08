@@ -51,7 +51,6 @@
 							<select id="category_type" name="category.type">
 								<option value="1">新闻分类</option>
 								<option value="2">图片专题</option>
-								<option value="3">商城商品</option>
 							</select>
 							</td>
 						</tr>

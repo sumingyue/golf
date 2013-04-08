@@ -6,8 +6,6 @@
 
 .navbar-inverse .navbar-inner {
 	background-color: #FFF;
-	/* 	background-image:url(../img/gif.gif);
- */
 }
 
 .navbar .btn {
@@ -39,14 +37,6 @@
 	list-style: none;
 }
 
-.border {
-	/* border: #68AAf7 solid 1px; */
-}
-
-/* .position .breadcrumb {
-	padding: 2px 12px;
-}
- */
 .left {
 	padding-left: 3px;
 }
@@ -67,39 +57,89 @@
 .paginate {
 	text-align: center;
 	background-color: #f5f5f5;
-	margin-bottom:20px;
+	margin-bottom: 20px;
 }
-.comment .control-label{
-	width:30px;
+
+.comment .control-label {
+	width: 30px;
 }
-.comment .controls{
+
+.comment .controls {
 	margin-left: 80px;
 }
-.error{
-	color:red;
+
+.error {
+	color: red;
 }
-.red{
-	color:red;
+
+.red {
+	color: red;
 }
-.center{
-	text-align:center;
-	align:center;
-	background-color:#d9edf7;
+
+.center {
+	text-align: center;
+	align: center;
+	background-color: #d9edf7;
 }
-.travel-img{
-		height:320px;
-		width:460px;
+
+.travel-img {
+	height: 320px;
+	width: 460px;
 }
+
 .image-item {
 	width: 200px;
 	height: 100px;
 }
-.title{
-		color:#6899f7;
-		background-color:#d9edf7;
-		background:#d9edf7;
+
+.title {
+	color: #6899f7;
+	background-color: #d9edf7;
+	background: #d9edf7;
 }
-.logo-img{
-		height:80px;
-		width:80px;
+
+.logo-img {
+	height: 80px;
+	width: 80px;
+}
+/*
+ * for index page
+ */
+.news-img {
+	width: 300px;
+	height: 380px;
+}
+
+.small-img {
+	width: 110px;
+	height: 113px;
+}
+
+.team-img {
+	width: 140px;
+	height: 80px;
+}
+
+#localNews {
+	text-align: right;
+}
+
+.right-news  td {
+	text-align: center
+}
+/*
+ * for category news
+ */
+.category-news-img{
+	width:380px;
+	height:480px;
+}
+.special-img{
+	width:160px;
+	height:160px;
+	
+}
+special-img-detail{
+	width:340px;
+	height:340px;
 }

@@ -29,7 +29,7 @@
 				<li id="drivingRange"><a href="drivingRanges.do">练习场</a></li>
 				<li id="learnClub"><a href="learnClubs.do">学球</a></li>
 				<li id="special"><a href="specials.do">专题</a></li>
-				<!-- <li id="special"><a href="specials.do">图片</a></li> -->
+				<li id="special"><a href="pics.do">图片</a></li>
 				<li id="service" class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">服务<b class="caret"></b></a>
 					<ul class="dropdown-menu">

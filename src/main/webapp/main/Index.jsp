@@ -10,25 +10,6 @@
 <meta name="baidu-site-verification" content="OYcFb2jSwyjNyEuL" />
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap.override.css" rel="stylesheet">
-<style type="text/css">
-	.news-img{
-		width:300px;
-		height:380px;
-	}
-	
-	.small-img{
-		width:150px;
-		height:95px;
-	}
-	
-	.span8 .tabs-left .nav{
-		text-align:right;
-	}
-	
-	.right-news  td{
-		text-align:center
-	}
-</style>
 <script src="js/jquery-1.7.1.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
@@ -38,12 +19,12 @@
 		
 		$('#court a').mouseenter(function (e) {
 		  e.preventDefault();
-		  $(this).tab('show');
+	      $(this).tab('show');
 		});
 		$('#localNews a').mouseenter(function (e) {
-			  e.preventDefault();
-			  $(this).tab('show');
-		})
+		  e.preventDefault();
+		  $(this).tab('show');
+		});
 	});
 </script>
 </head>

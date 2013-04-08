@@ -3,6 +3,7 @@ package com.golf.service.impl;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -321,7 +322,14 @@ public class NewsServiceImpl implements NewsService, InitializingBean {
 	}
 
 	private News buildFaultNews() {
-		return findNews(16);
+		News result = findNews(16);
+
+		if (result == null) {
+			result = new News();
+			result.setTitle("this is a default news,please add news in admin console!");
+			result.setCreationDate(new Date());
+		}
+		return result;
 	}
 
 }

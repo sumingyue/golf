@@ -13,11 +13,6 @@
 <script src="js/jquery-1.7.1.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-<style type="text/css">
-.left{
-	text-align:right;
-}
-</style>
 <script type="text/javascript">
 	var calendar =null;
 $(document).ready(function() {
@@ -72,36 +67,36 @@ $(document).ready(function() {
 				<form action="orderCourtSub.do" id="form" method="post">
 					<table class="table table-striped table-bordered" width="100%">
 						<tr>
-							<td class="left" width="20%">分类</td>
+							<td width="20%">分类</td>
 							<td ><select name="courtOrder.type">
 									<option value="0">球场</option>
 									<option value="1">练习场</option>
 							</select></td>
-							<td class="left" width="20%">球场名称<span class='red'>*</span></td>
+							<td width="20%">球场名称<span class='red'>*</span></td>
 							<td ><input type="text" size="40"
 								name="courtOrder.courtName" /></td>
 						</tr>
 						<tr>
-							<td class="left" width="20%">订场时间<span class='red'>*</span></td>
+							<td width="20%">订场时间<span class='red'>*</span></td>
 							<td ><input type="text" size="30"
 								name="courtOrder.date" id="courtOrder.date" />
 								&nbsp;
 								<img src="img/calendar.gif"
 								onclick="showCalendar('courtOrder.date');"></td>
-							<td class="left" width="20%">订场人数<span class='red'>*</span></td>
+							<td width="20%">订场人数<span class='red'>*</span></td>
 							<td ><input type="text" size="40"
 								name="courtOrder.number" /></td>
 						</tr>
 						<tr>
-							<td class="left" width="20%">顾客姓名<span class='red'>*</span></td>
+							<td width="20%">顾客姓名<span class='red'>*</span></td>
 							<td ><input type="text" size="40"
 								name="courtOrder.userName" /></td>
-							<td class="left" width="20%">顾客电话<span class='red'>*</span></td>
+							<td width="20%">顾客电话<span class='red'>*</span></td>
 							<td ><input type="text" size="40"
 								name="courtOrder.userPhone" /></td>
 						</tr>
 						<tr>
-							<td class="left" width="20%">备注信息</td>
+							<td width="20%">备注信息</td>
 							<td ><textarea name="courtOrder.note" rows="4"
 									cols="60"></textarea></td>
 							<td colspan="2" style="text-align:center;vertical-align:middle">

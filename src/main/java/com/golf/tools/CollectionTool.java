@@ -5,6 +5,9 @@ import java.util.List;
 public class CollectionTool {
 
 	public static <T> List<T> fixList(List<T> lists, int size, boolean isFixed) {
+		if (lists == null) {
+			return null;
+		}
 		if (isFixed) {
 			return fixedList(lists, size);
 		} else {

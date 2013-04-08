@@ -3,8 +3,8 @@
 <div class="tabbable">
 	<!-- Only required for left/right tabs -->
 	<ul class="nav nav-tabs" id="court">
-		<li class="active"><a class='text-success' href="#tab1" data-toggle="tab"><strong>苏州球场</strong></a></li>
-		<li ><a class='text-success' href="#tab2" data-toggle="tab"><strong>苏州练习场</strong></a></li>
+		<li class="active"><a class='text-success' href="#tab1"  data-toggle="tab"><strong>苏州球场</strong></a></li>
+		<li ><a class='text-success' href="#tab2"  data-toggle="tab"><strong>苏州练习场</strong></a></li>
 		<%-- <li><a class='text-success' href="#tab3" data-toggle="tab"><strong>学球机构</strong></a></li> --%>
 	</ul>
 	<div class="tab-content">

@@ -1,104 +1,60 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld"%>
-<!DOCTYPE html PUBLIC "-//W3C//Dtd HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en-US">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="UTF-8">
 <title>苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站</title>
 <meta name="Description" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
 <meta name="Keyword" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
-
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/gallery-detail.css">
-	<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
-	<script type="text/javascript" src="js/base.js"></script>
-	<style type="text/css">
-	.bigpic-list{
-		align:center;
-	}
-	.bigpic-list .big-pic img{
-	width:960px;
-	height:960px;
-	}
-	.smallpic-list .small-pic img{
-	width:100px;
-	height:100px;
-	}
-	.smallpic-list .smallpic img{
-	width:100px;
-	height:100px;
-	}
-	</style>
+<meta name="360-site-verification" content="606256f97c999416d747cb9dc422d619" />
+<meta name="baidu-site-verification" content="OYcFb2jSwyjNyEuL" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.override.css" rel="stylesheet">
+<script src="js/jquery-1.7.1.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="wrap container_24">
-		<jsp:include page="./Head.jsp"></jsp:include>
-
-		<div class="grid_24">
-			<div id="gallery" align="center">
-
-				<div id="pan-prev"></div>
-				<div id="pan-next"></div>
-				<ul class="bigpic-list">
-					<s:iterator value="imageSpecialDetails" status="vs">
-						<s:if test="#vs.first">
-							<li class="big-pic active"><img
-								src="<s:property value="image.path"/>" alt=""></li>
-							<div>
-								<s:property value="imageDes"/>
-							</div>
-						</s:if>
-						<s:else>
-							<li class="big-pic"><img
-								src="<s:property value="image.path"/>" alt=""></li>
-
-						</s:else>
-					</s:iterator>
-				</ul>
-				<ul class="smallpic-list clear-fix">
-					<s:iterator value="imageSpecialDetails">
-						<s:if test="#vs.first">
-							<li class="small-pic active"><img
-								src="<s:property value="image.path"/>" alt=""></li>
-						</s:if>
-						<s:else>
-							<li class="smallpic"><img
-								src="<s:property value="image.path"/>" alt=""></li>
-						</s:else>
-					</s:iterator>
-				</ul>
+	<div class="container">
+	<jsp:include page="./Head.jsp"></jsp:include>
+		<div>
+			<ul class="breadcrumb">
+				<li>当前位置：</li>
+				<li><a href="index.do">首页</a> <span class="divider">/</span></li>
+				<li><a href="pics.do">精彩图片</a> <span class="divider">/</span></li>
+				<li class="active">${imageSpecial.name}</li>
+			</ul>
+		</div>
+		<div class="row">
+			<div class="span3">
+				<div class="well sidebar-nav">
+					<ul class="nav nav-list">
+						<s:iterator value="categorys" status="vs">
+							<s:set name="categoryId" value="id" />  
+							<li class="nav-header">${name}</li>
+							<s:iterator value="smallCategories" status="status">
+								<s:if test="smallCategoryId==id">
+								<li class="active"><a href="?categoryId=${categoryId}&&smallCategory=<s:property value="id"/>">${name}</a></li>
+								</s:if>
+								<s:else>
+								<li><a href="?categoryId=${categoryId}&&smallCategoryId=<s:property value="id"/>">${name}</a></li>
+								</s:else>
+							</s:iterator>
+						</s:iterator>
+					</ul>
+				</div>
 			</div>
-			<div>
-				<div class="paginate mod-hd">
-				共&nbsp;<s:property value="pagedTool.totalNumber"/>&nbsp;条记录
-				<a href="?id=<s:property value="id"/>&index=0">首页</a>&nbsp;&nbsp;
-				<a href="?id=<s:property value="id"/>&index=<s:property value="pagedTool.pageIndex-1"/>">上一页</a>&nbsp;&nbsp;
-				<a href="?id=<s:property value="id"/>&index=<s:property value="pagedTool.pageIndex+1"/>">下一页</a>&nbsp;&nbsp;
-				<a href="?id=<s:property value="id"/>&index=<s:property value="pagedTool.totalPage"/>">末页</a>&nbsp;&nbsp;
-				共&nbsp;<s:property value="pagedTool.totalPage"/>&nbsp;页,当前第&nbsp;<s:property value="pagedTool.pageIndex"/>页&nbsp;
-				<s:property value="pagedTool.pageSize"/>条记录/页&nbsp;
-			</div>
+			<div class="span9">
+				<s:iterator value="imageSpecialDetails" status="vs">
+					<s:if test="${vs.index mod(2)==0}"><div class="row-fluid"></s:if>
+					<div class='span6'>
+						<img class="img-rounded special-img-detail" src="<s:property value="image.path"/>" title="${imageDes}" alt="${imageDes}">
+					<p class='text-center text-warning'>${imageDes}</p>
+					</div>
+					<s:if test="${vs.index mod(2)==1 || vs.last}"></div></s:if>
+				</s:iterator>
 			</div>
 		</div>
-			<jsp:include page="./Foot.jsp"></jsp:include>
-		<script type="text/javascript">
-		var tabPannel = new TabPannel({
-			container:$("#gallery"),
-			triggerType:"click",
-			headCS:".smallpic",
-			itemCS:".big-pic",
-			activeCls:"active"
-		});
-
-		$("#pan-prev").on("click",function(){
-			tabPannel.prev();
-		});
-	
-		$("#pan-next").on("click",function(){
-			tabPannel.next();
-		});
-	</script>
+	<jsp:include page="./Foot.jsp"></jsp:include>
+    </div>
 </body>
 </html>
-
-

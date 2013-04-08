@@ -37,7 +37,7 @@ public class PicAction extends ActionSupport {
 
 	private ImageService m_imageService;
 
-	private PagedTool m_pagedTool = new PagedTool(8);
+	private PagedTool m_pagedTool = new PagedTool(20);
 
 	private int m_categoryId;
 
@@ -63,7 +63,7 @@ public class PicAction extends ActionSupport {
 		return m_categorys;
 	}
 
-	public int getId(){
+	public int getId() {
 		return m_imageSpecialId;
 	}
 
@@ -90,26 +90,28 @@ public class PicAction extends ActionSupport {
 	public List<SmallCategory> getSmallCategorys() {
 		return m_smallCategorys;
 	}
-	
-	public String imageSpecialDetail() {
-		m_imageSpecial = m_imageSpecialService.findImageSpecial(m_imageSpecialId);
-		m_pagedTool.setTotalNumber(m_imageSpecialDetailService.queryAllImageSpecialDetails(m_imageSpecialId).size());
-		m_imageSpecialDetails = m_imageSpecialDetailService.queryPagedImageSpecialDetails(m_pagedTool, m_imageSpecialId);
 
-		for (ImageSpecialDetail detail : m_imageSpecialDetails) {
-			detail.setImage(m_imageService.findImage(detail.getImageId()));
-		}
+	public String imageSpecialDetail() {
+		try {
+	      queryCategoryInfo();
+	      m_imageSpecial = m_imageSpecialService.findImageSpecial(m_imageSpecialId);
+	      m_pagedTool.setTotalNumber(m_imageSpecialDetailService.queryAllImageSpecialDetails(m_imageSpecialId).size());
+	      m_imageSpecialDetails = m_imageSpecialDetailService.queryPagedImageSpecialDetails(m_pagedTool, m_imageSpecialId);
+
+	      for (ImageSpecialDetail detail : m_imageSpecialDetails) {
+	      	detail.setImage(m_imageService.findImage(detail.getImageId()));
+	      }
+      } catch (Exception e) {
+			m_logger.error(e.getMessage(), e);
+			return ERROR;
+      }
 		return SUCCESS;
 	}
 
 	public String imageSpecialList() {
 		try {
+			queryCategoryInfo();
 			m_imageSpecials = m_imageSpecialService.queryAllImageSpecials(m_categoryId, m_smallCategoryId);
-
-			m_categorys = m_categoryService.queryAllCategories(Category.IMAGE);
-			if (m_categoryId > 0) {
-				m_smallCategorys = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.IMAGE,m_categoryId);
-			}
 			for (ImageSpecial temp : m_imageSpecials) {
 				temp.setImage(m_imageService.findImage(temp.getImageId()));
 			}
@@ -119,6 +121,25 @@ public class PicAction extends ActionSupport {
 		}
 		return SUCCESS;
 	}
+
+	private void queryCategoryInfo() {
+	   m_categorys = m_categoryService.queryAllCategories(Category.IMAGE);
+	   if (m_categoryId == 0) {
+	   	if (m_categorys != null && m_categorys.size() >= 1) {
+	   		m_categoryId = m_categorys.get(0).getId();
+	   	}
+	   }
+	   if (m_categorys != null) {
+	   	for (Category temp : m_categorys) {
+	   		List<SmallCategory> smallCategorys = m_categoryService.queryAllSmallCategoryByTypeCategoryId(
+	   		      Category.IMAGE, temp.getId());
+	   		if (m_smallCategoryId == 0 && smallCategorys.size() >= 1) {
+	   			m_smallCategoryId = smallCategorys.get(0).getId();
+	   		}
+	   		temp.setSmallCategories(smallCategorys);
+	   	}
+	   }
+   }
 
 	public void setAdwordsService(AdwordsService adwordsService) {
 		m_adwordsService = adwordsService;

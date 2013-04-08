@@ -1,66 +1,59 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld"%>
-<!DOCTYPE html PUBLIC "-//W3C//Dtd HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en-US">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="UTF-8">
 <title>苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站</title>
 <meta name="Description" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
 <meta name="Keyword" content="苏州高尔夫网 -- 商务高球 | 名人高球 | 高球经营 | 球场设计 | 高球之源 | 高球活动 | 苏州专业高尔夫门户网站">
-
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/gallery.css">
-	<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
-	<style>
-	.image-item img{
-		width:217px;
-		height:200px;
-	}
-</style>
-<script type="text/javascript">
-function categoryChanged(){
-	var categoryId = $('#imageSpecial_categoryId').val();
-	window.location="?categoryId="+categoryId;
-}
-
-function smallCategoryChanged(){
-	var categoryId = $('#imageSpecial_categoryId').val();
-	var smallCategoryId = $('#imageSpecial_smallCategoryId').val();
-	window.location="?categoryId="+categoryId+"&smallCategoryId="+smallCategoryId;
-}
-</script>
+<meta name="360-site-verification" content="606256f97c999416d747cb9dc422d619" />
+<meta name="baidu-site-verification" content="OYcFb2jSwyjNyEuL" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.override.css" rel="stylesheet">
+<script src="js/jquery-1.7.1.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js"></script>
 </head>
-<body youdao="bind">
-	<div class="wrap container_24">
-		<jsp:include page="./Head.jsp"></jsp:include>
-		<div class="grid_24" align="center">
-				一级分类：<s:select name="imageSpecial.categoryId"
-							onchange="categoryChanged()"
-							list="categorys" listKey="id" listValue="name" 
-							headerKey="0" headerValue="ALL"
-							value="categoryId" theme="simple" >
-				</s:select>
-				二级分类：<s:select name="imageSpecial.smallCategoryId"
-					onchange="smallCategoryChanged()"
-					list="smallCategorys" listKey="id" listValue="name"
-					headerKey="0" headerValue="ALL"
-					value="smallCategoryId" theme="simple" >
-				</s:select>
-		</div>
-		<div class="grid_24">
-			<ul class="gallery">
-				<s:iterator value="imageSpecials" status="vs">
-					<li class="image-item">
-					<a href="pic.do?id=<s:property value="id"/>"><img src="<s:property value="image.path"/>" alt="图片">
-					</a>
-					<a href="pic.do?id=<s:property value="id"/>"><s:property value="name"/></a>
-					</li>
-				</s:iterator>
+<body>
+	<div class="container">
+	<jsp:include page="./Head.jsp"></jsp:include>
+		<div>
+			<ul class="breadcrumb">
+				<li>当前位置：</li>
+				<li><a href="index.do">首页</a> <span class="divider">/</span></li>
+				<li class="active">精彩图片</li>
 			</ul>
 		</div>
-		<jsp:include page="./Foot.jsp"></jsp:include>
-	</div>
+		<div class="row">
+			<div class="span3">
+				<div class="well sidebar-nav">
+					<ul class="nav nav-list">
+						<s:iterator value="categorys" status="vs">
+							<s:set name="categoryId" value="id" />  
+							<li class="nav-header">${name}</li>
+							<s:iterator value="smallCategories" status="status">
+								<s:if test="smallCategoryId==id">
+								<li class="active"><a href="?categoryId=${categoryId}&&smallCategory=<s:property value="id"/>">${name}</a></li>
+								</s:if>
+								<s:else>
+								<li><a href="?categoryId=${categoryId}&&smallCategoryId=<s:property value="id"/>">${name}</a></li>
+								</s:else>
+							</s:iterator>
+						</s:iterator>
+					</ul>
+				</div>
+			</div>
+			<div class="span9">
+					<s:iterator value="imageSpecials" status="vs">
+					<s:if test="${vs.index mod(4)==0}"><div class="row-fluid"></s:if>
+					<div class='span3'>
+					<a class='text-warning' href="pic.do?id=<s:property value="id"/>"><img class="img-rounded special-img" src="<s:property value="image.path"/>" title="${name}" alt="${name}">
+					</a><p class='text-center'><a class='text-error' href="pic.do?id=<s:property value="id"/>"><s:property value="name"/></a></p>
+					</div>
+					<s:if test="${vs.index mod(4)==3 || vs.last}"></div></s:if>
+				</s:iterator>
+			</div>
+		</div>
+	<jsp:include page="./Foot.jsp"></jsp:include>
+    </div>
 </body>
 </html>
-
-

@@ -3,6 +3,8 @@ package com.golf.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.golf.entity.Category;
 import com.golf.entity.Court;
 import com.golf.entity.DrivingRange;
@@ -23,6 +25,8 @@ import com.opensymphony.xwork2.ActionSupport;
 public class IndexAction extends ActionSupport {
 
 	private static final long serialVersionUID = 2801256589554299998L;
+
+	private Logger m_logger = Logger.getLogger(IndexAction.class);
 
 	private NewsService m_newsService;
 
@@ -81,7 +85,7 @@ public class IndexAction extends ActionSupport {
 
 	private void buildTeamInfo() {
 		m_teams = m_teamService.queryAllTeams();
-		for(Team team:m_teams){
+		for (Team team : m_teams) {
 			team.setLogo(m_imageService.findImage(team.getImageId()));
 		}
 		m_teams = CollectionTool.fixList(m_teams, 6, true);
@@ -118,10 +122,15 @@ public class IndexAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-		buildNews();
-		buildLocalInfo();
-		buildLocalNews();
-		buildTeamInfo();
+		try {
+			buildNews();
+			buildLocalInfo();
+			buildLocalNews();
+			buildTeamInfo();
+		} catch (Exception e) {
+			m_logger.error(e);
+			return ERROR;
+		}
 		return SUCCESS;
 	}
 

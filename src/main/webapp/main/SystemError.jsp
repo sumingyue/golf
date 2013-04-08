@@ -61,7 +61,7 @@
 		function gid(id) { return document.getElementById ? document.getElementById(id) : null; }
 		function timeDesc() {
 			if (all <= 0) {
-				self.location = "http://www.dianping.com/";
+				self.location = "http://www.szgolfer.com/";
 			}
 			var obj = gid("tS");
 			if (obj) obj.innerHTML = all + " 秒后";

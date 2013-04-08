@@ -69,17 +69,17 @@ public class ImageSpecialServiceImpl implements InitializingBean, ImageSpecialSe
 	public List<ImageSpecial> queryAllImageSpecials(int categoryId, int smallCategoryId) {
 		ArrayList<ImageSpecial> all = new ArrayList<ImageSpecial>(m_imageSpecials.values());
 		List<ImageSpecial> result = new ArrayList<ImageSpecial>();
-		for (ImageSpecial news : all) {
+		for (ImageSpecial temp : all) {
 			if (smallCategoryId > 0) {
-				if (news.getSmallCategoryId() == smallCategoryId) {
-					result.add(news);
+				if (temp.getSmallCategoryId() == smallCategoryId) {
+					result.add(temp);
 				}
 			} else if (categoryId > 0) {
-				if (news.getCategoryId() == categoryId) {
-					result.add(news);
+				if (temp.getCategoryId() == categoryId) {
+					result.add(temp);
 				}
 			} else {
-				result.add(news);
+				result.add(temp);
 			}
 		}
 		Collections.sort(result, new ImageSpecialCompartor());

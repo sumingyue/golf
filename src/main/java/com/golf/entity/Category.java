@@ -1,6 +1,7 @@
 package com.golf.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Category {
 
@@ -15,6 +16,8 @@ public class Category {
 	private int m_type;
 
 	private String m_name;
+	
+	private List<SmallCategory> m_smallCategories;
 
 	public Date getCreationDate() {
 		return m_creationDate;
@@ -46,6 +49,14 @@ public class Category {
 
 	public void setType(int type) {
 		m_type = type;
+	}
+
+	public List<SmallCategory> getSmallCategories() {
+		return m_smallCategories;
+	}
+
+	public void setSmallCategories(List<SmallCategory> smallCategories) {
+		m_smallCategories = smallCategories;
 	}
 
 }

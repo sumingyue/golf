@@ -20,15 +20,15 @@
 		<s:iterator value="localNewsGroups" status="vs">
 			<div class="tab-pane" id="news-tab${vs.index}">
 				<div class="row-fluid">
-					<div class="span4">
+					<div class="span3">
 						<s:iterator value="firsts" status="vs">
-							<a href="news.do?id=${id}"> <img class="small-img"
+							<a href="news.do?id=${id}"> <img class="small-img" title="${title}"
 									src="${image.path}" /> 
-									<p class="text-center">${smallTitle}</p>
 							</a>
+							<p style="height:3px;"></p>
 						</s:iterator>
 					</div>
-					<div class="span8">
+					<div class="span9">
 						<table class="table table-striped table-bordered table-condensed">
 						<s:iterator value="seconds" status="vs">
 								<tr>
