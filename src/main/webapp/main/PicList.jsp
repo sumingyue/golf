@@ -44,12 +44,12 @@
 			</div>
 			<div class="span9">
 					<s:iterator value="imageSpecials" status="vs">
-					<s:if test="${vs.index mod(4)==0}"><div class="row-fluid"></s:if>
-					<div class='span3'>
+					<s:if test="${vs.index mod(2)==0}"><div class="row-fluid"></s:if>
+					<div class='span6'>
 					<a class='text-warning' href="pic.do?id=<s:property value="id"/>"><img class="img-rounded special-img" src="<s:property value="image.path"/>" title="${name}" alt="${name}">
 					</a><p class='text-center'><a class='text-success' href="pic.do?id=<s:property value="id"/>"><s:property value="name"/></a></p>
 					</div>
-					<s:if test="${vs.index mod(4)==3 || vs.last}"></div></s:if>
+					<s:if test="${vs.index mod(2)==1 || vs.last}"></div></s:if>
 				</s:iterator>
 			</div>
 		</div>

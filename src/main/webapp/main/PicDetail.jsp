@@ -54,6 +54,19 @@
 				</s:iterator>
 			</div>
 		</div>
+		<div class="row">
+			<div class="span12">
+				<div class="pagination text-center">
+				  <ul>
+					   <li><a href="?id=${id}&index=1">首页</a></li>
+						  <s:iterator value="pageNumbers" id="item">
+							   <li><a href="?id=${id}&index=${item}">${item}</a></li>
+				  			</s:iterator>
+					   <li><a href="?id=${id}&index=${totalSize}">末页</a></li>
+				  </ul>
+				</div>
+			</div>
+		</div>
 	<jsp:include page="./Foot.jsp"></jsp:include>
     </div>
 </body>
