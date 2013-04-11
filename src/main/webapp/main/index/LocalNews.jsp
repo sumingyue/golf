@@ -2,8 +2,8 @@
 <%@taglib prefix="s" uri="/WEB-INF/tld/struts-tags.tld"%>
 <div>
 	<table class="table table-striped table-bordered">
-		<tr><td colspan='4'><h3 style="line-height:15px"><p class="text-error text-center">苏州金熊高尔夫邀请赛</p></h3></td></tr>
-		<tr><td class="muted">比赛时间</td><td class='text-warning'>2013-04-09</td><td class="muted">比赛地点</td><td class='text-warning'>苏州中兴高尔夫俱乐部</td></tr>
+		<tr><td colspan='4'><h3 style="line-height:15px"><p class="text-error text-center">苏州金熊高尔夫邀请赛（第二届）启动</p></h3></td></tr>
+		<tr><td class="muted">比赛时间</td><td class='text-warning'>2013-04-24</td><td class="muted">比赛地点</td><td class='text-warning'>待定</td></tr>
 		<tr><td class="muted">报名电话</td><td class='text-warning'>0512-66180078</td><td class="muted">报名地点</td><td class='text-warning'>苏州相城区嘉元路悦豪大厦503室</td></tr>
 	</table>
 	<p>

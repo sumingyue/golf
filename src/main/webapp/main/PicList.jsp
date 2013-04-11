@@ -20,7 +20,7 @@
 			<ul class="breadcrumb">
 				<li>当前位置：</li>
 				<li><a href="index.do">首页</a> <span class="divider">/</span></li>
-				<li class="active">精彩图片</li>
+				<li class="active">图片</li>
 			</ul>
 		</div>
 		<div class="row">
@@ -47,7 +47,7 @@
 					<s:if test="${vs.index mod(4)==0}"><div class="row-fluid"></s:if>
 					<div class='span3'>
 					<a class='text-warning' href="pic.do?id=<s:property value="id"/>"><img class="img-rounded special-img" src="<s:property value="image.path"/>" title="${name}" alt="${name}">
-					</a><p class='text-center'><a class='text-error' href="pic.do?id=<s:property value="id"/>"><s:property value="name"/></a></p>
+					</a><p class='text-center'><a class='text-success' href="pic.do?id=<s:property value="id"/>"><s:property value="name"/></a></p>
 					</div>
 					<s:if test="${vs.index mod(4)==3 || vs.last}"></div></s:if>
 				</s:iterator>

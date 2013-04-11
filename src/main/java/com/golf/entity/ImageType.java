@@ -16,7 +16,7 @@ public enum ImageType {
 
 	LEARN(7, 540, 350, true, 200, 150, "learn"),
 
-	PIC(8, 340, 340, true, 150, 150, "pic"),
+	PIC(8, 500, 332, true, 160, 110, "pic"),
 
 	HOTEL(8, 460, 320, false, 0, 0, "hotel"),
 

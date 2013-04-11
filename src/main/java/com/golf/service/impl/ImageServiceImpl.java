@@ -43,26 +43,6 @@ public class ImageServiceImpl implements ImageService, InitializingBean {
 		for (Image image : images) {
 			m_images.put(image.getId(), image);
 		}
-
-		for (Image image : images) {
-			String smallPath = image.getSmallPath();
-			String path = image.getPath();
-			String oldPath = "news/news";
-			String newPath = "news";
-
-			if (smallPath.indexOf(oldPath) > -1 && path.indexOf(oldPath) > -1) {
-				smallPath = smallPath.replace(oldPath, newPath);
-				path = path.replace(oldPath, newPath);
-
-				image.setSmallPath(smallPath);
-				image.setPath(path);
-
-				updateImage(image);
-				m_logger.info("Update image id " + image.getId() + image.getSmallPath() + image.getPath());
-			}
-		}
-		// reload image file
-
 	}
 
 	@Override

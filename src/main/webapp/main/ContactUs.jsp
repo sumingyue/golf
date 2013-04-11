@@ -54,7 +54,7 @@
 					<tr><td><strong>高尔夫旅游、杂志、媒体</strong></td></tr>
 				</table>
 				<h4 class='text-center'><span class='text-warning'>世界第一罗里.麦克罗伊见面会</span></h4>
-				<img class="company-img" src="company/001.jpg" />
+				<img class="full-img" src="company/001.jpg" />
 			</div>
 			<div class="tab-pane" id="tab-content2">
 				<h3 class='text-center text-warning'>创业团队</h3>
@@ -156,7 +156,7 @@
 					<tr><td><strong>苏州精英高尔夫俱乐部</strong></td></tr>
 				</table>
 				<h4 class='text-center'><span class='text-warning'>金熊高尔夫和红尊商贸战略合作</span></h4>
-				<img class="company-img" src="company/007.jpg" />
+				<img class="full-img"  src="company/007.jpg" />
 			</div>
 			<div class="tab-pane" id="tab-content5">
 				<h3 class='text-center text-warning'>联系我们</h3>

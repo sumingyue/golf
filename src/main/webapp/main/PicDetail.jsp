@@ -20,12 +20,12 @@
 			<ul class="breadcrumb">
 				<li>当前位置：</li>
 				<li><a href="index.do">首页</a> <span class="divider">/</span></li>
-				<li><a href="pics.do">精彩图片</a> <span class="divider">/</span></li>
+				<li><a href="pics.do">图片</a> <span class="divider">/</span></li>
 				<li class="active">${imageSpecial.name}</li>
 			</ul>
 		</div>
 		<div class="row">
-			<div class="span3">
+			<%-- <div class="span3">
 				<div class="well sidebar-nav">
 					<ul class="nav nav-list">
 						<s:iterator value="categorys" status="vs">
@@ -33,24 +33,24 @@
 							<li class="nav-header">${name}</li>
 							<s:iterator value="smallCategories" status="status">
 								<s:if test="smallCategoryId==id">
-								<li class="active"><a href="?categoryId=${categoryId}&&smallCategory=<s:property value="id"/>">${name}</a></li>
+								<li class="active"><a href="pics.do?categoryId=${categoryId}&&smallCategory=<s:property value="id"/>">${name}</a></li>
 								</s:if>
 								<s:else>
-								<li><a href="?categoryId=${categoryId}&&smallCategoryId=<s:property value="id"/>">${name}</a></li>
+								<li><a href="pics.do?categoryId=${categoryId}&&smallCategoryId=<s:property value="id"/>">${name}</a></li>
 								</s:else>
 							</s:iterator>
 						</s:iterator>
 					</ul>
 				</div>
-			</div>
-			<div class="span9">
+			</div> --%>
+			<div class="span12">
 				<s:iterator value="imageSpecialDetails" status="vs">
-					<s:if test="${vs.index mod(2)==0}"><div class="row-fluid"></s:if>
-					<div class='span6'>
+					<s:if test="${vs.index mod(3)==0}"><div class="row-fluid"></s:if>
+					<div class='span4'>
 						<img class="img-rounded special-img-detail" src="<s:property value="image.path"/>" title="${imageDes}" alt="${imageDes}">
-					<p class='text-center text-warning'>${imageDes}</p>
+						<p class='text-center text-success'><strong>${imageDes}</strong></p>
 					</div>
-					<s:if test="${vs.index mod(2)==1 || vs.last}"></div></s:if>
+					<s:if test="${vs.index mod(3)==2 || vs.last}"></div></s:if>
 				</s:iterator>
 			</div>
 		</div>

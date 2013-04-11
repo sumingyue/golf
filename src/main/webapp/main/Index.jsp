@@ -32,6 +32,7 @@
 	<div class="container">
 	<jsp:include page="./Head.jsp"></jsp:include>
 		<jsp:include page="./index/News.jsp"></jsp:include>
+		<jsp:include page="./index/LastestMatch.jsp"></jsp:include>
 		<div class="row">
 			<div class="span4">
 				<jsp:include page="./index/LocalCourt.jsp"></jsp:include>

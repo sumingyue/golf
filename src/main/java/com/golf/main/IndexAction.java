@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import com.golf.entity.Category;
 import com.golf.entity.Court;
 import com.golf.entity.DrivingRange;
+import com.golf.entity.ImageSpecial;
 import com.golf.entity.LearnClub;
 import com.golf.entity.News;
 import com.golf.entity.SmallCategory;
@@ -16,6 +17,7 @@ import com.golf.service.CategoryService;
 import com.golf.service.CourtService;
 import com.golf.service.DrivingRangeService;
 import com.golf.service.ImageService;
+import com.golf.service.ImageSpecialService;
 import com.golf.service.LearnClubService;
 import com.golf.service.NewsService;
 import com.golf.service.TeamService;
@@ -40,7 +42,13 @@ public class IndexAction extends ActionSupport {
 
 	private DrivingRangeService m_drivingRangeService;
 
+	private ImageSpecialService m_imageSpecialService;
+
 	private TeamService m_teamService;
+
+	private SmallCategory m_matchCategory;
+
+	private List<ImageSpecial> m_imageSpecials;
 
 	private List<Team> m_teams;
 
@@ -120,6 +128,32 @@ public class IndexAction extends ActionSupport {
 		}
 	}
 
+	private void buildPics() {
+		// For jinxiong golf pic
+		int categoryId = 5;
+		int smallCategoryId = 0;
+		List<SmallCategory> smallCategories = m_categoryService.queryAllSmallCategoryByTypeCategoryId(Category.IMAGE,
+		      categoryId);
+
+		if (smallCategories != null) {
+			for (SmallCategory temp : smallCategories) {
+				if (temp.getId() > smallCategoryId) {
+					smallCategoryId = temp.getId();
+					m_matchCategory = temp;
+				}
+			}
+		}
+		if (smallCategoryId > 0) {
+			m_imageSpecials = m_imageSpecialService.queryAllImageSpecials(categoryId, smallCategoryId);
+			if (m_imageSpecials != null) {
+				for (ImageSpecial temp : m_imageSpecials) {
+					temp.setImage(m_imageService.findImage(temp.getImageId()));
+				}
+			}
+			CollectionTool.fixList(m_imageSpecials, 4, true);
+		}
+	}
+
 	@Override
 	public String execute() throws Exception {
 		try {
@@ -127,6 +161,7 @@ public class IndexAction extends ActionSupport {
 			buildLocalInfo();
 			buildLocalNews();
 			buildTeamInfo();
+			buildPics();
 		} catch (Exception e) {
 			m_logger.error(e);
 			return ERROR;
@@ -215,6 +250,18 @@ public class IndexAction extends ActionSupport {
 		public void setSeconds(List<News> seconds) {
 			m_seconds = seconds;
 		}
+	}
+
+	public List<ImageSpecial> getImageSpecials() {
+		return m_imageSpecials;
+	}
+
+	public void setImageSpecialService(ImageSpecialService imageSpecialService) {
+		m_imageSpecialService = imageSpecialService;
+	}
+
+	public SmallCategory getMatchCategory() {
+		return m_matchCategory;
 	}
 
 }

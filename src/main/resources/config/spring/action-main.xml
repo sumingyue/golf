@@ -5,6 +5,9 @@
 		<property name="newsService">
 			<ref bean="newsService" />
 		</property>
+		<property name="imageSpecialService">
+			<ref bean="imageSpecialService" />
+		</property>
 		<property name="imageService">
 			<ref bean="imageService" />
 		</property>

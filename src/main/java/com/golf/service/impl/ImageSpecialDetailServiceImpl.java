@@ -1,8 +1,6 @@
 package com.golf.service.impl;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +69,6 @@ public class ImageSpecialDetailServiceImpl implements InitializingBean, ImageSpe
 				result.add(temp);
 			}
 		}
-		Collections.sort(result, new ImageSpecialDetailCompartor());
 		return result;
 	}
 
@@ -95,12 +92,4 @@ public class ImageSpecialDetailServiceImpl implements InitializingBean, ImageSpe
 		return id;
 	}
 
-	public static class ImageSpecialDetailCompartor implements Comparator<ImageSpecialDetail> {
-
-		@Override
-		public int compare(ImageSpecialDetail o1, ImageSpecialDetail o2) {
-			return o2.getId()-o1.getId();
-		}
-
-	}
 }

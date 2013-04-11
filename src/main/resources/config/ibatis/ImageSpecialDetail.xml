@@ -9,7 +9,7 @@
 	<select id="imageSpecialDetail.findAll" resultClass="imageSpecialDetail">
 		select
 		<include refid="imageSpecialDetail.columns" />
-		from imageSpecialDetail order by id desc
+		from imageSpecialDetail
 	</select>
 	<select id="imageSpecialDetail.findById" resultClass="imageSpecialDetail"
 		parameterClass="int">

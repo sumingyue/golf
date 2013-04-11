@@ -130,16 +130,26 @@
 /*
  * for category news
  */
-.category-news-img{
-	width:380px;
-	height:480px;
+.category-news-img {
+	width: 380px;
+	height: 480px;
 }
-.special-img{
-	width:160px;
-	height:160px;
-	
+
+.special-img {
+	width: 160px;
+	height: 110px;
 }
-special-img-detail{
-	width:340px;
-	height:340px;
+
+.special-img-detail {
+	width: 340px;
+	height: 226px;
+}
+
+.full-img {
+	width: 100%;
+}
+
+.index-pic-img{
+	width:220px;
+	height:145px;
 }
