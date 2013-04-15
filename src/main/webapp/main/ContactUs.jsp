@@ -82,7 +82,7 @@
 							<tr><td><span class="text-warning">每个人都是自己命运的建筑师！</span></td>
 							</tr>		
 							<tr><td><span class="text-warning">每天叫醒你的不是闹钟，而是梦想！</span></td><tr>
-							<tr><td><span class="text-warning">无限的潜能源于痛苦的历练！</span></td>
+							<tr><td><span class="text-warning">无限的潜能源于痛苦的历练！</span></td></tr>
 							<tr><td><span class="text-warning">学习是人生最重要的投资！</span></td></tr>
 							<tr><td><span class="text-warning">一杆已上果岭，抓鸟还会远吗？</span></td></tr>
 							<tr><td><span class="text-warning">只要有1％的希望，就要付出100％的努力！</span></td></tr>
