@@ -24,7 +24,6 @@ public class TestServer {
 		server = new Server(2281);
 		WebAppContext context = new WebAppContext();
 
-		System.setProperty("devMode", "true");
 		context.setContextPath("/g");
 		context.setDescriptor("src/main/webapp/WEB-INF/web.xml");
 		context.setResourceBase("src/main/webapp");

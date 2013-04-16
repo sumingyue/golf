@@ -21,7 +21,12 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#contact').addClass('active');
+		$('#contactUs a').mouseenter(function (e) {
+			  e.preventDefault();
+			  $(this).tab('show');
+		});
 	});
+	
 </script>
 </head>
 <body>
@@ -37,7 +42,7 @@
 		
 		<div class="tabbable tabs-left">
 	<!-- Only required for left/right tabs -->
-	<ul class="nav nav-tabs ">
+	<ul class="nav nav-tabs" id="contactUs">
 		  <li id="tab1" class="active"><a class="text-success"  data-toggle="tab" href="#tab-content1"><i class="icon-chevron-right"></i>公司介绍</a></li>
           <li id="tab2"><a class="text-success"  data-toggle="tab" href="#tab-content2"><i class="icon-chevron-right"></i> 创业团队</a></li>
           <li id="tab4"><a class="text-success"  data-toggle="tab" href="#tab-content4"><i class="icon-chevron-right"></i>合作伙伴</a></li>

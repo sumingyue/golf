@@ -119,5 +119,8 @@
 		<action name="contact">
 			<result name="success">main/ContactUs.jsp</result>
 		</action>
+		<action name="match">
+			<result name="success">main/match/Match.jsp</result>
+		</action>
 	</package>	
 </struts>
