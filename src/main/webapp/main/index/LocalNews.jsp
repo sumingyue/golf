@@ -3,8 +3,8 @@
 <div>
 	<table class="table table-striped table-bordered">
 		<tr><td colspan='4'><h3 style="line-height:15px">
-		<a href="match.do"><p class="text-error text-center">苏州金熊高尔夫邀请赛（第二届）启动</p></a></h3></td></tr>
-		<tr><td class="muted">比赛时间</td><td class='text-warning'>2013年05月09日</td><td class="muted">比赛地点</td><td class='text-warning'>苏州太阳岛高尔夫俱乐部</td></tr>
+		<a href="match.do"><p class="text-error text-center">苏州金熊高尔夫邀请赛启动</p></a></h3></td></tr>
+		<tr><td class="muted">比赛时间</td><td class='text-warning'>2013年05月16日</td><td class="muted">比赛地点</td><td class='text-warning'>苏州金鸡湖高尔夫俱乐部</td></tr>
 		<tr><td class="muted">报名电话</td><td class='text-warning'>0512-66180078</td><td class="muted">报名地点</td><td class='text-warning'>苏州相城区嘉元路悦豪大厦503室</td></tr>
 	</table>
 	<p>

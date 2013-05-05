@@ -31,6 +31,11 @@
 <body>
 	<div class="container">
 	<jsp:include page="./Head.jsp"></jsp:include>
+		<div class="row" style="margin-bottom:5px;"><div class="span6">
+			<a href="match.do"><img src="adwords/adwords01.jpg" class="adwords img-rounded"></a>
+		</div><div class="span6">
+			<img src="adwords/adwords.jpg" class="adwords img-rounded">
+		</div></div>
 		<jsp:include page="./index/News.jsp"></jsp:include>
 		<jsp:include page="./index/LastestMatch.jsp"></jsp:include>
 		<div class="row">

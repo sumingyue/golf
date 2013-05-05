@@ -10,6 +10,11 @@
 <link href="css/bootstrap.override.css" rel="stylesheet">
 <script src="js/jquery-1.7.1.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.img_wrapper').addClass('text-center');
+	});
+</script>
 </head>
 <body>
 	<div class="container">

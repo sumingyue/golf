@@ -27,7 +27,7 @@
 		<jsp:include page="./../Head.jsp"></jsp:include>
 		<div>
 			<ul class="breadcrumb">
-				<tr><td>当前位置</td><td></td></tr>
+				<tr><td>当前位置：</td></tr>
 				<tr><td><a href="index.do">首页</a> <span class="divider">/</span></td></tr>
 				<li class="active">金熊高尔夫邀请赛</td></tr>
 			</ul>
