@@ -71,6 +71,10 @@
 								<td><strong>刘伟</strong></td>
 							</tr>
 							<tr>
+								<td style='text-align:right'><span class="muted">监事</span></td>
+								<td><strong>王敏</strong></td>
+							</tr>
+							<tr>
 								<td style='text-align:right'><span class="muted">总经理</span></td>
 								<td><strong>杨禅</strong></td>
 							</tr>
@@ -156,9 +160,11 @@
 				<h3 class='text-center text-warning'>合作伙伴</h3>
 				<h4>公司致力于本地高端品牌推广与策划，以促进高端人群合作与共赢。</h4>
 				<table class="table table-striped table-bordered table-hover ">
-					<tr><td><strong>苏州红尊商贸有限公司</strong></td></tr>
-					<tr><td><strong>苏州中兴高尔夫俱乐部</strong></td></tr>
-					<tr><td><strong>苏州精英高尔夫俱乐部</strong></td></tr>
+					<tr><td><strong>苏州中兴高尔夫俱乐部</strong></td><td><strong>苏州金鸡湖高尔夫俱乐部</strong></td></tr>
+					<tr><td><strong>苏州太湖高尔夫俱乐部</strong></td><td><strong>苏州太阳岛高尔夫俱乐部</strong></td></tr>
+					<tr><td><strong>上海绿桐酒业有限公司</strong></td><td><strong>苏州红尊商贸有限公司</strong></td></tr>
+					<tr><td><strong>兴茂南山高尔夫俱乐部</strong></td><td><strong>苏州精英高尔夫俱乐部</strong></td></tr>
+					<tr><td><strong>杭州西湖高尔夫俱乐部</strong></td><td><strong></strong></td></tr>
 				</table>
 				<h4 class='text-center'><span class='text-warning'>金熊高尔夫和红尊商贸战略合作</span></h4>
 				<img class="full-img"  src="company/007.jpg" />
