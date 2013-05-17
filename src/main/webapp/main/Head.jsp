@@ -29,7 +29,7 @@
 				<li id="drivingRange"><a href="drivingRanges.do">练习场</a></li>
 				<!-- <li id="learnClub"><a href="learnClubs.do">学球</a></li> -->
 				<!-- <li id="special"><a href="specials.do">专题</a></li> -->
-				<li id="special"><a href="pics.do">图片</a></li>
+				<li id="special"><a href="pics.do">赛事图片</a></li>
 				<!-- <li id="service" class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">服务<b class="caret"></b></a>
 					<ul class="dropdown-menu">
@@ -38,7 +38,7 @@
 						<li><a href="messages.do">用户留言</a></li>
 						<li><a href="matchService.do">赛事服务</a></li>
 					</ul></li> -->
-				<li id="match"><a href="match.do">赛事合作</a></li>
+				<li id="match"><a href="match.do">合作推广</a></li>
 				<li id="contact"><a href="contact.do">关于我们</a></li>
 			</ul>
 		</div>
