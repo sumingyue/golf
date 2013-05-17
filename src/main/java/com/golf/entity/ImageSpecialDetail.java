@@ -18,7 +18,7 @@ public class ImageSpecialDetail {
 	private String m_imageDes;
 
 	private Date m_creationDate;
-
+	
 	public Date getCreationDate() {
 		return m_creationDate;
 	}

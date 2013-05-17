@@ -35,7 +35,7 @@ $(document).ready(function(){
 						<td class="left" width="40%">专题名称<span class='red'>*</span></td>
 						<td class="right">
 							<s:select name="imageSpecialDetail.imageSpecialId" id="imageSpecialId"
-								list="imageSpecials" listKey="id" listValue="name"  value="imageSpecialDetail.imageSpecialId" theme="simple" >
+								list="imageSpecials" listKey="id" listValue="showName"  value="imageSpecialDetail.imageSpecialId" theme="simple" >
 							</s:select>
 						</td>
 					</tr>

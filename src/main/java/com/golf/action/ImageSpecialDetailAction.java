@@ -10,6 +10,7 @@ import com.golf.entity.ImageSpecial;
 import com.golf.entity.ImageSpecialDetail;
 import com.golf.entity.ImageType;
 import com.golf.entity.UploadFile;
+import com.golf.service.CategoryService;
 import com.golf.service.ImageService;
 import com.golf.service.ImageSpecialDetailService;
 import com.golf.service.ImageSpecialService;
@@ -32,6 +33,8 @@ public class ImageSpecialDetailAction extends ActionSupport {
 
 	private int m_imageSpecialId;
 
+	private CategoryService m_categoryService;
+
 	private ImageSpecialDetailService m_imageSpecialDetailService;
 
 	private ImageSpecialDetail m_imageSpecialDetail = new ImageSpecialDetail();
@@ -41,21 +44,21 @@ public class ImageSpecialDetailAction extends ActionSupport {
 	private UploadFile m_uploadFile = new UploadFile();
 
 	private File m_upload;
-	
+
 	private int m_size = 10;
-	
+
 	private UploadFile[] m_uploadFiles = new UploadFile[m_size];
 
 	private File[] m_uploads = new File[m_size];
 
 	private String[] m_des = new String[m_size];
-	
+
 	private PagedTool m_pagedTool = new PagedTool(Config.NEWS_PAGED_NUMBER);
 
 	public ImageSpecialDetail getImageSpecialDetail() {
 		return m_imageSpecialDetail;
 	}
-	
+
 	public List<ImageSpecialDetail> getImageSpecialDetails() {
 		return m_imageSpecialDetails;
 	}
@@ -74,6 +77,13 @@ public class ImageSpecialDetailAction extends ActionSupport {
 
 	public String imageSpecialDetailAdd() {
 		m_imageSpecials = m_imageSpecialService.queryAllImageSpecials();
+
+		if (m_imageSpecials != null && m_imageSpecials.size() > 0) {
+			for(ImageSpecial temp:m_imageSpecials){
+				temp.setCategory(m_categoryService.findCategory(temp.getCategoryId()));
+				temp.setSmallCategory(m_categoryService.findSmallCategory(temp.getSmallCategoryId()));
+			}
+		}
 		return SUCCESS;
 	}
 
@@ -94,13 +104,13 @@ public class ImageSpecialDetailAction extends ActionSupport {
 					} else {
 						des = m_des[i];
 					}
-					int imageId = insertImage(file,m_uploadFiles[i]);
+					int imageId = insertImage(file, m_uploadFiles[i]);
 					temp.setImageSpecialId(m_imageSpecialDetail.getImageSpecialId());
 					temp.setImageDes(des);
 					temp.setImageId(imageId);
-					
-					int id =m_imageSpecialDetailService.insertImageSpecialDetail(temp);
-					
+
+					int id = m_imageSpecialDetailService.insertImageSpecialDetail(temp);
+
 					if (id <= 0) {
 						result = ERROR;
 					}
@@ -129,17 +139,18 @@ public class ImageSpecialDetailAction extends ActionSupport {
 
 	public String imageSpecialDetailList() {
 		try {
-//			m_imageSpecials = m_imageSpecialService.queryAllImageSpecials();
-//			
-//			int totalSize = m_imageSpecialDetailService.queryAllImageSpecialDetails(m_imageSpecialId).size();
-//
-//			m_pagedTool.setTotalNumber(totalSize);
-//			
-//			m_imageSpecialDetails = m_imageSpecialDetailService.queryPagedImageSpecialDetails(m_pagedTool,m_imageSpecialId);
-			
+			// m_imageSpecials = m_imageSpecialService.queryAllImageSpecials();
+			//
+			// int totalSize = m_imageSpecialDetailService.queryAllImageSpecialDetails(m_imageSpecialId).size();
+			//
+			// m_pagedTool.setTotalNumber(totalSize);
+			//
+			// m_imageSpecialDetails =
+			// m_imageSpecialDetailService.queryPagedImageSpecialDetails(m_pagedTool,m_imageSpecialId);
+
 			m_imageSpecialDetails = m_imageSpecialDetailService.queryAllImageSpecialDetails(0);
-			
-			for(ImageSpecialDetail temp:m_imageSpecialDetails){
+
+			for (ImageSpecialDetail temp : m_imageSpecialDetails) {
 				temp.setImage(m_imageService.findImage(temp.getImageId()));
 				temp.setImageSpecial(m_imageSpecialService.findImageSpecial(temp.getImageSpecialId()));
 			}
@@ -152,6 +163,12 @@ public class ImageSpecialDetailAction extends ActionSupport {
 
 	public String imageSpecialDetailUpdate() {
 		m_imageSpecials = m_imageSpecialService.queryAllImageSpecials();
+		if (m_imageSpecials != null && m_imageSpecials.size() > 0) {
+			for(ImageSpecial temp:m_imageSpecials){
+				temp.setCategory(m_categoryService.findCategory(temp.getCategoryId()));
+				temp.setSmallCategory(m_categoryService.findSmallCategory(temp.getSmallCategoryId()));
+			}
+		}
 		try {
 			m_imageSpecialDetail = m_imageSpecialDetailService.findImageSpecialDetail(m_imageSpecialDetailId);
 			m_imageSpecialDetail.setImage(m_imageService.findImage(m_imageSpecialDetail.getImageId()));
@@ -165,10 +182,11 @@ public class ImageSpecialDetailAction extends ActionSupport {
 	public String imageSpecialDetailUpdateSubmit() {
 		try {
 			if (m_upload != null) {
-				int imageId = insertImage(m_upload,m_uploadFile);
+				int imageId = insertImage(m_upload, m_uploadFile);
 				m_imageSpecialDetail.setImageId(imageId);
 			} else {
-				m_imageSpecialDetail.setImageId(m_imageSpecialDetailService.findImageSpecialDetail(m_imageSpecialDetail.getId()).getImageId());
+				m_imageSpecialDetail.setImageId(m_imageSpecialDetailService.findImageSpecialDetail(
+				      m_imageSpecialDetail.getId()).getImageId());
 			}
 			int count = m_imageSpecialDetailService.updateImageSpecialDetail(m_imageSpecialDetail);
 			if (count > 0) {
@@ -182,7 +200,7 @@ public class ImageSpecialDetailAction extends ActionSupport {
 		}
 	}
 
-	private int insertImage(File m_upload,UploadFile m_uploadFile) {
+	private int insertImage(File m_upload, UploadFile m_uploadFile) {
 		return m_imageService.insert(m_upload, m_uploadFile, ImageType.PIC);
 	}
 
@@ -225,7 +243,7 @@ public class ImageSpecialDetailAction extends ActionSupport {
 	public void setUploadContentType(String contentType) {
 		m_uploadFile.setContentType(contentType);
 	}
-	
+
 	public void setUploadFileName(String filename) {
 		m_uploadFile.setFilename(filename);
 	}
@@ -233,14 +251,14 @@ public class ImageSpecialDetailAction extends ActionSupport {
 	public void setUploads(File[] uploads) {
 		m_uploads = uploads;
 	}
-	
+
 	public void setUploadsContentType(String contentType) {
 		String[] contentTypes = contentType.split(",");
-		for(int i=0;i<contentTypes.length;i++){
+		for (int i = 0; i < contentTypes.length; i++) {
 			UploadFile upload = m_uploadFiles[i];
-			if(upload==null){
-				upload =new UploadFile();
-				m_uploadFiles[i]= upload;
+			if (upload == null) {
+				upload = new UploadFile();
+				m_uploadFiles[i] = upload;
 			}
 			m_uploadFiles[i].setContentType(contentTypes[i]);
 		}
@@ -248,14 +266,19 @@ public class ImageSpecialDetailAction extends ActionSupport {
 
 	public void setUploadsFileName(String filename) {
 		String[] fileNames = filename.split(",");
-		for(int i=0;i<fileNames.length;i++){
+		for (int i = 0; i < fileNames.length; i++) {
 			UploadFile upload = m_uploadFiles[i];
-			if(upload==null){
-				upload =new UploadFile();
-				m_uploadFiles[i]= upload;
+			if (upload == null) {
+				upload = new UploadFile();
+				m_uploadFiles[i] = upload;
 			}
 			m_uploadFiles[i].setFilename(fileNames[i]);
 		}
 	}
 
+	public void setCategoryService(CategoryService categoryService) {
+		m_categoryService = categoryService;
+	}
+
+	
 }

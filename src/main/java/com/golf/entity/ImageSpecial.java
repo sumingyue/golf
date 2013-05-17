@@ -26,6 +26,10 @@ public class ImageSpecial {
 
 	private Date m_creationDate;
 
+	public String getShowName() {
+		return m_smallCategory.getName() + '-' + m_name;
+	}
+
 	public Category getCategory() {
 		return m_category;
 	}

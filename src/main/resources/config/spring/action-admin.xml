@@ -207,6 +207,9 @@
 		<property name="imageService">
 			<ref bean="imageService" />
 		</property>
+		<property name="categoryService">
+			<ref bean="categoryService" />
+		</property>
 	</bean>
 	<bean id="matchServiceAction" class="com.golf.action.MatchServiceAction"
 		scope="prototype">

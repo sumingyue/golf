@@ -30,13 +30,17 @@
 			<table  class="table table-striped table-bordered" id="contents">
 				<thead><tr class="title">
 					<th width="5%">序号</th>
-					<th width="15%">专题名称</th>
-					<th width="66%">图片名称</th>
+					<th width="10%">一级分类</th>
+					<th width="10%">二级名称</th>
+					<th width="20%">专题名称</th>
+					<th width="26%">图片名称</th>
 					<th width="14%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="imageSpecialDetailAdd.do" class="btn btn-primary  btn-small" >新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="imageSpecialDetails" status="vs">
 					<tr class="trDetail">
 					<td><s:property value='#vs.index+1'/></td>
+					<td><s:property value="imageSpecial.category.name" /></td>
+					<td><s:property value="imageSpecial.smallCategory.name" /></td>
 					<td><s:property value="imageSpecial.name" /></td>
 					<td><s:property value="image.name" /></td>
 					<td><a href="imageSpecialDetailUpdate.do?imageSpecialDetailId=<s:property value="id"/>" class="btn btn-primary  btn-small" >编辑</a> &nbsp;&nbsp;&nbsp;&nbsp;
