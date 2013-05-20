@@ -45,7 +45,9 @@
 				<li id="tab4"><a class="text-success" data-toggle="tab"
 					href="#tab-content4"><i class="icon-chevron-right"></i>合作价值</a></li>
 				<li id="tab5"><a class="text-success" data-toggle="tab"
-					href="#tab-content5"><i class="icon-chevron-right"></i>联系我们</a></li>
+					href="#tab-content5"><i class="icon-chevron-right"></i>合作企业</a></li>
+				<li id="tab6"><a class="text-success" data-toggle="tab"
+					href="#tab-content6"><i class="icon-chevron-right"></i>联系我们</a></li>
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane active" id="tab-content1">
@@ -57,19 +59,19 @@
 						</tr>
 						<tr>
 							<td class="muted">赛事协办</td>
-							<td>苏州太阳岛高尔夫俱乐部</td>
+							<td>苏州XXX高尔夫俱乐部</td>
 						</tr>
 						<tr>
 							<td class="muted">赛事时间</td>
-							<td>2013年05月09日 星期四</td>
+							<td>XXX年XX月XX日 星期四</td>
 						</tr>
 						<tr>
 							<td class="muted">赛事地点</td>
-							<td>苏州阳澄湖大道太阳岛高尔夫俱乐部</td>
+							<td>苏州XXX高尔夫俱乐部</td>
 						</tr>
 						<tr>
 							<td class="muted">赛事人数</td>
-							<td>50 人左右</td>
+							<td>50人左右</td>
 						</tr>
 						<tr>
 							<td class="muted">比赛规则</td>
@@ -157,6 +159,26 @@
 				
 				</div>
 				<div class="tab-pane" id="tab-content5">
+					<h3 class='text-error'>“绿城•御园杯”高尔夫邀请赛</h3>
+					<a href="pics.do?categoryId=5&&smallCategory=26"><h4>全程赛事跟踪</h4></a>
+					<div>
+						<table class="table table-striped table-bordered table-hover ">
+							<tr><td  width='20%'><span class="muted">时间</span></td><td>2013年5月15号</td></tr>
+							<tr><td><span class="muted">地点</span></td><td>苏州金鸡湖高尔夫俱乐部</td></tr>
+							<tr><td><span class="muted">赞助商</span></td><td><span class="text-success"><strong>高端楼盘绿城御园</strong></span></td></tr>
+						</table>	
+					</div>
+					<h3 class='text-error'>首届金熊高尔夫邀请赛</h3>
+					<a href="pics.do?categoryId=5&&smallCategory=25"><h4>全程赛事跟踪</h4></a>
+					<div>
+						<table class="table table-striped table-bordered table-hover ">
+							<tr><td width='20%'><span class="muted">时间</span></td><td>2013年4月18号</td></tr>
+							<tr><td><span class="muted">地点</span></td><td>苏州中兴高尔夫俱乐部</td></tr>
+							<tr><td><span class="muted">赞助商</span></td><td><span class="text-success"><strong>苏州红尊商贸有限公司</strong></span></td></</tr>
+						</table>	
+					</div>
+					</div>
+				<div class="tab-pane" id="tab-content6">
 				<h2 class='text-error text-center'>2013年XXX杯金熊高尔夫邀请赛</h2>
 				<table class="table table-striped table-bordered table-hover ">
 					<tr><td style='text-align:right'><span class="muted">联系电话</span></td><td><strong>0512-66180078</strong></td></tr>
