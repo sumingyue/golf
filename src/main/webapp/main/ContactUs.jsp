@@ -76,7 +76,7 @@
 							</tr>
 							<tr>
 								<td style='text-align:right'><span class="muted">总经理</span></td>
-								<td><strong>杨禅</strong></td>
+								<td><strong>杨婵</strong></td>
 							</tr>
 							<tr>
 								<td style='text-align:right'><span class="muted">助理经理</span></td>

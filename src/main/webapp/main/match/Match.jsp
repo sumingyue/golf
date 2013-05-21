@@ -160,21 +160,21 @@
 				</div>
 				<div class="tab-pane" id="tab-content5">
 					<h3 class='text-error'>“绿城•御园杯”高尔夫邀请赛</h3>
-					<a href="pics.do?categoryId=5&&smallCategory=26"><h4>全程赛事跟踪</h4></a>
+					<a href="pics.do?categoryId=5&&smallCategoryId=26"><h4>全程赛事跟踪</h4></a>
 					<div>
 						<table class="table table-striped table-bordered table-hover ">
-							<tr><td  width='20%'><span class="muted">时间</span></td><td>2013年5月15号</td></tr>
+							<tr><td  width='20%'><span class="muted">时间</span></td><td>2013年5月15日</td></tr>
 							<tr><td><span class="muted">地点</span></td><td>苏州金鸡湖高尔夫俱乐部</td></tr>
-							<tr><td><span class="muted">赞助商</span></td><td><span class="text-success"><strong>高端楼盘绿城御园</strong></span></td></tr>
+							<tr><td><span class="muted">赞助商</span></td><td><span class="text-success"><strong>高端楼盘绿城御园（独家赞助）</strong></span></td></tr>
 						</table>	
 					</div>
 					<h3 class='text-error'>首届金熊高尔夫邀请赛</h3>
-					<a href="pics.do?categoryId=5&&smallCategory=25"><h4>全程赛事跟踪</h4></a>
+					<a href="pics.do?categoryId=5&&smallCategoryId=25"><h4>全程赛事跟踪</h4></a>
 					<div>
 						<table class="table table-striped table-bordered table-hover ">
-							<tr><td width='20%'><span class="muted">时间</span></td><td>2013年4月18号</td></tr>
+							<tr><td width='20%'><span class="muted">时间</span></td><td>2013年4月09日</td></tr>
 							<tr><td><span class="muted">地点</span></td><td>苏州中兴高尔夫俱乐部</td></tr>
-							<tr><td><span class="muted">赞助商</span></td><td><span class="text-success"><strong>苏州红尊商贸有限公司</strong></span></td></</tr>
+							<tr><td><span class="muted">赞助商</span></td><td><span class="text-success"><strong>上海绿桐酒业有限公司、苏州红尊商贸有限公司、兴茂南山高尔夫俱乐部、苏州精英高尔夫俱乐部、杭州西湖高尔夫俱乐部</strong></span></td></</tr>
 						</table>	
 					</div>
 					</div>
