@@ -45,6 +45,7 @@
 	<ul class="nav nav-tabs" id="contactUs">
 		  <li id="tab1" class="active"><a class="text-success"  data-toggle="tab" href="#tab-content1"><i class="icon-chevron-right"></i>公司介绍</a></li>
           <li id="tab2"><a class="text-success"  data-toggle="tab" href="#tab-content2"><i class="icon-chevron-right"></i> 创业团队</a></li>
+          <li id="tab3"><a class="text-success"  data-toggle="tab" href="#tab-content3"><i class="icon-chevron-right"></i> 招聘信息</a></li>
           <li id="tab4"><a class="text-success"  data-toggle="tab" href="#tab-content4"><i class="icon-chevron-right"></i>合作伙伴</a></li>
           <li id="tab5"><a class="text-success"  data-toggle="tab" href="#tab-content5"><i class="icon-chevron-right"></i>联系我们</a></li>
 	</ul>
@@ -154,7 +155,14 @@
 							</div>
 						</div>
 					</div>
-				
+			</div>
+			<div class="tab-pane" id="tab-content3">
+				<h3 class='text-warning'>招聘高尔夫会籍专员</h3>
+				<ul>
+					<li class='text-success'><h4>1.大专或以上学历，热爱销售，性格开朗，想挑战高薪，能吃苦耐劳，适应压力下工作。</h4></li>
+					<li class='text-success'><h4>2.具备良好的团队意识、沟通能力以及职业道德意识，遵守国家法律法规，个人无不良记录。</h4></li>
+					<li class='text-success'><h4>3.具有市场开发和销售高尔夫会籍经验者优先，优秀应届生亦可。</h4></li>
+				</ul>
 			</div>
 			<div class="tab-pane" id="tab-content4">
 				<h3 class='text-center text-warning'>合作伙伴</h3>
