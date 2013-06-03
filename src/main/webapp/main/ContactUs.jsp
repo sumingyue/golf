@@ -40,7 +40,7 @@
 			</ul>
 		</div>
 		
-		<div class="tabbable tabs-left">
+	<div class="tabbable tabs-left">
 	<!-- Only required for left/right tabs -->
 	<ul class="nav nav-tabs" id="contactUs">
 		  <li id="tab1" class="active"><a class="text-success"  data-toggle="tab" href="#tab-content1"><i class="icon-chevron-right"></i>公司介绍</a></li>
@@ -165,17 +165,7 @@
 				</ul>
 			</div>
 			<div class="tab-pane" id="tab-content4">
-				<h3 class='text-center text-warning'>合作伙伴</h3>
-				<h4>公司致力于本地高端品牌推广与策划，以促进高端人群合作与共赢。</h4>
-				<table class="table table-striped table-bordered table-hover ">
-					<tr><td><strong>苏州中兴高尔夫俱乐部</strong></td><td><strong>苏州金鸡湖高尔夫俱乐部</strong></td></tr>
-					<tr><td><strong>苏州太湖高尔夫俱乐部</strong></td><td><strong>苏州太阳岛高尔夫俱乐部</strong></td></tr>
-					<tr><td><strong>上海绿桐酒业有限公司</strong></td><td><strong>苏州红尊商贸有限公司</strong></td></tr>
-					<tr><td><strong>兴茂南山高尔夫俱乐部</strong></td><td><strong>苏州精英高尔夫俱乐部</strong></td></tr>
-					<tr><td><strong>杭州西湖高尔夫俱乐部</strong></td><td><strong></strong></td></tr>
-				</table>
-				<h4 class='text-center'><span class='text-warning'>金熊高尔夫和红尊商贸战略合作</span></h4>
-				<img class="full-img"  src="company/007.jpg" />
+				<s:include value="contactUs/Partner.jsp"></s:include>
 			</div>
 			<div class="tab-pane" id="tab-content5">
 				<h3 class='text-center text-warning'>联系我们</h3>

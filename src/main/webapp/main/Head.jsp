@@ -24,6 +24,7 @@
 						<li><a href="c.do?categoryId=3">高球学院</a></li>
 					</ul></li>
 				<!-- <li id="travel"><a href="travels.do">旅游</a></li> -->
+				<li id="memberShip"><a href="memberShip.do">会籍</a></li>
 				<li id="court"><a href="club.do">球场</a></li>
 				<!-- <li id="team"><a href="teams.do">球队</a></li> -->
 				<li id="drivingRange"><a href="drivingRanges.do">练习场</a></li>

@@ -93,6 +93,9 @@
 		<action name="matchService">
 			<result name="success">main/MatchService.jsp</result>
 		</action>
+		<action name="memberShip">
+			<result name="success">main/MemberShip.jsp</result>
+		</action>
 		<action name="matchServiceSub" class="matchServiceAction" method="matchServiceAddSubmit">
 		</action>
 		<action name="learnClubs" class="learnClubAction" method="learnClubList">
