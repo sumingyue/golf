@@ -13,10 +13,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#memberShip').addClass('active');
-		$('#contactUs a').mouseenter(function (e) {
-			  e.preventDefault();
-			  $(this).tab('show');
-		});
 	});
 </script>
 </head>
@@ -33,7 +29,7 @@
 	<!-- Only required for left/right tabs -->
 	<ul class="nav nav-tabs" id="contactUs">
 		  <li id="tab1" class="active"><a class="text-success"  data-toggle="tab" href="#tab-content1"><i class="icon-chevron-right"></i>FGT高尔夫旅游会籍</a></li>
-          <li id="tab2"><a class="text-success"  data-toggle="tab" href="#tab-content2"><i class="icon-chevron-right"></i>长江南通高尔夫会籍</a></li>
+          <li id="tab2"><a class="text-success"  data-toggle="tab" href="#tab-content2"><i class="icon-chevron-right"></i>FGT巡回赛-南山站</a></li>
 	</ul>
 	<div class="tab-content">
 			<div class="tab-pane active" id="tab-content1">
@@ -69,7 +65,8 @@
 				<p>FGT旅游会籍现阶段的指导价格为6.8万元人民币。</p>
 			</div>
 			<div class="tab-pane" id="tab-content2">
-				<h3 class='text-center text-warning'>南通长江高尔夫会籍</h3>
+				<h3 class='text-center text-warning'>FGT巡回赛-南山站</h3>
+				<jsp:include page="./MemberShipActivity.jsp"></jsp:include>
 			</div>
 	</div>
 	</div>

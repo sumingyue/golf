@@ -16,15 +16,6 @@
 	$(document).ready(function() {
 		$('#news-tab0').addClass('active');
 		$('#smallCatogory0').addClass('active');
-		
-		$('#court a').mouseenter(function (e) {
-		  e.preventDefault();
-	      $(this).tab('show');
-		});
-		$('#localNews a').mouseenter(function (e) {
-		  e.preventDefault();
-		  $(this).tab('show');
-		});
 	});
 </script>
 </head>

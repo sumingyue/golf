@@ -21,10 +21,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#contact').addClass('active');
-		$('#contactUs a').mouseenter(function (e) {
-			  e.preventDefault();
-			  $(this).tab('show');
-		});
 	});
 	
 </script>

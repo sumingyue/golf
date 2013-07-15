@@ -14,11 +14,10 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#match').addClass('active');
-
-		$('#matchContent a').mouseenter(function (e) {
+		/* $('#matchContent a').mouseenter(function (e) {
 		  e.preventDefault();
 		  $(this).tab('show');
-		});
+		}); */
 	});
 </script>
 </head>
