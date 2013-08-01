@@ -27,6 +27,18 @@ function categoryChanged() {
 	});
 }
 
+function setCheckedValue(radioName, newValue) {
+	if (!radioName)
+		return;
+	var radios = document.getElementsByName(radioName);
+	for ( var i = 0; i < radios.length; i++) {
+		radios[i].checked = false;
+		if (radios[i].value == newValue.toString()) {
+			radios[i].checked = true;
+		}
+	}
+}
+
 function imageCategoryChanged(){
 	document.getElementById('imageSpecial_smallCategoryId').options.length = 0;
 	var id=$('#imageSpecial_categoryId').val();
@@ -47,14 +59,3 @@ function imageCategoryChanged(){
 	});
 }
 
-function setCheckedValue(radioName, newValue) {
-	if (!radioName)
-		return;
-	var radios = document.getElementsByName(radioName);
-	for ( var i = 0; i < radios.length; i++) {
-		radios[i].checked = false;
-		if (radios[i].value == newValue.toString()) {
-			radios[i].checked = true;
-		}
-	}
-}

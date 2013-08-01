@@ -8,13 +8,16 @@
 			<tr><td><strong>杭州西湖高尔夫俱乐部</strong></td><td><strong></strong></td></tr>
 		</table> -->
 		<div class="row-fluid">
-  			<div class="span4">
-  				<h4 class='text-center'><span class='text-error'>金熊高尔夫牵手朝向集团</span></h4>
-					<img class="full-img"  style="height:367px" src="company/008.jpg" />
+  			<div class="span3">
+  				<h4 class='text-center'><span class='text-error'>金熊牵手朝向集团</span></h4>
+					<img class="full-img"  style="height:300px " src="company/008.jpg" />
+ 			 </div><div class="span3">
+  				<h4 class='text-center'><span class='text-error'>金熊与金凤凰战略合作</span></h4>
+					<img class="full-img"  style="height:300px" src="company/010.png" />
  			 </div>
- 			 <div class="span8">
+ 			 <div class="span6">
  			 <h4 class='text-center'><span class='text-error'>金熊高尔夫和红尊商贸战略合作</span></h4>
-				<img class="full-img"  style="height:367px"  src="company/007.jpg" />
+				<img class="full-img"  style="height:300px"  src="company/007.jpg" />
  			 </div>
 		</div>
 		<div class="row-fluid">

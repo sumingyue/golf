@@ -114,7 +114,7 @@
 				</div>
 				<div class="tab-pane" id="tab-content3">
 				<h2 class='text-error text-center'>2013年XXX杯金熊高尔夫邀请赛</h2>
-				<h4 class='text-warning'>冠名赞助：赞助金额RMB5万元(尊贵一位)</h4>
+				<h4 class='text-warning'>冠名赞助：赞助金额RMB5-20万元(尊贵一位)</h4>
 				<table class="table table-striped table-bordered table-hover  table-condensed">
 					<tr><td>1、企业获得活动唯一冠名身份，名称表述为“XX杯苏州金熊高尔夫邀请赛”；</td></tr>
 					<tr><td>2、企业名称或Logo出现在活动宣传资料中：签到及颁奖背景板、宣传海报等；</td></tr>

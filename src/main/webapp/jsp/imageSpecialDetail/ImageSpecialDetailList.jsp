@@ -31,7 +31,7 @@
 				<thead><tr class="title">
 					<th width="5%">序号</th>
 					<th width="10%">一级分类</th>
-					<th width="10%">二级名称</th>
+					<th width="25%">二级名称</th>
 					<th width="20%">专题名称</th>
 					<th width="26%">图片名称</th>
 					<th width="14%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="imageSpecialDetailAdd.do" class="btn btn-primary  btn-small" >新增</a></th>

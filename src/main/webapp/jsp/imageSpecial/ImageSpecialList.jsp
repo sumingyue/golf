@@ -43,7 +43,7 @@
 								value="categoryId" theme="simple" >
 							</s:select> --%>
 					</th>
-					<th width="10%">
+					<th width="20%">
 						二级分类
 						<%-- <s:select name="imageSpecial.smallCategoryId"
 								onchange="smallCategoryChanged()"
@@ -52,7 +52,7 @@
 								value="smallCategoryId" theme="simple" >
 							</s:select> --%>
 						</th>
-					<th width="61%">名称</th>
+					<th width="51%">名称</th>
 					<th width="14%">操作&nbsp;&nbsp;&nbsp;&nbsp;<a href="imageSpecialAdd.do?categoryId=${categoryId}&smallCategoryId=${smallCategoryId}" class="btn btn-primary  btn-small" >新增</a></th>
 				</tr></thead><tbody>
 				<s:iterator value="imageSpecials" status="vs">

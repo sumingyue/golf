@@ -40,8 +40,8 @@
 	<!-- Only required for left/right tabs -->
 	<ul class="nav nav-tabs" id="contactUs">
 		  <li id="tab1" class="active"><a class="text-success"  data-toggle="tab" href="#tab-content1"><i class="icon-chevron-right"></i>公司介绍</a></li>
-          <li id="tab2"><a class="text-success"  data-toggle="tab" href="#tab-content2"><i class="icon-chevron-right"></i> 创业团队</a></li>
-          <li id="tab3"><a class="text-success"  data-toggle="tab" href="#tab-content3"><i class="icon-chevron-right"></i> 招聘信息</a></li>
+          <li id="tab2"><a class="text-success"  data-toggle="tab" href="#tab-content2"><i class="icon-chevron-right"></i>创业团队</a></li>
+          <li id="tab3"><a class="text-success"  data-toggle="tab" href="#tab-content3"><i class="icon-chevron-right"></i>招聘信息</a></li>
           <li id="tab4"><a class="text-success"  data-toggle="tab" href="#tab-content4"><i class="icon-chevron-right"></i>合作伙伴</a></li>
           <li id="tab5"><a class="text-success"  data-toggle="tab" href="#tab-content5"><i class="icon-chevron-right"></i>联系我们</a></li>
 	</ul>
