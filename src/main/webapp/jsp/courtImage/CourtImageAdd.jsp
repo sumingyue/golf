@@ -55,35 +55,35 @@
 						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
 						<td class="left">图片简介01</td>
-						<td class="right"><textarea  name="des"  rows="3" cols="60"></textarea></td>
+						<td class="right"><textarea  name="des"  rows="3" cols="40"></textarea></td>
 					</tr>
 					<tr>
 						<td class="left">球场图片02<span class='red'>*</span></td>
 						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
 						<td class="left">图片简介02</td>
-						<td class="right"><textarea  name="des"  rows="3" cols="60"></textarea></td>
+						<td class="right"><textarea  name="des"  rows="3" cols="40"></textarea></td>
 					</tr>
 					<tr>
 						<td class="left">球场图片03<span class='red'>*</span></td>
 						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
 						<td class="left">图片简介03</td>
-						<td class="right"><textarea  name="des"  rows="3" cols="60"></textarea></td>
+						<td class="right"><textarea  name="des"  rows="3" cols="40"></textarea></td>
 					</tr>
 					<tr>
 						<td class="left">球场图片04<span class='red'>*</span></td>
 						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
 						<td class="left">图片简介04</td>
-						<td class="right"><textarea  name="des"  rows="3" cols="60"></textarea></td>
+						<td class="right"><textarea  name="des"  rows="3" cols="40"></textarea></td>
 					</tr>
 					<tr>
 						<td class="left">球场图片05<span class='red'>*</span></td>
 						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
 						<td class="left">图片简介05</td>
-						<td class="right"><textarea  name="des"  rows="3" cols="60"></textarea></td>
+						<td class="right"><textarea  name="des"  rows="3" cols="40"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="4" style="text-align:center">

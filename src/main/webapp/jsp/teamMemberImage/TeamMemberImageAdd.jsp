@@ -66,7 +66,7 @@ $(document).ready(function() {
 					</tr>
 					<tr>
 						<td class="left">图片简介</td>
-						<td class="right"><textarea  name="teamMemberImage.imageDes"  rows="5" cols="60"></textarea>
+						<td class="right"><textarea  name="teamMemberImage.imageDes"  rows="5" cols="40"></textarea>
 						</td>
 					</tr>
 					<tr>

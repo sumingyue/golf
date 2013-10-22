@@ -104,7 +104,7 @@ $(document).ready(function() {
 					
 					<tr>
 						<td class="left" >产品介绍<span class='red'>*</span></td>
-						<td class="right" colspan="3" ><textarea  name="product.introduction"  rows="4" cols="60"><s:property value="product.introduction"/></textarea></td>
+						<td class="right" colspan="3" ><textarea  name="product.introduction"  rows="4" cols="40"><s:property value="product.introduction"/></textarea></td>
 					</tr>
 					<tr><td colspan="4" align="center"><button type="submit" class="btn">提交</button></tr>
 				</table>

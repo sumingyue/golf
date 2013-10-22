@@ -81,7 +81,7 @@ $(document).ready(function() {
 					<tr>
 							<td>备注信息&nbsp;&nbsp;</td>
 							<td class="right"><textarea name="matchService.content" rows="7"
-									cols="60"></textarea></td>
+									cols="40"></textarea></td>
 							<td colspan="2" style="text-align:center;vertical-align:middle">
 								<button type="submit" class="btn btn-primary">提交</button>
 					</tr>

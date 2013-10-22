@@ -40,7 +40,7 @@ $(document).ready(function() {
 					</tr>
 					<tr>
 						<td class="left">用户评论<span class='red'>*</span></td>
-						<td class="right"><textarea  name="newsComments.content"  rows="5" cols="60"></textarea>
+						<td class="right"><textarea  name="newsComments.content"  rows="5" cols="40"></textarea>
 						</td>
 					</tr>
 						<tr>

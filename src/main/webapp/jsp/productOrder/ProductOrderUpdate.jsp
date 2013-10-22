@@ -92,7 +92,7 @@
 					</tr>
 					<tr>
 						<td class="left" width="40%">备注信息<span class='red'>*</span></td>
-						<td class="right"><textarea  name="productOrder.note"  rows="4" cols="60"><s:property value="productOrder.note"/></textarea></td>
+						<td class="right"><textarea  name="productOrder.note"  rows="4" cols="40"><s:property value="productOrder.note"/></textarea></td>
 					</tr><tr><td colspan="2" align="center"><button type="submit" class="btn">提交</button></tr>
 				</table>
 			</form>

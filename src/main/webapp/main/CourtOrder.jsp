@@ -98,7 +98,7 @@ $(document).ready(function() {
 						<tr>
 							<td width="20%">备注信息</td>
 							<td ><textarea name="courtOrder.note" rows="4"
-									cols="60"></textarea></td>
+									cols="40"></textarea></td>
 							<td colspan="2" style="text-align:center;vertical-align:middle">
 								<button type="submit" class="btn btn-primary">提交</button>
 						</tr>

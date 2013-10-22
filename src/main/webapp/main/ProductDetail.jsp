@@ -158,20 +158,20 @@
 				</table>
 				<form class="shop-form form" action="orderProduct.do">
 					<legend class="legend">订购提交</legend>
-					<input type="hidden" name="productOrder.productId" class="input" value='<s:property value="product.id"/>'/>
+					<input readonly type="hidden" name="productOrder.productId" class="input" value='<s:property value="product.id"/>'/>
 					<div class="row">
-						<label for="f_content">联系人:</label><input type="text" name="productOrder.userName" class="input" />
+						<label for="f_content">联系人:</label><input readonly type="text" name="productOrder.userName" class="input" />
 					</div>
 					<div class="row">
-						<label for="f_mobile">手机:</label><input type="text"  name="productOrder.userPhone" class="input" />
+						<label for="f_mobile">手机:</label><input readonly type="text"  name="productOrder.userPhone" class="input" />
 					</div>
 					<div class="row">
-						<label for="f_num">购买数量:</label><input type="text"  name="productOrder.orderNumber" class="input s-input" />
+						<label for="f_num">购买数量:</label><input readonly type="text"  name="productOrder.orderNumber" class="input s-input" />
 					</div>
 					<div class="row">
-						<label for="f_addr">收件地址:</label><input type="text" id="f_addr" name="productOrder.userAddress" class="input l-input" />
+						<label for="f_addr">收件地址:</label><input readonly type="text" id="f_addr" name="productOrder.userAddress" class="input l-input" />
 					</div>
-					<div class="row"><input type="submit" value="提交" class="btn"/></div>
+					<div class="row"><input readonly type="submit" value="提交" class="btn"/></div>
 				</form>
 			</div>
 			<div class="clear"></div>

@@ -57,7 +57,7 @@ $(document).ready(function(){
 					</tr>
 					<tr>
 						<td class="left" width="30%">图片简介<span class='red'>*</span></td>
-						<td class="right"><textarea  name="imageSpecialDetail.imageDes"  rows="5" cols="60"><s:property value='imageSpecialDetail.imageDes'/></textarea>
+						<td class="right"><textarea  name="imageSpecialDetail.imageDes"  rows="5" cols="40"><s:property value='imageSpecialDetail.imageDes'/></textarea>
 						</td>
 					</tr>
 					<tr>

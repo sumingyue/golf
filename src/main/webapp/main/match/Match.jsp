@@ -129,7 +129,7 @@
 					<tr><td>11、企业将获得免费的贵宾参赛名额2名，由企业自由支配；</td></tr>
 					<tr><td>12、其他广告宣传形式可根据赞助商合理要求商讨而定。</td></tr>
 				</table>	
-				<h4 class='text-warning'>联合赞助：名额不限 金额1万或奖品</h4>
+				<h4 class='text-warning'>联合赞助：名额不限 金额3-5万或奖品</h4>
 				<table class="table table-striped table-bordered table-hover  table-condensed">
 					<tr><td>1、企业名称或Logo以联合赞助的身份出现在活动开球背景板和颁奖背景板；</td></tr>
 					<tr><td>2、企业可获得对于此次活动的平面、网络、杂志等媒体的相关报道；</td></tr>
@@ -137,7 +137,7 @@
 					<tr><td>4、主持人口头鸣谢；</td></tr>
 					<tr><td>5、企业代表1名作为贵宾出席颁奖晚宴活动。</td></tr>
 				</table>
-				<h4 class='text-warning'>特别赞助：一杆进洞奖（价值不低于1万元的实物奖品)  尊贵1位</h4>
+				<h4 class='text-warning'>特别赞助：一杆进洞奖（价值不低于10万元的实物奖品)  尊贵1位</h4>
 				<table class="table table-striped table-bordered table-hover  table-condensed">
 					<tr><td>1、企业名称或Logo以联合赞助的身份出现在活动开球背景板和颁奖背景板；</td></tr>
 					<tr><td>2、企业可获得对于此次活动的平面、网络、杂志等媒体的相关报道；</td></tr>

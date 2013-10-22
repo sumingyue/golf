@@ -101,7 +101,7 @@ $(document).ready(function() {
 					</tr>
 					<tr>
 						<td class="left">产品介绍<span class='red'>*</span></td>
-						<td class="right" colspan='3'><textarea  name="product.introduction"  rows="4" cols="60"></textarea></td>
+						<td class="right" colspan='3'><textarea  name="product.introduction"  rows="4" cols="40"></textarea></td>
 					</tr>
 					<tr><td colspan="4" align="center"><button type="submit" class="btn">提交</button></tr>
 				</table>

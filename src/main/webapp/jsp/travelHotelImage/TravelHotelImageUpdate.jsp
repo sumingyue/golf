@@ -56,7 +56,7 @@ $(document).ready(function(){
 					</tr>
 					<tr>
 						<td class="left">图片简介</td>
-						<td class="right"><textarea  name="travelHotelImage.imageDes"  rows="5" cols="60"><s:property value='travelHotelImage.imageDes'/></textarea>
+						<td class="right"><textarea  name="travelHotelImage.imageDes"  rows="5" cols="40"><s:property value='travelHotelImage.imageDes'/></textarea>
 						</td>
 					</tr>
 					<tr>

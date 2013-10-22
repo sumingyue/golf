@@ -83,7 +83,7 @@ $(document).ready(function() {
 					<tr>
 							<td class="left">备注信息&nbsp;&nbsp;</td>
 							<td class="right"><textarea name="matchService.content" rows="7"
-									cols="60"></textarea></td>
+									cols="40"></textarea></td>
 					</tr>
 					<tr>
 							<td colspan="2" style="text-align:center">

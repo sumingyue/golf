@@ -71,15 +71,11 @@
 								<td style='text-align:right'><span class="muted">监事</span></td>
 								<td><strong>王敏</strong></td>
 							</tr>
-							<tr>
+<%-- 							<tr>
 								<td style='text-align:right'><span class="muted">总经理</span></td>
-								<td><strong>杨婵</strong></td>
+								<td><strong>待定</strong></td>
 							</tr>
-							<tr>
-								<td style='text-align:right'><span class="muted">助理经理</span></td>
-								<td><strong>顾玲玲</strong></td>
-							</tr>
-							<tr>
+ --%>							<tr>
 								<td style='text-align:right'><span class="muted">技术工程师</span></td>
 								<td><strong>尤勇</strong></td>
 							</tr>

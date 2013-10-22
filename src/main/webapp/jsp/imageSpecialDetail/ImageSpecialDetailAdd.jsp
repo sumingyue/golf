@@ -43,7 +43,7 @@ $(document).ready(function() {
 						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
 						<td class="left">图片简介<span class='red'>*</span></td>
-						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						<td class="right"><textarea  name="des"  rows="2" cols="40"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -51,7 +51,7 @@ $(document).ready(function() {
 						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
 						<td class="left">图片简介<span class='red'>*</span></td>
-						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						<td class="right"><textarea  name="des"  rows="2" cols="40"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -59,7 +59,7 @@ $(document).ready(function() {
 						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
 						<td class="left">图片简介<span class='red'>*</span></td>
-						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						<td class="right"><textarea  name="des"  rows="2" cols="40"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -67,7 +67,7 @@ $(document).ready(function() {
 						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
 						<td class="left">图片简介<span class='red'>*</span></td>
-						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						<td class="right"><textarea  name="des"  rows="2" cols="40"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -75,7 +75,7 @@ $(document).ready(function() {
 						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
 						<td class="left">图片简介<span class='red'>*</span></td>
-						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						<td class="right"><textarea  name="des"  rows="2" cols="40"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -83,7 +83,7 @@ $(document).ready(function() {
 						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
 						<td class="left">图片简介<span class='red'>*</span></td>
-						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						<td class="right"><textarea  name="des"  rows="2" cols="40"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -91,7 +91,7 @@ $(document).ready(function() {
 						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
 						<td class="left">图片简介<span class='red'>*</span></td>
-						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						<td class="right"><textarea  name="des"  rows="2" cols="40"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -99,7 +99,7 @@ $(document).ready(function() {
 						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
 						<td class="left">图片简介<span class='red'>*</span></td>
-						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						<td class="right"><textarea  name="des"  rows="2" cols="40"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -107,7 +107,7 @@ $(document).ready(function() {
 						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
 						<td class="left">图片简介<span class='red'>*</span></td>
-						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						<td class="right"><textarea  name="des"  rows="2" cols="40"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -115,7 +115,7 @@ $(document).ready(function() {
 						<td class="right"><input type="file" name="uploads"
 							id="fileUpload_upload"></td>
 						<td class="left">图片简介<span class='red'>*</span></td>
-						<td class="right"><textarea  name="des"  rows="2" cols="60"></textarea>
+						<td class="right"><textarea  name="des"  rows="2" cols="40"></textarea>
 						</td>
 					</tr>
 					<tr>

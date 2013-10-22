@@ -105,7 +105,7 @@ $(document).ready(function(){
 					</tr>
 					<tr>
 						<td class="left">球道简介<span class='red'>*</span></td>
-						<td class="right"><textarea  name="courtRaider.des"  rows="5" cols="60"><s:property value="courtRaider.des"/></textarea>
+						<td class="right"><textarea  name="courtRaider.des"  rows="5" cols="40"><s:property value="courtRaider.des"/></textarea>
 						</td>
 					</tr>
 						<tr>

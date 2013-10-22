@@ -105,7 +105,7 @@
 					</tr>
 					<tr>
 						<td class="left" width="40%">备注信息</td>
-						<td class="right"><textarea  name="courtOrder.note"  rows="4" cols="60"><s:property value="courtOrder.note"/></textarea></td>
+						<td class="right"><textarea  name="courtOrder.note"  rows="4" cols="40"><s:property value="courtOrder.note"/></textarea></td>
 					</tr>
 						<tr>
 							<td class="left" width="40%">订单状态<span class='red'>*</span></td>

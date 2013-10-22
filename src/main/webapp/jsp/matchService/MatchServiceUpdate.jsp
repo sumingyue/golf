@@ -86,7 +86,7 @@ $(document).ready(function(){
 					<tr>
 						<td class="left" width="40%">备注信息&nbsp;&nbsp;</td>
 						<td class="right"><textarea name="matchService.content" rows="4"
-								cols="60"><s:property value="matchService.content"/></textarea></td>
+								cols="40"><s:property value="matchService.content"/></textarea></td>
 					</tr>
 					<tr>
 							<td class="left" width="40%">订单状态<span class='red'>*</span></td>

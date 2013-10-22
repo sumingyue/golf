@@ -65,7 +65,7 @@ $(document).ready(function(){
 					</tr>
 					<tr>
 						<td class="left">用户评论<span class='red'>*</span></td>
-						<td class="right"><textarea  name="courtComments.content"  rows="5" cols="60"><s:property value="courtComments.content"/></textarea>
+						<td class="right"><textarea  name="courtComments.content"  rows="5" cols="40"><s:property value="courtComments.content"/></textarea>
 						</td>
 					</tr>
 						<tr>

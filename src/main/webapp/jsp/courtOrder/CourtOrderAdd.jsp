@@ -103,7 +103,7 @@ $(document).ready(function() {
 						<tr>
 							<td class="left" width="40%">备注信息</td>
 							<td class="right"><textarea name="courtOrder.note" rows="4"
-									cols="60"></textarea></td>
+									cols="40"></textarea></td>
 						</tr>
 						<tr>
 							<td colspan="2" style="text-align:center">

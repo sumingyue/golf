@@ -79,7 +79,7 @@ $(document).ready(function() {
 					</tr>
 					<tr>
 						<td class="left" width="40%">备注信息</td>
-						<td class="right"><textarea  name="productOrder.note"  rows="4" cols="60"></textarea></td>
+						<td class="right"><textarea  name="productOrder.note"  rows="4" cols="40"></textarea></td>
 					</tr>
 					<tr><td colspan="2" align="center"><button type="submit" class="btn">提交</button></tr>
 				</table>

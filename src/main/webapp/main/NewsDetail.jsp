@@ -87,16 +87,16 @@
 		</div>
 		<div>
 			<form action="comment.do" class="form-horizontal">
-				<input type="hidden" size="20" name="comments.newsId" value="<s:property value="news.id" />"/>
+				<input readonly type="hidden" size="20" name="comments.newsId" value="<s:property value="news.id" />"/>
 				<div class="control-group comment">
 					<label class="control-label" for="comments.userName">称呼</label>
 					<div class="controls">
-					<input type="text" size="20" placeholder="用户昵称" name="comments.userName" />
+					<input readonly type="text" size="20" placeholder="用户昵称" name="comments.userName" />
 				</div></div>
 				<div class="control-group comment">
 					<label class="control-label" for="comments.content">内容</label>
 					<div class="controls">
-					<textarea  name="comments.content" placeholder="您的评论"  rows="3" cols="30"></textarea>
+					<textarea readonly  name="comments.content" placeholder="您的评论"  rows="3" cols="30"></textarea>
 				</div></div>
 				<div class="control-group comment">
 			    <div class="controls">
